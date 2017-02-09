@@ -1,9 +1,8 @@
 var app = angular.module("site");
 
-app.controller("CharCreatorController", function($scope){
-  this.selectedClan = null;
+app.controller("CharCreatorController", function(){
   this.clanList = [
-    {id: 0,  name: "Select clan..."},
+    {id: 0,  name: "N/A"},
     {id: 1,  name: "Assamite"},    {id: 2,  name: "Baali"},
     {id: 3,  name: "Brujah"},      {id: 4,  name: "Caitiff"},
     {id: 5,  name: "Cappadocian"}, {id: 6,  name: "Followers of Set"},
@@ -14,20 +13,33 @@ app.controller("CharCreatorController", function($scope){
     {id: 15, name: "Tremere"},     {id: 16, name: "Tzimisce"},
     {id: 17, name: "Ventrue"}
   ];
-  this.bloodlineList = [
+  this.selectedClan = this.clanList[0];
+  this.selectedBloodline = null;
+
+
+  this.cappadocianBloodlines = [
+    {id: 1, name: "Harbingers of Skulls"},
+    {id: 2, name: "Lamia", setting: "VDA"},
+    {id: 3, name: "Samedi"}
+  ];
+
+  this.gangrelBloodlines = [
     {id: 1,  name: "Ahrimanes", clan: "Gangrel"},
-    {id: 2,  name: "Anda", clan: "Gangrel", setting: "VDA"},
+    {id: 2,  name: "Anda", setting: "VDA"},
+    {id: 10, name: "Lhiannan"},
+    {id: 12, name: "Noiad", setting: "VDA"},
+  ];
+
+  this.lasombraBloodlines =[
+    {id: 1, name: "Kiasyd"}
+  ];
+
+  this.otherBloodlines = [
     {id: 3,  name: "Blood Brothers", clan: null},
     {id: 4,  name: "Children of Osiris", clan: null},
     {id: 5,  name: "Daughters of Cacophony", clan: null},
     {id: 6,  name: "Gargoyles", clan: null},
-    {id: 7,  name: "Harbingers of Skulls", clan: "Cappadocian"},
-    {id: 8,  name: "Kiasyd", clan: "Lasombra"},
-    {id: 9,  name: "Lamia", clan: "Cappadocian"},
-    {id: 10, name: "Lhiannan", clan: "Gangrel"},
     {id: 11, name: "Nagaraja", clan: null},
-    {id: 12, name: "Noiad", clan: "Gangrel", setting: "VDA"},
-    {id: 13, name: "Samedi", clan: "Cappadocian"},
     {id: 14, name: "True Brujah", clan: null}
   ];
 });
