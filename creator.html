@@ -2,15 +2,24 @@
 
   <div>
     <form>
-      <input id="charName" />
+      <label for="charConcept">Character Concept: </label>
+      <input id="charConcept" />
       <br />
-      <select id="clanSelect" ng-model="creator.selectedClan" ng-init="creator.clanList[1]">
-        <option ng-repeat="clan in creator.clanList">{{clan.name}}</option>
+      <label for="clanSelect">Character Clan: </label>
+      <select id="clanSelect" ng-model="creator.selectedClan" ng-options="clan.name for clan in creator.clanList">
+        <!-- <option ng-repeat="clan in creator.clanList">{{clan.name}}</option> -->
       </select>
       <br />
-      <select id="bloodlineSelect">
-        <option ng-repeat="bloodline in creator.bloodlineList"
-                ng-show="creator.selectedClan==bloodline.clan">{{bloodline.name}}</option>
+      <label for="bloodlineSelect">Character Bloodline: </label>
+      <select id="bloodlineSelect" ng-model="creator.selectedBloodline">
+        <option ng-if="creator.selectedClan.name == 'Cappadocian'"
+                ng-repeat="bloodline in creator.cappadocianBloodlines">{{bloodline.name}}</option>
+        <option ng-if="creator.selectedClan.name == 'N/A'"
+                ng-repeat="bloodline in creator.otherBloodlines">{{bloodline.name}}</option>
+        <option ng-if="creator.selectedClan.name == 'Gangrel'"
+                ng-repeat="bloodline in creator.gangrelBloodlines">{{bloodline.name}}</option>
+        <option ng-if="creator.selectedClan.name == 'Lasombra'"
+                ng-repeat="bloodline in creator.lasombraBloodlines">{{bloodline.name}}</option>
       </select>
     </form>
   </div>
