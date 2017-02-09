@@ -1,3 +1,16 @@
-<div>
-  
-</div>
+<h3>Character Creator Page</h1>
+
+  <div>
+    <form>
+      <input id="charName" />
+      <br />
+      <select id="clanSelect" ng-model="creator.selectedClan" ng-init="creator.clanList[1]">
+        <option ng-repeat="clan in creator.clanList">{{clan.name}}</option>
+      </select>
+      <br />
+      <select id="bloodlineSelect">
+        <option ng-repeat="bloodline in creator.bloodlineList"
+                ng-show="creator.selectedClan==bloodline.clan">{{bloodline.name}}</option>
+      </select>
+    </form>
+  </div>
