@@ -1,20 +1,17 @@
 (function(){
-  var app = angular.module('site', ['ngRoute']);
+  var app = angular.module("site", ["ngRoute"]);
 
-  app.config(function($routeProvider){
-    $routeProvider
-
-    .when('/', {
-      templateUrl: 'pages/home.html',
-      controller:  'SiteController'
+app.config(function($routeProvider){
+  $routeProvider
+    .when("/home",{
+      templateUrl: "home.html",
+      controller: "HomeController as home"
     })
-    .when('/creator', {
-      templateUrl: 'pages/creator.html',
-      controller:  'CharCreatorController'
-    });
-  });
+    .when("/creator",{
+      templateUrl: "creator.html",
+      controller: "CharCreatorController as creator"
+    })
+    .otherwise({redirectTo:"/home"});
+});
 
-  app.controller('SiteController', function($scope){
-    $scope.message = 'Hello!';
-	});
-})();
+}());
