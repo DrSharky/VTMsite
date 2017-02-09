@@ -9,7 +9,7 @@ app.config(function($routeProvider){
     })
     .when("/creator",{
       templateUrl: "creator.html",
-      controller: "CharCreatorController"
+      controller: "CharCreatorController as creator"
     })
     .otherwise({redirectTo:"/home"});
 });
