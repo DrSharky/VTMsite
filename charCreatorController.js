@@ -1,6 +1,18 @@
 var app = angular.module("site");
 
 app.controller("CharCreatorController", function(){
+
+  this.showClanInfo = false;
+
+  this.getClanPage = function(clan){
+    if(clan === "N/A")
+      return null;
+    this.clanPage = "clans/"+clan+".html";
+    this.showClanInfo = true;
+    return this.clanPage;
+  };
+
+
   this.clanList = [
     {id: 0,  name: "N/A"},
     {id: 1,  name: "Assamite"},    {id: 2,  name: "Baali"},
@@ -18,19 +30,22 @@ app.controller("CharCreatorController", function(){
 
 
   this.cappadocianBloodlines = [
+    {id: 0, name: "None"},
     {id: 1, name: "Harbingers of Skulls"},
     {id: 2, name: "Lamia", setting: "VDA"},
     {id: 3, name: "Samedi"}
   ];
 
   this.gangrelBloodlines = [
-    {id: 1,  name: "Ahrimanes", clan: "Gangrel"},
-    {id: 2,  name: "Anda", setting: "VDA"},
-    {id: 10, name: "Lhiannan"},
-    {id: 12, name: "Noiad", setting: "VDA"},
+    {id: 0, name: "None"},
+    {id: 1, name: "Ahrimanes", clan: "Gangrel"},
+    {id: 2, name: "Anda", setting: "VDA"},
+    {id: 3, name: "Lhiannan"},
+    {id: 4, name: "Noiad", setting: "VDA"},
   ];
 
-  this.lasombraBloodlines =[
+  this.lasombraBloodlines = [
+    {id: 0, name: "None"},
     {id: 1, name: "Kiasyd"}
   ];
 
