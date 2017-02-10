@@ -1,4 +1,4 @@
-<h3>Character Creator Page</h1>
+<h3>Character Creator Page</h3>
 
   <div>
     <form>
@@ -7,8 +7,8 @@
       <br />
       <label for="clanSelect">Character Clan: </label>
       <select id="clanSelect" ng-model="creator.selectedClan" ng-options="clan.name for clan in creator.clanList">
-        <!-- <option ng-repeat="clan in creator.clanList">{{clan.name}}</option> -->
       </select>
+      &nbsp;
       <br />
       <label for="bloodlineSelect">Character Bloodline: </label>
       <select id="bloodlineSelect" ng-model="creator.selectedBloodline">
@@ -22,4 +22,5 @@
                 ng-repeat="bloodline in creator.lasombraBloodlines">{{bloodline.name}}</option>
       </select>
     </form>
-  </div>
+     <ng-include src="creator.getClanPage(creator.selectedClan.name)"> --></ng-include>
+    </div>
