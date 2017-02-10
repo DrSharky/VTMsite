@@ -1,6 +1,12 @@
 (function(){
   var app = angular.module("site", ["ngRoute"]);
 
+  app.controller("NavController", function($location){
+    this.isActive = function(viewLocation){
+      return viewLocation === $location.path();
+    }
+  });
+
 app.config(function($routeProvider){
   $routeProvider
     .when("/home",{

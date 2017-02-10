@@ -23,14 +23,41 @@
 </head>
 
 <body>
+  <nav class="navbar-default navbar-fixed-top" role="navigation" ng-controller="NavController as nav">
+    <div class="container-fluid">
+
+      <img id="title-logo" src="v20ankh.png" class="navbar-brand" />
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: nav.isActive('/home')}">
+          <a href="#">Home</a>
+        </li>
+        <li ng-class="{active: nav.isActive('/creator')}">
+          <a href="#!/creator">Character Creator</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br />
   <h3>V:TM Site</h3>
   <div ng-view></div>
 </body>
 </html>
 
+<!-- <script>
+  $(".menu li a").click(function(e){
+    var this = $(this);
+    if(!this.hasClass("active")){
+      this.addClass("active");
+    }
+  });
+</script> -->
+
 <style>
+  body{
+    padding-top: 20px;
+  }
   #title-logo{
-    height: 150px;
-    width: 400px;
+    height: 50px;
+    margin-left: -15px;
   }
 </style>
