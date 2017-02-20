@@ -3,6 +3,14 @@ var app = angular.module("site");
 app.controller("CharCreatorController", function(){
 
   this.showClanInfo = false;
+  this.showBloodlineInfo = false;
+
+  this.hasBloodlines = function(clan){
+    if((clan != 'Cappadocian') && (clan != 'Gangrel') && (clan != 'Lasombra') && (clan != 'N/A') )
+    return false;
+    else
+      return true;
+  }
 
   this.getClanPage = function(clan){
     if(clan === "N/A")
@@ -12,6 +20,13 @@ app.controller("CharCreatorController", function(){
     return this.clanPage;
   };
 
+  this.getBloodlinePage = function(bloodline){
+    if(bloodline === "N/A" || bloodline === "None" || bloodline === null)
+      return null;
+    this.bloodlinePage = "clans/"+bloodline+".html";
+    this.showBloodlineInfo = true;
+    return this.bloodlinePage;
+  };
 
   this.clanList = [
     {id: 0,  name: "N/A"},
