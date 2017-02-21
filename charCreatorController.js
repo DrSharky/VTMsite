@@ -30,16 +30,40 @@ app.controller("CharCreatorController", function(){
   };
 
   this.clanList = [
-    {id: 0,  name: "N/A"},
-    {id: 1,  name: "Assamite"},    {id: 2,  name: "Baali"},
-    {id: 3,  name: "Brujah"},      {id: 4,  name: "Caitiff"},
-    {id: 5,  name: "Cappadocian"}, {id: 6,  name: "Followers of Set"},
-    {id: 7,  name: "Gangrel"},     {id: 8,  name: "Giovanni"},
-    {id: 9,  name: "Lasombra"},    {id: 10, name: "Malkavian"},
-    {id: 11, name: "Nosferatu"},   {id: 12, name: "Ravnos"},
-    {id: 13, name: "Salubri"},     {id: 14, name: "Toreador"},
-    {id: 15, name: "Tremere"},     {id: 16, name: "Tzimisce"},
-    {id: 17, name: "Ventrue"}
+    {id: 0,  name: "N/A", bloodlines: [
+      {id: 3,  name: "Blood Brothers", clan: null},
+      {id: 4,  name: "Children of Osiris", clan: null},
+      {id: 5,  name: "Daughters of Cacophony", clan: null},
+      {id: 6,  name: "Gargoyles", clan: null},
+      {id: 11, name: "Nagaraja", clan: null},
+      {id: 14, name: "True Brujah", clan: null}
+    ]},
+    {id: 1,  name: "Assamite", bloodlines: false},    {id: 2,  name: "Baali", bloodlines: false},
+    {id: 3,  name: "Brujah", bloodlines: false},      {id: 4,  name: "Caitiff", bloodlines: false},
+    {id: 5,  name: "Cappadocian", bloodlines: [
+      {id: 0, name: "None"},
+      {id: 1, name: "Harbingers of Skulls"},
+      {id: 2, name: "Lamia", setting: "VDA"},
+      {id: 3, name: "Samedi"}
+    ]},
+    {id: 6,  name: "Followers of Set", bloodlines: false},
+    {id: 7,  name: "Gangrel", bloodlines: [
+      {id: 0, name: "None"},
+      {id: 1, name: "Ahrimanes", clan: "Gangrel"},
+      {id: 2, name: "Anda", setting: "VDA"},
+      {id: 3, name: "Lhiannan"},
+      {id: 4, name: "Noiad", setting: "VDA"},
+    ]},
+    {id: 8,  name: "Giovanni", bloodlines: false},
+    {id: 9,  name: "Lasombra", bloodlines: [
+      {id: 0, name: "None"},
+      {id: 1, name: "Kiasyd"}
+    ]},
+    {id: 10, name: "Malkavian", bloodlines: false},
+    {id: 11, name: "Nosferatu", bloodlines: false},   {id: 12, name: "Ravnos", bloodlines: false},
+    {id: 13, name: "Salubri", bloodlines: false},     {id: 14, name: "Toreador", bloodlines: false},
+    {id: 15, name: "Tremere", bloodlines: false},     {id: 16, name: "Tzimisce", bloodlines: false},
+    {id: 17, name: "Ventrue", bloodlines: false}
   ];
   this.selectedClan = this.clanList[0];
   this.selectedBloodline = null;
