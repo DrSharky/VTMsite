@@ -11,7 +11,7 @@
       &nbsp;
       <br />
       <label for="bloodlineSelect">Character Bloodline: </label>
-      <select id="bloodlineSelect" ng-model="creator.selectedBloodline" ng-show="creator.hasBloodlines(creator.selectedClan.name)">
+      <select id="bloodlineSelect" ng-model="creator.selectedBloodline" ng-show="creator.selectedClan.bloodline">
         <option ng-if="creator.selectedClan.name == 'Cappadocian'"
                 ng-repeat="bloodline in creator.cappadocianBloodlines">{{bloodline.name}}</option>
         <option ng-if="creator.selectedClan.name == 'N/A'"
@@ -24,6 +24,6 @@
             <span ng-show="!creator.hasBloodlines(creator.selectedClan.name)">N/A</span>
     </form>
      <!-- <ng-include ng-show="creator.selectedBloodline==null||creator.selectedBloodline=='None'" src="creator.getClanPage(creator.selectedClan.name)"></ng-include> -->
-     <ng-include ng-show="creator.selectedBloodline==null||creator.selectedBloodline=='None'" src="clans/clanpage.html"></ng-include>
+     <ng-include ng-show="creator.selectedBloodline==null||creator.selectedBloodline=='None'" src="'clans/clanpage.html'"></ng-include>
      <ng-include src="creator.getBloodlinePage(creator.selectedBloodline)"></ng-include>
     </div>
