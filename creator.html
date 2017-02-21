@@ -1,29 +1,23 @@
 <h3>Character Creator</h3>
-
   <div>
     <form>
       <label for="charConcept">Character Concept: </label>
       <input id="charConcept" />
       <br />
-      <label for="clanSelect">Character Clan: </label>
-      <select id="clanSelect" ng-model="creator.selectedClan" ng-options="clan.name for clan in creator.clanList">
-      </select>
-      &nbsp;
-      <br />
-      <label for="bloodlineSelect">Character Bloodline: </label>
-      <select id="bloodlineSelect" ng-model="creator.selectedBloodline" ng-show="creator.selectedClan.bloodline">
-        <option ng-if="creator.selectedClan.name == 'Cappadocian'"
-                ng-repeat="bloodline in creator.cappadocianBloodlines">{{bloodline.name}}</option>
-        <option ng-if="creator.selectedClan.name == 'N/A'"
-                ng-repeat="bloodline in creator.otherBloodlines">{{bloodline.name}}</option>
-        <option ng-if="creator.selectedClan.name == 'Gangrel'"
-                ng-repeat="bloodline in creator.gangrelBloodlines">{{bloodline.name}}</option>
-        <option ng-if="creator.selectedClan.name == 'Lasombra'"
-                ng-repeat="bloodline in creator.lasombraBloodlines">{{bloodline.name}}</option>
-      </select>
-            <span ng-show="!creator.hasBloodlines(creator.selectedClan.name)">N/A</span>
-    </form>
-     <!-- <ng-include ng-show="creator.selectedBloodline==null||creator.selectedBloodline=='None'" src="creator.getClanPage(creator.selectedClan.name)"></ng-include> -->
-     <ng-include ng-show="creator.selectedBloodline==null||creator.selectedBloodline=='None'" src="'clans/clanpage.html'"></ng-include>
-     <ng-include src="creator.getBloodlinePage(creator.selectedBloodline)"></ng-include>
+      <div ng-controller="ClanController as clanCtrl">
+        <label for="clanSelect">Character Clan: </label>
+        <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.clanList">
+        </select>
+        &nbsp;
+        <br />
+        <label for="bloodlineSelect">Character Bloodline: </label>
+        <select id="bloodlineSelect" ng-model="clanCtrl.selectedBloodline" ng-show="clanCtrl.hasBloodlines(clanCtrl.selectedClan.name)">
+          <option ng-repeat="bloodline in clanCtrl.selectedClan.bloodlines">{{bloodline.name}}</option>
+        </select>
+              <span ng-show="!clanCtrl.hasBloodlines(clanCtrl.selectedClan.name)">N/A</span>
+      </form>
+       <!-- <ng-include ng-show="creator.selectedBloodline==null||creator.selectedBloodline=='None'" src="creator.getClanPage(creator.selectedClan.name)"></ng-include> -->
+         <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
+     </div>
+     <ng-include src="clanCtrl.getBloodlinePage(clanCtrl.selectedBloodline)"></ng-include>
     </div>

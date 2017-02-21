@@ -1,8 +1,9 @@
 <div class="container">
   <div class="col-lg-6 col-md-6 col-sm-6">
-    <img src="clans/{{creator.selectedClan.name.toLowerCase()}}.png"
-    ng-show="creator.selectedClan.name!='N/A'" style="width: 100px; height: 90px;" />
-    <h3>{{creator.selectedClan.name}}</h3>
+    <img src="clans/{{clanCtrl.selectedClan.name.toLowerCase()}}.png"
+    ng-show="clanCtrl.selectedClan.name!='N/A'" style="width: 100px; height: 90px;" />
+    <h3 ng-show="clanCtrl.selectedBloodline==null || clanCtrl.selectedBloodline=='None'">{{clanCtrl.selectedClan.name}}</h3>
+    <h3 ng-show="clanCtrl.selectedBloodline!=null && clanCtrl.selectedBloodline!='None'">{{clanCtrl.selectedBloodline}}</h3>
     Caitiff are vampires with no known clan. It can mean that they were
     abandoned and therefore do not know their lineage, or that they
     have no traits of the clan that they were embraced into.
