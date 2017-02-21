@@ -12,13 +12,14 @@ app.controller("CharCreatorController", function(){
       return true;
   }
 
-  this.getClanPage = function(clan){
-    if(clan === "N/A")
-      return null;
-    this.clanPage = "clans/"+clan+".html";
-    this.showClanInfo = true;
-    return this.clanPage;
-  };
+  // this.getClanPage = function(clan){
+  //    if(clan === "N/A")
+  //      return null;
+  //    this.clanPage = "clans/"+clan+".html";
+  //    this.showClanInfo = true;
+  //    return this.clanPage;
+  //   return "clans/clanpage.html";
+  // };
 
   this.getBloodlinePage = function(bloodline){
     if(bloodline === "N/A" || bloodline === "None" || bloodline === null)
