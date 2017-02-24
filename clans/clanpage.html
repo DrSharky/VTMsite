@@ -8,10 +8,11 @@
     <h3 ng-show="clanCtrl.selectedBloodline==null || clanCtrl.selectedBloodline=='None'">{{clanCtrl.selectedClan.name}}</h3>
     <h3 ng-show="clanCtrl.selectedBloodline!=null && clanCtrl.selectedBloodline!='None'">{{clanCtrl.selectedBloodline}}</h3>
     <div ng-show="clanCtrl.selectedClan.name!='N/A' && (clanCtrl.selectedBloodline==null || clanCtrl.selectedBloodline=='None')">
-      {{clanCtrl.clanDescriptions[clanCtrl.selectedClan.name]}}
+      {{clanCtrl.clanDescriptions}}
+      <!-- {{clanCtrl.clanDescriptions[clanCtrl.selectedClan.name]}} -->
     </div>
-    <div ng-show="clanCtrl.selectedBloodline!=null && clanCtrl.selectedBloodline!='None'">
+    <!-- <div ng-show="clanCtrl.selectedBloodline!=null && clanCtrl.selectedBloodline!='None'">
       {{clanCtrl.clanDescriptions[clanCtrl.selectedBloodline]}}
-    </div>
+    </div> -->
   </div>
 </div>
