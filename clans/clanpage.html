@@ -1,17 +1,13 @@
 <div class="container">
   <div class="col-lg-6 col-md-6 col-sm-6">
-    <img src="clans/{{clanCtrl.selectedClan.name.toLowerCase()}}.png"
-    ng-show="clanCtrl.selectedClan.name!='N/A' && (clanCtrl.selectedBloodline == null || clanCtrl.selectedBloodline=='None')"
-     style="width: 100px; height: 90px;" />
-    <img src="clans/{{clanCtrl.selectedBloodline.toLowerCase()}}.png"
-    ng-show="clanCtrl.selectedBloodline!=null && clanCtrl.selectedBloodline!='None'" style="width: 100px; height: 90px;"/>
-    <h3 ng-show="clanCtrl.selectedBloodline==null || clanCtrl.selectedBloodline=='None'">{{clanCtrl.selectedClan.name}}</h3>
-    <h3 ng-show="clanCtrl.selectedBloodline!=null && clanCtrl.selectedBloodline!='None'">{{clanCtrl.selectedBloodline}}</h3>
-    <div ng-show="clanCtrl.selectedClan.name!='N/A' && (clanCtrl.selectedBloodline==null || clanCtrl.selectedBloodline=='None')">
+    <div ng-show="clanCtrl.selectedClan.name!='N/A' && (clanCtrl.selectedBloodline == null || clanCtrl.selectedBloodline=='None')">
+      <img src="clans/{{clanCtrl.selectedClan.name.toLowerCase()}}.png" style="width: 100px; height: 90px;" />
+      <h3>{{clanCtrl.selectedClan.name}}</h3>
       {{clanCtrl.clanDescriptions[clanCtrl.selectedClan.name]}}
-      <!-- {{clanCtrl.clanDescriptions[clanCtrl.selectedClan.name]}} -->
     </div>
     <div ng-show="clanCtrl.selectedBloodline!=null && clanCtrl.selectedBloodline!='None'">
+      <img src="clans/{{clanCtrl.selectedBloodline.toLowerCase()}}.png" style="width: 100px; height: 90px;"/>
+      <h3>{{clanCtrl.selectedBloodline}}</h3>
       {{clanCtrl.clanDescriptions[clanCtrl.selectedBloodline]}}
     </div>
   </div>
