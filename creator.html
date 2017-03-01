@@ -1,23 +1,47 @@
 <h3>Character Creator</h3>
-  <div>
-    <form>
-      <label for="charConcept">Character Concept: </label>
-      <input id="charConcept" />
+<div class="container">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="row">
+        <form>
+          <label for="charPlayer">Player: </label>
+          <input id="charPlayer" />
+          <label for="charChronicle">Chronicle: </label>
+          <input id="charChronicle" />
+          <label for="charName">Name: </label>
+          <input id="charName" />
+          <label for="charConcept">Concept: </label>
+          <input id="charConcept" />
+      </div>
+      <div class="row">
+        <label for="charNature">Nature: </label>
+        <input id="charNature" />
+        <label for="charDemeanor">Demeanor: </label>
+        <input id="charDemeanor" />
+        <label for="charGeneration">Generation: </label>
+        <input id="charGeneration" />
+        <label for="charSire">Sire: </label>
+        <input id="charSire" />
+      </div>
       <br />
       <div ng-controller="ClanController as clanCtrl">
-        <label for="clanSelect">Character Clan: </label>
-        <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.clanList">
-        </select>
-        &nbsp;
-        <br />
-        <label for="bloodlineSelect">Character Bloodline: </label>
-        <select id="bloodlineSelect" ng-model="clanCtrl.selectedBloodline" ng-show="clanCtrl.hasBloodlines(clanCtrl.selectedClan.name)">
-          <option ng-repeat="bloodline in clanCtrl.selectedClan.bloodlines">{{bloodline.name}}</option>
-        </select>
-              <span ng-show="!clanCtrl.hasBloodlines(clanCtrl.selectedClan.name)">N/A</span>
+        <div class="row">
+          <label for="clanFilter">Clan Filter: </label>
+          <select id="clanFilter" ng-model="clanCtrl.selectedClanFilter" ng-options="filter for filter in clanCtrl.clanFilters"
+                  ng-change="clanCtrl.filterClans(clanCtrl.selectedClanFilter)">
+          </select>
+        </div>
+        <div class="row">
+          <label for="clanSelect">Clan: </label>
+          <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList">
+          </select>
+          <label for="bloodlineSelect">Bloodline: </label>
+          <select id="bloodlineSelect" ng-model="clanCtrl.selectedBloodline" ng-show="clanCtrl.hasBloodlines(clanCtrl.selectedClan.name)">
+            <option ng-repeat="bloodline in clanCtrl.selectedClan.bloodlines">{{bloodline.name}}</option>
+          </select>
+          <span ng-show="!clanCtrl.hasBloodlines(clanCtrl.selectedClan.name)">N/A</span>
+        </div>
       </form>
-       <!-- <ng-include ng-show="creator.selectedBloodline==null||creator.selectedBloodline=='None'" src="creator.getClanPage(creator.selectedClan.name)"></ng-include> -->
-         <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
-     </div>
-     <!-- <ng-include src="clanCtrl.getBloodlinePage(clanCtrl.selectedBloodline)"></ng-include> -->
+      <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
+      </div>
     </div>
+</div>
