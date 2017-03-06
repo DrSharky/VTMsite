@@ -34,10 +34,10 @@ app.controller("CharCreatorController", function(){
   class Attributes {
     constructor(){
       this.points = [{id:0, img:"./full.png"},
-                     {id:1, img:"./full.png"},
-                     {id:2, img:"./full.png"},
-                     {id:3, img:"./full.png"},
-                     {id:4, img:"./full.png"}];
+                     {id:1, img:"./empty.png"},
+                     {id:2, img:"./empty.png"},
+                     {id:3, img:"./empty.png"},
+                     {id:4, img:"./empty.png"}];
 
       this.select = function(index){
         if(this.points[index].img=="./full.png")
