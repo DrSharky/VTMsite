@@ -4,23 +4,23 @@
       <div class="row">
         <form>
           <label for="charPlayer">Player: </label>
-          <input id="charPlayer" />
+          <input id="charPlayer" ng-model="creatorCtrl.charPlayer" />
           <label for="charChronicle">Chronicle: </label>
-          <input id="charChronicle" />
+          <input id="charChronicle" ng-model="creatorCtrl.charChronicle" />
           <label for="charName">Name: </label>
-          <input id="charName" />
+          <input id="charName" ng-model="creatorCtrl.charName" />
           <label for="charConcept">Concept: </label>
-          <input id="charConcept" />
+          <input id="charConcept" ng-model="creatorCtrl.charConcept" />
       </div>
       <div class="row">
         <label for="charNature">Nature: </label>
-        <input id="charNature" />
+        <input id="charNature" ng-model="creatorCtrl.charNature" />
         <label for="charDemeanor">Demeanor: </label>
-        <input id="charDemeanor" />
-        <label for="charGeneration">Generation: </label>
-        <input id="charGeneration" />
+        <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" />
         <label for="charSire">Sire: </label>
-        <input id="charSire" />
+        <input id="charSire" ng-model="creatorCtrl.charSire" />
+        <label for="charGeneration">Generation: </label>
+        <select id="charGeneration" ng-model="creatorCtrl.charGeneration" ng-options="charGen for charGen in creatorCtrl.generations"></select>
       </div>
       <br />
       <div ng-controller="ClanController as clanCtrl">
@@ -34,14 +34,47 @@
           <label for="clanSelect">Clan/Bloodline: </label>
           <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList">
           </select>
-          <!-- <label for="bloodlineSelect">Bloodline: </label>
-          <select id="bloodlineSelect" ng-model="clanCtrl.selectedBloodline" ng-show="clanCtrl.hasBloodlines(clanCtrl.selectedClan.name)">
-            <option ng-repeat="bloodline in clanCtrl.selectedClan.bloodlines">{{bloodline.name}}</option>
-          </select>
-          <span ng-show="!clanCtrl.hasBloodlines(clanCtrl.selectedClan.name)">N/A</span> -->
         </div>
       </form>
       <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
       </div>
+      <div class="char-pts-container">
+        <div class="row">
+          <div class="inline-headers">
+          <h2>Attributes</h2>
+          <h3>Physical</h3><h3>Social</h3> <h3>Mental</h3>
+        </div>
+        </div>
+        <div class="row">
+          <label for="ptsDir">Strength</label>
+          <div ng-repeat="strPt in creatorCtrl.strPts" style="float: left;">
+            <img id=$index ng-src="{{strPt.img}}" ng-click="creatorCtrl.togglePoint(strPt)" style="width:15px; height: 15px;" />
+          </div>
+          <img id="str1" class="alwaysChecked" src="/full.png"  style="width:15px; height: 15px;"/>
+          <img id="str3" class="unChecked" ng-src="{{creatorCtrl.empty}}"  style="width:15px; height: 15px;"/>
+          <img id="str2" class="unChecked" ng-src="{{creatorCtrl.empty}}" ng-click="creatorCtrl.togglePoint()"  style="width:15px; height: 15px;"/>
+          <img id="str4" class="unChecked" ng-src="{{creatorCtrl.empty}}"  style="width:15px; height: 15px;"/>
+          <img id="str5" class="unChecked" ng-src="{{creatorCtrl.empty}}"  style="width:15px; height: 15px;"/>
+          <label>Dexterity</label>
+          <input id="dex1" type="radio" ng-disabled="true" ng-checked="true" />
+          <input id="dex2" type="radio" />
+          <input id="dex3" type="radio" />
+          <input id="dex4" type="radio" />
+          <input id="dex5" type="radio" />
+          <label>Stamina</label>
+          <input id="sta1" type="radio" ng-disabled="true" ng-checked="true" />
+          <input id="sta2" type="radio" />
+          <input id="sta3" type="radio" />
+          <input id="sta4" type="radio" />
+          <input id="sta5" type="radio" />
+        </div>
+      </div>
     </div>
 </div>
+
+<style>
+ .inline-headers h3, .inline-headers h4 {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+</style>

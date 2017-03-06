@@ -7,17 +7,17 @@
     }
   });
 
-app.config(function($routeProvider){
-  $routeProvider
-    .when("/home",{
-      templateUrl: "home.html",
-      controller: "HomeController as home"
-    })
-    .when("/creator",{
-      templateUrl: "creator.html",
-      controller: "CharCreatorController as creator"
-    })
-    .otherwise({redirectTo:"/home"});
-});
-
-}());
+  app.config(function($routeProvider){
+    $routeProvider
+      .when("/home",{
+        templateUrl: "home.html",
+        controller: "HomeController as HomeCtrl"
+      })
+      .when("/creator",{
+        templateUrl: "creator.html",
+        controller: "CharCreatorController as creatorCtrl"
+      })
+      .otherwise({redirectTo:"/home"});
+    });
+  }()
+);
