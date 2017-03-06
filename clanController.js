@@ -16,7 +16,7 @@ app.controller("ClanController", function($window, $http){
   vm.filterClans = filterClans;
 
   vm.clanFilters = ["All", "Thirteen", "Camarilla", "Sabbat", "Independent", "All Clans",
-                      "All Bloodlines", "Camarilla (clans only)", "Sabbat (clans only)", "Dark Ages", "High clans", "Low clans"];
+                      "All Bloodlines", "Camarilla (clans only)", "Sabbat (clans only)", "Dark Ages", "High Clans", "Low Clans"];
 
   vm.clanList = [{id:0,  name:"Ahrimanes", filters:["Sabbat", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Potence", "Spiritus"]},
                   {id:1,  name:"Anda", filters:["Independent", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Fortitude", "Protean"]},

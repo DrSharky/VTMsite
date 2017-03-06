@@ -4,23 +4,23 @@
       <div class="row">
         <form>
           <label for="charPlayer">Player: </label>
-          <input id="charPlayer" />
+          <input id="charPlayer" ng-model="creatorCtrl.charPlayer" />
           <label for="charChronicle">Chronicle: </label>
-          <input id="charChronicle" />
+          <input id="charChronicle" ng-model="creatorCtrl.charChronicle" />
           <label for="charName">Name: </label>
-          <input id="charName" />
+          <input id="charName" ng-model="creatorCtrl.charName" />
           <label for="charConcept">Concept: </label>
-          <input id="charConcept" />
+          <input id="charConcept" ng-model="creatorCtrl.charConcept" />
       </div>
       <div class="row">
         <label for="charNature">Nature: </label>
-        <input id="charNature" />
+        <input id="charNature" ng-model="creatorCtrl.charNature" />
         <label for="charDemeanor">Demeanor: </label>
-        <input id="charDemeanor" />
-        <label for="charGeneration">Generation: </label>
-        <input id="charGeneration" />
+        <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" />
         <label for="charSire">Sire: </label>
-        <input id="charSire" />
+        <input id="charSire" ng-model="creatorCtrl.charSire" />
+        <label for="charGeneration">Generation: </label>
+        <select id="charGeneration" ng-model="creatorCtrl.charGeneration" ng-options="charGen for charGen in creatorCtrl.generations"></select>
       </div>
       <br />
       <div ng-controller="ClanController as clanCtrl">
@@ -34,14 +34,116 @@
           <label for="clanSelect">Clan/Bloodline: </label>
           <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList">
           </select>
-          <!-- <label for="bloodlineSelect">Bloodline: </label>
-          <select id="bloodlineSelect" ng-model="clanCtrl.selectedBloodline" ng-show="clanCtrl.hasBloodlines(clanCtrl.selectedClan.name)">
-            <option ng-repeat="bloodline in clanCtrl.selectedClan.bloodlines">{{bloodline.name}}</option>
-          </select>
-          <span ng-show="!clanCtrl.hasBloodlines(clanCtrl.selectedClan.name)">N/A</span> -->
         </div>
       </form>
       <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
       </div>
+      <h2 style="text-align:center">Attributes</h2>
+    </div>
+
+    <table style="width:100%">
+      <tr>
+        <th>
+          <h3>Physical</h3>
+        </th>
+        <th>
+          &nbsp;
+        </th>
+        <th>
+          <h3>Social</h3>
+        </th>
+        <th>
+          &nbsp;
+        </th>
+        <th>
+          <h3>Mental</h3>
+        </th>
+      </tr>
+      <tr>
+        <td style="width:90px;">
+          <h4>Strength</h4>
+        </td>
+        <td >
+          <div ng-repeat="strPt in creatorCtrl.strength.points" style="display: inline-block;">
+            <img ng-src="{{strPt.img}}" ng-click="creatorCtrl.strength.select($index)" style="width:15px; height: 15px;" />
+          </div>
+        </td>
+        <td style="width:110px;">
+          <h4>Charisma</h4>
+        </td>
+        <td >
+          <div ng-repeat="chaPt in creatorCtrl.charisma.points" style="display: inline-block;">
+            <img ng-src="{{chaPt.img}}" ng-click="creatorCtrl.charisma.select($index)" style="width:15px; height: 15px;" />
+          </div>
+        </td>
+        <td style="width:110px;">
+          <h4>Perception</h4>
+        </td>
+        <td >
+          <div ng-repeat="perPt in creatorCtrl.perception.points" style="display: inline-block;">
+            <img ng-src="{{perPt.img}}" ng-click="creatorCtrl.perception.select($index)" style="width:15px; height: 15px;" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:90px;">
+          <h4>Dexterity</h4>
+        </td>
+        <td >
+          <div ng-repeat="dexPt in creatorCtrl.dexterity.points" style="display: inline-block;">
+            <img ng-src="{{dexPt.img}}" ng-click="creatorCtrl.dexterity.select($index)" style="width:15px; height: 15px;" />
+          </div>
+        </td>
+        <td style="width:110px;">
+          <h4>Manipulation</h4>
+        </td>
+        <td >
+          <div ng-repeat="manPt in creatorCtrl.manipulation.points" style="display: inline-block;">
+            <img ng-src="{{manPt.img}}" ng-click="creatorCtrl.manipulation.select($index)" style="width:15px; height: 15px;" />
+          </div>
+        </td>
+        <td style="width:110px;">
+          <h4>Intelligence</h4>
+        </td>
+        <td >
+          <div ng-repeat="intPt in creatorCtrl.intelligence.points" style="display: inline-block;">
+            <img ng-src="{{intPt.img}}" ng-click="creatorCtrl.intelligence.select($index)" style="width:15px; height: 15px;" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:90px;">
+          <h4>Stamina</h4>
+        </td>
+        <td >
+          <div ng-repeat="staPt in creatorCtrl.stamina.points" style="display: inline-block;">
+            <img ng-src="{{staPt.img}}" ng-click="creatorCtrl.stamina.select($index)" style="width:15px; height: 15px;" />
+          </div>
+        </td>
+        <td style="width:110px;">
+          <h4>Appearance</h4>
+        </td>
+        <td >
+          <div ng-repeat="appPt in creatorCtrl.appearance.points" style="display: inline-block;">
+            <img ng-src="{{appPt.img}}" ng-click="creatorCtrl.appearance.select($index)" style="width:15px; height: 15px;" />
+          </div>
+        </td>
+        <td style="width:110px;">
+          <h4>Wits</h4>
+        </td>
+        <td >
+          <div ng-repeat="witPt in creatorCtrl.wits.points" style="display: inline-block;">
+            <img ng-src="{{witPt.img}}" ng-click="creatorCtrl.wits.select($index)" style="width:15px; height: 15px;" />
+          </div>
+        </td>
+      </tr>
+    </table>
     </div>
 </div>
+
+<style>
+ .inline-headers h3, .inline-headers h4 {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+</style>
