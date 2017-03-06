@@ -38,35 +38,78 @@
       </form>
       <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
       </div>
-      <div class="char-pts-container">
+      <h2 style="text-align:center">Attributes</h2>
+    </div>
+      <div class="col-lg-3 col-md-3 col-sm-3">
         <div class="row">
           <div class="inline-headers">
-          <h2>Attributes</h2>
-          <h3>Physical</h3><h3>Social</h3> <h3>Mental</h3>
+          <h3>Physical</h3>
         </div>
         </div>
         <div class="row">
-          <label for="ptsDir">Strength</label>
-          <div ng-repeat="strPt in creatorCtrl.strPts" style="float: left;">
-            <img id=$index ng-src="{{strPt.img}}" ng-click="creatorCtrl.togglePoint(strPt)" style="width:15px; height: 15px;" />
+          <label>Strength</label>
+          <div ng-repeat="strPt in creatorCtrl.strength.points" style="display: inline;">
+            <img ng-src="{{strPt.img}}" ng-click="creatorCtrl.strength.select($index)" style="width:15px; height: 15px;" />
           </div>
-          <img id="str1" class="alwaysChecked" src="/full.png"  style="width:15px; height: 15px;"/>
-          <img id="str3" class="unChecked" ng-src="{{creatorCtrl.empty}}"  style="width:15px; height: 15px;"/>
-          <img id="str2" class="unChecked" ng-src="{{creatorCtrl.empty}}" ng-click="creatorCtrl.togglePoint()"  style="width:15px; height: 15px;"/>
-          <img id="str4" class="unChecked" ng-src="{{creatorCtrl.empty}}"  style="width:15px; height: 15px;"/>
-          <img id="str5" class="unChecked" ng-src="{{creatorCtrl.empty}}"  style="width:15px; height: 15px;"/>
+          <br/>
           <label>Dexterity</label>
-          <input id="dex1" type="radio" ng-disabled="true" ng-checked="true" />
-          <input id="dex2" type="radio" />
-          <input id="dex3" type="radio" />
-          <input id="dex4" type="radio" />
-          <input id="dex5" type="radio" />
+          <div ng-repeat="dexPt in creatorCtrl.dexterity.points" style="display: inline;">
+            <img ng-src="{{dexPt.img}}" ng-click="creatorCtrl.dexterity.select($index)" style="width:15px; height: 15px;" />
+          </div>
+          <br />
           <label>Stamina</label>
-          <input id="sta1" type="radio" ng-disabled="true" ng-checked="true" />
-          <input id="sta2" type="radio" />
-          <input id="sta3" type="radio" />
-          <input id="sta4" type="radio" />
-          <input id="sta5" type="radio" />
+          <div ng-repeat="staPt in creatorCtrl.stamina.points" style="display: inline;">
+            <img ng-src="{{staPt.img}}" ng-click="creatorCtrl.stamina.select($index)" style="width:15px; height: 15px;" />
+          </div>
+          <br />
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="row">
+          <div class="inline-headers">
+          <h3>Social</h3>
+        </div>
+        </div>
+        <div class="row">
+          <label>Charisma</label>
+          <div ng-repeat="chaPt in creatorCtrl.charisma.points" style="display: inline;">
+            <img ng-src="{{chaPt.img}}" ng-click="creatorCtrl.charisma.select($index)" style="width:15px; height: 15px;" />
+          </div>
+          <br/>
+          <label>Manipulation</label>
+          <div ng-repeat="manPt in creatorCtrl.manipulation.points" style="display: inline;">
+            <img ng-src="{{manPt.img}}" ng-click="creatorCtrl.manipulation.select($index)" style="width:15px; height: 15px;" />
+          </div>
+          <br />
+          <label>Appearance</label>
+          <div ng-repeat="appPt in creatorCtrl.appearance.points" style="display: inline;">
+            <img ng-src="{{appPt.img}}" ng-click="creatorCtrl.appearance.select($index)" style="width:15px; height: 15px;" />
+          </div>
+          <br />
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="row">
+          <div class="inline-headers">
+          <h3>Mental</h3>
+        </div>
+        </div>
+        <div class="row">
+          <label>Perception</label>
+          <div ng-repeat="perPt in creatorCtrl.perception.points" style="display: inline-block;">
+            <img ng-src="{{perPt.img}}" ng-click="creatorCtrl.perception.select($index)" style="width:15px; height: 15px;" />
+          </div>
+          <br/>
+          <label>Intelligence</label>
+          <div ng-repeat="intPt in creatorCtrl.intelligence.points" style="display: inline-block;">
+            <img ng-src="{{intPt.img}}" ng-click="creatorCtrl.intelligence.select($index)" style="width:15px; height: 15px;" />
+          </div>
+          <br />
+          <label>Wits</label>
+          <div ng-repeat="witPt in creatorCtrl.wits.points" style="display: inline-block;">
+            <img ng-src="{{witPt.img}}" ng-click="creatorCtrl.wits.select($index)" style="width:15px; height: 15px;" />
+          </div>
+          <br />
         </div>
       </div>
     </div>

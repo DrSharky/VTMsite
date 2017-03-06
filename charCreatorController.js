@@ -2,8 +2,6 @@ var app = angular.module("site");
 
 app.controller("CharCreatorController", function(){
 
-  this.togglePoint = togglePoint;
-
   this.empty = "/empty.png";
   this.full = "/full.png";
 
@@ -31,48 +29,64 @@ app.controller("CharCreatorController", function(){
 
   this.maxFreePts = 22;
   this.maxFlawBonus = 7;
-  this.strPts = [{id:0, img:"/full.png"},
-                 {id:1, img:"/empty.png"},
-                 {id:2, img:"/empty.png"},
-                 {id:3, img:"/empty.png"},
-                 {id:4, img:"/empty.png"}];
-  this.dexPts = [{id:0, img:"/full.png"},
-                 {id:1, img:"/empty.png"},
-                 {id:2, img:"/empty.png"},
-                 {id:3, img:"/empty.png"},
-                 {id:4, img:"/empty.png"}];
-  this.staPts = [{id:0, img:"/full.png"},
-                 {id:1, img:"/empty.png"},
-                 {id:2, img:"/empty.png"},
-                 {id:3, img:"/empty.png"},
-                 {id:4, img:"/empty.png"}];
 
   this.generations = ["3rd", "4th", "5th", "6th", "7th",
                       "8th", "9th", "10th", "11th", "12th",
                       "13th", "14th", "15th"];
 
+  class Attributes {
+    constructor(){
+      this.points = [{id:0, img:"/full.png"},
+                     {id:1, img:"/full.png"},
+                     {id:2, img:"/full.png"},
+                     {id:3, img:"/full.png"},
+                     {id:4, img:"/full.png"}];
 
-//**UNDER CONSTRUCTION**
-  function togglePoint(strPt){
-    if(strPt.id == 0){}
-    else {
-      if(strPt.img == "/full.png"){
-        strPt.img = "/empty.png";
-        for(nextPt in this.strPts.slice(strPt.id, 4)){
-          if(this.strPts[nextPt].img == "/full.png"){
-            this.strPts[nextPt].img = "/empty.png";
-          }
+      this.select = function(index){
+        if(this.points[index].img=="/full.png")
+        {
+          this.points.forEach(function(point){
+            if(point.id <= index){
+              var test = 1;
+            }
+            else{
+              point.img = "/empty.png";
+            }
+          });
+        }
+        if(this.points[index].img=="/empty.png")
+        {
+          this.points.forEach(function(point){
+            if(point.id > index){
+              var test = 1;
+            }
+            else{
+              point.img = "/full.png";
+            }
+          });
         }
       }
-      else{
-        strPt.img = "/full.png";
-        for(prevPt in this.strPts.slice(0, strPt.id)){
-          if(this.strPts[prevPt].img == "/empty.png"){
-            this.strPts[prevPt].img = "/full.png";
-          }
-        }
     }
   }
-  };
 
+  class Abilities {
+    constructor(){
+      this.points = [{id:0, img:"/empty.png"},
+                     {id:1, img:"/empty.png"},
+                     {id:2, img:"/empty.png"},
+                     {id:3, img:"/empty.png"},
+                     {id:4, img:"/empty.png"}];
+    }
+  }
+
+
+  this.strength = new Attributes();
+  this.dexterity = new Attributes();
+  this.stamina = new Attributes();
+  this.charisma = new Attributes();
+  this.manipulation = new Attributes();
+  this.appearance = new Attributes();
+  this.perception = new Attributes();
+  this.intelligence = new Attributes();
+  this.wits = new Attributes();
 });
