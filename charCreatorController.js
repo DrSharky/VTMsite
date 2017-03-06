@@ -2,9 +2,6 @@ var app = angular.module("site");
 
 app.controller("CharCreatorController", function(){
 
-  this.empty = "/empty.png";
-  this.full = "/full.png";
-
   this.charPlayer = null;
   this.charChronicle = null;
   this.charName = null;
@@ -36,32 +33,32 @@ app.controller("CharCreatorController", function(){
 
   class Attributes {
     constructor(){
-      this.points = [{id:0, img:"/full.png"},
-                     {id:1, img:"/full.png"},
-                     {id:2, img:"/full.png"},
-                     {id:3, img:"/full.png"},
-                     {id:4, img:"/full.png"}];
+      this.points = [{id:0, img:"./full.png"},
+                     {id:1, img:"./full.png"},
+                     {id:2, img:"./full.png"},
+                     {id:3, img:"./full.png"},
+                     {id:4, img:"./full.png"}];
 
       this.select = function(index){
-        if(this.points[index].img=="/full.png")
+        if(this.points[index].img=="./full.png")
         {
           this.points.forEach(function(point){
             if(point.id <= index){
               var test = 1;
             }
             else{
-              point.img = "/empty.png";
+              point.img = "./empty.png";
             }
           });
         }
-        if(this.points[index].img=="/empty.png")
+        if(this.points[index].img=="./empty.png")
         {
           this.points.forEach(function(point){
             if(point.id > index){
               var test = 1;
             }
             else{
-              point.img = "/full.png";
+              point.img = "./full.png";
             }
           });
         }
