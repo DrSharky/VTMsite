@@ -1,10 +1,12 @@
 <div class="container">
-  <div class="col-lg-6 col-md-6 col-sm-6">
     <div ng-show="clanCtrl.selectedClan.name!='N/A' && (clanCtrl.selectedBloodline == null || clanCtrl.selectedBloodline=='None')">
-      <img src="clans/images/{{clanCtrl.selectedClan.name.toLowerCase()}}.png" style="width: 100px; height: 90px;" />
-      <h3>{{clanCtrl.selectedClan.name}}</h3>
-      {{clanCtrl.clanDescriptions[clanCtrl.selectedClan.name]}}<br/>
-      <b>Disciplines: </b>{{clanCtrl.selectedClan.disciplines.join(", ")}}
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <img src="clans/images/{{clanCtrl.selectedClan.name.toLowerCase()}}.png" style="margin-top:40px; width: 100px; height: 100px;" />
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <h3>{{clanCtrl.selectedClan.name}}</h3>
+        {{clanCtrl.clanDescriptions[clanCtrl.selectedClan.name]}}<br/>
+        <b>Disciplines: </b>{{clanCtrl.selectedClan.disciplines.join(", ")}}
+      </div>
     </div>
-  </div>
 </div>
