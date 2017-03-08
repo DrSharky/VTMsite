@@ -49,9 +49,8 @@
           <label for="clanSelect">Clan/Bloodline: </label>
           <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList">
           </select>
+          <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
         </div>
-      </form>
-      <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
       </div>
       <h2 style="text-align:center">Attributes</h2>
     </div>
