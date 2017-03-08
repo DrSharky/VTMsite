@@ -1,18 +1,22 @@
 <table style="width:100%">
   <tr>
     <th>
+      <select ng-model="attrCtrl.physicalPriority" ng-options="category for category in attrCtrl.attributePriorities"></select>
       <h3>Physical</h3>
     </th>
     <th>
       &nbsp;
     </th>
     <th>
+      <select ng-model="attrCtrl.socialPriority"
+       ng-options="category for category in attrCtrl.attributePriorities" ng-change="attrCtrl.categoryChange(attrCtrl.socialPriority)"></select>
       <h3>Social</h3>
     </th>
     <th>
       &nbsp;
     </th>
     <th>
+      <select ng-model="attrCtrl.mentalPriority" ng-options="category for category in attrCtrl.attributePriorities"></select>
       <h3>Mental</h3>
     </th>
   </tr>
