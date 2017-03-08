@@ -2,6 +2,7 @@ var app = angular.module("site");
 
 app.controller("CharCreatorController", function(){
 
+  this.attributesPage = "./attributes.html";
   this.charPlayer = null;
   this.charChronicle = null;
   this.charName = null;
