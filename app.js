@@ -18,7 +18,7 @@
         templateUrl: "creator.html",
         controller: "CharCreatorController as creatorCtrl"
       })
-      .otherwise({redirectTo:"./home"});
+      .otherwise({redirectTo:"/home"});
     });
   }()
 );
