@@ -55,7 +55,10 @@
       </div>
       <h2 style="text-align:center">Attributes</h2>
     </div>
-    <ng-include src="creatorCtrl.attributesPage"></ng-include>
+    <div ng-controller="AttributesController as attrCtrl">
+    <ng-include src="attrCtrl.attributesPage"></ng-include>
+    </div>
+
 </div>
 
 <style>
