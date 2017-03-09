@@ -16,12 +16,14 @@
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"/></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script type="text/javascript" src="app.js"></script>
   <script type="text/javascript" src="homeController.js"></script>
   <script type="text/javascript" src="charCreatorController.js"></script>
   <script type="text/javascript" src="clanController.js"></script>
   <script type="text/javascript" src="attributesController.js"></script>
   <!--dependencies-->
+  <base href="/">
 </head>
 
 <body>
@@ -31,11 +33,10 @@
       <img id="title-logo" src="v20ankh.png" class="navbar-brand" />
       <ul class="nav navbar-nav">
         <li ng-class="{active: nav.isActive('/home')}">
-          <a href="/home">Home</a>
+          <a ui-sref="home">Home</a>
         </li>
         <li ng-class="{active: nav.isActive('/creator')}">
-          <a href="/creator">Character Creator</a>
-
+          <a ui-sref="creator">Character Creator</a>
         </li>
       </ul>
     </div>
@@ -44,7 +45,7 @@
   <div class="container-fluid">
     <div class="row" style="margin-left: 100px; margin-right: 100px;">
       <div class="col-lg-6">
-        <div ng-view></div>
+        <ui-view><ui-view>
       </div>
     </div>
   </div>

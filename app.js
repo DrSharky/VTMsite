@@ -7,7 +7,8 @@
     }
   });
 
-  app.config(function($routeProvider){
+
+  app.config(function($routeProvider, $locationProvider){
     $routeProvider
       .when("/home",{
         templateUrl: "home.html",
@@ -18,6 +19,7 @@
         controller: "CharCreatorController as creatorCtrl"
       })
       .otherwise({redirectTo:"/home"});
+      $locationProvider.html5Mode(true);
     });
   }()
 );
