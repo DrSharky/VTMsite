@@ -40,34 +40,22 @@
       <br />
       <div ng-controller="ClanController as clanCtrl">
         <div class="row">
-          <table>
-            <tr>
-              <td>
-                <label for="clanFilter">Clan Filter: </label>
-              </td>
-              <td>
-                <select id="clanFilter" ng-model="clanCtrl.selectedClanFilter" ng-options="filter for filter in clanCtrl.clanFilters"
-                        ng-change="clanCtrl.filterClans(clanCtrl.selectedClanFilter)">
-                </select>
-              </td>
-          </tr>
-          <tr>
-            <td style="padding-right:10px;">
-              <label for="clanSelect">Clan/Bloodline: </label>
-            </td>
-            <td>
-              <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList">
-              </select>
-            </td>
-          </tr>
-          </table>
-          </div>
+          <label for="clanFilter">Clan Filter: </label>
+          <select id="clanFilter" ng-model="clanCtrl.selectedClanFilter" ng-options="filter for filter in clanCtrl.clanFilters"
+                  ng-change="clanCtrl.filterClans(clanCtrl.selectedClanFilter)">
+          </select>
+        </div>
+        <div class="row">
+          <label for="clanSelect">Clan/Bloodline: </label>
+          <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList">
+          </select>
           <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
+        </div>
       </div>
       <h2 style="text-align:center">Attributes</h2>
     </div>
     <div ng-controller="AttributesController as attrCtrl">
-    <ng-include src="attrCtrl.attributesPage"></ng-include>
+    <ng-include src="creatorCtrl.attributesPage"></ng-include>
     </div>
 </div>
 
