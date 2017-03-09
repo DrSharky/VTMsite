@@ -16,7 +16,6 @@
   <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"/></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
-  <script type="text/javascript" src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script type="text/javascript" src="app.js"></script>
   <script type="text/javascript" src="homeController.js"></script>
   <script type="text/javascript" src="charCreatorController.js"></script>
@@ -33,10 +32,10 @@
       <img id="title-logo" src="v20ankh.png" class="navbar-brand" />
       <ul class="nav navbar-nav">
         <li ng-class="{active: nav.isActive('/home')}">
-          <a ui-sref="home">Home</a>
+          <a href="#">Home</a>
         </li>
         <li ng-class="{active: nav.isActive('/creator')}">
-          <a ui-sref="creator">Character Creator</a>
+          <a href="#!/creator">Character Creator</a>
         </li>
       </ul>
     </div>
@@ -45,7 +44,7 @@
   <div class="container-fluid">
     <div class="row" style="margin-left: 100px; margin-right: 100px;">
       <div class="col-lg-6">
-        <ui-view><ui-view>
+        <div ng-view></div>
       </div>
     </div>
   </div>
