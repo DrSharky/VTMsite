@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="site">
+<head>
+  <!--icon stuff-->
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/icons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/icons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/icons/manifest.json">
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+  <!--icon stuff-->
+  <!--dependencies-->
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"/></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="homeController.js"></script>
+  <script type="text/javascript" src="charCreatorController.js"></script>
+  <script type="text/javascript" src="clanController.js"></script>
+  <script type="text/javascript" src="attributesController.js"></script>
+  <!--dependencies-->
+  <base href="/">
+</head>
+
+<body>
+  <nav class="navbar-default navbar-fixed-top" role="navigation" ng-controller="NavController as nav">
+    <div class="container-fluid">
+
+      <img id="title-logo" src="v20ankh.png" class="navbar-brand" />
+      <ul class="nav navbar-nav">
+        <li ng-class="{active: nav.isActive('/home')}">
+          <a ui-sref="home">Home</a>
+        </li>
+        <li ng-class="{active: nav.isActive('/creator')}">
+          <a ui-sref="creator">Character Creator</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br />
+  <div class="container-fluid">
+    <div class="row" style="margin-left: 100px; margin-right: 100px;">
+      <div class="col-lg-6">
+        <ui-view><ui-view>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+<style>
+  body{
+    padding-top: 60px;
+  }
+  #title-logo{
+    height: 50px;
+    margin-left: -15px;
+  }
+</style>
