@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module("site", ["ngRoute"]);
+  var app = angular.module("site", ["ngRoute", "ui.router"]);
 
   app.controller("NavController", function($location){
     this.isActive = function(viewLocation){
@@ -7,17 +7,22 @@
     }
   });
 
-  app.config(function($routeProvider){
-    $routeProvider
-      .when("/home",{
+  app.config(function($stateProvider, $urlRouterProvider, $locationProvider){
+    $stateProvider
+      .state("home",{
+        url: "/home",
         templateUrl: "home.html",
         controller: "HomeController as HomeCtrl"
       })
-      .when("/creator",{
+      .state("creator",{
+        url: "/creator",
         templateUrl: "creator.html",
         controller: "CharCreatorController as creatorCtrl"
-      })
-      .otherwise({redirectTo:"/home"});
+      });
+      // .otherwise({redirectTo:"/home"});
+      $urlRouterProvider.otherwise("/home");
+      $locationProvider.html5Mode(true);
+
     });
   }()
 );

@@ -2,7 +2,7 @@ var app = angular.module("site");
 
 app.controller("CharCreatorController", function(){
 
-  this.attributesPage = "./attributes.html";
+
   this.charPlayer = null;
   this.charChronicle = null;
   this.charName = null;
@@ -32,59 +32,16 @@ app.controller("CharCreatorController", function(){
                       "8th", "9th", "10th", "11th", "12th",
                       "13th", "14th", "15th"];
 
-  class Attributes {
-    constructor(){
-      this.points = [{id:0, img:"./full.png"},
-                     {id:1, img:"./empty.png"},
-                     {id:2, img:"./empty.png"},
-                     {id:3, img:"./empty.png"},
-                     {id:4, img:"./empty.png"}];
-
-      this.select = function(index){
-        if(this.points[index].img=="./full.png")
-        {
-          this.points.forEach(function(point){
-            if(point.id <= index){
-              var test = 1;
-            }
-            else{
-              point.img = "./empty.png";
-            }
-          });
-        }
-        if(this.points[index].img=="./empty.png")
-        {
-          this.points.forEach(function(point){
-            if(point.id > index){
-              var test = 1;
-            }
-            else{
-              point.img = "./full.png";
-            }
-          });
-        }
-      }
-    }
-  }
-
-  class Abilities {
-    constructor(){
+  class Abilities
+  {
+    constructor()
+    {
       this.points = [{id:0, img:"/empty.png"},
                      {id:1, img:"/empty.png"},
                      {id:2, img:"/empty.png"},
                      {id:3, img:"/empty.png"},
                      {id:4, img:"/empty.png"}];
     }
-  }
+  };
 
-
-  this.strength = new Attributes();
-  this.dexterity = new Attributes();
-  this.stamina = new Attributes();
-  this.charisma = new Attributes();
-  this.manipulation = new Attributes();
-  this.appearance = new Attributes();
-  this.perception = new Attributes();
-  this.intelligence = new Attributes();
-  this.wits = new Attributes();
 });
