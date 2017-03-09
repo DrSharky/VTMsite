@@ -10,15 +10,15 @@
 
   app.config(function($routeProvider, $locationProvider){
     $routeProvider
-      .when("/home",{
+      .when("./home",{
         templateUrl: "home.html",
         controller: "HomeController as HomeCtrl"
       })
-      .when("/creator",{
+      .when("./creator",{
         templateUrl: "creator.html",
         controller: "CharCreatorController as creatorCtrl"
       })
-      .otherwise({redirectTo:"/home"});
+      .otherwise({redirectTo:"./home"});
       $locationProvider.html5Mode(true);
     });
   }()
