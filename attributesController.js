@@ -12,12 +12,7 @@ app.controller("AttributesController", function(){
   this.secondaryPts = 5;
   this.tertiaryPts = 3;
 
-  this.selectedCategories =[{id:"0", priority: null},
-                            {id:"1", priority: null},
-                            {id:"2", priority: null}];
-
-  this.physicalStats = {priority: null, points: 0};
-  this.socialStats = {priority: null, }
+  this.selectedPriorities = [null, null, null];
 
 
   class Attributes {
@@ -27,6 +22,15 @@ app.controller("AttributesController", function(){
                      {id:2, img:"./empty.png"},
                      {id:3, img:"./empty.png"},
                      {id:4, img:"./empty.png"}];
+
+      this.reset = function(){
+        this.points.forEach(function(attribute){
+          if(attribute.id == 0)
+            attribute.img = "./full.png";
+          else
+            attribute.img = "./empty.png";
+        });
+      }
 
       this.select = function(index){
         if(this.points[index].img=="./full.png")
@@ -65,16 +69,30 @@ app.controller("AttributesController", function(){
   this.intelligence = new Attributes();
   this.wits = new Attributes();
 
+  this.attributeCategories = [{id: 0, category: "physical", attributes:[this.strength, this.dexterity, this.stamina], priority:null},
+                              {id: 1, category: "social", attributes:[this.charisma, this.manipulation, this.appearance], priority: null},
+                              {id: 2, category: "mental", attributes:[this.perception, this.intelligence, this.wits], priority: null}];
 
 
-//TODO: Under construction. Figure out how to organize this correctly & check for equality between selectors.
-function categoryChange(changedCategory, id){
-  this.selectedCategories[id].priority = changedCategory;
-  this.selectedCategories.forEach(function(category){
-    if(changedCategory == category.priority && id != category.id){
-      var test = 1;
-    }
-  })
+//TODO: Get the point limits to work based on the category priorities.
+function selectAttribute(attribute, index){
+  switch(attribute){
+    case "strength":
+      this.strength.select(index);
+
+  }
 }
+
+function categoryChange(changedCategory, id){
+  this.attributeCategories[id].priority = changedCategory;
+  for(var i = 0; i < this.selectedPriorities.length; i++){
+    if(changedCategory == this.selectedPriorities[i] && id != i){
+      this.selectedPriorities[i] = null;
+      this.attributeCategories[i].attributes.forEach(function(attr){
+        attr.reset();
+      })
+    }
+  }
+};
 
 });

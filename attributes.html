@@ -1,24 +1,24 @@
 <table style="width:100%">
   <tr>
     <th>
-      <select ng-model="attrCtrl.physicalPriority"
-       ng-options="category for category in attrCtrl.attributePriorities" ng-change="attrCtrl.categoryChange(attrCtrl.physicalPriority, 0)"></select>
+      <select ng-model="attrCtrl.selectedPriorities[0]"
+       ng-options="category for category in attrCtrl.attributePriorities" ng-change="attrCtrl.categoryChange(attrCtrl.selectedPriorities[0], 0)"></select>
       <h3>Physical</h3>
     </th>
     <th>
       &nbsp;
     </th>
     <th>
-      <select ng-model="attrCtrl.socialPriority"
-       ng-options="category for category in attrCtrl.attributePriorities" ng-change="attrCtrl.categoryChange(attrCtrl.socialPriority, 1)"></select>
+      <select ng-model="attrCtrl.selectedPriorities[1]"
+       ng-options="category for category in attrCtrl.attributePriorities" ng-change="attrCtrl.categoryChange(attrCtrl.selectedPriorities[1], 1)"></select>
       <h3>Social</h3>
     </th>
     <th>
       &nbsp;
     </th>
     <th>
-      <select ng-model="attrCtrl.mentalPriority"
-       ng-options="category for category in attrCtrl.attributePriorities" ng-change="attrCtrl.categoryChange(attrCtrl.mentalPriority, 2)"></select>
+      <select ng-model="attrCtrl.selectedPriorities[2]"
+       ng-options="category for category in attrCtrl.attributePriorities" ng-change="attrCtrl.categoryChange(attrCtrl.selectedPriorities[2], 2)"></select>
       <h3>Mental</h3>
     </th>
   </tr>
