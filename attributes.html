@@ -28,7 +28,7 @@
     </td>
     <td>
       <div ng-repeat="strPt in attrCtrl.strength.points" style="display: inline-block;">
-        <img ng-src="{{strPt.img}}" ng-click="attrCtrl.strength.select($index)" style="width:15px; height: 15px;" />
+        <img ng-src="{{strPt.img}}" ng-click="attrCtrl.selectAttribute('strength', $index)" style="width:15px; height: 15px;" />
       </div>
     </td>
     <td style="width:110px;">
