@@ -1,6 +1,6 @@
 var app = angular.module("site");
 
-app.controller("ClanController", function($window, $http){
+app.controller("ClanController", function($scope, $http, UglyService){
 
   var vm = this;
   vm.clanDescriptions = [];
@@ -67,4 +67,9 @@ app.controller("ClanController", function($window, $http){
   vm.filteredClanList = vm.clanList;
   vm.selectedClan = vm.filteredClanList[0];
   vm.selectedClanFilter = vm.clanFilters[0];
+
+  $scope.setUClan = function(clan){
+    UglyService.setClan(clan);
+  }
+
 });
