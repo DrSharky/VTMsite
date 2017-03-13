@@ -1,6 +1,7 @@
 var app = angular.module("site");
 
-app.controller("AttributesController", function(){
+app.controller("AttributesController", function($scope, UglyService){
+
 
   this.categoryChange = categoryChange;
 
@@ -55,7 +56,13 @@ app.controller("AttributesController", function(){
             }
           });
         }
-      }
+      };
+
+      this.zero = function(){
+        this.points.forEach(function(attribute){
+          attribute.img = './empty.png';
+        });
+      };
     }
   }
 
@@ -72,6 +79,21 @@ app.controller("AttributesController", function(){
   this.attributeCategories = [{id: 0, category: "physical", attributes:[this.strength, this.dexterity, this.stamina], priority:null},
                               {id: 1, category: "social", attributes:[this.charisma, this.manipulation, this.appearance], priority: null},
                               {id: 2, category: "mental", attributes:[this.perception, this.intelligence, this.wits], priority: null}];
+
+
+this.isUglyClan = function(){
+    if(UglyService.isUgly()){
+      this.appearance.zero();
+      return true;
+    }
+    else {
+      if(UglyService.previousUgly()){
+        this.appearance.reset();
+        UglyService.previousClan = null;
+      }
+      return false;
+    }
+  };
 
 
 //TODO: Get the point limits to work based on the category priorities.

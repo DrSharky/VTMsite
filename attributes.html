@@ -87,7 +87,7 @@
       <h4>Appearance</h4>
     </td>
     <td >
-      <div ng-repeat="appPt in attrCtrl.appearance.points" style="display: inline-block;">
+      <div ng-disabled="attrCtrl.isUglyClan()" ng-repeat="appPt in attrCtrl.appearance.points" style="display: inline-block;">
         <img ng-src="{{appPt.img}}" ng-click="attrCtrl.appearance.select($index)" style="width:15px; height: 15px;" />
       </div>
     </td>
