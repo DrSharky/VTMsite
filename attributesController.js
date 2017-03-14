@@ -7,6 +7,8 @@ app.controller("AttributesController", function($scope, UglyService){
   this.getPriority = getPriority;
   this.getPriorityPts = getPriorityPts;
   this.getCategoryIndex = getCategoryIndex;
+  this.isUglyClan = isUglyClan;
+  this.priorityNullCheck = priorityNullCheck;
   this.attributePriorities = ["Primary", "Secondary", "Tertiary"];
   this.attributesPage = "./attributes.html";
   this.attributePtsTotal = 15;
@@ -15,7 +17,7 @@ app.controller("AttributesController", function($scope, UglyService){
   this.tertiaryPts = 3;
   this.selectedPriorities = [null, null, null];
 
-  class Attributes {
+  class Attribute {
     constructor(name){
       this.name = name;
       this.pointCount = 1;
@@ -68,21 +70,21 @@ app.controller("AttributesController", function($scope, UglyService){
     }
   }
 
-  this.strength = new Attributes("strength");
-  this.dexterity = new Attributes("dexterity");
-  this.stamina = new Attributes("stamina");
-  this.charisma = new Attributes("charisma");
-  this.manipulation = new Attributes("manipulation");
-  this.appearance = new Attributes("appearance");
-  this.perception = new Attributes("perception");
-  this.intelligence = new Attributes("intelligence");
-  this.wits = new Attributes("wits");
+  this.strength = new Attribute("strength");
+  this.dexterity = new Attribute("dexterity");
+  this.stamina = new Attribute("stamina");
+  this.charisma = new Attribute("charisma");
+  this.manipulation = new Attribute("manipulation");
+  this.appearance = new Attribute("appearance");
+  this.perception = new Attribute("perception");
+  this.intelligence = new Attribute("intelligence");
+  this.wits = new Attribute("wits");
 
   this.attributeCategories = [{id: 0, category: "physical", attributes:[this.strength, this.dexterity, this.stamina], priority:null},
                               {id: 1, category: "social", attributes:[this.charisma, this.manipulation, this.appearance], priority: null},
                               {id: 2, category: "mental", attributes:[this.perception, this.intelligence, this.wits], priority: null}];
 
-this.isUglyClan = function(){
+  function isUglyClan(){
     if(UglyService.isUgly()){
       this.appearance.zero();
       return true;
@@ -105,6 +107,18 @@ function getPriority(attribute){
   }
   if(attribute == "perception" || attribute == "intelligence" || attribute == "wits"){
     return this.selectedPriorities[2];
+  }
+}
+
+function priorityNullCheck(attribute){
+  if(attribute.name == "strength" || attribute.name == "dexterity" || attribute.name == "stamina"){
+    return (this.selectedPriorities[0]!=null);
+  }
+  if(attribute.name == "charisma" || attribute.name == "manipulation" || attribute.name == "appearance"){
+    return (this.selectedPriorities[1]!=null);
+  }
+  if(attribute.name == "perception" || attribute.name == "intelligence" || attribute.name == "wits"){
+    return (this.selectedPriorities[2]!=null);
   }
 }
 
@@ -138,8 +152,8 @@ function getCategoryIndex(attribute){
 
 function selectAttribute(attribute, index){
 
-  //Sum the pointCount of each attribute in the category, THEN subtract.
   //Keep in case a bug pops up, but I think this is fixed.
+  //Sum the pointCount of each attribute in the category, THEN subtract.
   // var catIndex = this.getCategoryIndex(attribute.name);
   // var sumPointCount = -3;
   // this.attributeCategories[catIndex].attributes.forEach(function(attribute){
