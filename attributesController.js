@@ -2,25 +2,23 @@ var app = angular.module("site");
 
 app.controller("AttributesController", function($scope, UglyService){
 
-
   this.categoryChange = categoryChange;
   this.selectAttribute = selectAttribute;
   this.getPriority = getPriority;
   this.getPriorityPts = getPriorityPts;
-
+  this.getCategoryIndex = getCategoryIndex;
   this.attributePriorities = ["Primary", "Secondary", "Tertiary"];
   this.attributesPage = "./attributes.html";
-
   this.attributePtsTotal = 15;
   this.primaryPts = 7;
   this.secondaryPts = 5;
   this.tertiaryPts = 3;
-
   this.selectedPriorities = [null, null, null];
 
-
   class Attributes {
-    constructor(){
+    constructor(name){
+      this.name = name;
+      this.pointCount = 1;
       this.points = [{id:0, img:"./full.png"},
                      {id:1, img:"./empty.png"},
                      {id:2, img:"./empty.png"},
@@ -28,11 +26,12 @@ app.controller("AttributesController", function($scope, UglyService){
                      {id:4, img:"./empty.png"}];
 
       this.reset = function(){
-        this.points.forEach(function(attribute){
-          if(attribute.id == 0)
-            attribute.img = "./full.png";
+        this.pointCount = 1;
+        this.points.forEach(function(point){
+          if(point.id == 0)
+            point.img = "./full.png";
           else
-            attribute.img = "./empty.png";
+            point.img = "./empty.png";
         });
       }
 
@@ -69,20 +68,19 @@ app.controller("AttributesController", function($scope, UglyService){
     }
   }
 
-  this.strength = new Attributes();
-  this.dexterity = new Attributes();
-  this.stamina = new Attributes();
-  this.charisma = new Attributes();
-  this.manipulation = new Attributes();
-  this.appearance = new Attributes();
-  this.perception = new Attributes();
-  this.intelligence = new Attributes();
-  this.wits = new Attributes();
+  this.strength = new Attributes("strength");
+  this.dexterity = new Attributes("dexterity");
+  this.stamina = new Attributes("stamina");
+  this.charisma = new Attributes("charisma");
+  this.manipulation = new Attributes("manipulation");
+  this.appearance = new Attributes("appearance");
+  this.perception = new Attributes("perception");
+  this.intelligence = new Attributes("intelligence");
+  this.wits = new Attributes("wits");
 
   this.attributeCategories = [{id: 0, category: "physical", attributes:[this.strength, this.dexterity, this.stamina], priority:null},
                               {id: 1, category: "social", attributes:[this.charisma, this.manipulation, this.appearance], priority: null},
                               {id: 2, category: "mental", attributes:[this.perception, this.intelligence, this.wits], priority: null}];
-
 
 this.isUglyClan = function(){
     if(UglyService.isUgly()){
@@ -99,14 +97,14 @@ this.isUglyClan = function(){
   };
 
 function getPriority(attribute){
-  if(attribute == "strength" || "dexterity" || "stamina"){
-    return this.attributeCategories[0].priority;
+  if(attribute == "strength" || attribute == "dexterity" || attribute == "stamina"){
+    return this.selectedPriorities[0];
   }
-  if(attribute == "charisma" || "manipulation" || "appearance"){
-    return this.attributeCategories[1].priority;
+  if(attribute == "charisma" || attribute == "manipulation" || attribute == "appearance"){
+    return this.selectedPriorities[1];
   }
-  if(attribute == "perception" || "intelligence" || "wits"){
-    return this.attributeCategories[2].priority;
+  if(attribute == "perception" || attribute == "intelligence" || attribute == "wits"){
+    return this.selectedPriorities[2];
   }
 }
 
@@ -126,59 +124,90 @@ function getPriorityPts(priority){
   }
 }
 
+function getCategoryIndex(attribute){
+  if(attribute == "strength" || attribute == "dexterity" || attribute == "stamina"){
+    return 0;
+  }
+  if(attribute == "charisma" || attribute == "manipulation" || attribute == "appearance"){
+    return 1;
+  }
+  if(attribute == "perception" || attribute == "intelligence" || attribute == "wits"){
+    return 2;
+  }
+}
 
-//TODO: Get the point limits to work based on the category priorities.
-//TODO: Record the current number at which the attribute is assigned (i.e. 2, 3, 4, 5) so that the math here will be easier.
 function selectAttribute(attribute, index){
-  var priority = this.getPriority(attribute);
+
+  //Sum the pointCount of each attribute in the category, THEN subtract.
+  //Keep in case a bug pops up, but I think this is fixed.
+  // var catIndex = this.getCategoryIndex(attribute.name);
+  // var sumPointCount = -3;
+  // this.attributeCategories[catIndex].attributes.forEach(function(attribute){
+  //   sumPointCount += attribute.pointCount;
+  // });
+
+  var priority = this.getPriority(attribute.name);
   var priorityPts = this.getPriorityPts(priority);
-  switch(attribute){
-    case "strength":
-      if((priorityPts - index > 0)){
-        this.strength.select(index);
-        // if(priority == "Primary") ?? Maybe not...
-        //   this.primaryPts -= 1;
-      }
+  var pointDiff = attribute.pointCount - (index+1);
+
+  //Do math to make sure they can't spend points they don't have, even when priorityPts isn't equal to 0
+  //Case example: increase 3 pts when priorityPts = 2.
+  if((priorityPts+pointDiff < 0)){
+    return null;
+  }
+
+  //Don't let the user spend points they don't have!
+  if(priorityPts <= 0 && pointDiff < 0)
+  {
+    return null;
+  }
+
+  //Change the point count in the attribute.
+  attribute.pointCount = (index+1);
+
+  //Change the total amount of points still available for that category.
+  switch(priority){
+    case "Primary":
+      this.primaryPts += pointDiff;
       break;
-    case "dexterity":
-      this.strength.select(index);
+    case "Secondary":
+      this.secondaryPts += pointDiff;
       break;
-    case "stamina":
-      this.stamina.select(index);
-      break;
-    case "charisma":
-      this.charisma.select(index);
-      break;
-    case "manipulation":
-      this.manipulation.select(index);
-      break;
-    case "appearance":
-      this.appearance.select(index);
-      break;
-    case "perception":
-      this.perception.select(index);
-      break;
-    case "intelligence":
-      this.intelligence.select(index);
-      break;
-    case "wits":
-      this.wits.select(index);
+    case "Tertiary":
+      this.tertiaryPts += pointDiff;
       break;
     default:
       break;
   }
+  //Fill in the dots!
+  attribute.select(index);
 };
 
-function categoryChange(changedCategory, id){
+function categoryChange(changedCategory, id, prevCategory){
   this.attributeCategories[id].priority = changedCategory;
   for(var i = 0; i < this.selectedPriorities.length; i++){
     if(changedCategory == this.selectedPriorities[i] && id != i){
       this.selectedPriorities[i] = null;
       this.attributeCategories[i].attributes.forEach(function(attr){
         attr.reset();
-      })
+      });
     }
   }
+    //Reset the dots.
+    this.attributeCategories[id].attributes.forEach(function(attr){
+      attr.reset();
+
+    });
+    //Reset the point values.
+    if(prevCategory == "Primary"){
+      this.primaryPts = 7;
+    }
+    if(prevCategory == "Secondary"){
+      this.secondaryPts  = 5;
+    }
+    if(prevCategory == "Tertiary"){
+      this.tertiaryPts = 3;
+    }
 };
 
 });

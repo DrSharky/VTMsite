@@ -2,7 +2,8 @@
   <tr>
     <th>
       <select ng-model="attrCtrl.selectedPriorities[0]"
-       ng-options="category for category in attrCtrl.attributePriorities" ng-change="attrCtrl.categoryChange(attrCtrl.selectedPriorities[0], 0)"></select>
+       ng-options="category for category in attrCtrl.attributePriorities"
+       ng-change="attrCtrl.categoryChange(attrCtrl.selectedPriorities[0], 0, attrCtrl.attributeCategories[0].priority)"></select>
       <h3>Physical</h3>
     </th>
     <th>
@@ -10,7 +11,8 @@
     </th>
     <th>
       <select ng-model="attrCtrl.selectedPriorities[1]"
-       ng-options="category for category in attrCtrl.attributePriorities" ng-change="attrCtrl.categoryChange(attrCtrl.selectedPriorities[1], 1)"></select>
+       ng-options="category for category in attrCtrl.attributePriorities"
+       ng-change="attrCtrl.categoryChange(attrCtrl.selectedPriorities[1], 1, attrCtrl.attributeCategories[1].priority)"></select>
       <h3>Social</h3>
     </th>
     <th>
@@ -18,7 +20,8 @@
     </th>
     <th>
       <select ng-model="attrCtrl.selectedPriorities[2]"
-       ng-options="category for category in attrCtrl.attributePriorities" ng-change="attrCtrl.categoryChange(attrCtrl.selectedPriorities[2], 2)"></select>
+       ng-options="category for category in attrCtrl.attributePriorities"
+       ng-change="attrCtrl.categoryChange(attrCtrl.selectedPriorities[2], 2, attrCtrl.attributeCategories[2].priority)"></select>
       <h3>Mental</h3>
     </th>
   </tr>
@@ -28,7 +31,7 @@
     </td>
     <td>
       <div ng-repeat="strPt in attrCtrl.strength.points" style="display: inline-block;">
-        <img ng-src="{{strPt.img}}" ng-click="attrCtrl.selectAttribute('strength', $index)" style="width:15px; height: 15px;" />
+        <img ng-src="{{strPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.strength, $index)" style="width:15px; height: 15px;" />
       </div>
     </td>
     <td style="width:110px;">
@@ -36,7 +39,7 @@
     </td>
     <td >
       <div ng-repeat="chaPt in attrCtrl.charisma.points" style="display: inline-block;">
-        <img ng-src="{{chaPt.img}}" ng-click="attrCtrl.charisma.select($index)" style="width:15px; height: 15px;" />
+        <img ng-src="{{chaPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.charisma, $index)" style="width:15px; height: 15px;" />
       </div>
     </td>
     <td style="width:110px;">
@@ -44,7 +47,7 @@
     </td>
     <td >
       <div ng-repeat="perPt in attrCtrl.perception.points" style="display: inline-block;">
-        <img ng-src="{{perPt.img}}" ng-click="attrCtrl.perception.select($index)" style="width:15px; height: 15px;" />
+        <img ng-src="{{perPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.perception, $index)" style="width:15px; height: 15px;" />
       </div>
     </td>
   </tr>
@@ -54,7 +57,7 @@
     </td>
     <td >
       <div ng-repeat="dexPt in attrCtrl.dexterity.points" style="display: inline-block;">
-        <img ng-src="{{dexPt.img}}" ng-click="attrCtrl.dexterity.select($index)" style="width:15px; height: 15px;" />
+        <img ng-src="{{dexPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.dexterity, $index)" style="width:15px; height: 15px;" />
       </div>
     </td>
     <td style="width:110px;">
@@ -62,7 +65,7 @@
     </td>
     <td >
       <div ng-repeat="manPt in attrCtrl.manipulation.points" style="display: inline-block;">
-        <img ng-src="{{manPt.img}}" ng-click="attrCtrl.manipulation.select($index)" style="width:15px; height: 15px;" />
+        <img ng-src="{{manPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.manipulation, $index)" style="width:15px; height: 15px;" />
       </div>
     </td>
     <td style="width:110px;">
@@ -70,7 +73,7 @@
     </td>
     <td >
       <div ng-repeat="intPt in attrCtrl.intelligence.points" style="display: inline-block;">
-        <img ng-src="{{intPt.img}}" ng-click="attrCtrl.intelligence.select($index)" style="width:15px; height: 15px;" />
+        <img ng-src="{{intPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.intelligence, $index)" style="width:15px; height: 15px;" />
       </div>
     </td>
   </tr>
@@ -80,7 +83,7 @@
     </td>
     <td >
       <div ng-repeat="staPt in attrCtrl.stamina.points" style="display: inline-block;">
-        <img ng-src="{{staPt.img}}" ng-click="attrCtrl.stamina.select($index)" style="width:15px; height: 15px;" />
+        <img ng-src="{{staPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.stamina, $index)" style="width:15px; height: 15px;" />
       </div>
     </td>
     <td style="width:110px;">
@@ -88,7 +91,7 @@
     </td>
     <td >
       <div ng-disabled="attrCtrl.isUglyClan()" ng-repeat="appPt in attrCtrl.appearance.points" style="display: inline-block;">
-        <img ng-src="{{appPt.img}}" ng-click="attrCtrl.appearance.select($index)" style="width:15px; height: 15px;" />
+        <img ng-src="{{appPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.appearance, $index)" style="width:15px; height: 15px;" />
       </div>
     </td>
     <td style="width:110px;">
@@ -96,7 +99,7 @@
     </td>
     <td >
       <div ng-repeat="witPt in attrCtrl.wits.points" style="display: inline-block;">
-        <img ng-src="{{witPt.img}}" ng-click="attrCtrl.wits.select($index)" style="width:15px; height: 15px;" />
+        <img ng-src="{{witPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.wits, $index)" style="width:15px; height: 15px;" />
       </div>
     </td>
   </tr>
