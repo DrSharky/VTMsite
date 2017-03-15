@@ -153,7 +153,6 @@ function getCategoryIndex(attribute){
 function selectAttribute(attribute, index){
 
   //Keep in case a bug pops up, but I think this is fixed.
-  //Sum the pointCount of each attribute in the category, THEN subtract.
   // var catIndex = this.getCategoryIndex(attribute.name);
   // var sumPointCount = -3;
   // this.attributeCategories[catIndex].attributes.forEach(function(attribute){
@@ -161,6 +160,9 @@ function selectAttribute(attribute, index){
   // });
 
   var priority = this.getPriority(attribute.name);
+  if(priority==null){
+    return null;
+  }
   var priorityPts = this.getPriorityPts(priority);
   var pointDiff = attribute.pointCount - (index+1);
 
@@ -193,6 +195,7 @@ function selectAttribute(attribute, index){
     default:
       break;
   }
+  this.attributePtsTotal += pointDiff;
   //Fill in the dots!
   attribute.select(index);
 };
