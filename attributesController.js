@@ -200,6 +200,7 @@ function selectAttribute(attribute, index){
   attribute.select(index);
 };
 
+//TODO: Fix bug: red point counts stay when changing priority.
 function categoryChange(changedCategory, id, prevCategory){
   this.attributeCategories[id].priority = changedCategory;
   for(var i = 0; i < this.selectedPriorities.length; i++){
