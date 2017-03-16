@@ -2,7 +2,7 @@ var app = angular.module("site");
 
 app.controller("AttributesController", function($scope, UglyService){
 
-  this.categoryChange = categoryChange;
+  this.priorityChange = priorityChange;
   this.selectAttribute = selectAttribute;
   this.getPriority = getPriority;
   this.getPriorityPts = getPriorityPts;
@@ -16,6 +16,7 @@ app.controller("AttributesController", function($scope, UglyService){
   this.secondaryPts = 5;
   this.tertiaryPts = 3;
   this.selectedPriorities = [null, null, null];
+  var vm = this;
 
   class Attribute {
     constructor(name){
@@ -28,12 +29,14 @@ app.controller("AttributesController", function($scope, UglyService){
                      {id:4, img:"./empty.png"}];
 
       this.reset = function(){
+        vm.attributePtsTotal += (this.pointCount - 1);
         this.pointCount = 1;
         this.points.forEach(function(point){
           if(point.id == 0)
             point.img = "./full.png";
-          else
+          else {
             point.img = "./empty.png";
+          }
         });
       }
 
@@ -200,10 +203,10 @@ function selectAttribute(attribute, index){
   attribute.select(index);
 };
 
-function categoryChange(changedCategory, id, prevCategory){
-  this.attributeCategories[id].priority = changedCategory;
+function priorityChange(changedPriority, id, prevPriority){
+  this.attributeCategories[id].priority = changedPriority;
   for(var i = 0; i < this.selectedPriorities.length; i++){
-    if(changedCategory == this.selectedPriorities[i] && id != i){
+    if(changedPriority == this.selectedPriorities[i] && id != i){
       this.selectedPriorities[i] = null;
       this.attributeCategories[i].attributes.forEach(function(attr){
         attr.reset();
@@ -216,13 +219,22 @@ function categoryChange(changedCategory, id, prevCategory){
 
     });
     //Reset the point values.
-    if(prevCategory == "Primary"){
+    if(prevPriority == "Primary"){
       this.primaryPts = 7;
     }
-    if(prevCategory == "Secondary"){
+    if(prevPriority == "Secondary"){
       this.secondaryPts  = 5;
     }
-    if(prevCategory == "Tertiary"){
+    if(prevPriority == "Tertiary"){
+      this.tertiaryPts = 3;
+    }
+    if(changedPriority == "Primary"){
+      this.primaryPts = 7
+    }
+    if(changedPriority == "Secondary"){
+      this.secondaryPts = 5;
+    }
+    if(changedPriority == "Tertiary"){
       this.tertiaryPts = 3;
     }
 };
