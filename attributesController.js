@@ -45,7 +45,7 @@ app.controller("AttributesController", function($scope, UglyService){
         {
           this.points.forEach(function(point){
             if(point.id <= index){
-              var test = 1;
+              return;
             }
             else{
               point.img = "./empty.png";
@@ -56,7 +56,7 @@ app.controller("AttributesController", function($scope, UglyService){
         {
           this.points.forEach(function(point){
             if(point.id > index){
-              var test = 1;
+              return;
             }
             else{
               point.img = "./full.png";
@@ -70,8 +70,8 @@ app.controller("AttributesController", function($scope, UglyService){
           attribute.img = './empty.png';
         });
       };
-    }
-  }
+    };
+  };
 
   this.strength = new Attribute("strength");
   this.dexterity = new Attribute("dexterity");
