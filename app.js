@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module("site", ["ngRoute"]);
+  var app = angular.module("site", ["ngRoute", "ngTable"]);
 
   app.controller("NavController", function($location){
     this.isActive = function(viewLocation){

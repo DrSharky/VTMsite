@@ -31,272 +31,49 @@
       <div class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[2])}}</div>
     </th>
   </tr>
-  <tr>
-    <td style="width:90px;">
-      <div class="abLabel">Alertness</div>
+</table>
+<table ng-table="abCtrl.tableParams1" show-filter="false" style="width:1140px;">
+  <tr ng-repeat="ability in $data">
+    <td style="width:97px;">
+      <div class="abLabel">
+        {{ability.col1.name}}
+      </div>
     </td>
-    <td>
-      <div ng-repeat="alrPt in abCtrl.alertness.points" style="display: inline-block;">
-        <img ng-src="{{alrPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.alertness, $index)"
-         style="width:15px; height: 15px;" />
+    <td class="points-cell">
+      <div ng-repeat="abPt in ability.col1.points" style="display: inline-block;">
+        <img ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col1, $index)"
+        style="width: 15px; height: 15px;"/>
+      </div>
+    </td>
+    <td style="width:117px;">
+      <div class="abLabel">
+        {{ability.col2.name}}
+      </div>
+    </td>
+    <td class="points-cell">
+      <div ng-repeat="abPt in ability.col2.points" style="display: inline-block;">
+        <img ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col2, $index)"
+        style="width: 15px; height: 15px;"/>
       </div>
     </td>
     <td style="width:110px;">
-      <div class="abLabel">Animal Ken</div>
+      <div class="abLabel">
+        {{ability.col3.name}}
+      </div>
     </td>
-    <td>
-      <div ng-repeat="ankPt in abCtrl.animalken.points" style="display: inline-block;">
-        <img ng-src="{{ankPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.animalken, $index)"
-         style="width:15px; height: 15px;" />
-       </div>
-    </td>
-    <td style="width:110px;">
-      <div class="abLabel">Academics</div>
-    </td>
-    <td>
-      <div ng-repeat="acaPt in abCtrl.academics.points" style="display: inline-block;">
-        <img ng-src="{{acaPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.academics, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td style="width:90px;">
-      <div class="abLabel">Athletics</div>
-    </td>
-    <td>
-      <div ng-repeat="athPt in abCtrl.athletics.points" style="display: inline-block;">
-        <img ng-src="{{athPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.athletics, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Crafts</div>
-    </td>
-    <td>
-      <div ng-repeat="crfPt in abCtrl.crafts.points" style="display: inline-block;">
-        <img ng-src="{{crfPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.crafts, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Computer</div>
-    </td>
-    <td>
-      <div ng-repeat="comPt in abCtrl.computer.points" style="display: inline-block;">
-        <img ng-src="{{comPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.computer, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Awareness</div>
-    </td>
-    <td>
-      <div ng-repeat="awaPt in abCtrl.awareness.points" style="display: inline-block;">
-        <img ng-src="{{awaPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.awareness, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Drive</div>
-    </td>
-    <td>
-      <div ng-repeat="drvPt in abCtrl.drive.points" style="display: inline-block;">
-        <img ng-src="{{drvPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.drive, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Finance</div>
-    </td>
-    <td>
-      <div ng-repeat="finPt in abCtrl.finance.points" style="display: inline-block;">
-        <img ng-src="{{finPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.finance, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Brawl</div>
-    </td>
-    <td>
-      <div ng-repeat="brwPt in abCtrl.brawl.points" style="display: inline-block;">
-        <img ng-src="{{brwPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.brawl, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Etiquette</div>
-    </td>
-    <td>
-      <div ng-repeat="etqPt in abCtrl.etiquette.points" style="display: inline-block;">
-        <img ng-src="{{etqPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.etiquette, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Investigation</div>
-    </td>
-    <td>
-      <div ng-repeat="invPt in abCtrl.investigation.points" style="display: inline-block;">
-        <img ng-src="{{invPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.investigation, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Empathy</div>
-    </td>
-    <td>
-      <div ng-repeat="empPt in abCtrl.empathy.points" style="display: inline-block;">
-        <img ng-src="{{empPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.empathy, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Firearms</div>
-    </td>
-    <td>
-      <div ng-repeat="firPt in abCtrl.firearms.points" style="display: inline-block;">
-        <img ng-src="{{firPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.firearms, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Law</div>
-    </td>
-    <td>
-      <div ng-repeat="lawPt in abCtrl.law.points" style="display: inline-block;">
-        <img ng-src="{{lawPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.law, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Expression</div>
-    </td>
-    <td>
-      <div ng-repeat="expPt in abCtrl.expression.points" style="display: inline-block;">
-        <img ng-src="{{expPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.expression, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Larceny</div>
-    </td>
-    <td>
-      <div ng-repeat="larPt in abCtrl.larceny.points" style="display: inline-block;">
-        <img ng-src="{{larPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.larceny, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Medicine</div>
-    </td>
-    <td>
-      <div ng-repeat="medPt in abCtrl.medicine.points" style="display: inline-block;">
-        <img ng-src="{{medPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.medicine, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Intimidation</div>
-    </td>
-    <td>
-      <div ng-repeat="intPt in abCtrl.intimidation.points" style="display: inline-block;">
-        <img ng-src="{{intPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.intimidation, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Melee</div>
-    </td>
-    <td>
-      <div ng-repeat="melPt in abCtrl.melee.points" style="display: inline-block;">
-        <img ng-src="{{melPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.melee, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Occult</div>
-    </td>
-    <td>
-      <div ng-repeat="occPt in abCtrl.occult.points" style="display: inline-block;">
-        <img ng-src="{{occPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.occult, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Leadership</div>
-    </td>
-    <td>
-      <div ng-repeat="ldrPt in abCtrl.leadership.points" style="display: inline-block;">
-        <img ng-src="{{ldrPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.leadership, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Performance</div>
-    </td>
-    <td>
-      <div ng-repeat="prfPt in abCtrl.performance.points" style="display: inline-block;">
-        <img ng-src="{{prfPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.performance, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Politics</div>
-    </td>
-    <td>
-      <div ng-repeat="polPt in abCtrl.politics.points" style="display: inline-block;">
-        <img ng-src="{{polPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.politics, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Streetwise</div>
-    </td>
-    <td>
-      <div ng-repeat="stwPt in abCtrl.streetwise.points" style="display: inline-block;">
-        <img ng-src="{{stwPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.streetwise, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Stealth</div>
-    </td>
-    <td>
-      <div ng-repeat="stlPt in abCtrl.stealth.points" style="display: inline-block;">
-        <img ng-src="{{stlPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.stealth, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Science</div>
-    </td>
-    <td>
-      <div ng-repeat="sciPt in abCtrl.science.points" style="display: inline-block;">
-        <img ng-src="{{sciPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.science, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Subterfuge</div>
-    </td>
-    <td>
-      <div ng-repeat="subPt in abCtrl.subterfuge.points" style="display: inline-block;">
-        <img ng-src="{{subPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.subterfuge, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Survival</div>
-    </td>
-    <td>
-      <div ng-repeat="srvPt in abCtrl.survival.points" style="display: inline-block;">
-        <img ng-src="{{srvPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.survival, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Technology</div>
-    </td>
-    <td>
-      <div ng-repeat="tchPt in abCtrl.technology.points" style="display: inline-block;">
-        <img ng-src="{{tchPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.technology, $index)"
-         style="width:15px; height: 15px;" />
+    <td class="points-cell">
+      <div ng-repeat="abPt in ability.col3.points" style="display: inline-block;">
+        <img ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col3, $index)"
+        style="width: 15px; height: 15px;"/>
+      </div>
     </td>
   </tr>
 </table>
-<abilitygrid></abilitygrid>
 
 <style>
+  .points-cell {
+    width: 272px;
+  }
   .num {
     padding-left: 35px;
     padding-top: 30px;
@@ -314,5 +91,6 @@
     font-weight: 500;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 87px;
   }
 </style>
