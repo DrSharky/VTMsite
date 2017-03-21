@@ -31,141 +31,49 @@
       <div class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[2])}}</div>
     </th>
   </tr>
-  <tr>
-    <td style="width:90px;">
-      <div class="abLabel">Alertness</div>
+</table>
+<table ng-table="abCtrl.tableParams1" show-filter="false" style="width:1140px;">
+  <tr ng-repeat="ability in $data">
+    <td style="width:97px;">
+      <div class="abLabel">
+        {{ability.col1.name}}
+      </div>
     </td>
-    <td>
-      <div ng-repeat="alrPt in abCtrl.alertness.points" style="display: inline-block;">
-        <img ng-src="{{alrPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.alertness, $index)"
-         style="width:15px; height: 15px;" />
+    <td class="points-cell">
+      <div ng-repeat="abPt in ability.col1.points" style="display: inline-block;">
+        <img ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col1, $index)"
+        style="width: 15px; height: 15px;"/>
+      </div>
+    </td>
+    <td style="width:117px;">
+      <div class="abLabel">
+        {{ability.col2.name}}
+      </div>
+    </td>
+    <td class="points-cell">
+      <div ng-repeat="abPt in ability.col2.points" style="display: inline-block;">
+        <img ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col2, $index)"
+        style="width: 15px; height: 15px;"/>
       </div>
     </td>
     <td style="width:110px;">
-      <div class="abLabel">Animal Ken</div>
+      <div class="abLabel">
+        {{ability.col3.name}}
+      </div>
     </td>
-    <td>
-      <div ng-repeat="ankPt in abCtrl.animalken.points" style="display: inline-block;">
-        <img ng-src="{{ankPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.animalken, $index)"
-         style="width:15px; height: 15px;" />
-       </div>
-    </td>
-    <td style="width:110px;">
-      <div class="abLabel">Academics</div>
-    </td>
-    <td>
-      <div ng-repeat="acaPt in abCtrl.academics.points" style="display: inline-block;">
-        <img ng-src="{{acaPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.academics, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td style="width:90px;">
-      <div class="abLabel">Athletics</div>
-    </td>
-    <td>
-      <div ng-repeat="athPt in abCtrl.athletics.points" style="display: inline-block;">
-        <img ng-src="{{athPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.athletics, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Crafts</div>
-    </td>
-    <td>
-      <div ng-repeat="crfPt in abCtrl.crafts.points" style="display: inline-block;">
-        <img ng-src="{{crfPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.crafts, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Computer</div>
-    </td>
-    <td>
-      <div ng-repeat="comPt in abCtrl.computer.points" style="display: inline-block;">
-        <img ng-src="{{comPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.computer, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Awareness</div>
-    </td>
-    <td>
-      <div ng-repeat="awaPt in abCtrl.awareness.points" style="display: inline-block;">
-        <img ng-src="{{awaPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.awareness, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Drive</div>
-    </td>
-    <td>
-      <div ng-repeat="drvPt in abCtrl.drive.points" style="display: inline-block;">
-        <img ng-src="{{drvPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.drive, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Finance</div>
-    </td>
-    <td>
-      <div ng-repeat="finPt in abCtrl.finance.points" style="display: inline-block;">
-        <img ng-src="{{finPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.finance, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Brawl</div>
-    </td>
-    <td>
-      <div ng-repeat="brwPt in abCtrl.brawl.points" style="display: inline-block;">
-        <img ng-src="{{brwPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.brawl, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Etiquette</div>
-    </td>
-    <td>
-      <div ng-repeat="etqPt in abCtrl.etiquette.points" style="display: inline-block;">
-        <img ng-src="{{etqPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.etiquette, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Investigation</div>
-    </td>
-    <td>
-      <div ng-repeat="invPt in abCtrl.investigation.points" style="display: inline-block;">
-        <img ng-src="{{invPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.investigation, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <div class="abLabel">Empathy</div>
-    </td>
-    <td>
-      <div ng-repeat="empPt in abCtrl.empathy.points" style="display: inline-block;">
-        <img ng-src="{{empPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.empathy, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel">Firearms</div>
-    </td>
-    <td>
-      <div ng-repeat="firPt in abCtrl.firearms.points" style="display: inline-block;">
-        <img ng-src="{{firPt.img}}" ng-click="abCtrl.selectAbility(abCtrl.firearms, $index)"
-         style="width:15px; height: 15px;" />
-    </td>
-    <td>
-      <div class="abLabel"></div>
-    </td>
-    <td>
-      <div ng-repeat="Pt in abCtrl..points" style="display: inline-block;">
-        <img ng-src="{{Pt.img}}" ng-click="abCtrl.selectAbility(abCtrl., $index)"
-         style="width:15px; height: 15px;" />
+    <td class="points-cell">
+      <div ng-repeat="abPt in ability.col3.points" style="display: inline-block;">
+        <img ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col3, $index)"
+        style="width: 15px; height: 15px;"/>
+      </div>
     </td>
   </tr>
 </table>
 
 <style>
+  .points-cell {
+    width: 272px;
+  }
   .num {
     padding-left: 35px;
     padding-top: 30px;
@@ -183,5 +91,6 @@
     font-weight: 500;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 87px;
   }
 </style>
