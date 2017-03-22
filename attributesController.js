@@ -155,13 +155,6 @@ function getCategoryIndex(attribute){
 
 function selectAttribute(attribute, index){
 
-  //Keep in case a bug pops up, but I think this is fixed.
-  // var catIndex = this.getCategoryIndex(attribute.name);
-  // var sumPointCount = -3;
-  // this.attributeCategories[catIndex].attributes.forEach(function(attribute){
-  //   sumPointCount += attribute.pointCount;
-  // });
-
   var priority = this.getPriority(attribute.name);
   if(priority==null){
     return null;

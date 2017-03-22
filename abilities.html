@@ -41,8 +41,7 @@
     </td>
     <td class="points-cell">
       <div ng-repeat="abPt in ability.col1.points" style="display: inline-block;">
-        <img ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col1, $index)"
-        style="width: 15px; height: 15px;"/>
+        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col1, $index)"/>
       </div>
     </td>
     <td style="width:117px;">
@@ -52,8 +51,7 @@
     </td>
     <td class="points-cell">
       <div ng-repeat="abPt in ability.col2.points" style="display: inline-block;">
-        <img ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col2, $index)"
-        style="width: 15px; height: 15px;"/>
+        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col2, $index)"/>
       </div>
     </td>
     <td style="width:110px;">
@@ -63,8 +61,7 @@
     </td>
     <td class="points-cell">
       <div ng-repeat="abPt in ability.col3.points" style="display: inline-block;">
-        <img ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col3, $index)"
-        style="width: 15px; height: 15px;"/>
+        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col3, $index)"/>
       </div>
     </td>
   </tr>
@@ -89,8 +86,13 @@
   .abLabel{
     font-size: 16px;
     font-weight: 500;
-    margin-top: 10px;
-    margin-bottom: 10px;
     width: 87px;
+  }
+
+  .abimg{
+    width:15px;
+    height: 15px;
+    vertical-align: top;
+    margin-top: 2px;
   }
 </style>
