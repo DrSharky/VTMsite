@@ -3,11 +3,11 @@
   <div class="col-lg-12 col-md-12 col-sm-12">
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3">
-          <label for="charPlayer">Player: </label>
+          <label for="charPlayer" style="margin-right: 3px;">Player: </label>
           <input id="charPlayer" ng-model="creatorCtrl.charPlayer" />
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
-          <label for="charChronicle">Chronicle: </label>
+          <label for="charChronicle" style="margin-right: 3px;">Chronicle: </label>
           <input id="charChronicle" ng-model="creatorCtrl.charChronicle" />
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
@@ -29,25 +29,28 @@
           <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" />
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
-          <label for="charSire">Sire: </label>
+          <label for="charSire" style="margin-right: 12px;">Sire: </label>
           <input id="charSire" ng-model="creatorCtrl.charSire" />
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label for="charGeneration">Generation: </label>
-          <select id="charGeneration" ng-model="creatorCtrl.charGeneration" ng-options="charGen for charGen in creatorCtrl.generations"></select>
+          <select id="charGeneration" ng-model="creatorCtrl.charGeneration"
+                  ng-options="charGen for charGen in creatorCtrl.generations">
+          </select>
         </div>
       </div>
       <br />
       <div ng-controller="ClanController as clanCtrl">
         <div class="row">
-          <label for="clanFilter">Clan Filter: </label>
+          <label for="clanFilter" style="margin-right: 30px;">Clan Filter: </label>
           <select id="clanFilter" ng-model="clanCtrl.selectedClanFilter" ng-options="filter for filter in clanCtrl.clanFilters"
                   ng-change="clanCtrl.filterClans(clanCtrl.selectedClanFilter)">
           </select>
         </div>
         <div class="row">
           <label for="clanSelect">Clan/Bloodline: </label>
-          <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList" ng-change="setUClan(clanCtrl.selectedClan)">
+          <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList"
+                  ng-change="setUClan(clanCtrl.selectedClan)">
           </select>
         </div>
       <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
