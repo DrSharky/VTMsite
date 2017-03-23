@@ -4,7 +4,7 @@ angular.module("site").service('TermIndexService', function(){
 
   this.setSelectedTerm = setSelectedTerm;
 
-  setSelectedTerm = function(){
+  function setSelectedTerm(){
 
   };
 });
