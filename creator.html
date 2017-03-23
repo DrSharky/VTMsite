@@ -1,5 +1,6 @@
 <h3>Character Creator</h3>
-<div class="container">
+<div class="col-lg-9">
+  <div class="container">
   <div class="col-lg-12 col-md-12 col-sm-12">
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3">
@@ -63,6 +64,15 @@
     <div ng-controller="AbilitiesController as abCtrl">
       <ng-include src="abCtrl.abilitiesPage"></ng-include>
     </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
+    <ng-include src="tindexCtrl.termIndexPage"></ng-include>
+  </div>
+  <div class="col-lg-3" ng-controller="DisciplinesController as discCtrl">
+    <ng-include src="discCtrl.disciplinesPage"></ng-include>
+  </div>
 </div>
 
 <style>

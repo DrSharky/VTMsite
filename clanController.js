@@ -4,7 +4,7 @@ app.controller("ClanController", function($scope, $http, UglyService){
 
   var vm = this;
   vm.clanDescriptions = [];
-  vm.clanPage = "clans/clanpage.html";
+  vm.clanPage = "./clanpage.html";
   vm.showClanInfo = false;
   vm.showBloodlineInfo = false;
   vm.selectedBloodline = null;
