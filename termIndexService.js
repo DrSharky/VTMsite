@@ -1,11 +1,14 @@
-angular.module("site").service('TermIndexService', function(){
+angular.module("site").service('TermIndexService', function($http){
   this.selectedTerm = null;
   this.termDefinition = null;
 
-  this.setSelectedTerm = setSelectedTerm;
 
-  var vm = this;
-  function setSelectedTerm(term){
-    vm.selectedTerm = term;
+  var getTerms = function(){
+    return $http.get('termIndex/listOfTerms.txt');
+  };
+
+
+  return {
+    getTerms: getTerms
   };
 });

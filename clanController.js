@@ -2,22 +2,22 @@ var app = angular.module("site");
 
 app.controller("ClanController", function($scope, $http, $sce, UglyService, TermIndexService){
 
-  var vm = this;
-  vm.clanDescriptions = [];
-  vm.clanPage = "./clanpage.html";
+  var  ctrl = this;
+  ctrl.clanDescriptions = [];
+  ctrl.clanPage = "./clanpage.html";
 
    $http.get('clans/clanDescriptions.txt').then(function(response){
-     vm.clanDescriptions = response.data;
-     vm.selectedDescription = vm.clanDescriptions[vm.selectedClan.name];
-     vm.convertedDescription = $sce.trustAsHtml(vm.selectedDescription);
+     ctrl.clanDescriptions = response.data;
+     ctrl.selectedDescription = ctrl.clanDescriptions[ctrl.selectedClan.name];
+     ctrl.convertedDescription = $sce.trustAsHtml(ctrl.selectedDescription);
    });
 
-  vm.filterClans = filterClans;
+  ctrl.filterClans = filterClans;
 
-  vm.clanFilters = ["All", "Thirteen", "Camarilla", "Sabbat", "Independent", "All Clans",
+  ctrl.clanFilters = ["All", "Thirteen", "Camarilla", "Sabbat", "Independent", "All Clans",
                       "All Bloodlines", "Camarilla (clans only)", "Sabbat (clans only)", "Dark Ages", "High Clans", "Low Clans"];
 
-  vm.clanList = [{id:0,  name:"Ahrimanes", filters:["Sabbat", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Potence", "Spiritus"]},
+  ctrl.clanList = [{id:0,  name:"Ahrimanes", filters:["Sabbat", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Potence", "Spiritus"]},
                   {id:1,  name:"Anda", filters:["Independent", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Fortitude", "Protean"]},
                   {id:2,  name:"Assamite", filters:["Thirteen", "Independent", "All Clans", "Low Clans", "Dark Ages"], disciplines:["Celerity", "Obfuscate", "Quietus"]},
                   {id:3,  name:"Baali", filters:["Independent", "All Bloodlines", "Dark Ages"], disciplines:["Daimonion", "Obfuscate", "Presence"]},
@@ -50,28 +50,22 @@ app.controller("ClanController", function($scope, $http, $sce, UglyService, Term
                 ];
 
   function filterClans(filter){
-    vm.filteredClanList = [];
+    ctrl.filteredClanList = [];
     if(filter==='All'){
-      vm.filteredClanList = vm.clanList;
+      ctrl.filteredClanList = ctrl.clanList;
       return;
     }
-    vm.clanList.forEach(function(clan){
+    ctrl.clanList.forEach(function(clan){
       if(clan.filters.includes(filter)){
-        vm.filteredClanList.push(clan);
+        ctrl.filteredClanList.push(clan);
       }
     })
-    vm.selectedClan = vm.filteredClanList[0];
+    ctrl.selectedClan = ctrl.filteredClanList[0];
   };
 
-  $scope.glossary = {};
-  $scope.glossary['kindred'] = "aaa";
-  $scope.glossary['television'] = "bbb";
-  $scope.glossary['accidentally'] = "ccc";
-  $scope.glossary['extol'] = "ddd";
-
-  vm.filteredClanList = vm.clanList;
-  vm.selectedClan = vm.filteredClanList[0];
-  vm.selectedClanFilter = vm.clanFilters[0];
+  ctrl.filteredClanList = ctrl.clanList;
+  ctrl.selectedClan = ctrl.filteredClanList[0];
+  ctrl.selectedClanFilter = ctrl.clanFilters[0];
 
 
 
@@ -79,26 +73,4 @@ app.controller("ClanController", function($scope, $http, $sce, UglyService, Term
     UglyService.setClan(clan);
   }
 
-  this.setSelectedTerm = function(term){
-    TermIndexService.setSelectedTerm(term);
-  }
-
-});
-
-app.directive('mydirective', function() {
-    return {
-        restrict: 'E',
-        template: '<h4>I made a directive!</h4>',
-        link: function(scope, element, attrs){}
-    }
-});
-
-app.directive('glossaryterm', function () {
-    return {
-      controller: "ClanController",
-      controllerAs: "clanCtrl",
-        restrict: 'AE',
-        template: '<span ng-click="clanCtrl.setSelectedTerm()">kindred</span>',
-        replace: true,
-    }
 });

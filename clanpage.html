@@ -5,8 +5,8 @@
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8">
         <h3>{{clanCtrl.selectedClan.name}}</h3>
-        <!-- {{clanCtrl.clanDescriptions[clanCtrl.selectedClan.name]}}<br/> -->
-        <p ng-bind-html="clanCtrl.convertedDescription"></p><br/>
+        {{clanCtrl.clanDescriptions[clanCtrl.selectedClan.name]}}<br/>
+        <termindex></termindex>
         <b>Disciplines: </b>{{clanCtrl.selectedClan.disciplines.join(", ")}}
     </div>
   </div>
