@@ -25,6 +25,7 @@ app.directive('termindex', function ($compile, TermIndexService) {
   }
     return {
         restrict: 'E',
+        // template: '<span>kindred</span>',
         replace: true,
         scope: {
           content: '='
