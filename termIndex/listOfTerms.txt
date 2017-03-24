@@ -1,4 +1,6 @@
 {
+"Concept": "A character’s concept generally refers to who the character was before becoming a vampire. Many Kindred cling desperately to any salvageable aspects of their former selves — their self-image, their occupation, how they lived, what was unique about them. In their new nocturnal world, echoes of their mortal lives are all that stand between many Kindred and madness.",
+"Clan": "A character’s Clan is her vampire \"family,\" the undead legacy into which she was Embraced. Vampires are always of the same Clan as their sires, the vampires who Embrace them. The Storyteller may disallow members of certain Clans based on the Sect the chronicle involves. Many chronicles, for example, allow only vampires from the Camarilla Clans, while games run at conventions or by organized play clubs sometimes stipulate specific \"venue appropriate\" criteria.",
 "Strength": "Strength is the raw, brute power of a character. It governs how much weight a character can lift, how much he can physically push, and how hard he can hit another character or object. The Strength Trait is added to a character’s damage dice pool when he hits his opponent in hand-to-hand combat. It is also used when a character wishes to break, lift, or carry something, as well as when a character tries to jump a distance.",
 "Dexterity": "Dexterity measures a character’s general physical prowess. It encompasses the character’s speed, agility, and overall quickness, as well as indicating the character’s ability to manipulate objects with control and precision. Also included under Dexterity’s heading are hand-eye coordination, reflexes, and bodily grace.",
 "Stamina": "The Stamina Trait reflects a character’s health, toughness, and resilience. It indicates how long a character can exert herself and how much punishment she can withstand before suffering physical trauma. Stamina also includes a bit of psychic fortitude, indicating a character’s grit and tenacity.",
@@ -35,18 +37,21 @@
 "Law": "The Law Knowledge represents a knowledge of both legal statutes and proper procedures for enforcing them. Law can be useful for filing suits, avoiding lawsuits, or getting out of jail. The Law Knowledge has any number of specialties, and a player may choose one for her character when she takes this Ability, representing both her field of experience and a general sense for how the legal system (especially in her locality) functions, though this is not mandatory.",
 "Medicine": "Medicine gives you an understanding of how the human body — and to a lesser extent the vampiric body — works. This Ability covers knowledge of medicines, ailments, first-aid procedures, and diagnosis or treatment of disease. Medicine is of great use to those Kindred with an interest in repairing, damaging, or reworking the human body.",
 "Occult": "The Occult ability gives you are knowledge in occult areas such as mysticism, curses, magic, folklore, and particularly vampire lore. Unlike most other Knowledges, Occult does not imply a command of hard facts. Much of what you know may well be rumor, myth, speculation, or hearsay. However, the secrets to be learned in this field are worth centuries of sifting legend from fact.",
-"Politics": "You are familiar with the politics of the moment, in-
-cluding the people in charge and how they got there.
-
-This Knowledge can aid you in dealing with or influ-
-encing mortal politicians, or even offer some insight
-
-into the local Cainite power structure. The Politics
-
-Knowledge includes the ability to practically navigate
-
-various bureaucracies, as it assumes that certain orga-
-nizational structures and relationship currencies are
-
-universal."
+"Politics": "The Politics Knowledge makes you familiar with the political stage of the moment, including the people in charge and how they got there. This Knowledge can aid you in dealing with or influencing mortal politicians, or even offer some insight into the local Kindred power structure. The Politics Knowledge includes the ability to practically navigate various bureaucracies, as it assumes that certain organizational structures and relationship currencies are universal.",
+"Science": "The Science Knowledge gives you a basic understanding of most of the physical sciences, such as chemistry, biology, physics, and geology. This Knowledge can be put to all forms of practical use. In most cases, a player should select a specialty to reflect a focus for her character’s scientific studies, but this isn’t strictly necessary.",
+"Technology": "The Technology Knowledge is the wide-ranging Ability used to build one’s own computer, install (or subvert) a security system, repair a mobile phone, or kitbash a shortwave radio. You must always choose a specialization in Technology, even though you possess some skill in multiple fields. The Technology Knowledge represents a broad acumen with electronics, computer hardware, and devices more elaborate than \"machines,\" which fall under the Crafts Skill.",
+"Anarch": "1) A member of the Anarch Movement. 2) Any Kindred rebel who opposes the tyranny of elders.",
+"Beast": "The innate drives and urges that threaten to turn a vampire into a mindless, ravening monster.",
+"Blood": " A vampire’s heritage; that which makes a vampire a vampire. Usage: I doubt her claims to such esteemed Blood.",
+"Blood Bond": "A mystical power over another individual engendered by partaking of a particular vampire’s blood thrice; accepting blood from a vampire is an acknowledgment of her mastery.",
+"Camarilla": "A Sect of vampires devoted primarily to maintaining the Traditions, particularly that of the Masquerade.",
+"Childe": "A vampire created through the Embrace — the childe is the progeny of her sire. This term is often used derogatorily, indicating inexperience. Plural childer.",
+"Coterie": "A small group of Kindred, united by the need for support and sometimes common interests. In the Sabbat, coteries are called \"packs.\"",
+"Elder": "A vampire who has experienced at least two or more centuries of unlife. Elders are the most active participants in the Jyhad.",
+"Elysium": "A place where vampires may gather without fear of harm (although some Sects, such as the Sabbat, respect Elysium less than the Camarilla does). Elysium is commonly established in opera houses, theaters, museums, and other locations of culture.",
+"Embrace": "The act of transforming a mortal into a vampire. The Embrace requires the vampire to drain her victim and then replace that victim’s blood with a bit of her own.",
+"Generation": " The number of \"steps\" between a vampire and the mythical Caine; how far descended from the First Vampire a given vampire is.",
+"Haven": " A vampire’s \"home\"; where she finds sanctuary from the sun.",
+"Jyhad": "The secret, self-destructive war waged between the Generations. Elder vampires manipulate their lessers, using them as pawns in a terrible game whose rules defy comprehension.",
+"Kindred": "The race of vampires as a whole, or a single vampire. According to rumor, this term came about in the 15th or 16th century, after the Great Anarch Revolt. Sabbat vampires scorn the term, preferring the word \"Cainite\" instead.",
 }

@@ -1,17 +1,16 @@
 var app = angular.module("site");
 
-app.controller("ClanController", function($scope, $http, UglyService){
+app.controller("ClanController", function($scope, $http, $sce, UglyService, TermIndexService){
 
   var vm = this;
   vm.clanDescriptions = [];
   vm.clanPage = "./clanpage.html";
-  vm.showClanInfo = false;
-  vm.showBloodlineInfo = false;
-  vm.selectedBloodline = null;
 
-  $http.get('clans/clanDescriptions.txt').then(function(response){
-    vm.clanDescriptions = response.data;
-  })
+   $http.get('clans/clanDescriptions.txt').then(function(response){
+     vm.clanDescriptions = response.data;
+     vm.selectedDescription = vm.clanDescriptions[vm.selectedClan.name];
+     vm.convertedDescription = $sce.trustAsHtml(vm.selectedDescription);
+   });
 
   vm.filterClans = filterClans;
 
@@ -64,12 +63,42 @@ app.controller("ClanController", function($scope, $http, UglyService){
     vm.selectedClan = vm.filteredClanList[0];
   };
 
+  $scope.glossary = {};
+  $scope.glossary['kindred'] = "aaa";
+  $scope.glossary['television'] = "bbb";
+  $scope.glossary['accidentally'] = "ccc";
+  $scope.glossary['extol'] = "ddd";
+
   vm.filteredClanList = vm.clanList;
   vm.selectedClan = vm.filteredClanList[0];
   vm.selectedClanFilter = vm.clanFilters[0];
+
+
 
   $scope.setUClan = function(clan){
     UglyService.setClan(clan);
   }
 
+  this.setSelectedTerm = function(term){
+    TermIndexService.setSelectedTerm(term);
+  }
+
+});
+
+app.directive('mydirective', function() {
+    return {
+        restrict: 'E',
+        template: '<h4>I made a directive!</h4>',
+        link: function(scope, element, attrs){}
+    }
+});
+
+app.directive('glossaryterm', function () {
+    return {
+      controller: "ClanController",
+      controllerAs: "clanCtrl",
+        restrict: 'AE',
+        template: '<span ng-click="clanCtrl.setSelectedTerm()">kindred</span>',
+        replace: true,
+    }
 });
