@@ -30,15 +30,4 @@ app.controller("CharCreatorController", function(){
   this.generations = ["3rd", "4th", "5th", "6th", "7th",
                       "8th", "9th", "10th", "11th", "12th",
                       "13th", "14th", "15th"];
-
-  class Abilities {
-    constructor(){
-      this.points = [{id:0, img:"/empty.png"},
-                     {id:1, img:"/empty.png"},
-                     {id:2, img:"/empty.png"},
-                     {id:3, img:"/empty.png"},
-                     {id:4, img:"/empty.png"}];
-    }
-  }
-  
 });

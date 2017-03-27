@@ -50,7 +50,9 @@
   <div class="container-fluid">
     <div class="row" style="margin-left: 100px; margin-right: 100px;">
       <div class="col-lg-12">
-        <div ng-view></div>
+        <div ng-controller="TermIndexController as tindexCtrl">
+          <div ng-view></div>
+        </div>
       </div>
     </div>
   </div>

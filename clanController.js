@@ -73,4 +73,20 @@ app.controller("ClanController", function($scope, $http, $sce, UglyService, Term
     UglyService.setClan(clan);
   }
 
+  $scope.setTerm = function(term){
+    TermIndexService.setTerm(term);
+  }
+
 });
+
+// app.directive('clandescription', function(TermIndexService){
+//   return {
+//     restrict: 'AE',
+//     controller: 'ClanController',
+//     controllerAs: 'clanCtrl',
+//     scope: {
+//       clan: '@'
+//     },
+//     template: ''
+//   }
+// });

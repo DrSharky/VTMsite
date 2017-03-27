@@ -2,41 +2,43 @@ var app = angular.module("site");
 
 app.controller("TermIndexController", function($scope, $http, TermIndexService){
   this.termIndexPage = "./termIndex.html"
-  this.selectedTerm = null;
-  this.termDefinition = null;
-  this.termList = null;
 
-  var ctrl = this;
-  this.getTerms = function(){
-    TermIndexService.getTerms().then(function(response){
-      ctrl.termList = response.data;
-    });
+  this.termNull = function(){
+    return (TermIndexService.selectedTerm === null);
+  }
+  this.clearTerm = function(){
+    TermIndexService.clearTerm();
+  }
+
+  this.getTerm = function(){
+    return TermIndexService.selectedTerm;
   };
 
-  ctrl.getTerms();
+  this.getDefinition = function(){
+    return TermIndexService.termDefinition;
+  };
+
+  this.setTerm = function(term){
+    this.selectedTerm = TermIndexService.setTerm(term);
+    this.setDefinition();
+  }
+
+  this.setDefinition = function(){
+    this.termDefinition = TermIndexService.setDefinition(this.selectedTerm);
+  }
 
 });
 
-app.directive('termindex', function ($compile, TermIndexService) {
+app.directive('termindex', function(TermIndexService){
 
-  var getDescription = function(termDefinitions, term){
-    term = termDefinitions[term];
-    return term;
+  return {
+    restrict: 'AE',
+    controller: "TermIndexController",
+    controllerAs: "tindexCtrl",
+    scope: {
+      term: '@'
+    },
+    template: '<span ng-click="tindexCtrl.setTerm(term)">{{term}}</span>',
+
   }
-    return {
-        restrict: 'E',
-        // template: '<span>kindred</span>',
-        replace: true,
-        scope: {
-          content: '='
-        },
-        link: function(scope, element, attrs){
-          TermIndexService.getTerms().then(function(response){
-            var termDefinitions = response.data;
-
-            element.html(getDescription(termDefinitions, scope.term));
-            $compile(element.contents())(scope);
-          });
-        }
-    };
 });
