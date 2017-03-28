@@ -2,18 +2,9 @@ var app = angular.module("site");
 
 app.controller("ClanController", function($scope, $http, UglyService, TermIndexService, $rootScope){
 
-  $rootScope.triggerRelink = function() {
-        $rootScope.$broadcast('clanChange');
-    };
-
   var  ctrl = this;
   ctrl.clanDescriptions = [];
   ctrl.clanPage = "./clanpage.html";
-
-  //  $http.get('clans/clanDescriptions.txt').then(function(response){
-  //    ctrl.clanDescriptions = response.data;
-  //    ctrl.selectedDescription = ctrl.clanDescriptions[ctrl.selectedClan.name];
-  //  });
 
   ctrl.filterClans = filterClans;
 
@@ -77,12 +68,7 @@ app.controller("ClanController", function($scope, $http, UglyService, TermIndexS
   $scope.setTerm = function(term){
     TermIndexService.setTerm(term);
   }
-
-  this.list = [{name: 'Ahrimanes', val: 'Ahrimanes-template.html'}];
-  this.sel = this.list[0].val;
-  this.aaa = function(){
-    $scope.$apply();
-  }
+  
 });
 
 app.directive('clandescription', function(TermIndexService, DescriptionsFactory, $compile){

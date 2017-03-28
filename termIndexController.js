@@ -38,7 +38,6 @@ app.directive('termindex', function(TermIndexService){
     scope: {
       term: '@'
     },
-    template: '<span ng-click="tindexCtrl.setTerm(term)">{{term}}</span>',
-
+    template: '<span ng-click="tindexCtrl.setTerm(term)">{{term}}</span>'
   }
 });
