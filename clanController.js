@@ -1,16 +1,19 @@
 var app = angular.module("site");
 
-app.controller("ClanController", function($scope, $http, $sce, UglyService, TermIndexService){
+app.controller("ClanController", function($scope, $http, UglyService, TermIndexService, $rootScope){
+
+  $rootScope.triggerRelink = function() {
+        $rootScope.$broadcast('clanChange');
+    };
 
   var  ctrl = this;
   ctrl.clanDescriptions = [];
   ctrl.clanPage = "./clanpage.html";
 
-   $http.get('clans/clanDescriptions.txt').then(function(response){
-     ctrl.clanDescriptions = response.data;
-     ctrl.selectedDescription = ctrl.clanDescriptions[ctrl.selectedClan.name];
-     ctrl.convertedDescription = $sce.trustAsHtml(ctrl.selectedDescription);
-   });
+  //  $http.get('clans/clanDescriptions.txt').then(function(response){
+  //    ctrl.clanDescriptions = response.data;
+  //    ctrl.selectedDescription = ctrl.clanDescriptions[ctrl.selectedClan.name];
+  //  });
 
   ctrl.filterClans = filterClans;
 
@@ -67,8 +70,6 @@ app.controller("ClanController", function($scope, $http, $sce, UglyService, Term
   ctrl.selectedClan = ctrl.filteredClanList[0];
   ctrl.selectedClanFilter = ctrl.clanFilters[0];
 
-
-
   $scope.setUClan = function(clan){
     UglyService.setClan(clan);
   }
@@ -93,27 +94,14 @@ app.directive('clandescription', function(TermIndexService, DescriptionsFactory,
     restrict: 'AE',
     controller: 'ClanController',
     controllerAs: 'clanCtrl',
-    replace: true,
     scope: {
       clan: '='
     },
-    // template: DescriptionsFactory.Ahrimanes,
-    link: function(scope, element, attrs){
-      debugger;
-      element.html(getTemplate(scope.clan)).show();
-      $compile(element.contents())(scope);
-      scope.$watch("clan", function(newVal, oldVal, scope, element, attrs){
-        if(newVal != oldVal){
-          console.log("New Value: " + newVal);
-          scope.clanCtrl.aaa();
-        }
-      }, true);
+    link: function(scope, element, attrs, ctrl){
+      scope.$watch('clan', function(){
+        element.html(getTemplate(scope.clan)).show();
+        $compile(element.contents())(scope);
+      })
       }
-      // scope.$watch("clan", function(scope.clanCtrl.selectedClan.name, attrs.clan));
-    //  compile: function(element, attrs){
-    //    debugger;
-    //   //  element.append('<ng-include class="content" src="'+DescriptionsFactory[attrs.clan]+'"></ng-include>');
-    //   //  element.append('<div ng-include="\''+attrs.clan+'-template.html\'"></div>');
-    //  }
   }
 });
