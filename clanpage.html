@@ -1,11 +1,11 @@
 <div class="container">
-    <div ng-show="clanCtrl.selectedClan.name!='N/A' && (clanCtrl.selectedBloodline == null || clanCtrl.selectedBloodline=='None')">
+    <div ng-show="clanCtrl.selectedClan.name!='N/A'">
       <div class="col-lg-2 col-md-2 col-sm-2">
         <img src="clans/images/{{clanCtrl.selectedClan.name.toLowerCase()}}.png" style="width: 100px; height: 100px; margin-top: 30px;" />
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8">
         <h3>{{clanCtrl.selectedClan.name}}</h3>
-        {{clanCtrl.clanDescriptions[clanCtrl.selectedClan.name]}}<br/>
+          <clandescription clan="clanCtrl.selectedClan.name"></clandescription><br/>
         <b>Disciplines: </b>{{clanCtrl.selectedClan.disciplines.join(", ")}}
     </div>
   </div>

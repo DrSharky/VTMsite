@@ -1,4 +1,6 @@
-<h4>{{tindexCtrl.selectedTerm}}</h4>
+<div ng-hide="tindexCtrl.termNull()">
+<h4 style="display:inline;">{{tindexCtrl.getTerm()}}</h4>&nbsp;<i ng-click="tindexCtrl.clearTerm()" class="fa fa-times-circle"></i>
 <p>
-  {{tindexCtrl.termDefinition}}
+  {{tindexCtrl.getDefinition()}}
 </p>
+</div>

@@ -27,6 +27,7 @@
   <script type="text/javascript" src="disciplinesController.js"></script>
   <script type="text/javascript" src="termIndexController.js"></script>
   <script type="text/javascript" src="ng-table.min.js"></script>
+  <script type="text/javascript" src="clanService.js"></script>
   <!--dependencies-->
 </head>
 
@@ -50,7 +51,9 @@
   <div class="container-fluid">
     <div class="row" style="margin-left: 100px; margin-right: 100px;">
       <div class="col-lg-12">
-        <div ng-view></div>
+        <div ng-controller="TermIndexController as tindexCtrl">
+          <div ng-view></div>
+        </div>
       </div>
     </div>
   </div>

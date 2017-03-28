@@ -1,24 +1,26 @@
 var app = angular.module("site");
 
-app.controller("ClanController", function($scope, $http, UglyService){
+app.controller("ClanController", function($scope, $http, UglyService, TermIndexService, $rootScope){
 
-  var vm = this;
-  vm.clanDescriptions = [];
-  vm.clanPage = "./clanpage.html";
-  vm.showClanInfo = false;
-  vm.showBloodlineInfo = false;
-  vm.selectedBloodline = null;
+  $rootScope.triggerRelink = function() {
+        $rootScope.$broadcast('clanChange');
+    };
 
-  $http.get('clans/clanDescriptions.txt').then(function(response){
-    vm.clanDescriptions = response.data;
-  })
+  var  ctrl = this;
+  ctrl.clanDescriptions = [];
+  ctrl.clanPage = "./clanpage.html";
 
-  vm.filterClans = filterClans;
+  //  $http.get('clans/clanDescriptions.txt').then(function(response){
+  //    ctrl.clanDescriptions = response.data;
+  //    ctrl.selectedDescription = ctrl.clanDescriptions[ctrl.selectedClan.name];
+  //  });
 
-  vm.clanFilters = ["All", "Thirteen", "Camarilla", "Sabbat", "Independent", "All Clans",
+  ctrl.filterClans = filterClans;
+
+  ctrl.clanFilters = ["All", "Thirteen", "Camarilla", "Sabbat", "Independent", "All Clans",
                       "All Bloodlines", "Camarilla (clans only)", "Sabbat (clans only)", "Dark Ages", "High Clans", "Low Clans"];
 
-  vm.clanList = [{id:0,  name:"Ahrimanes", filters:["Sabbat", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Potence", "Spiritus"]},
+  ctrl.clanList = [{id:0,  name:"Ahrimanes", filters:["Sabbat", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Potence", "Spiritus"]},
                   {id:1,  name:"Anda", filters:["Independent", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Fortitude", "Protean"]},
                   {id:2,  name:"Assamite", filters:["Thirteen", "Independent", "All Clans", "Low Clans", "Dark Ages"], disciplines:["Celerity", "Obfuscate", "Quietus"]},
                   {id:3,  name:"Baali", filters:["Independent", "All Bloodlines", "Dark Ages"], disciplines:["Daimonion", "Obfuscate", "Presence"]},
@@ -51,25 +53,55 @@ app.controller("ClanController", function($scope, $http, UglyService){
                 ];
 
   function filterClans(filter){
-    vm.filteredClanList = [];
+    ctrl.filteredClanList = [];
     if(filter==='All'){
-      vm.filteredClanList = vm.clanList;
+      ctrl.filteredClanList = ctrl.clanList;
       return;
     }
-    vm.clanList.forEach(function(clan){
+    ctrl.clanList.forEach(function(clan){
       if(clan.filters.includes(filter)){
-        vm.filteredClanList.push(clan);
+        ctrl.filteredClanList.push(clan);
       }
     })
-    vm.selectedClan = vm.filteredClanList[0];
+    ctrl.selectedClan = ctrl.filteredClanList[0];
   };
 
-  vm.filteredClanList = vm.clanList;
-  vm.selectedClan = vm.filteredClanList[0];
-  vm.selectedClanFilter = vm.clanFilters[0];
+  ctrl.filteredClanList = ctrl.clanList;
+  ctrl.selectedClan = ctrl.filteredClanList[0];
+  ctrl.selectedClanFilter = ctrl.clanFilters[0];
 
   $scope.setUClan = function(clan){
     UglyService.setClan(clan);
   }
 
+  $scope.setTerm = function(term){
+    TermIndexService.setTerm(term);
+  }
+
+  this.list = [{name: 'Ahrimanes', val: 'Ahrimanes-template.html'}];
+  this.sel = this.list[0].val;
+  this.aaa = function(){
+    $scope.$apply();
+  }
+});
+
+app.directive('clandescription', function(TermIndexService, DescriptionsFactory, $compile){
+
+  var getTemplate = function(clan){
+    return DescriptionsFactory[clan];
+    }
+  return {
+    restrict: 'AE',
+    controller: 'ClanController',
+    controllerAs: 'clanCtrl',
+    scope: {
+      clan: '='
+    },
+    link: function(scope, element, attrs, ctrl){
+      scope.$watch('clan', function(){
+        element.html(getTemplate(scope.clan)).show();
+        $compile(element.contents())(scope);
+      })
+      }
+  }
 });

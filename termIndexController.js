@@ -2,15 +2,43 @@ var app = angular.module("site");
 
 app.controller("TermIndexController", function($scope, $http, TermIndexService){
   this.termIndexPage = "./termIndex.html"
-  this.selectedTerm = null;
-  this.termDefinition = null;
-  this.termList = null;
 
-  var vm = this;
+  this.termNull = function(){
+    return (TermIndexService.selectedTerm === null);
+  }
+  this.clearTerm = function(){
+    TermIndexService.clearTerm();
+  }
 
-  $http.get('termIndex/listOfTerms.txt').then(function(response){
-    vm.termList = response.data;
-  });
+  this.getTerm = function(){
+    return TermIndexService.selectedTerm;
+  };
 
-  
+  this.getDefinition = function(){
+    return TermIndexService.termDefinition;
+  };
+
+  this.setTerm = function(term){
+    this.selectedTerm = TermIndexService.setTerm(term);
+    this.setDefinition();
+  }
+
+  this.setDefinition = function(){
+    this.termDefinition = TermIndexService.setDefinition(this.selectedTerm);
+  }
+
+});
+
+app.directive('termindex', function(TermIndexService){
+
+  return {
+    restrict: 'AE',
+    controller: "TermIndexController",
+    controllerAs: "tindexCtrl",
+    scope: {
+      term: '@'
+    },
+    template: '<span ng-click="tindexCtrl.setTerm(term)">{{term}}</span>',
+
+  }
 });
