@@ -68,7 +68,7 @@ app.controller("ClanController", function($scope, $http, UglyService, TermIndexS
   $scope.setTerm = function(term){
     TermIndexService.setTerm(term);
   }
-  
+
 });
 
 app.directive('clandescription', function(TermIndexService, DescriptionsFactory, $compile){
@@ -77,7 +77,7 @@ app.directive('clandescription', function(TermIndexService, DescriptionsFactory,
     return DescriptionsFactory[clan];
     }
   return {
-    restrict: 'AE',
+    restrict: 'E',
     controller: 'ClanController',
     controllerAs: 'clanCtrl',
     scope: {

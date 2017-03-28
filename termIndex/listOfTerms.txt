@@ -1,6 +1,10 @@
 {
+"Chronicle": "The series of linked stories in which the character participates. Your Storyteller will provide you with the name of the chronicle.",
 "Concept": "A character’s concept generally refers to who the character was before becoming a vampire. Many Kindred cling desperately to any salvageable aspects of their former selves — their self-image, their occupation, how they lived, what was unique about them. In their new nocturnal world, echoes of their mortal lives are all that stand between many Kindred and madness.",
 "Clan": "A character’s Clan is her vampire \"family,\" the undead legacy into which she was Embraced. Vampires are always of the same Clan as their sires, the vampires who Embrace them. The Storyteller may disallow members of certain Clans based on the Sect the chronicle involves. Many chronicles, for example, allow only vampires from the Camarilla Clans, while games run at conventions or by organized play clubs sometimes stipulate specific \"venue appropriate\" criteria.",
+"Demeanor": "This is the personality your character presents to the world. Demeanor is the face that your character chooses to cover their true nature hidden within.",
+"Nature": "A Vampire's Nature is their true self, their innermost being — the person they truly are. It is dangerous to show this, though, as it lets others know who we are and what is important to us.",
+"Sire": "A vampire’s \"parent\"; the Kindred who created them.",
 "Strength": "Strength is the raw, brute power of a character. It governs how much weight a character can lift, how much he can physically push, and how hard he can hit another character or object. The Strength Trait is added to a character’s damage dice pool when he hits his opponent in hand-to-hand combat. It is also used when a character wishes to break, lift, or carry something, as well as when a character tries to jump a distance.",
 "Dexterity": "Dexterity measures a character’s general physical prowess. It encompasses the character’s speed, agility, and overall quickness, as well as indicating the character’s ability to manipulate objects with control and precision. Also included under Dexterity’s heading are hand-eye coordination, reflexes, and bodily grace.",
 "Stamina": "The Stamina Trait reflects a character’s health, toughness, and resilience. It indicates how long a character can exert herself and how much punishment she can withstand before suffering physical trauma. Stamina also includes a bit of psychic fortitude, indicating a character’s grit and tenacity.",
@@ -53,5 +57,6 @@
 "Generation": "The number of \"steps\" between a vampire and the mythical Caine; how far descended from the First Vampire a given vampire is.",
 "Haven": " A vampire’s \"home\"; where she finds sanctuary from the sun.",
 "Jyhad": "The secret, self-destructive war waged between the Generations. Elder vampires manipulate their lessers, using them as pawns in a terrible game whose rules defy comprehension.",
-"Kindred": "The race of vampires as a whole, or a single vampire. According to rumor, this term came about in the 15th or 16th century. Sabbat vampires scorn the term, preferring the word \"Cainite\" instead."
+"Kindred": "The race of vampires as a whole, or a single vampire. According to rumor, this term came about in the 15th or 16th century. Sabbat vampires scorn the term, preferring the word \"Cainite\" instead.",
+"Kine": "A term for mortals, largely contemptuous. The phrase \"Kindred and kine\" refers to the world at large; everything."
 }
