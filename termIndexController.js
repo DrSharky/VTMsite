@@ -29,7 +29,7 @@ app.controller("TermIndexController", function($scope, $http, TermIndexService){
 
 });
 
-app.directive('termindex', function(TermIndexService){
+app.directive('termindex', function(TermIndexService, $compile){
 
   return {
     restrict: 'AE',
@@ -37,6 +37,15 @@ app.directive('termindex', function(TermIndexService){
     controllerAs: "tindexCtrl",
     scope: {
       term: '@'
+    },
+    link: function(scope, element, attrs, ctrl){
+      if(attrs.term == "Concept" || attrs.term == "Nature" || attrs.term == "Demeanor" ||
+         attrs.term == "Chronicle" || attrs.term == "Sire"   || attrs.term == "Generation")
+         {
+          var htmlString = "<label ng-click='tindexCtrl.setTerm(term)' for='"+attrs.for+"'>"+attrs.term+": </label>";
+          element.html(htmlString);
+          $compile(element.contents())(scope);
+         }
     },
     template: '<span ng-click="tindexCtrl.setTerm(term)">{{term}}</span>'
   }
