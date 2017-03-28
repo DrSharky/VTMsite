@@ -53,5 +53,5 @@
 "Generation": "The number of \"steps\" between a vampire and the mythical Caine; how far descended from the First Vampire a given vampire is.",
 "Haven": " A vampire’s \"home\"; where she finds sanctuary from the sun.",
 "Jyhad": "The secret, self-destructive war waged between the Generations. Elder vampires manipulate their lessers, using them as pawns in a terrible game whose rules defy comprehension.",
-"Kindred": "The race of vampires as a whole, or a single vampire. According to rumor, this term came about in the 15th or 16th century, after the Great Anarch Revolt. Sabbat vampires scorn the term, preferring the word \"Cainite\" instead."
+"Kindred": "The race of vampires as a whole, or a single vampire. According to rumor, this term came about in the 15th or 16th century. Sabbat vampires scorn the term, preferring the word \"Cainite\" instead."
 }

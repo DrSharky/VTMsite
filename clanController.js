@@ -77,16 +77,43 @@ app.controller("ClanController", function($scope, $http, $sce, UglyService, Term
     TermIndexService.setTerm(term);
   }
 
+  this.list = [{name: 'Ahrimanes', val: 'Ahrimanes-template.html'}];
+  this.sel = this.list[0].val;
+  this.aaa = function(){
+    $scope.$apply();
+  }
 });
 
-// app.directive('clandescription', function(TermIndexService){
-//   return {
-//     restrict: 'AE',
-//     controller: 'ClanController',
-//     controllerAs: 'clanCtrl',
-//     scope: {
-//       clan: '@'
-//     },
-//     template: ''
-//   }
-// });
+app.directive('clandescription', function(TermIndexService, DescriptionsFactory, $compile){
+
+  var getTemplate = function(clan){
+    return DescriptionsFactory[clan];
+    }
+  return {
+    restrict: 'AE',
+    controller: 'ClanController',
+    controllerAs: 'clanCtrl',
+    replace: true,
+    scope: {
+      clan: '='
+    },
+    // template: DescriptionsFactory.Ahrimanes,
+    link: function(scope, element, attrs){
+      debugger;
+      element.html(getTemplate(scope.clan)).show();
+      $compile(element.contents())(scope);
+      scope.$watch("clan", function(newVal, oldVal, scope, element, attrs){
+        if(newVal != oldVal){
+          console.log("New Value: " + newVal);
+          scope.clanCtrl.aaa();
+        }
+      }, true);
+      }
+      // scope.$watch("clan", function(scope.clanCtrl.selectedClan.name, attrs.clan));
+    //  compile: function(element, attrs){
+    //    debugger;
+    //   //  element.append('<ng-include class="content" src="'+DescriptionsFactory[attrs.clan]+'"></ng-include>');
+    //   //  element.append('<div ng-include="\''+attrs.clan+'-template.html\'"></div>');
+    //  }
+  }
+});
