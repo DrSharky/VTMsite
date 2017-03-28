@@ -35,7 +35,7 @@
 <table ng-table="abCtrl.tableParams1" show-filter="false" style="width:1140px;">
   <tr ng-repeat="ability in $data">
     <td style="width:97px;">
-      <div class="abLabel">
+      <div termindex term="{{ability.col1.name}}" class="abLabel">
         {{ability.col1.name}}
       </div>
     </td>
@@ -45,7 +45,7 @@
       </div>
     </td>
     <td style="width:117px;">
-      <div class="abLabel">
+      <div termindex term="{{ability.col2.name}}" class="abLabel">
         {{ability.col2.name}}
       </div>
     </td>
@@ -55,7 +55,7 @@
       </div>
     </td>
     <td style="width:110px;">
-      <div class="abLabel">
+      <div termindex term="{{ability.col3.name}}" class="abLabel">
         {{ability.col3.name}}
       </div>
     </td>
