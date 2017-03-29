@@ -1,6 +1,6 @@
 var app = angular.module("site");
 
-app.controller("AttributesController", function($scope, UglyService){
+app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService', function($scope, NgTableParams, UglyService){
 
   this.priorityChange = priorityChange;
   this.selectAttribute = selectAttribute;
@@ -73,15 +73,15 @@ app.controller("AttributesController", function($scope, UglyService){
     };
   };
 
-  this.strength = new Attribute("strength");
-  this.dexterity = new Attribute("dexterity");
-  this.stamina = new Attribute("stamina");
-  this.charisma = new Attribute("charisma");
-  this.manipulation = new Attribute("manipulation");
-  this.appearance = new Attribute("appearance");
-  this.perception = new Attribute("perception");
-  this.intelligence = new Attribute("intelligence");
-  this.wits = new Attribute("wits");
+  this.strength = new Attribute("Strength");
+  this.dexterity = new Attribute("Dexterity");
+  this.stamina = new Attribute("Stamina");
+  this.charisma = new Attribute("Charisma");
+  this.manipulation = new Attribute("Manipulation");
+  this.appearance = new Attribute("Appearance");
+  this.perception = new Attribute("Perception");
+  this.intelligence = new Attribute("Intelligence");
+  this.wits = new Attribute("Wits");
 
   this.attributeCategories = [{id: 0, category: "physical", attributes:[this.strength, this.dexterity, this.stamina], priority:null},
                               {id: 1, category: "social", attributes:[this.charisma, this.manipulation, this.appearance], priority: null},
@@ -101,16 +101,24 @@ app.controller("AttributesController", function($scope, UglyService){
     }
   };
 
+// function getPriority(attribute){
+//   if(attribute == "strength" || attribute == "dexterity" || attribute == "stamina"){
+//     return this.selectedPriorities[0];
+//   }
+//   if(attribute == "charisma" || attribute == "manipulation" || attribute == "appearance"){
+//     return this.selectedPriorities[1];
+//   }
+//   if(attribute == "perception" || attribute == "intelligence" || attribute == "wits"){
+//     return this.selectedPriorities[2];
+//   }
+// }
+
 function getPriority(attribute){
-  if(attribute == "strength" || attribute == "dexterity" || attribute == "stamina"){
-    return this.selectedPriorities[0];
-  }
-  if(attribute == "charisma" || attribute == "manipulation" || attribute == "appearance"){
-    return this.selectedPriorities[1];
-  }
-  if(attribute == "perception" || attribute == "intelligence" || attribute == "wits"){
-    return this.selectedPriorities[2];
-  }
+ for(var i = 0; i < this.attributeCategories.length; i++){
+   if(this.attributeCategories[i].attribute.indexOf(ability)!=-1){
+     return this.selectedPriorities[i];
+   }
+ }
 }
 
 function priorityNullCheck(attribute){
@@ -155,7 +163,7 @@ function getCategoryIndex(attribute){
 
 function selectAttribute(attribute, index){
 
-  var priority = this.getPriority(attribute.name);
+  var priority = this.getPriority(attribute);
   if(priority==null){
     return null;
   }
@@ -232,4 +240,16 @@ function priorityChange(changedPriority, id, prevPriority){
     }
 };
 
-});
+this.dataSet = function(){
+  var data = [];
+  for(var i = 0; i < 3; i++){
+    data.push({col1: this.attributeCategories[0].attributes[i],
+               col2: this.attributeCategories[1].attributes[i],
+               col3: this.attributeCategories[2].attributes[i] });
+  }
+  return data;
+}
+this.tableParams1 = new NgTableParams({count: 3},
+                    { dataset: this.dataSet(), counts: [] });
+
+}]);

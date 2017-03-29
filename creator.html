@@ -1,6 +1,5 @@
 <h3>Character Creator</h3>
-<div class="col-lg-7">
-  <div class="container">
+<div class="col-lg-9">
   <div class="col-lg-12 col-md-12 col-sm-12">
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3">
@@ -55,9 +54,9 @@
           </select>
         </div>
       <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
-      </div>
-      <h3 style="text-align:center">Attributes</h3>
     </div>
+    </div>
+    <div class="attr-head">Attributes</div>
     <div ng-controller="AttributesController as attrCtrl">
     <ng-include src="attrCtrl.attributesPage"></ng-include>
     </div>
@@ -65,12 +64,11 @@
       <ng-include src="abCtrl.abilitiesPage"></ng-include>
     </div>
 </div>
-</div>
 <div class="row">
-  <div class="col-lg-3 col-lg-offset-2" ng-controller="TermIndexController as tindexCtrl">
+  <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
     <ng-include src="tindexCtrl.termIndexPage"></ng-include>
   </div>
-  <div class="col-lg-3 col-lg-offset-2" ng-controller="DisciplinesController as discCtrl">
+  <div class="col-lg-3" ng-controller="DisciplinesController as discCtrl">
     <ng-include src="discCtrl.disciplinesPage"></ng-include>
   </div>
 </div>
@@ -80,4 +78,9 @@
     display: inline-block;
     vertical-align: baseline;
   }
+  .attr-head{
+    font-size: 24px;
+    text-align: center;
+  }
+
 </style>
