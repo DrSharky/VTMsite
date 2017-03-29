@@ -1,65 +1,65 @@
-<table style="width:100%;">
+<table>
   <tr>
-    <th>
+    <th style="width:100px;">
       <select ng-model="abCtrl.selectedPriorities[0]"
       ng-options="priority for priority in abCtrl.abilityPriorities"
       ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[0], 0, abCtrl.abilityCategories[0].priority)">
     </select>
     <div class="abHead">Talents</div>
     </th>
-    <th style="width:272px;">
+    <th style="width:245px;">
       <div class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[0])}}</div>
     </th>
-    <th style="padding:10px;">
+    <th style="padding-top:10px; padding-bottom:10px; width:100px;">
       <select ng-model="abCtrl.selectedPriorities[1]"
       ng-options="priority for priority in abCtrl.abilityPriorities"
       ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[1], 1, abCtrl.abilityCategories[1].priority)">
       </select>
     <div class="abHead">Skills</div>
     </th>
-    <th style="width:272px;">
+    <th style="width:245px;">
       <div class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[1])}}</div>
     </th>
-    <th>
+    <th style="width:100px;">
       <select ng-model="abCtrl.selectedPriorities[2]"
       ng-options="priority for priority in abCtrl.abilityPriorities"
       ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[2], 2, abCtrl.abilityCategories[2].priority)">
       </select>
       <div class="abHead">Knowledges</div>
     </th>
-    <th style="width:272px;">
+    <th style="width:245px;">
       <div class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[2])}}</div>
     </th>
   </tr>
 </table>
-<table ng-table="abCtrl.tableParams1" show-filter="false" style="width:1140px;">
+<table ng-table="abCtrl.tableParams1" show-filter="false" >
   <tr ng-repeat="ability in $data">
-    <td style="width:97px;">
+    <td style="width:100px;">
       <div termindex term="{{ability.col1.name}}" class="abLabel">
         {{ability.col1.name}}
       </div>
     </td>
-    <td class="points-cell">
+    <td class="points-cell" style="width:245px;">
       <div ng-repeat="abPt in ability.col1.points" style="display: inline-block;">
         <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col1, $index)"/>
       </div>
     </td>
-    <td style="width:117px;">
+    <td style="width:100px;">
       <div termindex term="{{ability.col2.name}}" class="abLabel">
         {{ability.col2.name}}
       </div>
     </td>
-    <td class="points-cell">
+    <td class="points-cell" style="width:245px;">
       <div ng-repeat="abPt in ability.col2.points" style="display: inline-block;">
         <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col2, $index)"/>
       </div>
     </td>
-    <td style="width:110px;">
+    <td style="width:100px;">
       <div termindex term="{{ability.col3.name}}" class="abLabel">
         {{ability.col3.name}}
       </div>
     </td>
-    <td class="points-cell">
+    <td class="points-cell" style="width:245px;">
       <div ng-repeat="abPt in ability.col3.points" style="display: inline-block;">
         <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col3, $index)"/>
       </div>
@@ -68,14 +68,10 @@
 </table>
 
 <style>
-  .points-cell {
-    width: 272px;
-  }
   .num {
-    padding-left: 35px;
     padding-top: 30px;
     color: #BB0000;
-    font-size: 36px;
+    font-size: 24px;
   }
   .abHead{
     font-size: 18.5px;
