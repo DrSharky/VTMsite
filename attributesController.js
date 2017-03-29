@@ -101,18 +101,6 @@ app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService'
     }
   };
 
-// function getPriority(attribute){
-//   if(attribute == "strength" || attribute == "dexterity" || attribute == "stamina"){
-//     return this.selectedPriorities[0];
-//   }
-//   if(attribute == "charisma" || attribute == "manipulation" || attribute == "appearance"){
-//     return this.selectedPriorities[1];
-//   }
-//   if(attribute == "perception" || attribute == "intelligence" || attribute == "wits"){
-//     return this.selectedPriorities[2];
-//   }
-// }
-
 function getPriority(attribute){
  for(var i = 0; i < this.attributeCategories.length; i++){
    if(this.attributeCategories[i].attribute.indexOf(ability)!=-1){
