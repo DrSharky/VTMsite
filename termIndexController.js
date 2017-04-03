@@ -35,6 +35,7 @@ app.directive('termindex', function(TermIndexService, $compile){
     restrict: 'AE',
     controller: "TermIndexController",
     controllerAs: "tindexCtrl",
+    transclude: true,
     scope: {
       term: '@'
     },
@@ -47,6 +48,6 @@ app.directive('termindex', function(TermIndexService, $compile){
           $compile(element.contents())(scope);
          }
     },
-    template: '<span ng-click="tindexCtrl.setTerm(term)">{{term}}</span>'
+    template: '<span ng-click="tindexCtrl.setTerm(term)"><ng-transclude></ng-transclude></span>'
   }
 });
