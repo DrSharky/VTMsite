@@ -103,7 +103,7 @@ app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService'
 
 function getPriority(attribute){
  for(var i = 0; i < this.attributeCategories.length; i++){
-   if(this.attributeCategories[i].attribute.indexOf(ability)!=-1){
+   if(this.attributeCategories[i].attributes.indexOf(attribute)!=-1){
      return this.selectedPriorities[i];
    }
  }
