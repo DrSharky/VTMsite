@@ -39,15 +39,6 @@ app.directive('termindex', function(TermIndexService, $compile){
     scope: {
       term: '@'
     },
-    link: function(scope, element, attrs, ctrl){
-      if(attrs.term == "Concept" || attrs.term == "Nature" || attrs.term == "Demeanor" ||
-         attrs.term == "Chronicle" || attrs.term == "Sire"   || attrs.term == "Generation")
-         {
-          var htmlString = "<label ng-click='tindexCtrl.setTerm(term)' for='"+attrs.for+"'>"+attrs.term+": </label>";
-          element.html(htmlString);
-          $compile(element.contents())(scope);
-         }
-    },
     template: '<span ng-click="tindexCtrl.setTerm(term)"><ng-transclude></ng-transclude></span>'
   }
 });
