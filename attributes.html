@@ -51,7 +51,14 @@
     </td>
     <td class="points-cell" style="width:245px;">
       <div ng-repeat="attrPt in attribute.col2.points" style="display: inline-block;">
-        <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attribute.col2, $index)"/>
+        <div ng-if="(clanCtrl.isUglyClan() && attribute.col2.name == 'Appearance')">
+          <img class="attrimg" ng-src="{{attrPt.img}}"/>
+          <!-- (attribute.col2.name == 'Appearance' && attrCtrl.isUglyClan()) ? null :  -->
+        </div>
+        <div ng-if="!clanCtrl.isUglyClan() || (clanCtrl.isUglyClan() && attribute.col2.name != 'Appearance')">
+          <img class="attrimg" ng-src="{{attrPt.img}}"
+           ng-click="attrCtrl.selectAttribute(attribute.col2, $index)  "/>
+        </div>
       </div>
     </td>
     <td style="width:100px;">

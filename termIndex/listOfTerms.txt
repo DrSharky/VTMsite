@@ -3,7 +3,9 @@
 "Concept": "A character’s concept generally refers to who the character was before becoming a vampire. Many Kindred cling desperately to any salvageable aspects of their former selves — their self-image, their occupation, how they lived, what was unique about them. In their new nocturnal world, echoes of their mortal lives are all that stand between many Kindred and madness.",
 "Clan": "A character’s Clan is her vampire \"family,\" the undead legacy into which she was Embraced. Vampires are always of the same Clan as their sires, the vampires who Embrace them. The Storyteller may disallow members of certain Clans based on the Sect the chronicle involves. Many chronicles, for example, allow only vampires from the Camarilla Clans, while games run at conventions or by organized play clubs sometimes stipulate specific \"venue appropriate\" criteria.",
 "Demeanor": "This is the personality your character presents to the world. Demeanor is the face that your character chooses to cover their true nature hidden within.",
+"Name": "The name should be your character's name, or whatever other characters will refer to your character as.",
 "Nature": "A Vampire's Nature is their true self, their innermost being — the person they truly are. It is dangerous to show this, though, as it lets others know who we are and what is important to us.",
+"Player": "The player is you. Fill in your name or whatever people may refer to you as.",
 "Sire": "A vampire’s \"parent\"; the Kindred who created them.",
 "Strength": "Strength is the raw, brute power of a character. It governs how much weight a character can lift, how much he can physically push, and how hard he can hit another character or object. The Strength Trait is added to a character’s damage dice pool when he hits his opponent in hand-to-hand combat. It is also used when a character wishes to break, lift, or carry something, as well as when a character tries to jump a distance.",
 "Dexterity": "Dexterity measures a character’s general physical prowess. It encompasses the character’s speed, agility, and overall quickness, as well as indicating the character’s ability to manipulate objects with control and precision. Also included under Dexterity’s heading are hand-eye coordination, reflexes, and bodily grace.",
@@ -73,5 +75,6 @@
 "Mage": "A mortal that has control over powerful magic which can bend reality. ",
 "Sabbat": "A Sect of vampires that rejects humanity, embracing their monstrous natures. The Sabbat is bestial and violent, preferring to lord over mortals rather than hide from them.",
 "Shadowlands": "The Shadowlands are the death-based reflection of the living world found in the Classic World of Darkness. The Shadowlands wrap and reflect the living world - every location in the mortal world has a direct physical analogue in the Shadowlands, although the relationship can sometimes be tenuous.",
-"Wraith": "A wraith is a ghost, the soul of a person who has died unfulfilled and now haunts the Shadowlands."
+"Wraith": "A wraith is a ghost, the soul of a person who has died unfulfilled and now haunts the Shadowlands.",
+"Animalism": "Animalism is a Discipline that brings the vampire closer to their animalistic nature. This not only allows them to communicate with and gain dominance over creatures of nature, but gives them influence over the Beast itself."
 }

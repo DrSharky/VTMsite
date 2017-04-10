@@ -1,6 +1,7 @@
 var app = angular.module("site");
 
-app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService', function($scope, NgTableParams, UglyService){
+app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService',
+ function($scope, NgTableParams, UglyService){
 
   this.priorityChange = priorityChange;
   this.selectAttribute = selectAttribute;
@@ -8,6 +9,8 @@ app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService'
   this.getPriorityPts = getPriorityPts;
   this.getCategoryIndex = getCategoryIndex;
   this.isUglyClan = isUglyClan;
+  this.resetAttributes = resetAttributes;
+  this.resetPriorities = resetPriorities;
   this.priorityNullCheck = priorityNullCheck;
   this.attributePriorities = ["Primary", "Secondary", "Tertiary"];
   this.attributesPage = "./attributes.html";
@@ -89,17 +92,36 @@ app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService'
 
   function isUglyClan(){
     if(UglyService.isUgly()){
+      this.resetAttributes();
+      this.resetPriorities();
       this.appearance.zero();
       return true;
     }
     else {
       if(UglyService.previousUgly()){
-        this.appearance.reset();
+        this.resetAttributes();
         UglyService.previousClan = null;
       }
       return false;
     }
   };
+
+  function resetAttributes(){
+    this.attributeCategories.forEach(function(attrCat){
+      attrCat.attributes.forEach(function(attr){
+        attr.reset();
+      });
+    });
+  }
+
+  function resetPriorities(){
+    this.attributeCategories.forEach(function(attrCat){
+      attrCat.priority = null;
+    });
+    this.primaryPts = 7;
+    this.secondaryPts = 5;
+    this.tertiaryPts = 3;
+  }
 
 function getPriority(attribute){
  for(var i = 0; i < this.attributeCategories.length; i++){

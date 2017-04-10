@@ -1,6 +1,6 @@
 var app = angular.module("site");
 
-app.controller("ClanController", function($scope, $http, UglyService, TermIndexService, $rootScope){
+app.controller("ClanController", function($scope, $http, UglyService, TermIndexService){
 
   var  ctrl = this;
   ctrl.clanDescriptions = [];
@@ -11,7 +11,8 @@ app.controller("ClanController", function($scope, $http, UglyService, TermIndexS
   ctrl.clanFilters = ["All", "Thirteen", "Camarilla", "Sabbat", "Independent", "All Clans",
                       "All Bloodlines", "Camarilla (clans only)", "Sabbat (clans only)", "Dark Ages", "High Clans", "Low Clans"];
 
-  ctrl.clanList = [{id:0,  name:"Ahrimanes", filters:["Sabbat", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Potence", "Spiritus"]},
+  ctrl.clanList = [{id:0,  name:"Ahrimanes", filters:["Sabbat", "All Bloodlines", "Dark Ages"],
+                    disciplines:["<termindex term='Animalism'>Animalism</termindex>", "Potence", "Spiritus"]},
                   {id:1,  name:"Anda", filters:["Independent", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Fortitude", "Protean"]},
                   {id:2,  name:"Assamite", filters:["Thirteen", "Independent", "All Clans", "Low Clans", "Dark Ages"], disciplines:["Celerity", "Obfuscate", "Quietus"]},
                   {id:3,  name:"Baali", filters:["Independent", "All Bloodlines", "Dark Ages"], disciplines:["Daimonion", "Obfuscate", "Presence"]},
@@ -64,6 +65,10 @@ app.controller("ClanController", function($scope, $http, UglyService, TermIndexS
   $scope.setUClan = function(clan){
     UglyService.setClan(clan);
   }
+
+ this.isUglyClan = function(clan){
+   return UglyService.isUgly();
+ }
 
   $scope.setTerm = function(term){
     TermIndexService.setTerm(term);
