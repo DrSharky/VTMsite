@@ -1,18 +1,18 @@
 var app = angular.module("site");
 
-app.controller("ClanController", function($scope, $http, UglyService, TermIndexService){
+app.controller("ClanController", ['$scope', '$compile', '$sce', function($scope, $compile, $sce, $http, UglyService, TermIndexService){
 
   var  ctrl = this;
   ctrl.clanDescriptions = [];
   ctrl.clanPage = "./clanpage.html";
+  ctrl.getDisciplines = getDisciplines;
 
   ctrl.filterClans = filterClans;
 
   ctrl.clanFilters = ["All", "Thirteen", "Camarilla", "Sabbat", "Independent", "All Clans",
                       "All Bloodlines", "Camarilla (clans only)", "Sabbat (clans only)", "Dark Ages", "High Clans", "Low Clans"];
 
-  ctrl.clanList = [{id:0,  name:"Ahrimanes", filters:["Sabbat", "All Bloodlines", "Dark Ages"],
-                    disciplines:["<termindex term='Animalism'>Animalism</termindex>", "Potence", "Spiritus"]},
+  ctrl.clanList = [{id:0,  name:"Ahrimanes", filters:["Sabbat", "All Bloodlines", "Dark Ages"], disciplines:["<termindex term='Animalism'>Animalism</termindex>", "Potence", "Spiritus"]},
                   {id:1,  name:"Anda", filters:["Independent", "All Bloodlines", "Dark Ages"], disciplines:["Animalism", "Fortitude", "Protean"]},
                   {id:2,  name:"Assamite", filters:["Thirteen", "Independent", "All Clans", "Low Clans", "Dark Ages"], disciplines:["Celerity", "Obfuscate", "Quietus"]},
                   {id:3,  name:"Baali", filters:["Independent", "All Bloodlines", "Dark Ages"], disciplines:["Daimonion", "Obfuscate", "Presence"]},
@@ -44,6 +44,25 @@ app.controller("ClanController", function($scope, $http, UglyService, TermIndexS
                   {id:29, name:"Ventrue", filters:["Thirteen", "Camarilla", "All Clans", "Camarilla (clans only)", "Dark Ages", "High Clans"], disciplines:["Dominate", "Fortitude", "Presence"]}
                 ];
 
+  function getDisciplines(clan){
+    var disciplines = [];
+    for(var i=0; i<ctrl.clanList.length; i++){
+      if(ctrl.clanList[i].name == clan){
+        disciplines = ctrl.clanList[i].disciplines;
+      }
+    }
+    var htmlDisciplines = [];
+    for(var i = 0; i<disciplines.length; i++){
+      htmlDisciplines.push("<termindex term='"+disciplines[i]+"'>"+disciplines[i]+"</termindex>");
+    }
+    return $sce.trustAsHtml(htmlDisciplines.join(", "));
+
+  };
+
+  ctrl.displayAsHtml = function(discipline){
+    return $sce.trustAsHtml(discipline);
+  }
+
   function filterClans(filter){
     ctrl.filteredClanList = [];
     if(filter==='All'){
@@ -74,7 +93,7 @@ app.controller("ClanController", function($scope, $http, UglyService, TermIndexS
     TermIndexService.setTerm(term);
   }
 
-});
+}]);
 
 app.directive('clandescription', function(TermIndexService, DescriptionsFactory, $compile){
 

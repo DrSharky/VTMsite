@@ -55,6 +55,9 @@
           <img class="attrimg" ng-src="{{attrPt.img}}"/>
           <!-- (attribute.col2.name == 'Appearance' && attrCtrl.isUglyClan()) ? null :  -->
         </div>
+        <div ng-if="(clanCtrl.isUglyClan())">
+          <span style="color:red">* The chosen clan can not have an appearance higher than 0.</span>
+        </div>
         <div ng-if="!clanCtrl.isUglyClan() || (clanCtrl.isUglyClan() && attribute.col2.name != 'Appearance')">
           <img class="attrimg" ng-src="{{attrPt.img}}"
            ng-click="attrCtrl.selectAttribute(attribute.col2, $index)  "/>
