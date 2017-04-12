@@ -3,9 +3,10 @@ var app = angular.module("site");
 app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService',
  function($scope, NgTableParams, UglyService){
 
+   var vm = this;
   this.priorityChange = priorityChange;
-  this.selectAttribute = selectAttribute;
-  this.getPriority = getPriority;
+  vm.selectAttribute = selectAttribute;
+  vm.getPriority = getPriority;
   this.getPriorityPts = getPriorityPts;
   this.getCategoryIndex = getCategoryIndex;
   this.isUglyClan = isUglyClan;
@@ -92,14 +93,17 @@ app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService'
 
   function isUglyClan(){
     if(UglyService.isUgly()){
-      this.resetAttributes();
-      this.resetPriorities();
+      if(UglyService.dirtyBit){
+        this.resetAttributes();
+        this.resetPriorities();
+        UglyService.dirtyBit = false;
+      }
       this.appearance.zero();
       return true;
     }
     else {
       if(UglyService.previousUgly()){
-        this.resetAttributes();
+        this.appearance.reset();
         UglyService.previousClan = null;
       }
       return false;
@@ -263,3 +267,49 @@ this.tableParams1 = new NgTableParams({count: 3},
                     { dataset: this.dataSet(), counts: [] });
 
 }]);
+
+app.directive('attrRow', function(){
+  return{
+    restrict: 'E',
+    controller: 'AttributesController',
+    controllerAs: 'attrCtrl',
+    scope: {
+      attributes: '='
+    },
+    link: function(scope, element, attrs, controller){
+
+    },
+    template: '<tr>'+
+      '<td style="width:100px;">'+
+        '<div termindex term="{{attributes[0].name}}" class="attrLabel">'+
+          '{{attributes[0].name}}'+
+        '</div>'+
+      '</td>'+
+      '<td class="points-cell" style="width:245px;">'+
+        '<div ng-repeat="attrPt in attributes[0].points" style="display: inline-block;">'+
+          '<img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attributes[0], $index)"/>'+
+        '</div>'+
+      '</td>'+
+    '<td style="width:100px;">'+
+      '<div termindex term="{{attributes[1]}}" class="attrLabel">'+
+        '{{attributes[1].name}}'+
+      '</div>'+
+    '</td>'+
+    '<td class="points-cell" style="width:245px;">'+
+      '<div ng-repeat="attrPt in attributes[1].points" style="display: inline-block;">'+
+        '<img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attributes[1], $index)"/>'+
+      '</div>'+
+    '</td>'+
+    '<td style="width:100px;">'+
+      '<div termindex term="{{attrCtrl.intelligence.name}}" class="attrLabel">'+
+        '{{attrCtrl.intelligence.name}}'+
+      '</div>'+
+    '</td>'+
+    '<td class="points-cell" style="width:245px;">'+
+      '<div ng-repeat="attrPt in attrCtrl.intelligence.points" style="display: inline-block;">'+
+        '<img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.intelligence, $index)"/>'+
+      '</div>'+
+    '</td>'+
+    '</tr>'
+  }
+})

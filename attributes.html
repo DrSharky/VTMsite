@@ -32,7 +32,109 @@
     </th>
   </tr>
 </table>
-<table ng-table="attrCtrl.tableParams1" show-filter="false">
+
+<!-- <attr-row attributes="attrCtrl.attributeCategories[0].attributes"></attr-row> -->
+<table>
+  <tr>
+    <td style="width:100px;">
+      <div termindex term="{{attrCtrl.strength.name}}" class="attrLabel">
+        {{attrCtrl.strength.name}}
+      </div>
+    </td>
+    <td class="points-cell" style="width:245px;">
+      <div ng-repeat="attrPt in attrCtrl.strength.points" style="display: inline-block;">
+        <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.strength, $index)"/>
+      </div>
+    </td>
+  <td style="width:100px;">
+    <div termindex term="{{attrCtrl.charisma.name}}" class="attrLabel">
+      {{attrCtrl.charisma.name}}
+    </div>
+  </td>
+  <td class="points-cell" style="width:245px;">
+    <div ng-repeat="attrPt in attrCtrl.charisma.points" style="display: inline-block;">
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.charisma, $index)"/>
+    </div>
+  </td>
+  <td style="width:100px;">
+    <div termindex term="{{attrCtrl.perception.name}}" class="attrLabel">
+      {{attrCtrl.perception.name}}
+    </div>
+  </td>
+  <td class="points-cell" style="width:245px;">
+    <div ng-repeat="attrPt in attrCtrl.perception.points" style="display: inline-block;">
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.perception, $index)"/>
+    </div>
+  </td>
+</tr>
+<tr>
+  <td style="width:100px;">
+    <div termindex term="{{attrCtrl.dexterity.name}}" class="attrLabel">
+      {{attrCtrl.dexterity.name}}
+    </div>
+  </td>
+  <td class="points-cell" style="width:245px;">
+    <div ng-repeat="attrPt in attrCtrl.dexterity.points" style="display: inline-block;">
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.dexterity, $index)"/>
+    </div>
+  </td>
+<td style="width:100px;">
+  <div termindex term="{{attrCtrl.manipulation.name}}" class="attrLabel">
+    {{attrCtrl.manipulation.name}}
+  </div>
+</td>
+<td class="points-cell" style="width:245px;">
+  <div ng-repeat="attrPt in attrCtrl.manipulation.points" style="display: inline-block;">
+    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.manipulation, $index)"/>
+  </div>
+</td>
+<td style="width:100px;">
+  <div termindex term="{{attrCtrl.intelligence.name}}" class="attrLabel">
+    {{attrCtrl.intelligence.name}}
+  </div>
+</td>
+<td class="points-cell" style="width:245px;">
+  <div ng-repeat="attrPt in attrCtrl.intelligence.points" style="display: inline-block;">
+    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.intelligence, $index)"/>
+  </div>
+</td>
+</tr>
+<tr>
+  <td style="width:100px;">
+    <div termindex term="{{attrCtrl.stamina.name}}" class="attrLabel">
+      {{attrCtrl.stamina.name}}
+    </div>
+  </td>
+  <td class="points-cell" style="width:245px;">
+    <div ng-repeat="attrPt in attrCtrl.stamina.points" style="display: inline-block;">
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.stamina, $index)"/>
+    </div>
+  </td>
+<td style="width:100px;">
+  <div termindex term="{{attrCtrl.appearance.name}}" class="attrLabel">
+    {{attrCtrl.appearance.name}}
+  </div>
+</td>
+  <td class="points-cell" style="width:245px;">
+    <div ng-disabled="attrCtrl.isUglyClan()" ng-repeat="attrPt in attrCtrl.appearance.points" style="display: inline-block;">
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.appearance, $index)"/>
+    </div>
+  </td>
+<td style="width:100px;">
+  <div termindex term="{{attrCtrl.wits.name}}" class="attrLabel">
+    {{attrCtrl.wits.name}}
+  </div>
+</td>
+<td class="points-cell" style="width:245px;">
+  <div ng-repeat="attrPt in attrCtrl.wits.points" style="display: inline-block;">
+    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.wits, $index)"/>
+  </div>
+</td>
+</tr>
+</table>
+
+
+<!-- <table ng-table="attrCtrl.tableParams1" show-filter="false">
   <tr ng-repeat="attribute in $data">
     <td style="width:100px;">
       <div termindex term="{{attribute.col1.name}}" class="attrLabel">
@@ -53,7 +155,9 @@
       <div ng-repeat="attrPt in attribute.col2.points" style="display: inline-block;">
         <div ng-if="(clanCtrl.isUglyClan() && attribute.col2.name == 'Appearance')">
           <img class="attrimg" ng-src="{{attrPt.img}}"/>
-          <!-- (attribute.col2.name == 'Appearance' && attrCtrl.isUglyClan()) ? null :  -->
+        </div>
+        <div ng-if="(clanCtrl.isUglyClan())">
+          <span style="color:red">* The chosen clan can not have an appearance higher than 0.</span>
         </div>
         <div ng-if="!clanCtrl.isUglyClan() || (clanCtrl.isUglyClan() && attribute.col2.name != 'Appearance')">
           <img class="attrimg" ng-src="{{attrPt.img}}"
@@ -72,7 +176,7 @@
       </div>
     </td>
   </tr>
-</table>
+</table> -->
 
 <style>
   .num {

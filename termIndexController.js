@@ -39,6 +39,6 @@ app.directive('termindex', function(TermIndexService, $compile){
     scope: {
       term: '@'
     },
-    template: '<span ng-click="tindexCtrl.setTerm(term)"><ng-transclude></ng-transclude></span>'
+    template: '<span style="cursor:pointer;" ng-click="tindexCtrl.setTerm(term)"><ng-transclude></ng-transclude></span>'
   }
 });

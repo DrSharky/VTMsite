@@ -1,10 +1,9 @@
-<div ng-show="clanCtrl.selectedClan.name!='N/A'">
     <div class="col-lg-2 col-md-2 col-sm-2">
       <img src="clans/images/{{clanCtrl.selectedClan.name.toLowerCase()}}.png" style="width: 100px; height: 100px; margin-top: 30px;" />
     </div>
     <div class="col-lg-9 col-md-9 col-sm-9">
       <h3>{{clanCtrl.selectedClan.name}}</h3>
         <clandescription clan="clanCtrl.selectedClan.name"></clandescription><br/>
-      <b><termindex term="Discipline">Disciplines:</termindex> </b>{{clanCtrl.selectedClan.disciplines.join(", ")}}
+      <b><termindex term="Discipline">Disciplines:</termindex> </b>
+      <span discipline-html="clanCtrl.clanList[clanCtrl.selectedClan.id].disciplines" style="display: inline-block;"></span>
   </div>
-</div>
