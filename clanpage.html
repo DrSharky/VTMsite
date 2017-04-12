@@ -4,8 +4,6 @@
     <div class="col-lg-9 col-md-9 col-sm-9">
       <h3>{{clanCtrl.selectedClan.name}}</h3>
         <clandescription clan="clanCtrl.selectedClan.name"></clandescription><br/>
-      <b><termindex term="Discipline">Disciplines:</termindex> </b><div ng-repeat="discipline in clanCtrl.clanList[clanCtrl.selectedClan.id].disciplines">
-        <div ng-bind-html="clanCtrl.displayAsHtml(discipline)">
-        </div>
-      </div>
+      <b><termindex term="Discipline">Disciplines:</termindex> </b>
+      <span discipline-html="clanCtrl.clanList[clanCtrl.selectedClan.id].disciplines" style="display: inline-block;"></span>
   </div>
