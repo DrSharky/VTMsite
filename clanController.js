@@ -19,7 +19,7 @@ app.controller("ClanController", function($scope, $compile, $sce, $http, UglySer
                   {id:3,  name:"Baali", filters:["Independent", "All Bloodlines", "Dark Ages"], disciplines:["Daimonion", "Obfuscate", "Presence"]},
                   {id:4,  name:"Blood Brothers", filters:["Sabbat", "All Bloodlines"], disciplines:["Fortitude", "Potence", "Sanguinus"]},
                   {id:5,  name:"Brujah", filters:["Thirteen", "Camarilla", "All Clans", "Camarilla (clans only)", "High Clans", "Dark Ages"], disciplines:["Celerity", "Potence", "Presence"]},
-                  {id:6,  name:"Caitiff", filters:["All Clans", "Dark Ages"]},
+                  {id:6,  name:"Caitiff", filters:["All Clans", "Dark Ages"], disciplines: []},
                   {id:7,  name:"Cappadocian", filters:["All Clans", "Dark Ages", "High Clans"], disciplines:["Auspex", "Fortitude", "Necromancy"]},
                   {id:8,  name:"Children of Osiris", filters:["All Bloodlines", "Dark Ages"], disciplines:["Bardo", "2 other disciplines learned from original clan"]},
                   {id:9,  name:"Daughters of Cacophony", filters:["All Bloodlines"], disciplines:["Fortitude", "Melpominee", "Presence"]},
