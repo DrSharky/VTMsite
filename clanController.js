@@ -1,6 +1,7 @@
 var app = angular.module("site");
 
-app.controller("ClanController", function($scope, $compile, $sce, $http, UglyService, TermIndexService){
+app.controller("ClanController", ['$scope', 'UglyService', 'TermIndexService', 'AttributeService',
+function($scope, UglyService, TermIndexService, AttributeService){
 
   var  ctrl = this;
   ctrl.clanDescriptions = [];
@@ -71,7 +72,7 @@ app.controller("ClanController", function($scope, $compile, $sce, $http, UglySer
     TermIndexService.setTerm(term);
   }
 
-});
+}]);
 
 app.directive('clandescription', function(TermIndexService, DescriptionsFactory, $compile){
   var getTemplate = function(clan){
