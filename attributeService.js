@@ -144,8 +144,8 @@ function priorityNullCheck(attribute){
   }
 }
 
-function getPriorityPts(index){
-  var priority = this.attributeCategories[index].priority;
+function getPriorityPts(priority){
+  // var priority = this.attributeCategories[index].priority;
   switch(priority){
     case "Primary":
       return this.primaryPts;
@@ -173,15 +173,14 @@ function getCategoryIndex(attribute){
   }
 }
 
-function selectAttribute(attribute, index){
+function selectAttribute(attribute, index, catIndex){
 
   var priority = this.getPriority(attribute);
   if(priority==null){
     return null;
   }
-  var attrIndex =
-  //TODO: Change getPriorityPts to fix the number displays.
-  var priorityPts = this.getPriorityPts(attrIndex);
+  //TODO: Change  to fix the number displays.
+  var priorityPts = this.getPriorityPts(priority);
   var pointDiff = attribute.pointCount - (index+1);
 
   //Do math to make sure they can't spend points they don't have, even when priorityPts isn't equal to 0

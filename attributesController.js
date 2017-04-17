@@ -42,7 +42,7 @@ app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService'
   function getTertiaryPts(){
     return AttributeService.tertiaryPts;
   }
-  this.selectedPriorities = [null, null, null];
+  // this.selectedPriorities = [null, null, null];
   this.selectedPriorities = getSelectedPriorities();
   function getSelectedPriorities(){
     return AttributeService.selectedPriorities;
@@ -159,7 +159,7 @@ app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService'
   }
 
   function isUglyClan(){
-    AttributeService.isUglyClan();
+    return AttributeService.isUglyClan();
     // if(UglyService.isUgly()){
     //   if(UglyService.dirtyBit){
     //     this.resetAttributes();
@@ -198,7 +198,7 @@ app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService'
    }
 
 function getPriority(attribute){
-  AttributeService.getPriority(attribute);
+  return AttributeService.getPriority(attribute);
  // for(var i = 0; i < this.attributeCategories.length; i++){
  //   if(this.attributeCategories[i].attributes.indexOf(attribute)!=-1){
  //     return this.selectedPriorities[i];
@@ -220,7 +220,7 @@ function priorityNullCheck(attribute){
 }
 
 function getPriorityPts(index){
-  AttributeService.getPriorityPts(index);
+  return AttributeService.getPriorityPts(index);
   // switch(priority){
   //   case "Primary":
   //     return this.primaryPts;

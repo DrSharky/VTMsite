@@ -20,7 +20,7 @@
     <th style="width:245px;">
       <div class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[1])}}</div>
     </th>
-    <th style="width:100px;">
+    <th style="width:130px;">
       <select ng-model="abCtrl.selectedPriorities[2]"
       ng-options="priority for priority in abCtrl.abilityPriorities"
       ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[2], 2, abCtrl.abilityCategories[2].priority)">
@@ -78,6 +78,7 @@
     font-weight: 500;
     margin-top: 20px;
     margin-bottom: 10px;
+    margin-right: 20px;
   }
   .abLabel{
     font-size: 16px;
