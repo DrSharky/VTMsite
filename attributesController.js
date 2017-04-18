@@ -10,7 +10,7 @@ app.controller("AttributesController", ['$scope', 'NgTableParams', 'UglyService'
   this.getCategoryIndex = getCategoryIndex;
   this.isUglyClan = isUglyClan;
   this.resetAttributes = resetAttributes;
-   this.resetPriorities = resetPriorities;
+  this.resetPriorities = resetPriorities;
   this.priorityNullCheck = priorityNullCheck;
   //this.attributePriorities = ["Primary", "Secondary", "Tertiary"];
   this.attributePriorities = getAttributePriorities();

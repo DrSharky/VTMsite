@@ -4,19 +4,19 @@ angular.module("site").service('TermIndexService', function($http){
   this.termDefinition = null;
   this.termList = null;
 
+  var service = this;
+  $http.get('termIndex/listOfTerms.txt').then(function(response){
+    service.termList = response.data;
+  });
+
   this.setTerm = function(term){
     this.selectedTerm = term;
-    return this.selectedTerm;
+    this.setDefinition(term);
   }
 
   this.getTerm = function(){
     return this.selectedTerm;
   }
-
-   var service = this;
-   $http.get('termIndex/listOfTerms.txt').then(function(response){
-     service.termList = response.data;
-   });
 
    this.setDefinition = function(){
      this.termDefinition = this.termList[this.selectedTerm];

@@ -28,17 +28,3 @@ app.controller("TermIndexController", function($scope, $http, TermIndexService){
   }
 
 });
-
-app.directive('termindex', function(TermIndexService, $compile){
-
-  return {
-    restrict: 'AE',
-    controller: "TermIndexController",
-    controllerAs: "tindexCtrl",
-    transclude: true,
-    scope: {
-      term: '@'
-    },
-    template: '<span style="cursor:pointer;" ng-click="tindexCtrl.setTerm(term)"><ng-transclude></ng-transclude></span>'
-  }
-});

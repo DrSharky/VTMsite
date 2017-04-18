@@ -2,6 +2,30 @@ var app = angular.module("site");
 app.directive('attrGrid', function(){
   return{
     restrict: 'E',
+    controller: 'AttributesController',
+    controllerAs: 'attrCtrl',
+    link: function(scope, element, attrs, controller){
+
+    },
+    template: '<table>'+
+              '<tr>'+
+              '<th></th>'+
+              '<th></th>'+
+              '<th style="text-align: center; font-size 18pt; font-weight: 500;">Attributes</th>'+
+              '<th></th>'+
+              '<th></th>'+
+              '<th></th>'+
+              '</tr>'+
+              '<tr>'+
+              '<th style="width: 100px;">'+
+              '<select ng-model="attrCtrl.selectedPriorities[0]"'+
+              'ng-options="priority for priority in attrCtrl.attributePriorities"'+
+              'ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[0], '+
+              '0, attrCtrl.attributeCategories[0].priority)">'+
+              '</select>'+
+              '</th>'+
+              '</tr>'+
+              '</table>'
   }
 });
 
