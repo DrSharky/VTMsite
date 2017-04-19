@@ -140,51 +140,6 @@
 </tr>
 </table>
 
-
-<!-- <table ng-table="attrCtrl.tableParams1" show-filter="false">
-  <tr ng-repeat="attribute in $data">
-    <td style="width:100px;">
-      <div termindex term="{{attribute.col1.name}}" class="attrLabel">
-        {{attribute.col1.name}}
-      </div>
-    </td>
-    <td class="points-cell" style="width:245px;">
-      <div ng-repeat="attrPt in attribute.col1.points" style="display: inline-block;">
-        <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attribute.col1, $index)"/>
-      </div>
-    </td>
-    <td style="width:100px;">
-      <div termindex term="{{attribute.col2.name}}" class="attrLabel">
-        {{attribute.col2.name}}
-      </div>
-    </td>
-    <td class="points-cell" style="width:245px;">
-      <div ng-repeat="attrPt in attribute.col2.points" style="display: inline-block;">
-        <div ng-if="(clanCtrl.isUglyClan() && attribute.col2.name == 'Appearance')">
-          <img class="attrimg" ng-src="{{attrPt.img}}"/>
-        </div>
-        <div ng-if="(clanCtrl.isUglyClan())">
-          <span style="color:red">* The chosen clan can not have an appearance higher than 0.</span>
-        </div>
-        <div ng-if="!clanCtrl.isUglyClan() || (clanCtrl.isUglyClan() && attribute.col2.name != 'Appearance')">
-          <img class="attrimg" ng-src="{{attrPt.img}}"
-           ng-click="attrCtrl.selectAttribute(attribute.col2, $index)  "/>
-        </div>
-      </div>
-    </td>
-    <td style="width:100px;">
-      <div termindex term="{{attribute.col3.name}}" class="attrLabel">
-        {{attribute.col3.name}}
-      </div>
-    </td>
-    <td class="points-cell" style="width:245px;">
-      <div ng-repeat="attrPt in attribute.col3.points" style="display: inline-block;">
-        <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attribute.col3, $index)"/>
-      </div>
-    </td>
-  </tr>
-</table> -->
-
 <style>
   .num {
     padding-top: 30px;
