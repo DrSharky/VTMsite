@@ -12,6 +12,7 @@ app.controller("AbilitiesController", ['$scope','NgTableParams',function($scope,
   this.tertiaryPts = 5;
   this.abilityPriorities = ["Primary", "Secondary", "Tertiary"];
   this.selectedPriorities = [null, null, null];
+  this.freebies = false;
 
   class Ability {
     constructor(name){
@@ -144,7 +145,7 @@ app.controller("AbilitiesController", ['$scope','NgTableParams',function($scope,
   function selectAbility(ability, index){
 
     var priority = this.getPriority(ability);
-    if(priority==null){
+    if(priority==null || (!this.freebies && index >= 3)){
      return null;
     }
     var priorityPts = this.getPriorityPts(priority);

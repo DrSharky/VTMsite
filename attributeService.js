@@ -5,11 +5,9 @@ app.service('AttributeService',  ['UglyService', function(UglyService){
   this.selectAttribute = selectAttribute;
   this.getPriority = getPriority;
   this.getPriorityPts = getPriorityPts;
-  this.getCategoryIndex = getCategoryIndex;
   this.isUglyClan = isUglyClan;
   this.resetAttributes = resetAttributes;
   this.resetPriorities = resetPriorities;
-  this.priorityNullCheck = priorityNullCheck;
   this.attributePriorities = ["Primary", "Secondary", "Tertiary"];
   this.attributesPage = "./attributes.html";
   this.attributePtsTotal = 15;
@@ -113,7 +111,7 @@ app.service('AttributeService',  ['UglyService', function(UglyService){
         attr.reset();
       });
     });
-  }
+  };
 
   function resetPriorities(){
     this.attributeCategories.forEach(function(attrCat){
@@ -122,7 +120,7 @@ app.service('AttributeService',  ['UglyService', function(UglyService){
     this.primaryPts = 7;
     this.secondaryPts = 5;
     this.tertiaryPts = 3;
-  }
+  };
 
 function getPriority(attribute){
  for(var i = 0; i < this.attributeCategories.length; i++){
@@ -130,22 +128,9 @@ function getPriority(attribute){
      return this.selectedPriorities[i];
    }
  }
-}
-
-function priorityNullCheck(attribute){
-  if(attribute.name == "strength" || attribute.name == "dexterity" || attribute.name == "stamina"){
-    return (this.selectedPriorities[0]!=null);
-  }
-  if(attribute.name == "charisma" || attribute.name == "manipulation" || attribute.name == "appearance"){
-    return (this.selectedPriorities[1]!=null);
-  }
-  if(attribute.name == "perception" || attribute.name == "intelligence" || attribute.name == "wits"){
-    return (this.selectedPriorities[2]!=null);
-  }
-}
+};
 
 function getPriorityPts(priority){
-  // var priority = this.attributeCategories[index].priority;
   switch(priority){
     case "Primary":
       return this.primaryPts;
@@ -159,27 +144,15 @@ function getPriorityPts(priority){
     default:
       break;
   }
-}
-
-function getCategoryIndex(attribute){
-  if(attribute == "strength" || attribute == "dexterity" || attribute == "stamina"){
-    return 0;
-  }
-  if(attribute == "charisma" || attribute == "manipulation" || attribute == "appearance"){
-    return 1;
-  }
-  if(attribute == "perception" || attribute == "intelligence" || attribute == "wits"){
-    return 2;
-  }
-}
+};
 
 function selectAttribute(attribute, index, catIndex){
-
   var priority = this.getPriority(attribute);
+  
   if(priority==null){
     return null;
   }
-  //TODO: Change  to fix the number displays.
+
   var priorityPts = this.getPriorityPts(priority);
   var pointDiff = attribute.pointCount - (index+1);
 
@@ -252,4 +225,5 @@ function priorityChange(changedPriority, id, prevPriority){
       this.tertiaryPts = 3;
     }
   };
+
 }]);
