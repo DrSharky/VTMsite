@@ -82,9 +82,25 @@ app.service('AttributeService',  ['UglyService', function(UglyService){
   this.intelligence = new Attribute("Intelligence");
   this.wits = new Attribute("Wits");
 
-  this.attributeCategories = [{id: 0, category: "physical", attributes:[this.strength, this.dexterity, this.stamina], priority:null},
-                              {id: 1, category: "social", attributes:[this.charisma, this.manipulation, this.appearance], priority: null},
-                              {id: 2, category: "mental", attributes:[this.perception, this.intelligence, this.wits], priority: null}];
+  this.attributeCategories = [
+    {
+      id: 0,
+      category: "physical",
+      attributes:[this.strength, this.dexterity, this.stamina],
+      priority:null
+   },
+   {
+     id: 1,
+     category: "social",
+     attributes:[this.charisma, this.manipulation, this.appearance],
+     priority: null
+   },
+   {
+     id: 2,
+     category: "mental",
+     attributes:[this.perception, this.intelligence, this.wits],
+     priority: null
+   }];
 
   function isUglyClan(){
     if(UglyService.isUgly()){
@@ -148,7 +164,7 @@ function getPriorityPts(priority){
 
 function selectAttribute(attribute, index, catIndex){
   var priority = this.getPriority(attribute);
-  
+
   if(priority==null){
     return null;
   }
@@ -156,7 +172,8 @@ function selectAttribute(attribute, index, catIndex){
   var priorityPts = this.getPriorityPts(priority);
   var pointDiff = attribute.pointCount - (index+1);
 
-  //Do math to make sure they can't spend points they don't have, even when priorityPts isn't equal to 0
+  //Do math to make sure they can't spend points they don't have, even when
+  //priorityPts isn't equal to 0.
   //Case example: increase 3 pts when priorityPts = 2.
   if((priorityPts+pointDiff < 0)){
     return null;

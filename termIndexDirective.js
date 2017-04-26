@@ -17,7 +17,12 @@ app.directive('termindex', function(TermIndexService, $compile){
     scope: {
       term: '@'
     },
-    template: '<span ng-if="!osiris" style="cursor:pointer;" ng-click="setTerm(term)"><ng-transclude></ng-transclude></span>'+
-              '<span ng-if="osiris"><ng-transclude></ng-transclude></span>'
+    template: '<span ng-if="!osiris" style="cursor:pointer;"'+
+              ' ng-click="setTerm(term)">'+
+              '<ng-transclude></ng-transclude>'+
+              '</span>'+
+              '<span ng-if="osiris">'+
+              '<ng-transclude></ng-transclude>'+
+              '</span>'
   }
 });

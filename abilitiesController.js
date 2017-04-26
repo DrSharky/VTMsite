@@ -1,6 +1,7 @@
 var app = angular.module("site");
 
-app.controller("AbilitiesController", ['$scope','NgTableParams',function($scope, NgTableParams){
+app.controller("AbilitiesController", ['$scope','NgTableParams',
+ function($scope, NgTableParams){
 
   this.getPriority = getPriority;
   this.getPriorityPts = getPriorityPts;
@@ -97,8 +98,9 @@ app.controller("AbilitiesController", ['$scope','NgTableParams',function($scope,
       id: 0, category: "talents", priority: null,
       abilities:
       [
-        this.alertness, this.athletics, this.awareness, this.brawl, this.empathy,
-        this.expression, this.intimidation, this.leadership, this.streetwise, this.subterfuge
+        this.alertness, this.athletics, this.awareness, this.brawl,
+        this.empathy, this.expression, this.intimidation, this.leadership,
+        this.streetwise, this.subterfuge
       ]
    },
    {
@@ -113,8 +115,9 @@ app.controller("AbilitiesController", ['$scope','NgTableParams',function($scope,
      id: 2, category: "knowledges", priority: null,
      abilities:
      [
-       this.academics, this.computer, this.finance, this.investigation, this.law,
-       this.medicine, this.occult, this.politics, this.science, this.technology
+       this.academics, this.computer, this.finance, this.investigation,
+       this.law, this.medicine, this.occult, this.politics, this.science,
+       this.technology
      ]
    }];
 
