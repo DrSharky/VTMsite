@@ -14,7 +14,7 @@
         controller: "HomeController as HomeCtrl"
       })
       .when("/creator",{
-        templateUrl: "creator.html",
+        templateUrl: "charCreator.html",
         controller: "CharCreatorController as creatorCtrl"
       })
       .otherwise({redirectTo:"/home"});

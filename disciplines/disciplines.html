@@ -1,0 +1,6 @@
+<div>
+  <h4>Disciplines</h4>
+  <div ng-repeat="discipline in discCtrl.selectedClanDisciplines">
+    <select ng-model="discipline.name" ng-options="discipline for discipline in discCtrl.disciplineList"></select>
+  </div>
+</div>

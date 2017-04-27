@@ -5,7 +5,7 @@ angular.module("site").service('TermIndexService', function($http){
   this.termList = null;
 
   var service = this;
-  $http.get('termIndex/listOfTerms.txt').then(function(response){
+  $http.get('./termIndex/listOfTerms.txt').then(function(response){
     service.termList = response.data;
   });
 

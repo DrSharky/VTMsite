@@ -1,7 +1,7 @@
 var app = angular.module("site");
 
 app.controller("TermIndexController", function($scope, $http, TermIndexService){
-  this.termIndexPage = "./termIndex.html"
+  this.termIndexPage = "./termIndex/termIndex.html"
 
   this.termNull = function(){
     return (TermIndexService.selectedTerm === null);

@@ -7,7 +7,7 @@ app.controller("AbilitiesController", ['$scope','NgTableParams',
   this.getPriorityPts = getPriorityPts;
   this.selectAbility = selectAbility;
   this.priorityChange = priorityChange;
-  this.abilitiesPage = "./abilities.html";
+  this.abilitiesPage = "./abilities/abilities.html";
   this.primaryPts = 13;
   this.secondaryPts = 9;
   this.tertiaryPts = 5;
