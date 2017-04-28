@@ -6,7 +6,9 @@ Using AngularJS to make it nice and responsive.
 Doing this as a learning experience, it won't look too nice yet.
 Check out the progress at: https://drsharky.github.io/VTMsite/#!/creator
 
-Todo list: 
+Todo list:
+* Create character creator service (probably big change)
+* Add freebie point system
 * Add backgrounds
 * Add humanity/path options
 * Add virtues (conscience/conviction, self-control/instinct, courage)
