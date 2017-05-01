@@ -1,6 +1,6 @@
 var app = angular.module("site");
 
-app.factory('DescriptionsFactory', function(){
+app.factory('clanDescriptionsFactory', function(){
 
   return {
     'Ahrimanes': 'The Ahrimanes are a rare, all-female <termindex term="Bloodline">bloodline</termindex> of <termindex term="Kindred">Kindred</termindex> that originally existed during the Dark Ages, headed by a woman called Ádísa. Sometime during the long night, Ádísa and her <termindex term="Bloodline">bloodline</termindex> were lost and subsumed into <termindex term="Clan">Clan</termindex> Gangrel. Centuries later, the <termindex term="Bloodline">bloodline</termindex> was unknowingly resurrected by a woman called Muricia. Since then, the Ahrimanes roam the night again, albeit under a different guise and leader.',
