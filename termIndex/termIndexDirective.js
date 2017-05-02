@@ -1,7 +1,8 @@
-var app = angular.module("site");
+var app = angular.module("termIndex");
 
-app.directive('termindex', function(TermIndexService, $compile){
-
+app.directive('termindex',
+ ['TermIndexService', '$compile',
+ function(TermIndexService, $compile){
   return {
     restrict: 'AE',
     controller: function($scope, TermIndexService){
@@ -25,4 +26,4 @@ app.directive('termindex', function(TermIndexService, $compile){
               '<ng-transclude></ng-transclude>'+
               '</span>'
   }
-});
+}]);

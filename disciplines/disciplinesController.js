@@ -1,8 +1,8 @@
 var app = angular.module("site");
 
 app.controller("DisciplinesController",
-['$scope', 'ClanService', 'DisciplineService',
-function($scope, ClanService, DisciplineService){
+ ['$scope', 'ClanService', 'DisciplineService',
+ function($scope, ClanService, DisciplineService){
 
   this.selectDisciplinePt = selectDisciplinePt;
   this.disciplinesPage = "./disciplines/disciplines.html";

@@ -1,4 +1,5 @@
-app.directive('disciplineHtml', function($compile) {
+var app = angular.module("site");
+app.directive('disciplineHtml', ['$compile', function($compile) {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
@@ -20,4 +21,4 @@ app.directive('disciplineHtml', function($compile) {
       });
     }
   };
-});
+}]);

@@ -1,4 +1,5 @@
-angular.module("site").service('TermIndexService', function($http){
+var app = angular.module("termIndex", []);
+app.service('TermIndexService', ['$http', function($http){
 
   this.selectedTerm = null;
   this.termDefinition = null;
@@ -29,4 +30,4 @@ angular.module("site").service('TermIndexService', function($http){
    this.clearTerm = function(){
      this.selectedTerm = null;
    }
-});
+}]);

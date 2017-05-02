@@ -1,6 +1,6 @@
 var app = angular.module("site");
 app.service('UglyService', function(){
-  
+
   this.currentClan = null;
   this.previousClan = null;
   this.dirtyBit = false;
