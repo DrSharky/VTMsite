@@ -2,7 +2,7 @@ var app = angular.module("site");
 
 app.service('CharCreatorService',function(){
   this.freebiePts = 15;
-  this.freebieMode = false;
+  this.freebieMode = true;
 
   this.getFreebiePts = function(){
     return this.freebiePts;

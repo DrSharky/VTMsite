@@ -1,20 +1,21 @@
 <div>
-  <h4 style="display: inline;">Disciplines</h4><div class="numdis">{{discCtrl.getDisciplinePts()}}</div>
+  <h4 style="display: inline;">Disciplines</h4>
+  <div class="numdis">
+    {{discCtrl.getDisciplinePts()}}
+  </div>
   <table>
     <tr>
       <td>
         <div ng-repeat="discipline in discCtrl.selectedClanDisciplines">
-          <select ng-disabled="!discCtrl.freebies" ng-model="discipline.name" ng-options="discipline for discipline in discCtrl.disciplineList"></select>
+          <select ng-model="discipline.name" ng-options="discipline for discipline in discCtrl.disciplineList"></select>
           <div ng-repeat="discPt in discipline.points" style="display: inline-block;">
             <img class="discimg" ng-src="{{discPt.img}}" ng-click="discCtrl.selectDisciplinePt(discipline, $index)" />
           </div>
         </div>
-      </div>
-    </td>
-    <td>
-    </td>
-  </tr>
-</table>
+      </td>
+    </tr>
+  </table>
+</div>
 
 <style>
   .discimg{
