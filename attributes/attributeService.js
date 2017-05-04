@@ -1,5 +1,6 @@
 var app = angular.module("site");
-app.service('AttributeService', ['UglyService', function(UglyService){
+app.service('AttributeService', ['UglyService', 'CharCreatorService',
+ function(UglyService, CharCreatorService){
 
   this.priorityChange = priorityChange;
   this.selectAttribute = selectAttribute;
@@ -169,21 +170,41 @@ function selectAttribute(attribute, index, catIndex){
     return null;
   }
 
-  var priorityPts = this.getPriorityPts(priority);
-  var pointDiff = attribute.pointCount - (index+1);
+  var priorityPts = 0;
+  var pointDiff = 0;
+
+  //Different operations if using Freebie points.
+  if(CharCreatorService.freebieMode == true){
+    priorityPts = CharCreatorService.getFreebiePts();
+
+    if(index < attribute.pointCount - 1)
+      pointDiff = (attribute.pointCount * 5) - (index + 1 * 5);
+    if((index == attribute.pointCount-1 && index!=0)){
+      pointDiff = (attribute.pointCount * 5) - (index * 5);
+      index -= 1;
+    }
+    else if(index > attribute.pointCount-1)
+      pointDiff = ((attribute.pointCount-1) * 5) + (-5 * index);
+
+
+    if(priorityPts + pointDiff < 0)
+      return null;
+
+    CharCreatorService.changeFreebiePts(pointDiff);
+    attribute.pointCount = (index+1);
+    attribute.select(index);
+    return;
+  }
+  else{
+     priorityPts = this.getPriorityPts(priority);
+     var pointDiff = attribute.pointCount - (index+1);
+  }
 
   //Do math to make sure they can't spend points they don't have, even when
   //priorityPts isn't equal to 0.
   //Case example: increase 3 pts when priorityPts = 2.
-  if((priorityPts+pointDiff < 0)){
+  if(priorityPts+pointDiff < 0)
     return null;
-  }
-
-  //Don't let the user spend points they don't have!
-  if(priorityPts <= 0 && pointDiff < 0)
-  {
-    return null;
-  }
 
   //Change the point count in the attribute.
   attribute.pointCount = (index+1);
