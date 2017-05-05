@@ -8,12 +8,12 @@ app.service('CharCreatorService',function(){
     return this.freebiePts;
   }
   this.changeFreebiePts = changeFreebiePts;
-  this.setFreebieMode = setFreebieMode;
+  this.toggleFreebieMode = toggleFreebieMode;
 
   function changeFreebiePts(addPts){
     this.freebiePts += addPts;
   }
-  function setFreebieMode(mode){
-    this.freebieMode = mode;
+  function toggleFreebieMode(){
+    this.freebieMode = !this.freebieMode;
   }
 });

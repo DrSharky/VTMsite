@@ -76,6 +76,13 @@
   <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
     <ng-include src="tindexCtrl.termIndexPage"></ng-include>
   </div>
+  <!--TODO: Make some kind of freebie point display-->
+  <!-- <div class="numdis">
+    {{creatorCtrl.freebiePts}}
+  </div>
+  <div>
+    <button ng-click="creatorCtrl.toggleFreebieMode()">Toggle Freebie Points</button>
+  </div> -->
 </div>
 
 <style>
@@ -87,5 +94,11 @@
     font-size: 24px;
     text-align: center;
   }
-
+  .numdis{
+    color: #BB0000;
+    font-size: 24px;
+    font-weight: bold;
+    display: inline;
+    margin-left: 35px;
+  }
 </style>
