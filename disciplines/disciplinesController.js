@@ -1,12 +1,16 @@
 var app = angular.module("site");
 
 app.controller("DisciplinesController",
-['$scope', 'ClanService', 'DisciplineService',
-function($scope, ClanService, DisciplineService){
+ ['$scope', 'ClanService', 'DisciplineService', 'CharCreatorService',
+ function($scope, ClanService, DisciplineService, CharCreatorService){
+
+   this.freebieMode = getFreebieMode();
+   function getFreebieMode(){
+     return CharCreatorService.freebieMode;
+   }
 
   this.selectDisciplinePt = selectDisciplinePt;
   this.disciplinesPage = "./disciplines/disciplines.html";
-  this.freebies = false;
   this.disciplineList = ["Animalism", "Auspex", "Bardo", "Celerity",
                          "Chimerstry", "Daimonion", "Dementation",
                          "Dominate", "Flight", "Fortitude", "Melpominee",

@@ -1,7 +1,7 @@
 var app = angular.module("site");
 
-app.controller("AbilitiesController", ['$scope','NgTableParams',
- function($scope, NgTableParams){
+app.controller("AbilitiesController", ['$scope','NgTableParams', 'CharCreatorService',
+ function($scope, NgTableParams, CharCreatorService){
 
   this.getPriority = getPriority;
   this.getPriorityPts = getPriorityPts;
@@ -147,24 +147,45 @@ app.controller("AbilitiesController", ['$scope','NgTableParams',
 
   function selectAbility(ability, index){
 
+    var priortyPts = 0;
+    var pointDiff = 0;
+
     var priority = this.getPriority(ability);
-    if(priority==null || (!this.freebies && index >= 3)){
+
+    //Different operations if using Freebie points.
+    if(CharCreatorService.freebieMode == true){
+      priorityPts = CharCreatorService.getFreebiePts();
+
+      if(index < ability.pointCount - 1)
+        pointDiff = (ability.pointCount * 2) - (index + 1 * 2);
+      if((index == ability.pointCount-1)){
+        pointDiff = (ability.pointCount * 2) - (index * 2);
+        index -= 1;
+      }
+      else if(index > ability.pointCount-1)
+        pointDiff = ((ability.pointCount-1) * 2) + (-2 * index);
+
+      if(priorityPts + pointDiff < 0)
+        return null;
+
+      CharCreatorService.changeFreebiePts(pointDiff);
+      ability.pointCount = (index+1);
+      ability.select(index);
+      return;
+    }
+    else{
+       priorityPts = this.getPriorityPts(priority);
+       var pointDiff = ability.pointCount - (index+1);
+    }
+
+    if(priority==null || (!CharCreatorService.freebieMode && index >= 3)){
      return null;
     }
-    var priorityPts = this.getPriorityPts(priority);
-
-    var pointDiff = ability.pointCount - (index+1);
 
     //Do math to make sure they can't spend points they don't have,
     //even when priorityPts isn't equal to 0.
     //Case example: increase 3 pts when priorityPts = 2.
     if((priorityPts+pointDiff < 0)){
-     return null;
-    }
-
-    //Don't let the user spend points they don't have!
-    if(priorityPts <= 0 && pointDiff < 0)
-    {
      return null;
     }
 

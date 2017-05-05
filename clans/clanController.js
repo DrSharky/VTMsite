@@ -2,7 +2,7 @@ var app = angular.module("site");
 
 app.controller("ClanController",
  ['$scope', 'UglyService', 'TermIndexService', 'ClanService', 'DisciplineService',
-  function($scope, UglyService, TermIndexService, ClanService, DisciplineService) {
+ function($scope, UglyService, TermIndexService, ClanService, DisciplineService) {
 
     this.clanPage = "./clans/clanpage.html";
     this.filterClans = filterClans;

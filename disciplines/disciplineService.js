@@ -1,6 +1,7 @@
 var app = angular.module("site");
 
-app.service("DisciplineService", ['ClanService', function(ClanService){
+app.service("DisciplineService", ['ClanService', 'CharCreatorService',
+ function(ClanService, CharCreatorService){
 
   this.setClan = setClan;
   this.setClanDisciplines = setClanDisciplines;
@@ -9,16 +10,37 @@ app.service("DisciplineService", ['ClanService', function(ClanService){
   this.disciplinePts = 3;
 
   function selectDisciplinePt(discipline, index){
-    var pointDiff = discipline.pointCount - (index+1);
+
+    var pointDiff = 0;
+
+    //Different operations if using Freebie points.
+    if(CharCreatorService.freebieMode == true){
+      var disciplineFree = CharCreatorService.getFreebiePts();
+
+      if(index < discipline.pointCount - 1)
+        pointDiff = (discipline.pointCount * 7) - (index + 1 * 7);
+      if((index == discipline.pointCount-1)){
+        pointDiff = (discipline.pointCount * 7) - (index * 7);
+        index -= 1;
+      }
+      else if(index > discipline.pointCount-1)
+        pointDiff = ((discipline.pointCount-1) * 7) + (-7 * index);
+
+      if(disciplineFree + pointDiff < 0)
+        return null;
+
+      CharCreatorService.changeFreebiePts(pointDiff);
+      discipline.pointCount = (index+1);
+      discipline.select(index);
+      return;
+    }
+    else
+       pointDiff = discipline.pointCount - (index+1);
 
     //Do math to make sure they can't spend points they don't have, even when
     //priorityPts isn't equal to 0.
     //Case example: increase 3 pts when pts = 2.
     if((this.disciplinePts + pointDiff < 0))
-      return null;
-
-    //Don't let the user spend points they don't have!
-    if(this.disciplinePts <= 0 && pointDiff < 0)
       return null;
 
     if(index == 0 && discipline.pointCount == 1){
@@ -27,7 +49,7 @@ app.service("DisciplineService", ['ClanService', function(ClanService){
       index = -1;
     }
     else{
-      //Change the point count in the attribute.
+      //Change the point count in the discipline.
       discipline.pointCount = (index+1);
     }
 
@@ -57,8 +79,8 @@ app.service("DisciplineService", ['ClanService', function(ClanService){
                      {id: 4, img: "./empty.png"}];
 
       this.reset = function(){
-        this.points.forEach(function(ability){
-          ability.img = './empty.png';
+        this.points.forEach(function(discipline){
+          discipline.img = './empty.png';
         });
         this.pointCount = 0;
       };

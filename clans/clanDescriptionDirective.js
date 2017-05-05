@@ -1,7 +1,8 @@
 var app = angular.module("site");
 
 app.directive('clandescription',
-  function(TermIndexService, clanDescriptionsFactory, $compile) {
+ ['TermIndexService', 'clanDescriptionsFactory', '$compile',
+ function(TermIndexService, clanDescriptionsFactory, $compile) {
     var getTemplate = function(clan) {
       return clanDescriptionsFactory[clan];
     }
@@ -19,4 +20,4 @@ app.directive('clandescription',
         })
       }
     }
-  });
+  }]);

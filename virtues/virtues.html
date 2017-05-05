@@ -1,0 +1,54 @@
+<div>
+  <h4 style="display: inline;">Virtues</h4>
+  <div class="numdis">
+    {{virtCtrl.virtuePts}}
+  </div>
+  <table>
+      <tr>
+        <td>
+          {{virtCtrl.virtueList[0].name}}:
+        </td>
+        <td>
+          <div ng-repeat="virtPt in virtCtrl.virtueList[0].points" style="display: inline-block;">
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList[0], $index)" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{virtCtrl.virtueList[1].name}}:
+        </td>
+        <td>
+          <div ng-repeat="virtPt in virtCtrl.virtueList[1].points" style="display: inline-block;">
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList[1], $index)" />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          {{virtCtrl.virtueList[2].name}}:
+        </td>
+        <td>
+          <div ng-repeat="virtPt in virtCtrl.virtueList[2].points" style="display: inline-block;">
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList[2], $index)" />
+          </div>
+        </td>
+      </tr>
+  </table>
+</div>
+
+<style>
+  .virtimg{
+    width: 15px;
+    height: 15px;
+    vertical-align: top;
+    margin-top: 2px;
+  }
+  .numdis{
+    color: #BB0000;
+    font-size: 24px;
+    font-weight: bold;
+    display: inline;
+    margin-left: 35px;
+  }
+</style>

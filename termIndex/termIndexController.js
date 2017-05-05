@@ -1,6 +1,8 @@
-var app = angular.module("site");
+var app = angular.module("termIndex");
 
-app.controller("TermIndexController", function($scope, $http, TermIndexService){
+app.controller("TermIndexController",
+ ['$scope', '$http', 'TermIndexService',
+ function($scope, $http, TermIndexService){
   this.termIndexPage = "./termIndex/termIndex.html"
 
   this.termNull = function(){
@@ -27,4 +29,4 @@ app.controller("TermIndexController", function($scope, $http, TermIndexService){
     this.termDefinition = TermIndexService.setDefinition(this.selectedTerm);
   }
 
-});
+}]);

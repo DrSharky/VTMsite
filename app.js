@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module("site", ["ngRoute", "ngTable"]);
+  var app = angular.module("site", ["ngRoute", "ngTable", "termIndex"]);
 
   app.controller("NavController", function($location){
     this.isActive = function(viewLocation){
@@ -10,11 +10,11 @@
   app.config(function($routeProvider){
     $routeProvider
       .when("/home",{
-        templateUrl: "home.html",
+        templateUrl: "./home/home.html",
         controller: "HomeController as HomeCtrl"
       })
       .when("/creator",{
-        templateUrl: "charCreator.html",
+        templateUrl: "./char_creator/charCreator.html",
         controller: "CharCreatorController as creatorCtrl"
       })
       .otherwise({redirectTo:"/home"});
