@@ -4,9 +4,18 @@ app.service("BackgroundsService", ['ClanService', 'CharCreatorService',
  function(ClanService, CharCreatorService){
 
    this.backgroundPts = 5;
+   this.selectBackgroundPt = selectBackgroundPt;
+   this.chooseBackground = chooseBackground;
+
+   this.backgroundList = ["", "Allies", "Alternate Identity", "Black Hand Memebership",
+                          "Contacts", "Domain", "Fame", "Generation",
+                          "Herd", "Influence", "Mentor", "Resources",
+                          "Retainers", "Rituals", "Status"];
 
   function selectBackgroundPt(background, index){
-
+    if(background.name == ""){
+      return
+    }
     var pointDiff = background.pointCount - (index+1);
 
     //Do math to make sure they can't spend points they don't have, even when
@@ -88,4 +97,16 @@ app.service("BackgroundsService", ['ClanService', 'CharCreatorService',
   this.selectedList = [new Background(""), new Background(""),
                        new Background(""), new Background(""),
                        new Background(""), new Background("")];
+
+ function chooseBackground(background, index){
+   var selectedBackground = this.selectedList[index];
+   if(background.name == "" && selectedBackground.pointCount > 0){
+     if(CharCreatorService.freebieMode){
+       CharCreatorService.changeFreebiePts(selectedBackground.pointCount);
+     }
+     selectedBackground.reset();
+   }
+   selectedBackground.name = background.name;
+ }
+
 }]);

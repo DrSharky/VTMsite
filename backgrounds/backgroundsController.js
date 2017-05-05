@@ -3,14 +3,31 @@ var app = angular.module("site");
 app.controller("BackgroundsController", ['BackgroundsService',
  function(BackgroundsService){
 
-  this.selectBackgroundPt = selectBackgroundPt;
-  this.backgroundsPage = "./backgrounds/backgrounds.html";
+   this.selectBackgroundPt = selectBackgroundPt;
+   this.chooseBackground = chooseBackground;
+   this.backgroundsPage = "./backgrounds/backgrounds.html";
 
-  this.selectedList = function(){
-    return BackgroundsService.selectedList;
-  }
+   this.backgroundPts = getBackgroundPts();
+   function getBackgroundPts(){
+     return BackgroundsService.backgroundPts;
+   }
 
-  function selectBackgroundPt(background, index){
-    BackgroundsService.selectBackgroundPt(background, index);
-  };
-}]);
+   this.selectedList = selectedList();
+   function selectedList(){
+     return BackgroundsService.selectedList;
+   }
+
+   this.backgroundList = backgroundList();
+   function backgroundList(){
+     return BackgroundsService.backgroundList;
+   }
+
+   function selectBackgroundPt(background, index){
+     BackgroundsService.selectBackgroundPt(background, index);
+   }
+
+   function chooseBackground(background, index){
+     BackgroundsService.chooseBackground(background, index);
+   }
+
+ }]);
