@@ -1,12 +1,12 @@
 var app = angular.module("site");
 
 app.controller("VirtuesController",
- ['VirtuesService', function(VirtuesService){
+ ["$scope", 'VirtuesService', function($scope, VirtuesService){
 
    this.selectVirtuePt = selectVirtuePt;
    this.virtuesPage = "./virtues/virtues.html";
 
-   this.virtuePts = getVirtuePts();
+   this.virtuePts = getVirtuePts;
    function getVirtuePts(){
      return VirtuesService.virtuePts;
    }
