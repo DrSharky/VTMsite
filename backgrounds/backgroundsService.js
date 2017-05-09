@@ -1,7 +1,7 @@
 var app = angular.module("site");
 
-app.service("BackgroundsService", ['ClanService', 'CharCreatorService',
- function(ClanService, CharCreatorService){
+app.service("BackgroundsService", ['CharCreatorService',
+ function(CharCreatorService){
 
    this.backgroundPts = 5;
    this.selectBackgroundPt = selectBackgroundPt;
