@@ -7,9 +7,9 @@ Doing this as a learning experience, it won't look too nice yet.
 Check out the progress at: https://drsharky.github.io/VTMsite/#!/creator
 
 Todo list:
-* Create character creator service (probably big change)
-* Add freebie point system
-* Add backgrounds
-* Add humanity/path options
-* Add virtues (conscience/conviction, self-control/instinct, courage)
+* Refine freebie point system
 * Add willpower
+* Add better styling
+* Make the page more mobile-friendly
+* Add more pages to better describe some things (paths, backgrounds, etc)
+* Add saving character sheets, and/or pdf export
