@@ -7,7 +7,7 @@ app.controller("BackgroundsController", ['BackgroundsService',
    this.chooseBackground = chooseBackground;
    this.backgroundsPage = "./backgrounds/backgrounds.html";
 
-   this.backgroundPts = getBackgroundPts();
+   this.getBackgroundPts = getBackgroundPts;
    function getBackgroundPts(){
      return BackgroundsService.backgroundPts;
    }

@@ -1,7 +1,7 @@
 var app = angular.module("site");
 
-app.service("BackgroundsService", ['ClanService', 'CharCreatorService',
- function(ClanService, CharCreatorService){
+app.service("BackgroundsService", ['CharCreatorService',
+ function(CharCreatorService){
 
    this.backgroundPts = 5;
    this.selectBackgroundPt = selectBackgroundPt;
@@ -14,7 +14,7 @@ app.service("BackgroundsService", ['ClanService', 'CharCreatorService',
 
   function selectBackgroundPt(background, index){
     if(background.name == ""){
-      return
+      return;
     }
     var pointDiff = background.pointCount - (index+1);
 
@@ -40,8 +40,9 @@ app.service("BackgroundsService", ['ClanService', 'CharCreatorService',
 
     if(CharCreatorService.freebieMode)
       CharCreatorService.changeFreebiePts(pointDiff);
-
-    this.backgroundPts += pointDiff;
+    else
+      this.backgroundPts += pointDiff;
+      
     //Fill in the dots!
     background.select(index);
   };

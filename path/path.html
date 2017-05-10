@@ -1,0 +1,28 @@
+<div>
+  <h4 style="display: inline;">Humanity/Path</h4>
+  <table>
+    <tr>
+      <td>
+        <select ng-model="pathCtrl.selectedPath.name"
+                ng-options="path for path in pathCtrl.pathList"></select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div ng-repeat="pathPt in pathCtrl.selectedPath.points" style="display: inline-block;">
+          <img class="pathimg" ng-disabled="!pathCtrl.freebieMode" ng-src="{{pathPt.img}}"
+                               ng-click="pathCtrl.selectPathPt(pathCtrl.selectedPath, $index)" />
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<style>
+  .pathimg{
+    width: 15px;
+    height: 15px;
+    vertical-align: top;
+    margin-top: 2px;
+  }
+</style>

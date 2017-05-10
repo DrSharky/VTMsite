@@ -14,6 +14,9 @@ app.service('CharCreatorService',function(){
     this.freebiePts += addPts;
   }
   function toggleFreebieMode(){
+    if(this.freebiePts < 15){
+      return;
+    }
     this.freebieMode = !this.freebieMode;
   }
 });

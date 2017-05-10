@@ -6,10 +6,10 @@ app.controller("VirtuesController",
    this.selectVirtuePt = selectVirtuePt;
    this.virtuesPage = "./virtues/virtues.html";
 
-   this.virtuePts = getVirtuePts();
+   this.getVirtuePts = getVirtuePts;
    function getVirtuePts(){
      return VirtuesService.virtuePts;
-   }
+   };
 
    this.virtueList = virtueList();
    function virtueList(){

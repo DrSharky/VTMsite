@@ -1,17 +1,18 @@
 var app = angular.module("site");
 
 app.service("VirtuesService",
- ['CharCreatorService', function(CharCreatorService){
+ ['CharCreatorService', 'PathService', function(CharCreatorService, PathService){
 
    this.virtuePts = 7;
    this.selectVirtuePt = selectVirtuePt;
 
    function selectVirtuePt(virtue, index){
+     //TODO: add stuff to the path here maybe?
 
      var pointDiff = 0;
 
      //Different operations if using Freebie points.
-     if(CharCreatorService.freebieMode == true){
+     if(CharCreatorService.freebieMode){
        var virtueFree = CharCreatorService.getFreebiePts();
 
        if(index < virtue.pointCount - 1)
@@ -41,13 +42,16 @@ app.service("VirtuesService",
        return null;
 
      if(index == 0 && virtue.pointCount == 1){
-       virtue.pointCount = 0;
-       pointDiff = 1;
-       index = -1;
+       pointDiff = 0;
      }
      else{
        //Change the point count in the virtue.
        virtue.pointCount = (index+1);
+     }
+
+     if(virtue.name != "Courage"){
+       PathService.selectedPath.pointCount += (-pointDiff);
+       PathService.selectedPath.select(PathService.selectedPath.pointCount-1);
      }
 
      this.virtuePts += pointDiff;
@@ -115,5 +119,7 @@ app.service("VirtuesService",
   this.virtueList = [new Virtue("Conscience/Conviction"),
                      new Virtue("Self-Control/Instinct"),
                      new Virtue("Courage")];
+
+  this.pathCount = this.virtueList[0].pointCount + this.virtueList[1].pointCount;
 
 }]);

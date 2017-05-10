@@ -14,7 +14,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
     var pointDiff = 0;
 
     //Different operations if using Freebie points.
-    if(CharCreatorService.freebieMode == true){
+    if(CharCreatorService.freebieMode){
       var disciplineFree = CharCreatorService.getFreebiePts();
 
       if(index < discipline.pointCount - 1)

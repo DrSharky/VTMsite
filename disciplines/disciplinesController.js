@@ -1,12 +1,12 @@
 var app = angular.module("site");
 
 app.controller("DisciplinesController",
- ['$scope', 'ClanService', 'DisciplineService', 'CharCreatorService',
- function($scope, ClanService, DisciplineService, CharCreatorService){
+ ['$scope', 'ClanService', 'DisciplineService',
+ function($scope, ClanService, DisciplineService){
 
    this.freebieMode = getFreebieMode();
    function getFreebieMode(){
-     return CharCreatorService.freebieMode;
+     return DisciplineService.freebieMode;
    }
 
   this.selectDisciplinePt = selectDisciplinePt;

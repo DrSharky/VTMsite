@@ -25,6 +25,7 @@ app.controller("CharCreatorController",
    this.virtuePts = 7;
 
    this.toggleFreebieMode = toggleFreebieMode;
+   this.getFreebiePts = getFreebiePts;
 
    function toggleFreebieMode(){
      CharCreatorService.toggleFreebieMode();
