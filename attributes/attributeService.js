@@ -174,7 +174,7 @@ function selectAttribute(attribute, index, catIndex){
   var pointDiff = 0;
 
   //Different operations if using Freebie points.
-  if(CharCreatorService.freebieMode == true){
+  if(CharCreatorService.freebieMode){
     priorityPts = CharCreatorService.getFreebiePts();
 
     if(index < attribute.pointCount - 1)

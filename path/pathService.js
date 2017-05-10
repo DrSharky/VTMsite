@@ -4,12 +4,6 @@ app.service("PathService",
  ['CharCreatorService',
  function(CharCreatorService){
 
-   this.freebieMode = freebieMode();
-   function freebieMode(){
-     return CharCreatorService.freebieMode;
-   }
-
-   this.getPathRating = getPathRating;
    this.pathList = ["Humanity", "Path of Blood", "Path of the Bones",
                     "Path of Caine", "Path of Cathari", "Path of the Feral Heart",
                     "Path of Honorable Accord", "Path of Lilith",
@@ -20,6 +14,31 @@ app.service("PathService",
                     "Path of Evil Revelations", "Path of the Warrior",
                     "Path of Ecstasy", "Path of the Scorched Heart",
                     "Path of the Hive"];
+
+  this.selectPathPt = selectPathPt;
+
+  function selectPathPt(path, index){
+
+    if(path.name == ""|| index <= 1)
+      return;
+    var pointDiff = path.pointCount - (index+1);
+
+    if(CharCreatorService.freebieMode){
+      if((CharCreatorService.getFreebiePts() + pointDiff < 0))
+        return null;
+    }
+
+    if(index == 0 && path.pointCount == 1){
+      path.pointCount = 0;
+      pointDiff = 1;
+      index = -1;
+    }
+
+    if(CharCreatorService.freebieMode)
+      CharCreatorService.changeFreebiePts(pointDiff);
+
+      path.select(index);
+  };
 
   var self = this;
   class Path{

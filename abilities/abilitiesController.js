@@ -13,7 +13,6 @@ app.controller("AbilitiesController", ['$scope','NgTableParams', 'CharCreatorSer
   this.tertiaryPts = 5;
   this.abilityPriorities = ["Primary", "Secondary", "Tertiary"];
   this.selectedPriorities = [null, null, null];
-  this.freebies = false;
 
   class Ability {
     constructor(name){
@@ -153,7 +152,7 @@ app.controller("AbilitiesController", ['$scope','NgTableParams', 'CharCreatorSer
     var priority = this.getPriority(ability);
 
     //Different operations if using Freebie points.
-    if(CharCreatorService.freebieMode == true){
+    if(CharCreatorService.freebieMode){
       priorityPts = CharCreatorService.getFreebiePts();
 
       if(index < ability.pointCount - 1)

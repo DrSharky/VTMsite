@@ -5,7 +5,6 @@ app.service("VirtuesService",
 
    this.virtuePts = 7;
    this.selectVirtuePt = selectVirtuePt;
-   this.freebieMode = CharCreatorService.freebieMode;
 
    function selectVirtuePt(virtue, index){
      //TODO: add stuff to the path here maybe?
@@ -13,7 +12,7 @@ app.service("VirtuesService",
      var pointDiff = 0;
 
      //Different operations if using Freebie points.
-     if(this.freebieMode == true){
+     if(CharCreatorService.freebieMode){
        var virtueFree = CharCreatorService.getFreebiePts();
 
        if(index < virtue.pointCount - 1)

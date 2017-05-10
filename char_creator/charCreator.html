@@ -65,6 +65,10 @@
 </div>
 <div class="row">
   <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="DisciplinesController as discCtrl">
+    <div class="numdis">
+      {{creatorCtrl.getFreebiePts()}}
+    </div>
+    <button ng-click="creatorCtrl.toggleFreebieMode()">Toggle Freebie Mode</button>
     <ng-include src="discCtrl.disciplinesPage"></ng-include>
   </div>
   <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="BackgroundsController as backCtrl">

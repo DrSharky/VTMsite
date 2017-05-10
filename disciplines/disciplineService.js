@@ -8,14 +8,13 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
   this.selectDisciplinePt = selectDisciplinePt;
   this.selectedClan = ClanService.selectedClan;
   this.disciplinePts = 3;
-  this.freebieMode = CharCreatorService.freebieMode;
 
   function selectDisciplinePt(discipline, index){
 
     var pointDiff = 0;
 
     //Different operations if using Freebie points.
-    if(this.freebieMode == true){
+    if(CharCreatorService.freebieMode){
       var disciplineFree = CharCreatorService.getFreebiePts();
 
       if(index < discipline.pointCount - 1)

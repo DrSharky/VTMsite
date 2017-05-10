@@ -15,6 +15,11 @@ app.controller("PathController",
      return PathService.pathList;
    }
 
+   this.selectPathPt = selectPathPt;
+   function selectPathPt(path, index){
+     PathService.selectPathPt(path, index);
+   }
+
    this.selectedPath = selectedPath();
    function selectedPath(){
      return PathService.selectedPath;
