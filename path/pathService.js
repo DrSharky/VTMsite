@@ -1,16 +1,14 @@
 var app = angular.module("site");
 
 app.service("PathService",
- ['CharCreatorService', "VirtuesService",
- function(CharCreatorService, VirtuesService){
+ ['CharCreatorService',
+ function(CharCreatorService){
 
    this.freebieMode = freebieMode();
    function freebieMode(){
      return CharCreatorService.freebieMode;
    }
 
-  //  this.getPointList = getPointList;
-   this.selectPath = selectPath;
    this.getPathRating = getPathRating;
    this.pathList = ["Humanity", "Path of Blood", "Path of the Bones",
                     "Path of Caine", "Path of Cathari", "Path of the Feral Heart",
@@ -26,21 +24,19 @@ app.service("PathService",
   var self = this;
   class Path{
     constructor(name){
+
       this.name = name;
-      this.pointCount = self.getPathRating();
-
-       this.points = [{id:0, img:"./full.png"},
-                      {id:1, img:"./empty.png"},
-                      {id:2, img:"./empty.png"},
-                      {id:3, img:"./empty.png"},
-                      {id:4, img:"./empty.png"},
-                      {id:5, img:"./empty.png"},
-                      {id:6, img:"./empty.png"},
-                      {id:7, img:"./empty.png"},
-                      {id:8, img:"./empty.png"},
-                      {id:9, img:"./empty.png"}];
-
-    //  this.points = self.getPointList();
+      this.pointCount = 2;
+      this.points = [{id:0, img:"./full.png"},
+                     {id:1, img:"./full.png"},
+                     {id:2, img:"./empty.png"},
+                     {id:3, img:"./empty.png"},
+                     {id:4, img:"./empty.png"},
+                     {id:5, img:"./empty.png"},
+                     {id:6, img:"./empty.png"},
+                     {id:7, img:"./empty.png"},
+                     {id:8, img:"./empty.png"},
+                     {id:9, img:"./empty.png"}];
 
      this.select = function(index){
        if(this.points[index].img=="./full.png")
@@ -71,20 +67,4 @@ app.service("PathService",
 
   this.selectedPath = new Path("");
 
-  function getPathRating(){
-    return VirtuesService.pathCount;
-  }
-  // this.getPathRating();
-
-  // function getPointList(){
-  //     var pointList = [];
-  //     for(var i = 0; i < 5; i++){
-  //       pointList[2*i+0] = VirtuesService.virtueList[0].points[i];
-  //       pointList[2*i+1] = VirtuesService.virtueList[1].points[i];
-  //     }
-  //     return pointList;
-  // }
-
-  function selectPath(){
-};
 }]);

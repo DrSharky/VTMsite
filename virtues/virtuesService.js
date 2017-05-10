@@ -50,6 +50,11 @@ app.service("VirtuesService",
        virtue.pointCount = (index+1);
      }
 
+     if(virtue.name != "Courage"){
+       PathService.selectedPath.pointCount += (-pointDiff);
+       PathService.selectedPath.select(PathService.selectedPath.pointCount-1);
+     }
+
      this.virtuePts += pointDiff;
      //Fill in the dots!
      virtue.select(index);
