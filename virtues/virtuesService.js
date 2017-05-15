@@ -1,7 +1,8 @@
 var app = angular.module("site");
 
 app.service("VirtuesService",
- ['CharCreatorService', 'PathService', function(CharCreatorService, PathService){
+ ['CharCreatorService', 'PathService', 'WillpowerService',
+ function(CharCreatorService, PathService, WillpowerService){
 
    this.virtuePts = 7;
    this.selectVirtuePt = selectVirtuePt;
@@ -52,6 +53,13 @@ app.service("VirtuesService",
      if(virtue.name != "Courage"){
        PathService.selectedPath.pointCount += (-pointDiff);
        PathService.selectedPath.select(PathService.selectedPath.pointCount-1);
+       PathService.selectedPath.pointMin = PathService.selectedPath.pointCount;
+     }
+     else{
+       var willpower = WillpowerService.willpower;
+       willpower.pointCount +=(-pointDiff);
+       willpower.select(willpower.pointCount-1);
+       willpower.pointMin = willpower.pointCount;
      }
 
      this.virtuePts += pointDiff;

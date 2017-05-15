@@ -4,9 +4,10 @@ app.controller("DisciplinesController",
  ['$scope', 'ClanService', 'DisciplineService',
  function($scope, ClanService, DisciplineService){
 
+   this.getFreebieMode = getFreebieMode;
    this.freebieMode = getFreebieMode();
    function getFreebieMode(){
-     return DisciplineService.freebieMode;
+     return DisciplineService.getFreebieMode();
    }
 
   this.selectDisciplinePt = selectDisciplinePt;
