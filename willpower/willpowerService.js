@@ -10,7 +10,7 @@ app.service("WillpowerService", ['CharCreatorService',
     }
 
     function selectWillPt(index){
-                                            //TODO: debug the point minimum
+      
       if(!CharCreatorService.freebieMode || index < this.willpower.pointMin)
         return null;
 

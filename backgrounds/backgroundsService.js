@@ -42,7 +42,7 @@ app.service("BackgroundsService", ['CharCreatorService',
       CharCreatorService.changeFreebiePts(pointDiff);
     else
       this.backgroundPts += pointDiff;
-      
+
     //Fill in the dots!
     background.select(index);
   };
@@ -104,6 +104,9 @@ app.service("BackgroundsService", ['CharCreatorService',
    if(background.name == "" && selectedBackground.pointCount > 0){
      if(CharCreatorService.freebieMode){
        CharCreatorService.changeFreebiePts(selectedBackground.pointCount);
+     }
+     else{
+       this.backgroundPts += background.pointCount;
      }
      selectedBackground.reset();
    }
