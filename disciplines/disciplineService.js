@@ -15,6 +15,9 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
     return CharCreatorService.freebieMode;
   }
 
+  //TODO: Going to have to edit this function to apply the point type rules.
+        //Moving logic outside the point.select function & in here possibly.
+
   function selectDisciplinePt(discipline, index){
 
     var pointDiff = 0;
@@ -75,6 +78,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
     angular.extend(this.selectedClanDisciplines, newDisciplines);
   };
 
+  var self = this;
   class Discipline {
     constructor(name){
       this.name = name;
