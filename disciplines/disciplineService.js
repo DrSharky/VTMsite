@@ -105,32 +105,36 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
           this.reset();
           return;
         }
-       if(this.points[index].img=="./full.png")
-       {
-         this.points.forEach(function(point){
-           if(point.id <= index){
-             return;
-           }
-           else{
-             point.img = "./empty.png";
-             point.type = "";
-           }
-         });
-       }
-       if(this.points[index].img=="./empty.png")
-       {
-         this.points.forEach(function(point){
-           if(point.id > index){
-             return;
-           }
-           else{
-             if(!(point.img == "./full.png")){
-               point.type = type;
-             }
-               point.img = "./full.png";
-           }
-         });
-       }
+        if(this.points[index].img=="./full.png" ||
+           this.points[index].img=="./free.png")
+        {
+          this.points.forEach(function(point){
+            if(point.id <= index){
+              return;
+            }
+            else{
+              point.img = "./empty.png";
+              point.type = "";
+            }
+          });
+        }
+        if(this.points[index].img=="./empty.png")
+        {
+          this.points.forEach(function(point){
+            if(point.id > index){
+              return;
+            }
+            else{
+              if(!(point.img == "./full.png")){
+                point.type = type;
+              }
+              if(CharCreatorService.freebieMode)
+                point.img = "./free.png";
+              else
+                point.img = "./full.png";
+            }
+          });
+        }
       };
     }
   };

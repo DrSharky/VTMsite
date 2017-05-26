@@ -12,17 +12,18 @@ app.controller("CharCreatorController",
    this.charGeneration = "13th";
    this.charSire = null;
 
-   this.primaryAttr = 7;
-   this.secondaryAttr = 5;
-   this.tertiaryAttr = 3;
-
-   this.primaryAb = 13;
-   this.secondaryAb = 9;
-   this.tertiaryAb = 5;
-
-   this.disciplinePts = 3;
-   this.backgroundPts = 5;
-   this.virtuePts = 7;
+  //TODO: DELETE -Almost sure these aren't being used.
+  //  this.primaryAttr = 7;
+  //  this.secondaryAttr = 5;
+  //  this.tertiaryAttr = 3;
+   //
+  //  this.primaryAb = 13;
+  //  this.secondaryAb = 9;
+  //  this.tertiaryAb = 5;
+   //
+  //  this.disciplinePts = 3;
+  //  this.backgroundPts = 5;
+  //  this.virtuePts = 7;
 
    this.toggleFreebieMode = toggleFreebieMode;
    this.getFreebiePts = getFreebiePts;
