@@ -8,8 +8,7 @@ Check out the progress at: https://drsharky.github.io/VTMsite/#!/creator
 
 Todo list:
 * Refine freebie point system
-* Add willpower
+* Add saving character sheets, and/or pdf export
 * Add better styling
 * Make the page more mobile-friendly
 * Add more pages to better describe some things (paths, backgrounds, etc)
-* Add saving character sheets, and/or pdf export

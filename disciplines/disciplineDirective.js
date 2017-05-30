@@ -1,5 +1,6 @@
 var app = angular.module("site");
-app.directive('disciplineHtml', ['$compile', function($compile) {
+app.directive('disciplineHtml', ['$compile',
+function($compile) {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {

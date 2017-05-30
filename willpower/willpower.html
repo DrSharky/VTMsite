@@ -1,0 +1,22 @@
+<div>
+  <h4 style="display:inline;">Willpower</h4>
+  <table>
+    <tr>
+      <td>
+        <div ng-repeat="willPt in willCtrl.willpower.points" style="display: inline-block;">
+          <img class="willimg" ng-disabled="!willCtrl.getFreebieMode()" ng-src="{{willPt.img}}"
+                               ng-click="willCtrl.selectWillPt($index)" />
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<style>
+  .willimg{
+    width: 15px;
+    height: 15px;
+    vertical-align: top;
+    margin-top: 2px;
+  }
+</style>

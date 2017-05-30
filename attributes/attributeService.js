@@ -22,11 +22,11 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
     constructor(name){
       this.name = name;
       this.pointCount = 1;
-      this.points = [{id:0, img:"./full.png"},
-                     {id:1, img:"./empty.png"},
-                     {id:2, img:"./empty.png"},
-                     {id:3, img:"./empty.png"},
-                     {id:4, img:"./empty.png"}];
+      this.points = [{id:0, img:"./full.png", type: "original"},
+                     {id:1, img:"./empty.png", type: ""},
+                     {id:2, img:"./empty.png", type: ""},
+                     {id:3, img:"./empty.png", type: ""},
+                     {id:4, img:"./empty.png", type: ""}];
 
       this.reset = function(){
         vm.attributePtsTotal += (this.pointCount - 1);
@@ -41,7 +41,8 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
       }
 
       this.select = function(index){
-        if(this.points[index].img=="./full.png")
+        if(this.points[index].img=="./full.png" ||
+           this.points[index].img=="./free.png")
         {
           this.points.forEach(function(point){
             if(point.id <= index){
@@ -59,7 +60,10 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
               return;
             }
             else{
-              point.img = "./full.png";
+              if(CharCreatorService.freebieMode && point.img != "./full.png")
+                point.img = "./free.png";
+              else
+                point.img = "./full.png";
             }
           });
         }
@@ -175,6 +179,10 @@ function selectAttribute(attribute, index, catIndex){
 
   //Different operations if using Freebie points.
   if(CharCreatorService.freebieMode){
+
+    if(attribute.points[index].type == "original")
+      return null;
+
     priorityPts = CharCreatorService.getFreebiePts();
 
     if(index < attribute.pointCount - 1)
@@ -192,7 +200,7 @@ function selectAttribute(attribute, index, catIndex){
 
     CharCreatorService.changeFreebiePts(pointDiff);
     attribute.pointCount = (index+1);
-    attribute.select(index);
+    attribute.select(index, "freebie");
     return;
   }
   else{
@@ -225,7 +233,7 @@ function selectAttribute(attribute, index, catIndex){
   }
   this.attributePtsTotal += pointDiff;
   //Fill in the dots!
-  attribute.select(index);
+  attribute.select(index, "original");
 };
 
 function priorityChange(changedPriority, id, prevPriority){

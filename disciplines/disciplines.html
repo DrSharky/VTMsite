@@ -7,7 +7,7 @@
     <tr>
       <td>
         <div ng-repeat="discipline in discCtrl.selectedClanDisciplines">
-          <select ng-disabled="!dsicCtrl.freebieMode" ng-model="discipline.name"
+          <select ng-disabled="!discCtrl.getFreebieMode()" ng-model="discipline.name"
                   ng-options="discipline for discipline in discCtrl.disciplineList">
           </select>
           <div ng-repeat="discPt in discipline.points" style="display: inline-block;">

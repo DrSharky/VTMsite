@@ -18,26 +18,20 @@ app.service("PathService",
   this.selectPathPt = selectPathPt;
 
   function selectPathPt(path, index){
+    
+    if(!CharCreatorService.freebieMode || index < path.pointMin)
+      return null;
 
-    if(path.name == ""|| index <= 1)
+    if(path.name == ""|| index < 1)
       return;
     var pointDiff = path.pointCount - (index+1);
 
-    if(CharCreatorService.freebieMode){
-      if((CharCreatorService.getFreebiePts() + pointDiff < 0))
-        return null;
-    }
+    if((CharCreatorService.getFreebiePts() + pointDiff < 0))
+      return null;
 
-    if(index == 0 && path.pointCount == 1){
-      path.pointCount = 0;
-      pointDiff = 1;
-      index = -1;
-    }
-
-    if(CharCreatorService.freebieMode)
-      CharCreatorService.changeFreebiePts(pointDiff);
-
-      path.select(index);
+    CharCreatorService.changeFreebiePts(pointDiff);
+    path.select(index);
+    path.pointCount = index+1;
   };
 
   var self = this;
@@ -46,6 +40,7 @@ app.service("PathService",
 
       this.name = name;
       this.pointCount = 2;
+      this.pointMin = 2;
       this.points = [{id:0, img:"./full.png"},
                      {id:1, img:"./full.png"},
                      {id:2, img:"./empty.png"},

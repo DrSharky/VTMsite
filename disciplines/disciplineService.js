@@ -9,12 +9,25 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
   this.selectedClan = ClanService.selectedClan;
   this.disciplinePts = 3;
 
+  this.getFreebieMode = getFreebieMode;
+
+  function getFreebieMode(){
+    return CharCreatorService.freebieMode;
+  }
+
+  //TODO: Going to have to edit this function to apply the point type rules.
+        //Moving logic outside the point.select function & in here possibly.
+
   function selectDisciplinePt(discipline, index){
 
     var pointDiff = 0;
 
     //Different operations if using Freebie points.
     if(CharCreatorService.freebieMode){
+
+      if(discipline.points[index].type == "original")
+        return null;
+
       var disciplineFree = CharCreatorService.getFreebiePts();
 
       if(index < discipline.pointCount - 1)
@@ -31,7 +44,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
 
       CharCreatorService.changeFreebiePts(pointDiff);
       discipline.pointCount = (index+1);
-      discipline.select(index);
+      discipline.select(index, "freebie");
       return;
     }
     else
@@ -47,6 +60,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
       discipline.pointCount = 0;
       pointDiff = 1;
       index = -1;
+      discipline.points[0].type = "";
     }
     else{
       //Change the point count in the discipline.
@@ -55,7 +69,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
 
     this.disciplinePts += pointDiff;
     //Fill in the dots!
-    discipline.select(index);
+    discipline.select(index, "original");
   };
 
   function setClan(clan){
@@ -68,57 +82,79 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
     angular.extend(this.selectedClanDisciplines, newDisciplines);
   };
 
+  var self = this;
   class Discipline {
     constructor(name){
       this.name = name;
       this.pointCount = 0;
-      this.points = [{id: 0, img: "./empty.png"},
-                     {id: 1, img: "./empty.png"},
-                     {id: 2, img: "./empty.png"},
-                     {id: 3, img: "./empty.png"},
-                     {id: 4, img: "./empty.png"}];
+      this.points = [{id: 0, img: "./empty.png", type:""},
+                     {id: 1, img: "./empty.png", type:""},
+                     {id: 2, img: "./empty.png", type:""},
+                     {id: 3, img: "./empty.png", type:""},
+                     {id: 4, img: "./empty.png", type:""}];
 
       this.reset = function(){
         this.points.forEach(function(discipline){
           discipline.img = './empty.png';
         });
+
         this.pointCount = 0;
       };
 
-      this.select = function(index){
+      this.select = function(index, type){
         if(index == -1){
           this.reset();
           return;
         }
-       if(this.points[index].img=="./full.png")
-       {
-         this.points.forEach(function(point){
-           if(point.id <= index){
-             return;
-           }
-           else{
-             point.img = "./empty.png";
-           }
-         });
-       }
-       if(this.points[index].img=="./empty.png")
-       {
-         this.points.forEach(function(point){
-           if(point.id > index){
-             return;
-           }
-           else{
-             point.img = "./full.png";
-           }
-         });
-       }
+        if(this.points[index].img=="./full.png" ||
+           this.points[index].img=="./free.png")
+        {
+          this.points.forEach(function(point){
+            if(point.id <= index){
+              return;
+            }
+            else{
+              point.img = "./empty.png";
+              point.type = "";
+            }
+          });
+        }
+        if(this.points[index].img=="./empty.png")
+        {
+          this.points.forEach(function(point){
+            if(point.id > index){
+              return;
+            }
+            else{
+              if(!(point.img == "./full.png")){
+                point.type = type;
+              }
+              if(CharCreatorService.freebieMode)
+                point.img = "./free.png";
+              else
+                point.img = "./full.png";
+            }
+          });
+        }
       };
     }
   };
 
   var service = this;
   this.selectedClanDisciplines = setClanDisciplines();
+
   function setClanDisciplines(clan){
+    if(service.selectedClanDisciplines){
+      var ptsToReset = 0;
+      service.selectedClanDisciplines.forEach(function(discipline){
+        ptsToReset+= discipline.pointCount;
+        discipline.reset();
+      });
+      if(CharCreatorService.freebieMode)
+        CharCreatorService.freebiePts+=ptsToReset;
+      else
+        service.disciplinePts+=ptsToReset;
+    }
     var clanDisciplines = [];
     if(clan == "Children of Osiris"){
       clanDisciplines = [new Discipline("Bardo"), new Discipline(""), new Discipline("")];

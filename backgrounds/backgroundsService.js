@@ -42,7 +42,7 @@ app.service("BackgroundsService", ['CharCreatorService',
       CharCreatorService.changeFreebiePts(pointDiff);
     else
       this.backgroundPts += pointDiff;
-      
+
     //Fill in the dots!
     background.select(index);
   };
@@ -51,11 +51,11 @@ app.service("BackgroundsService", ['CharCreatorService',
     constructor(name){
       this.name = name;
       this.pointCount = 0;
-      this.points = [{id: 0, img: "./empty.png"},
-                     {id: 1, img: "./empty.png"},
-                     {id: 2, img: "./empty.png"},
-                     {id: 3, img: "./empty.png"},
-                     {id: 4, img: "./empty.png"}];
+      this.points = [{id: 0, img: "./empty.png", type:""},
+                     {id: 1, img: "./empty.png", type:""},
+                     {id: 2, img: "./empty.png", type:""},
+                     {id: 3, img: "./empty.png", type:""},
+                     {id: 4, img: "./empty.png", type:""}];
 
       this.reset = function(){
         this.points.forEach(function(background){
@@ -104,6 +104,9 @@ app.service("BackgroundsService", ['CharCreatorService',
    if(background.name == "" && selectedBackground.pointCount > 0){
      if(CharCreatorService.freebieMode){
        CharCreatorService.changeFreebiePts(selectedBackground.pointCount);
+     }
+     else{
+       this.backgroundPts += background.pointCount;
      }
      selectedBackground.reset();
    }

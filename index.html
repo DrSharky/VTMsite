@@ -43,24 +43,29 @@
   <script type="text/javascript" src="./virtues/virtuesService.js"></script>
   <script type="text/javascript" src="./path/pathController.js"></script>
   <script type="text/javascript" src="./path/pathService.js"></script>
+  <script type="text/javascript" src="./willpower/willpowerController.js"></script>
+  <script type="text/javascript" src="./willpower/willpowerService.js"></script>
   <!--dependencies-->
 </head>
 
 <body>
-  <nav class="navbar-default navbar-fixed-top" role="navigation" ng-controller="NavController as nav">
-    <div class="container-fluid">
-
-      <img id="title-logo" src="v20ankh.png" class="navbar-brand" />
-      <ul class="nav navbar-nav">
-        <li ng-class="{active: nav.isActive('/home')}">
-          <a href="#">Home</a>
-        </li>
-        <li ng-class="{active: nav.isActive('/creator')}">
-          <a href="#!/creator">Character Creator</a>
-        </li>
-      </ul>
+  <div class="navbar-sm">
+    <div class="navbar-primary">
+      <nav class="navbar-default navbar-fixed-top" role="navigation" ng-controller="NavController as nav">
+        <div class="container-fluid">
+          <img id="title-logo" src="v20ankh.png" class="navbar-brand" />
+          <ul class="nav navbar-nav">
+            <li ng-class="{active: nav.isActive('/home')}">
+              <a href="#">Home</a>
+            </li>
+            <li ng-class="{active: nav.isActive('/creator')}">
+              <a href="#!/creator">Character Creator</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
-  </nav>
+  </div>
   <br />
   <div class="container-fluid">
     <div class="row" style="margin-left: 100px; margin-right: 100px;">
@@ -76,11 +81,18 @@
 
 <style>
   body{
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom:20px;
   }
   #title-logo{
-    height: 50px;
+    height: 32px;
     margin-left: -15px;
+    padding-top:5px;
   }
+.navbar-primary .navbar-default .nav li > a .caret, .tnav .navbar .nav li > a:hover .caret {border-top-color: #fff;border-bottom-color: #fff;}
+.navbar-primary .navbar-default .nav > li.dropdown.open.active > a:hover .caret, .tnav .navbar .nav > li.dropdown.open > a .caret {border-top-color: #fff;}
+.navbar-primary .navbar-default .nav.pull-right {margin-left: 10px; margin-right: 0;}
+.navbar-sm .navbar-primary .navbar-default { min-height:40px; height: 40px; }
+.navbar-sm .navbar-primary .navbar-default .navbar-brand{ padding: 0px 12px;font-size: 16px;line-height: 40px; }
+.navbar-sm .navbar-primary .navbar-default .navbar-nav > li > a {  padding-top: 0px; padding-bottom: 0px; line-height: 40px; }
 </style>
