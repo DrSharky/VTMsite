@@ -97,6 +97,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
         this.points.forEach(function(discipline){
           discipline.img = './empty.png';
         });
+
         this.pointCount = 0;
       };
 
@@ -141,7 +142,19 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
 
   var service = this;
   this.selectedClanDisciplines = setClanDisciplines();
+
   function setClanDisciplines(clan){
+    if(service.selectedClanDisciplines){
+      var ptsToReset = 0;
+      service.selectedClanDisciplines.forEach(function(discipline){
+        ptsToReset+= discipline.pointCount;
+        discipline.reset();
+      });
+      if(CharCreatorService.freebieMode)
+        CharCreatorService.freebiePts+=ptsToReset;
+      else
+        service.disciplinePts+=ptsToReset;
+    }
     var clanDisciplines = [];
     if(clan == "Children of Osiris"){
       clanDisciplines = [new Discipline("Bardo"), new Discipline(""), new Discipline("")];
