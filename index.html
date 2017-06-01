@@ -9,6 +9,7 @@
   <link rel="mask-icon" href="./icons/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="theme-color" content="#ffffff">
   <!--icon stuff-->
+
   <!--dependencies-->
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
@@ -45,7 +46,24 @@
   <script type="text/javascript" src="./path/pathService.js"></script>
   <script type="text/javascript" src="./willpower/willpowerController.js"></script>
   <script type="text/javascript" src="./willpower/willpowerService.js"></script>
+  <script type="text/javascript" src="./register/registerController.js"></script>
   <!--dependencies-->
+
+  <!--Firebase stuff-->
+  <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularFire/2.3.0/angularfire.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyDjNrDYn_77BLHfDFu3dth62GQTsi5vdZw",
+      authDomain: "vtmsite-64232.firebaseapp.com",
+      databaseURL: "https://vtmsite-64232.firebaseio.com",
+      projectId: "vtmsite-64232",
+      storageBucket: "vtmsite-64232.appspot.com",
+      messagingSenderId: "181998793987"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <!--/Firebase stuff-->
 </head>
 
 <body>
@@ -60,6 +78,9 @@
             </li>
             <li ng-class="{active: nav.isActive('/creator')}">
               <a href="#!/creator">Character Creator</a>
+            </li>
+            <li ng-class="{active: nav.isActive('/register')}">
+              <a href="#!/register">Register/Login</a>
             </li>
           </ul>
         </div>

@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module("site", ["ngRoute", "ngTable", "termIndex"]);
+  var app = angular.module("site", ["ngRoute", "ngTable", "termIndex", "firebase"]);
 
   app.controller("NavController", function($location){
     this.isActive = function(viewLocation){
@@ -16,6 +16,10 @@
       .when("/creator",{
         templateUrl: "./char_creator/charCreator.html",
         controller: "CharCreatorController as creatorCtrl"
+      })
+      .when("/register",{
+        templateUrl: "./register/register.html",
+        controller: "RegisterController as registerCtrl"
       })
       .otherwise({redirectTo:"/home"});
     });
