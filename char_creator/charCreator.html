@@ -86,6 +86,7 @@
   <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
     <ng-include src="tindexCtrl.termIndexPage"></ng-include>
   </div>
+  <button ng-hide="!creatorCtrl.loggedIn" ng-click="">Save Character</button>
   <!-- <div class="numdis">
     {{creatorCtrl.getFreebiePts()}}
   </div>

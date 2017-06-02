@@ -1,7 +1,7 @@
 var app = angular.module("site");
 
 app.controller("CharCreatorController",
- [ 'CharCreatorService', function(CharCreatorService){
+ [ 'CharCreatorService', 'LoginService', function(CharCreatorService, LoginService){
 
    this.charPlayer = null;
    this.charChronicle = null;
@@ -11,8 +11,15 @@ app.controller("CharCreatorController",
    this.charDemeanor = null;
    this.charGeneration = "13th";
    this.charSire = null;
+   this.loggedIn = LoginService.loggedIn();
+   this.saveCharacter = saveCharacter;
 
-  //TODO: DELETE -Almost sure these aren't being used.
+   function saveCharacter(){
+
+   }
+
+  //TODO: Not sure if I should delete these, might be useful in
+  // the process of saving the character.
   //  this.primaryAttr = 7;
   //  this.secondaryAttr = 5;
   //  this.tertiaryAttr = 3;

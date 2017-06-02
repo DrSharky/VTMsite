@@ -17,9 +17,9 @@
         templateUrl: "./char_creator/charCreator.html",
         controller: "CharCreatorController as creatorCtrl"
       })
-      .when("/register",{
-        templateUrl: "./register/register.html",
-        controller: "RegisterController as registerCtrl"
+      .when("/login",{
+        templateUrl: "./login/login.html",
+        controller: "LoginController as loginCtrl"
       })
       .otherwise({redirectTo:"/home"});
     });

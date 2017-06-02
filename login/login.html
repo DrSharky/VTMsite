@@ -1,0 +1,37 @@
+<body ng-controller="loginController as loginCtrl">
+ <div class="container">
+   <div id="signup">
+      <div class="signup-screen">
+         <div class="space-bot text-center">
+            <h1>Sign up</h1>
+           <div class="divider"></div>
+         </div>
+           <form class="form-register" method="post" name="register" novalidate ng-hide="loginCtrl.registered">
+             <div class="input-field col s6">
+              <input id="email" type="email" name="email" ng-model="loginCtrl.email" class="validate" required>
+              <label for="email">Email</label>
+             </div>
+             <p class="alert alert-danger" ng-show="form-register.email.$error.email">Your email is invalid.</p>
+             <div class="input-field col s6">
+               <input id="password" type="password" name="password" ng-model="loginCtrl.password" ng-minlength='6' class="validate" required>
+               <label for="password">Password</label>
+              </div>
+              <p class="alert alert-danger" ng-show="form-register.password.$error.minlength || form.password.$invalid">Your password must be at least 6 characters.</p>
+              <div class="space-top text-center">
+               <button ng-disabled="form-register.$invalid" class="waves-effect waves-light btn done"
+                       ng-click="loginCtrl.register()">Done
+               </button>
+               <button type="button" class="waves-effect waves-light btn cancel">Cancel
+               </button>
+              </div>
+             </form>
+             <button ng-hide="loginCtrl.loggedIn" ng-click="loginCtrl.login()">Login</button>
+             <button ng-hide="!loginCtrl.loggedIn" ng-click="loginCtrl.logout()">Logout</button>
+           </div>
+        </div>
+    </div>
+</body>
+
+<style>
+
+</style>
