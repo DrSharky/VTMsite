@@ -17,10 +17,10 @@
         templateUrl: "./char_creator/charCreator.html",
         controller: "CharCreatorController as creatorCtrl"
       })
-      .when("/login",{
-        templateUrl: "./login/login.html",
-        controller: "LoginController as loginCtrl"
-      })
+      // .when("/login",{
+      //   templateUrl: "./login/login.html",
+      //   controller: "LoginController as loginCtrl"
+      // })
       .otherwise({redirectTo:"/home"});
     });
   }()

@@ -26,8 +26,6 @@ app.controller("LoginController",['$firebaseObject', '$firebaseAuth', 'LoginServ
     firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function(error){
       alert(error.message);
     });
-    var user = firebase.auth().currentUser;
-    alert("Logged in as " + user.email);
     this.loggedIn = true;
   }
   function logout(){
