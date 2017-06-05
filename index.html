@@ -81,7 +81,8 @@
               <a href="#!/login">Login</a>
             </li> -->
             <li class="dropdown" ng-controller="LoginController as loginCtrl">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown">
+              <a ng-hide="!loginCtrl.loggedIn" href="" ng-click="loginCtrl.logout()"><b>Logout</b></a>
+              <a ng-hide="loginCtrl.loggedIn" href="" class="dropdown-toggle" data-toggle="dropdown">
                 <b>Login</b>
                 <span class="caret"></span>
               </a>

@@ -1,8 +1,10 @@
 var app = angular.module("site");
 
 app.controller("CharCreatorController",
- [ 'CharCreatorService', 'LoginService', function(CharCreatorService, LoginService){
+ [ 'CharCreatorService', 'LoginService', 'currentAuth',
+  function(CharCreatorService, LoginService, currentAuth){
 
+    this.currentAuth = currentAuth;
    this.charPlayer = null;
    this.charChronicle = null;
    this.charName = null;
@@ -11,7 +13,6 @@ app.controller("CharCreatorController",
    this.charDemeanor = null;
    this.charGeneration = "13th";
    this.charSire = null;
-   this.loggedIn = LoginService.loggedIn();
    this.saveCharacter = saveCharacter;
 
    function saveCharacter(){
