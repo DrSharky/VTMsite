@@ -11,14 +11,16 @@ app.controller("LoginController",['$firebaseObject', '$firebaseAuth', 'LoginServ
    this.logout = logout;
 
    function register(){
-     firebase.auth().createUserWithEmailAndPassword(this.email, this.password).catch(function(error) {
+     firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(function(){
+       alert("You are now registered!");
+     })
+     .catch(function(error) {
        // Handle Errors here.
        var errorCode = error.code;
        var errorMessage = error.message;
        alert(errorMessage);
        return;
     });
-    alert("You are now registered!");
     this.registered = true;
   }
   function login(){

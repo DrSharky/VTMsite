@@ -11,26 +11,12 @@
     $routeProvider
       .when("/home",{
         templateUrl: "./home/home.html",
-        controller: "HomeController as HomeCtrl",
-        // resolve: {
-        //   "currentAuth" : ["LoginService", function(LoginService){
-        //     return LoginService.loggedIn();
-        //   }]
-        // }
+        controller: "HomeController as HomeCtrl"
       })
       .when("/creator",{
         templateUrl: "./char_creator/charCreator.html",
-        controller: "CharCreatorController as creatorCtrl",
-        // resolve: {
-        //   "currentAuth" : ["LoginService", function(LoginService){
-        //     return LoginService.loggedIn();
-        //   }]
-        // }
+        controller: "CharCreatorController as creatorCtrl"
       })
-      // .when("/login",{
-      //   templateUrl: "./login/login.html",
-      //   controller: "LoginController as loginCtrl"
-      // })
       .otherwise({redirectTo:"/home"});
     });
   }()

@@ -1,9 +1,16 @@
 var app = angular.module("site");
 
 app.controller("CharCreatorController",
- [ 'CharCreatorService', 'LoginService',
-  function(CharCreatorService, LoginService){
+ [ 'CharCreatorService', 'LoginService', '$firebaseArray',
+ function(CharCreatorService, LoginService, $firebaseArray){
 
+   var ref = firebase.database().ref();
+   this.charData = $firebaseArray(ref);
+   for(var i = 0; i < this.charData.length; i++){
+     this.charData.$remove(i);
+   }
+
+   this.loggedIn = LoginService.loggedIn();
    this.charPlayer = null;
    this.charChronicle = null;
    this.charName = null;
@@ -15,6 +22,10 @@ app.controller("CharCreatorController",
    this.saveCharacter = saveCharacter;
 
    function saveCharacter(){
+     this.charData.$add({player: this.charPlayer})
+      .then(function(ref){
+        this.charData.$save("player");
+      });
 
    }
 
