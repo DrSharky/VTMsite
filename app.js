@@ -1,5 +1,5 @@
 (function(){
-  var app = angular.module("site", ["ngRoute", "ngTable", "termIndex"]);
+  var app = angular.module("site", ["ngRoute", "ngTable", "termIndex", "firebase"]);
 
   app.controller("NavController", function($location){
     this.isActive = function(viewLocation){

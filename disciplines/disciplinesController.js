@@ -5,7 +5,6 @@ app.controller("DisciplinesController",
  function($scope, ClanService, DisciplineService){
 
    this.getFreebieMode = getFreebieMode;
-   this.freebieMode = getFreebieMode();
    function getFreebieMode(){
      return DisciplineService.getFreebieMode();
    }

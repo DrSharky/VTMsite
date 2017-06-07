@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="site">
+<html>
 <head>
   <!--icon stuff-->
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
@@ -8,7 +8,7 @@
   <link rel="manifest" href="./icons/manifest.json">
   <link rel="mask-icon" href="./icons/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="theme-color" content="#ffffff">
-  <!--icon stuff-->
+  <!--/icon stuff-->
   <!--dependencies-->
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
@@ -45,9 +45,31 @@
   <script type="text/javascript" src="./path/pathService.js"></script>
   <script type="text/javascript" src="./willpower/willpowerController.js"></script>
   <script type="text/javascript" src="./willpower/willpowerService.js"></script>
-  <!--dependencies-->
-</head>
+  <script type="text/javascript" src="./login/loginController.js"></script>
+  <script type="text/javascript" src="./login/loginService.js"></script>
+  <!--/dependencies-->
+  <!--Firebase stuff-->
+  <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angularFire/2.3.0/angularfire.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyDjNrDYn_77BLHfDFu3dth62GQTsi5vdZw",
+      authDomain: "vtmsite-64232.firebaseapp.com",
+      databaseURL: "https://vtmsite-64232.firebaseio.com",
+      projectId: "vtmsite-64232",
+      storageBucket: "vtmsite-64232.appspot.com",
+      messagingSenderId: "181998793987"
+    };
 
+    firebase.initializeApp(config);
+    angular.element(function(){
+      setTimeout(function(){
+        angular.bootstrap(document, ['site']);
+      }, 100);
+    });
+  </script>
+  <!--/Firebase stuff-->
+</head>
 <body>
   <div class="navbar-sm">
     <div class="navbar-primary">
@@ -60,6 +82,52 @@
             </li>
             <li ng-class="{active: nav.isActive('/creator')}">
               <a href="#!/creator">Character Creator</a>
+            </li>
+            <!-- <li ng-class="{active: nav.isActive('/login')}">
+              <a href="#!/login">Login</a>
+            </li> -->
+            <li class="dropdown" ng-controller="LoginController as loginCtrl">
+              <a ng-hide="!loginCtrl.loggedIn" href="" ng-click="loginCtrl.logout()"><b>Logout</b></a>
+              <a ng-hide="loginCtrl.loggedIn" href="" class="dropdown-toggle" data-toggle="dropdown">
+                <b>Login</b>
+                <span class="caret"></span>
+              </a>
+              <ul id="login-dp" class="dropdown-menu" ng-hide="loginCtrl.loggedIn">
+                <li>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <form class="form" role="form" method="post" id="login-nav">
+                        <div class="form-group">
+                          <label class="sr-only" for="emailDD">Email: </label>
+                          <input type="email" class="form-control" id="emailDD"
+                                 ng-model="loginCtrl.email" placeholder="Email Address" required/>
+                        </div>
+                        <div class="form-group">
+                          <label class="sr-only" for="passwordDD">Password: </label>
+                          <input type="password" class="form-control" id="passwordDD"
+                                 ng-model="loginCtrl.password" placeholder="Password" required />
+                          <div class="help-block text-right">
+                            <a ng-click="loginCtrl.forgotPW">Forgot Password?</a>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-primary btn-block"
+                                  ng-click="loginCtrl.login()">Sign in</button>
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-primary btn-block"
+                                  ng-click="loginCtrl.register()">Register</button>
+                        </div>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" />keep me logged in
+                          </label>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>
@@ -95,4 +163,33 @@
 .navbar-sm .navbar-primary .navbar-default { min-height:40px; height: 40px; }
 .navbar-sm .navbar-primary .navbar-default .navbar-brand{ padding: 0px 12px;font-size: 16px;line-height: 40px; }
 .navbar-sm .navbar-primary .navbar-default .navbar-nav > li > a {  padding-top: 0px; padding-bottom: 0px; line-height: 40px; }
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255);
+}
+#login-dp .help-block{
+    font-size:12px
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
+
 </style>

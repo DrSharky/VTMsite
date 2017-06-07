@@ -1,8 +1,16 @@
 var app = angular.module("site");
 
 app.controller("CharCreatorController",
- [ 'CharCreatorService', function(CharCreatorService){
+ [ 'CharCreatorService', 'LoginService', '$firebaseArray',
+ function(CharCreatorService, LoginService, $firebaseArray){
 
+   var ref = firebase.database().ref();
+   this.charData = $firebaseArray(ref);
+   for(var i = 0; i < this.charData.length; i++){
+     this.charData.$remove(i);
+   }
+
+   this.loggedIn = LoginService.loggedIn();
    this.charPlayer = null;
    this.charChronicle = null;
    this.charName = null;
@@ -11,8 +19,18 @@ app.controller("CharCreatorController",
    this.charDemeanor = null;
    this.charGeneration = "13th";
    this.charSire = null;
+   this.saveCharacter = saveCharacter;
 
-  //TODO: DELETE -Almost sure these aren't being used.
+   function saveCharacter(){
+     this.charData.$add({player: this.charPlayer})
+      .then(function(ref){
+        this.charData.$save("player");
+      });
+
+   }
+
+  //TODO: Not sure if I should delete these, might be useful in
+  // the process of saving the character.
   //  this.primaryAttr = 7;
   //  this.secondaryAttr = 5;
   //  this.tertiaryAttr = 3;
