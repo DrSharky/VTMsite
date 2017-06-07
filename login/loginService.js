@@ -12,4 +12,15 @@ app.service("LoginService", ['$firebaseObject', '$firebaseAuth',
          return false;
        }
    }
+
+   this.getUID = getUID;
+   function getUID(){
+     var data = $firebaseAuth().$getAuth();
+     if(data){
+       return data.uid;
+     }
+     else{
+       return null;
+     }
+   }
  }]);

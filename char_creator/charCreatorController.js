@@ -1,16 +1,20 @@
 var app = angular.module("site");
 
 app.controller("CharCreatorController",
- [ 'CharCreatorService', 'LoginService', '$firebaseArray',
- function(CharCreatorService, LoginService, $firebaseArray){
+ [ 'CharCreatorService', 'LoginService', 'PdfService',
+ function(CharCreatorService, LoginService, PdfService){
 
-   var ref = firebase.database().ref();
-   this.charData = $firebaseArray(ref);
-   for(var i = 0; i < this.charData.length; i++){
-     this.charData.$remove(i);
-   }
 
    this.loggedIn = LoginService.loggedIn();
+
+   if(this.loggedIn){
+     var uid = LoginService.getUID();
+     var ref = firebase.database().ref('users/'+uid);
+     if(ref==null){
+       firebase.database().ref('users/'+uid).set({uid: uid});
+     }
+   }
+
    this.charPlayer = null;
    this.charChronicle = null;
    this.charName = null;
@@ -22,11 +26,19 @@ app.controller("CharCreatorController",
    this.saveCharacter = saveCharacter;
 
    function saveCharacter(){
-     this.charData.$add({player: this.charPlayer})
-      .then(function(ref){
-        this.charData.$save("player");
-      });
-
+     var uid = LoginService.getUID();
+     firebase.database().ref('users/'+uid).set({charData:
+                                {
+                                  player: this.charPlayer,
+                                  chronicle: this.charChronicle,
+                                  name: this.charName,
+                                  concept: this.charConcept,
+                                  nature: this.charNature,
+                                  demeanor: this.charDemeanor,
+                                  generation: this.charGeneration,
+                                  sire: this.charSire
+                                },
+                              });
    }
 
   //TODO: Not sure if I should delete these, might be useful in
