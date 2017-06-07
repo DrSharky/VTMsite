@@ -1,10 +1,9 @@
 var app = angular.module("site");
 
 app.controller("CharCreatorController",
- [ 'CharCreatorService', 'LoginService', 'currentAuth',
-  function(CharCreatorService, LoginService, currentAuth){
+ [ 'CharCreatorService', 'LoginService',
+  function(CharCreatorService, LoginService){
 
-    this.currentAuth = currentAuth;
    this.charPlayer = null;
    this.charChronicle = null;
    this.charName = null;

@@ -17,7 +17,6 @@ app.controller("LoginController",['$firebaseObject', '$firebaseAuth', 'LoginServ
        var errorMessage = error.message;
        alert(errorMessage);
        return;
-       // ...
     });
     alert("You are now registered!");
     this.registered = true;

@@ -12,20 +12,20 @@
       .when("/home",{
         templateUrl: "./home/home.html",
         controller: "HomeController as HomeCtrl",
-        resolve: {
-          "currentAuth" : ["LoginService", function(LoginService){
-            return LoginService.loggedIn();
-          }]
-        }
+        // resolve: {
+        //   "currentAuth" : ["LoginService", function(LoginService){
+        //     return LoginService.loggedIn();
+        //   }]
+        // }
       })
       .when("/creator",{
         templateUrl: "./char_creator/charCreator.html",
         controller: "CharCreatorController as creatorCtrl",
-        resolve: {
-          "currentAuth" : ["LoginService", function(LoginService){
-            return LoginService.loggedIn();
-          }]
-        }
+        // resolve: {
+        //   "currentAuth" : ["LoginService", function(LoginService){
+        //     return LoginService.loggedIn();
+        //   }]
+        // }
       })
       // .when("/login",{
       //   templateUrl: "./login/login.html",

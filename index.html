@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="site">
+<html>
 <head>
   <!--icon stuff-->
   <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
@@ -60,7 +60,13 @@
       storageBucket: "vtmsite-64232.appspot.com",
       messagingSenderId: "181998793987"
     };
+
     firebase.initializeApp(config);
+    angular.element(function(){
+      setTimeout(function(){
+        angular.bootstrap(document, ['site']);
+      }, 100);
+    });
   </script>
   <!--/Firebase stuff-->
 </head>
@@ -86,7 +92,7 @@
                 <b>Login</b>
                 <span class="caret"></span>
               </a>
-              <ul id="login-dp" class="dropdown-menu">
+              <ul id="login-dp" class="dropdown-menu" ng-hide="loginCtrl.loggedIn">
                 <li>
                   <div class="row">
                     <div class="col-md-12">
