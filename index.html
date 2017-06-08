@@ -49,6 +49,8 @@
   <script type="text/javascript" src="./willpower/willpowerService.js"></script>
   <script type="text/javascript" src="./login/loginController.js"></script>
   <script type="text/javascript" src="./login/loginService.js"></script>
+  <script type="text/javascript" src="./characterData/saveController.js"></script>
+  <script type="text/javascript" src="./characterData/saveService.js"></script>
   <script type="text/javascript" src="./pdfmake/pdfService.js"></script>
   <!--/dependencies-->
   <!--Firebase stuff-->
@@ -89,7 +91,7 @@
             <!-- <li ng-class="{active: nav.isActive('/login')}">
               <a href="#!/login">Login</a>
             </li> -->
-            <li class="dropdown" ng-controller="LoginController as loginCtrl">
+            <li id="DDList" class="dropdown" ng-controller="LoginController as loginCtrl">
               <a ng-hide="!loginCtrl.loggedIn" href="" ng-click="loginCtrl.logout()"><b>Logout</b></a>
               <a ng-hide="loginCtrl.loggedIn" href="" class="dropdown-toggle" data-toggle="dropdown">
                 <b>Login</b>

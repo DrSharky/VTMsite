@@ -12,6 +12,11 @@ app.controller("ClanController",
       return ClanService.clanFilters;
     };
 
+    this.setClan = setClan;
+    function setClan(charClan){
+      ClanService.selectedClan = charClan;
+    }
+
     this.clanList = getClanList();
     function getClanList(){
       return ClanService.clanList;

@@ -4,38 +4,38 @@
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Player" for="charPlayer" style="margin-right: 3px;">Player: </label>
-          <input id="charPlayer" ng-model="creatorCtrl.charPlayer" />
+          <input id="charPlayer" ng-model="creatorCtrl.charPlayer" ng-blur="creatorCtrl.setPlayer(creatorCtrl.charPlayer)" />
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Chronicle" for="charChronicle" style="margin-right: 3px;">Chronicle: </label>
-          <input id="charChronicle" ng-model="creatorCtrl.charChronicle" />
+          <input id="charChronicle" ng-model="creatorCtrl.charChronicle" ng-blur="creatorCtrl.setChronicle(creatorCtrl.charChronicle)" />
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Name" for="charName">Name: </label>
-          <input id="charName" ng-model="creatorCtrl.charName" />
+          <input id="charName" ng-model="creatorCtrl.charName" ng-blur="creatorCtrl.setName(creatorCtrl.charName)"/>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Concept" for="charConcept">Concept: </label>
-          <input id="charConcept" ng-model="creatorCtrl.charConcept" />
+          <input id="charConcept" ng-model="creatorCtrl.charConcept" ng-blur="creatorCtrl.setConcept(creatorCtrl.charConcept)"/>
         </div>
       </div>
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Nature" for="charNature">Nature: </label>
-          <input id="charNature" ng-model="creatorCtrl.charNature" />
+          <input id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)" />
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Demeanor" for="charDemeanor">Demeanor: </label>
-          <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" />
+          <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)"/>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Sire" for="charSire" style="margin-right: 12px;">Sire: </label>
-          <input id="charSire" ng-model="creatorCtrl.charSire" />
+          <input id="charSire" ng-model="creatorCtrl.charSire" ng-blur="creatorCtrl.setSire(creatorCtrl.charSire)"/>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Generation" for="charGeneration">Generation: </label>
           <select id="charGeneration" ng-model="creatorCtrl.charGeneration"
-                  ng-options="charGen for charGen in creatorCtrl.generations">
+                  ng-options="charGen for charGen in creatorCtrl.generations" ng-blur="creatorCtrl.setGeneration(creatorCtrl.charGeneration)">
           </select>
         </div>
       </div>
@@ -50,7 +50,7 @@
         <div class="row">
           <label for="clanSelect">Clan/Bloodline: </label>
           <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList"
-                  ng-change="setUClan(clanCtrl.selectedClan)">
+                  ng-change="setUClan(clanCtrl.selectedClan)" ng-blur="clanCtrl.setClan(clanCtrl.selectedClan)">
           </select>
         </div>
       <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
@@ -86,13 +86,9 @@
   <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
     <ng-include src="tindexCtrl.termIndexPage"></ng-include>
   </div>
-  <button ng-hide="!creatorCtrl.loggedIn" ng-click="creatorCtrl.saveCharacter()">Save Character</button>
-  <!-- <div class="numdis">
-    {{creatorCtrl.getFreebiePts()}}
+  <div ng-controller="SaveController as saveCtrl">
+    <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
   </div>
-  <div>
-    <button ng-click="creatorCtrl.toggleFreebieMode()">Toggle Freebie Points</button>
-  </div> -->
 </div>
 
 <style>

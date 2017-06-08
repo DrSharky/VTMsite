@@ -4,56 +4,94 @@ app.controller("CharCreatorController",
  [ 'CharCreatorService', 'LoginService', 'PdfService',
  function(CharCreatorService, LoginService, PdfService){
 
+   this.setPlayer = setPlayer;
+   function setPlayer(charPlayer){
+     CharCreatorService.charPlayer = charPlayer;
+   }
+
+   this.setChronicle = setChronicle;
+   function setChronicle(charChronicle){
+     CharCreatorService.charChronicle = charChronicle;
+   }
+
+   this.setName = setName;
+   function setName(charName){
+     CharCreatorService.charName = charName;
+   }
+
+   this.setConcept = setConcept;
+   function setConcept(charConcept){
+     CharCreatorService.charConcept = charConcept;
+   }
+
+   this.setNature = setNature;
+   function setNature(charNature){
+     CharCreatorService.charNature = charNature;
+   }
+
+   this.setDemeanor = setDemeanor;
+   function setDemeanor(charDemeanor){
+     CharCreatorService.charDemeanor = charDemeanor;
+   }
+
+   this.setSire = setSire;
+   function setSire(charSire){
+     CharCreatorService.charSire = charSire;
+   }
+
+   this.setGeneration = setGeneration;
+   function setGeneration(charGeneration){
+     CharCreatorService.charGeneration = charGeneration;
+   }
 
    this.loggedIn = LoginService.loggedIn();
 
-   if(this.loggedIn){
-     var uid = LoginService.getUID();
-     var ref = firebase.database().ref('users/'+uid);
-     if(ref==null){
-       firebase.database().ref('users/'+uid).set({uid: uid});
-     }
+  //  this.charPlayer = getCharPlayer();
+  //  function getCharPlayer(){
+  //    return CharCreatorService.charPlayer;
+  //  };
+
+   this.charPlayer = CharCreatorService.charPlayer;
+
+   this.charChronicle = getCharChronicle();
+   function getCharChronicle(){
+     return CharCreatorService.charChronicle;
    }
 
-   this.charPlayer = null;
-   this.charChronicle = null;
-   this.charName = null;
-   this.charConcept = null;
-   this.charNature = null;
-   this.charDemeanor = null;
-   this.charGeneration = "13th";
-   this.charSire = null;
-   this.saveCharacter = saveCharacter;
-
-   function saveCharacter(){
-     var uid = LoginService.getUID();
-     firebase.database().ref('users/'+uid).set({charData:
-                                {
-                                  player: this.charPlayer,
-                                  chronicle: this.charChronicle,
-                                  name: this.charName,
-                                  concept: this.charConcept,
-                                  nature: this.charNature,
-                                  demeanor: this.charDemeanor,
-                                  generation: this.charGeneration,
-                                  sire: this.charSire
-                                },
-                              });
+   this.charName = getCharName();
+   function getCharName(){
+     return CharCreatorService.charName;
    }
 
-  //TODO: Not sure if I should delete these, might be useful in
-  // the process of saving the character.
-  //  this.primaryAttr = 7;
-  //  this.secondaryAttr = 5;
-  //  this.tertiaryAttr = 3;
-   //
-  //  this.primaryAb = 13;
-  //  this.secondaryAb = 9;
-  //  this.tertiaryAb = 5;
-   //
-  //  this.disciplinePts = 3;
-  //  this.backgroundPts = 5;
-  //  this.virtuePts = 7;
+   this.charConcept = getCharConcept();
+   function getCharConcept(){
+     return CharCreatorService.charConcept;
+   }
+
+   this.charNature = getCharNature();
+   function getCharNature(){
+     return CharCreatorService.charNature;
+   }
+
+   this.charDemeanor = getCharDemeanor();
+   function getCharDemeanor(){
+     return CharCreatorService.charDemeanor;
+   }
+
+   this.charGeneration = getCharGeneration();
+   function getCharGeneration(){
+     return CharCreatorService.charGeneration;
+   }
+
+   this.charSire = getCharSire();
+   function getCharSire(){
+     return CharCreatorService.charSire;
+   }
+
+   this.generations = getGenerations();
+   function getGenerations(){
+     return CharCreatorService.generations;
+   }
 
    this.toggleFreebieMode = toggleFreebieMode;
    this.getFreebiePts = getFreebiePts;
@@ -69,8 +107,4 @@ app.controller("CharCreatorController",
 
    this.maxFreePts = 22;
    this.maxFlawBonus = 7;
-
-   this.generations = ["3rd", "4th", "5th", "6th", "7th",
-                       "8th", "9th", "10th", "11th", "12th",
-                       "13th", "14th", "15th"];
 }]);
