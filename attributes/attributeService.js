@@ -36,6 +36,7 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
             point.img = "./full.png";
           else {
             point.img = "./empty.png";
+            point.type = "";
           }
         });
       }
@@ -50,6 +51,7 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
             }
             else{
               point.img = "./empty.png";
+              point.type = "";
             }
           });
         }
@@ -60,18 +62,23 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
               return;
             }
             else{
-              if(CharCreatorService.freebieMode && point.img != "./full.png")
+              if(CharCreatorService.freebieMode && point.img != "./full.png"){
                 point.img = "./free.png";
-              else
+                point.type = "freebie";
+              }
+              else{
                 point.img = "./full.png";
+                point.type = "original";
+              }
             }
           });
         }
       };
 
       this.zero = function(){
-        this.points.forEach(function(attribute){
-          attribute.img = './empty.png';
+        this.points.forEach(function(point){
+          point.img = "./empty.png";
+          point.type = "";
         });
       };
     };

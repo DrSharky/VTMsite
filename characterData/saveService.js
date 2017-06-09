@@ -1,10 +1,10 @@
 var app = angular.module("site");
 
 app.service("SaveService",
- ['CharCreatorService', 'LoginService', 'AttributeService', 'BackgroundsService',
-  'ClanService', 'DisciplineService', 'VirtuesService', 'WillpowerService',
-  function(CharCreatorService, LoginService, AttributeService, BackgroundsService,
-           ClanService, DisciplineService, VirtuesService, WillpowerService){
+ ['CharCreatorService', 'LoginService', 'AttributeService', 'AbilitiesService',
+  'BackgroundsService', 'ClanService', 'DisciplineService', 'VirtuesService', 'WillpowerService',
+  function(CharCreatorService, LoginService, AttributeService, AbilitiesService,
+    BackgroundsService, ClanService, DisciplineService, VirtuesService, WillpowerService){
 
     this.saveName;
 
@@ -30,7 +30,11 @@ app.service("SaveService",
           intelligence: AttributeService.intelligence,
           wits: AttributeService.wits
         },
-        clan: ClanService.selectedClan
+        abilities: {
+          alertness: AbilitiesService.alertness,
+          //TODO: finish.
+        }
+        clan: ClanService.selectedClan.name
       };
 
       for(var ability in charData.attributes){

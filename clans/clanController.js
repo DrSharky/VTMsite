@@ -4,7 +4,7 @@ app.controller("ClanController",
  ['$scope', 'UglyService', 'TermIndexService', 'ClanService', 'DisciplineService',
  function($scope, UglyService, TermIndexService, ClanService, DisciplineService) {
 
-    this.clanPage = "./clans/clanpage.html";
+    this.clanPage = "./clans/clan.html";
     this.filterClans = filterClans;
 
     this.clanFilters = getClanFilters();
