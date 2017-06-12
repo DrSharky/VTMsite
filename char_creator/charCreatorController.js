@@ -46,11 +46,7 @@ app.controller("CharCreatorController",
 
    this.loggedIn = LoginService.loggedIn();
 
-  //  this.charPlayer = getCharPlayer();
-  //  function getCharPlayer(){
-  //    return CharCreatorService.charPlayer;
-  //  };
-
+   //TODO: etc...
    this.charPlayer = CharCreatorService.charPlayer;
 
    this.charChronicle = getCharChronicle();

@@ -12,15 +12,15 @@ app.service("SaveService",
     function pushCharData(path){
       var attributes = {};
       var abilities = {};
+      var disciplines = {};
       angular.copy(AbilitiesService.abilitiesList, abilities);
       angular.copy(AttributeService.attributesList, attributes);
 
+
       for(var attribute in attributes){
-        this.removeHashKeys(attributes[attribute]);
         this.removeFunctions(attributes[attribute]);
       }
       for(var ability in abilities){
-        this.removeHashKeys(abilities[ability]);
         this.removeFunctions(abilities[ability]);
       }
 
@@ -86,6 +86,31 @@ app.service("SaveService",
       else{
         return null;
       }
+    }
+
+    this.loadCharInfo = loadCharInfo;
+    function loadCharInfo(character){
+      CharCreatorService.charPlayer = character.player;
+      CharCreatorService.charChronicle = character.chronicle;
+      CharCreatorService.charName = character.name;
+      CharCreatorService.charConcept = character.concept;
+      CharCreatorService.charNature = character.nature;
+      CharCreatorService.charDemeanor = character.demeanor;
+      CharCreatorService.charSire = character.sire;
+      CharCreatorService.charGeneration = character.generation;
+    };
+
+    var vm = this;
+    this.loadCharacter = loadCharacter;
+    function loadCharacter(characterName){
+      var uid = LoginService.getUID();
+      var path = '/characters/' + uid + '/' + characterName;
+      var character = firebase.database().ref(path);
+      character.once('value', function(snapshot){
+        if(snapshot.val()!=null){
+          vm.loadCharInfo(snapshot.val());
+      }
+      });
     }
 
 }]);
