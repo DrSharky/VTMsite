@@ -10,6 +10,20 @@ app.service("SaveService",
 
     this.pushCharData = pushCharData;
     function pushCharData(path){
+      var attributes = {};
+      var abilities = {};
+      angular.copy(AbilitiesService.abilitiesList, abilities);
+      angular.copy(AttributeService.attributesList, attributes);
+
+      for(var attribute in attributes){
+        this.removeHashKeys(attributes[attribute]);
+        this.removeFunctions(attributes[attribute]);
+      }
+      for(var ability in abilities){
+        this.removeHashKeys(abilities[ability]);
+        this.removeFunctions(abilities[ability]);
+      }
+
       var charData = {
         player: CharCreatorService.charPlayer,
         chronicle: CharCreatorService.charChronicle,
@@ -19,30 +33,10 @@ app.service("SaveService",
         demeanor: CharCreatorService.charDemeanor,
         generation: CharCreatorService.charGeneration,
         sire: CharCreatorService.charSire,
-        attributes: {
-          strength: AttributeService.strength,
-          dexterity: AttributeService.dexterity,
-          stamina: AttributeService.stamina,
-          charisma: AttributeService.charisma,
-          manipulation: AttributeService.manipulation,
-          appearance: AttributeService.appearance,
-          perception: AttributeService.perception,
-          intelligence: AttributeService.intelligence,
-          wits: AttributeService.wits
-        },
-        abilities: {
-          alertness: AbilitiesService.alertness,
-          //TODO: finish.
-        }
+        attributes: attributes,
+        abilities: abilities,
         clan: ClanService.selectedClan.name
       };
-
-      for(var ability in charData.attributes){
-        this.removeHashKeys(charData.attributes[ability]);
-        this.removeFunctions(charData.attributes[ability]);
-        var test = 0;
-      }
-
 
       var updates = {};
       updates[path] = charData;

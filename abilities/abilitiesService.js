@@ -17,6 +17,7 @@ app.service("AbilitiesService",
    this.secondaryPts = 9;
    this.tertiaryPts = 5;
    this.selectedPriorities = [null, null, null];
+   this.abilitiesList = {};
    var vm = this;
 
    class Ability {
@@ -28,7 +29,7 @@ app.service("AbilitiesService",
                       {id: 2, img: "./empty.png", type: ""},
                       {id: 3, img: "./empty.png", type: ""},
                       {id: 4, img: "./empty.png", type: ""}];
-
+                      
        this.reset = function(){
          this.points.forEach(function(ability){
            ability.img = './empty.png';
@@ -75,35 +76,65 @@ app.service("AbilitiesService",
      }
    };
    this.alertness = new Ability("Alertness");
+   this.abilitiesList.alertness = this.alertness;
    this.athletics = new Ability("Athletics");
+   this.abilitiesList.athletics = this.athletics;
    this.awareness = new Ability("Awareness");
+   this.abilitiesList.awareness = this.awareness;
    this.brawl = new Ability("Brawl");
+   this.abilitiesList.brawl = this.brawl;
    this.empathy = new Ability("Empathy");
+   this.abilitiesList.empathy = this.empathy;
    this.expression = new Ability("Expression");
+   this.abilitiesList.expression = this.expression;
    this.intimidation = new Ability("Intimidation");
+   this.abilitiesList.intimidation = this.intimidation;
    this.leadership = new Ability("Leadership");
+   this.abilitiesList.leadership = this.leadership;
    this.streetwise = new Ability("Streetwise");
+   this.abilitiesList.streetwise = this.streetwise;
    this.subterfuge = new Ability("Subterfuge");
+   this.abilitiesList.subterfuge = this.subterfuge;
    this.animalken = new Ability("Animal Ken");
+   this.abilitiesList.animalken = this.animalken;
    this.crafts = new Ability("Crafts");
+   this.abilitiesList.crafts = this.crafts;
    this.drive = new Ability("Drive");
+   this.abilitiesList.drive = this.drive;
    this.etiquette = new Ability("Etiquette");
+   this.abilitiesList.etiquette = this.etiquette;
    this.firearms = new Ability("Firearms");
+   this.abilitiesList.firearms = this.firearms;
    this.larceny = new Ability("Larceny");
+   this.abilitiesList.larceny = this.larceny;
    this.melee = new Ability("Melee");
+   this.abilitiesList.melee = this.melee;
    this.performance = new Ability("Performance");
+   this.abilitiesList.performance = this.performance;
    this.stealth = new Ability("Stealth");
+   this.abilitiesList.stealth = this.stealth;
    this.survival = new Ability("Survival");
+   this.abilitiesList.survival = this.survival;
    this.academics = new Ability("Academics");
+   this.abilitiesList.academics = this.academics;
    this.computer = new Ability("Computer");
+   this.abilitiesList.computer = this.computer;
    this.finance = new Ability("Finance");
+   this.abilitiesList.finance = this.finance;
    this.investigation = new Ability("Investigation");
+   this.abilitiesList.investigation = this.investigation;
    this.law = new Ability("Law");
+   this.abilitiesList.law = this.law;
    this.medicine = new Ability("Medicine");
+   this.abilitiesList.medicine = this.medicine;
    this.occult = new Ability("Occult");
+   this.abilitiesList.occult = this.occult;
    this.politics = new Ability("Politics");
+   this.abilitiesList.politics = this.politics;
    this.science = new Ability("Science");
+   this.abilitiesList.science = this.science;
    this.technology = new Ability("Technology");
+   this.abilitiesList.technology = this.technology;
 
    this.abilityCategories = [
      {
