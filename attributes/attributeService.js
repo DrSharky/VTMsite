@@ -16,6 +16,7 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
   this.secondaryPts = 5;
   this.tertiaryPts = 3;
   this.selectedPriorities = [null, null, null];
+  this.attributesList = {};
   var vm = this;
 
   class Attribute {
@@ -32,10 +33,13 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
         vm.attributePtsTotal += (this.pointCount - 1);
         this.pointCount = 1;
         this.points.forEach(function(point){
-          if(point.id == 0)
+          if(point.id == 0){
             point.img = "./full.png";
+            point.type = "original";
+          }
           else {
             point.img = "./empty.png";
+            point.type = "";
           }
         });
       }
@@ -50,6 +54,7 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
             }
             else{
               point.img = "./empty.png";
+              point.type = "";
             }
           });
         }
@@ -60,32 +65,46 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
               return;
             }
             else{
-              if(CharCreatorService.freebieMode && point.img != "./full.png")
+              if(CharCreatorService.freebieMode && point.img != "./full.png"){
                 point.img = "./free.png";
-              else
+                point.type = "freebie";
+              }
+              else{
                 point.img = "./full.png";
+                point.type = "original";
+              }
             }
           });
         }
       };
 
       this.zero = function(){
-        this.points.forEach(function(attribute){
-          attribute.img = './empty.png';
+        this.points.forEach(function(point){
+          point.img = "./empty.png";
+          point.type = "";
         });
       };
     };
   };
 
   this.strength = new Attribute("Strength");
+  this.attributesList.strength = this.strength;
   this.dexterity = new Attribute("Dexterity");
+  this.attributesList.dexterity = this.dexterity
   this.stamina = new Attribute("Stamina");
+  this.attributesList.stamina = this.stamina;
   this.charisma = new Attribute("Charisma");
+  this.attributesList.charisma = this.charisma;
   this.manipulation = new Attribute("Manipulation");
-  this.appearance = new Attribute("Appearance");
+  this.attributesList.manipulation = this.manipulation;
+  this.appearance = new Attribute("Appearance")
+  this.attributesList.appearance = this.appearance;
   this.perception = new Attribute("Perception");
+  this.attributesList.perception = this.perception
   this.intelligence = new Attribute("Intelligence");
+  this.attributesList.intelligence = this.intelligence;
   this.wits = new Attribute("Wits");
+  this.attributesList.wits = this.wits;
 
   this.attributeCategories = [
     {
@@ -115,11 +134,13 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
         UglyService.dirtyBit = false;
       }
       this.appearance.zero();
+      this.appearance.pointCount = 0;
       return true;
     }
     else {
       if(UglyService.previousUgly()){
         this.appearance.reset();
+        this.appearance.pointCount = 1;
         UglyService.previousClan = null;
       }
       return false;
@@ -130,6 +151,7 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
     this.attributeCategories.forEach(function(attrCat){
       attrCat.attributes.forEach(function(attr){
         attr.reset();
+        attr.pointCount = 1;
       });
     });
   };
@@ -168,6 +190,10 @@ function getPriorityPts(priority){
 };
 
 function selectAttribute(attribute, index, catIndex){
+
+  if(attribute.name == "Appearance" && UglyService.isUgly()){
+    return null;
+  }
   var priority = this.getPriority(attribute);
 
   if(priority==null){
