@@ -1,13 +1,15 @@
 var app = angular.module("site");
 
 app.controller("AttributesController",
- ['$scope', 'NgTableParams', 'UglyService', 'AttributeService',
- function($scope, NgTableParams, UglyService, AttributeService){
+ ['$scope', 'NgTableParams', 'UglyService', 'AttributeService', 'charFactory', '$timeout',
+ function($scope, NgTableParams, UglyService, AttributeService, charFactory, $timeout){
 
   this.priorityChange = priorityChange;
   this.selectAttribute = selectAttribute;
   this.getPriorityPts = getPriorityPts;
   this.isUglyClan = isUglyClan;
+
+  $timeout(charFactory.getDataStream, 2000);
 
   this.attributePriorities = getAttributePriorities();
   function getAttributePriorities(){

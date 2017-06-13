@@ -10,7 +10,7 @@ app.controller("ClanController",
     this.clanFilters = getClanFilters();
     function getClanFilters(){
       return ClanService.clanFilters;
-    };
+    }
 
     this.setClan = setClan;
     function setClan(charClan){
@@ -20,17 +20,17 @@ app.controller("ClanController",
     this.clanList = getClanList();
     function getClanList(){
       return ClanService.clanList;
-    };
+    }
 
     this.selectedClan = getSelectedClan();
     function getSelectedClan(){
       return ClanService.selectedClan;
-    };
+    }
 
     this.selectedClanFilter = getSelectedClanFilter();
     function getSelectedClanFilter(){
       return ClanService.selectedClanFilter;
-    };
+    }
 
     this.filteredClanList = getFilteredClanList();
     function getFilteredClanList(){
@@ -40,16 +40,16 @@ app.controller("ClanController",
     function filterClans(filter){
       this.filteredClanList = ClanService.filterClans(filter);
       this.selectedClan = this.filteredClanList[0];
-    };
+    }
 
     $scope.setUClan = function(clan) {
       UglyService.setClan(clan);
       DisciplineService.setClan(clan);
-    };
+    }
 
     $scope.setTerm = function(term) {
       TermIndexService.setTerm(term);
-    };
+    }
 
   }
 ]);

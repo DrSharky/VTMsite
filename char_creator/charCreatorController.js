@@ -1,8 +1,12 @@
 var app = angular.module("site");
 
 app.controller("CharCreatorController",
- [ 'CharCreatorService', 'LoginService', 'PdfService',
- function(CharCreatorService, LoginService, PdfService){
+ [ 'CharCreatorService', 'LoginService', 'PdfService', '$scope', 'SaveService', 'charFactory',
+ function(CharCreatorService, LoginService, PdfService, $scope, SaveService, charFactory){
+
+   this.player = charFactory.charPlayer;
+
+   charFactory.getDataStream();
 
    this.setPlayer = setPlayer;
    function setPlayer(charPlayer){
@@ -46,8 +50,10 @@ app.controller("CharCreatorController",
 
    this.loggedIn = LoginService.loggedIn();
 
-   //TODO: etc...
-   this.charPlayer = CharCreatorService.charPlayer;
+   this.charPlayer = getCharPlayer();
+   function getCharPlayer(){
+     return CharCreatorService.charPlayer;
+   };
 
    this.charChronicle = getCharChronicle();
    function getCharChronicle(){

@@ -1,6 +1,23 @@
 var app = angular.module("site");
 
-app.service('CharCreatorService', function(){
+app.factory('charFactory', function($q){
+  var svc = {};
+  svc.charPlayer = ["AAA"];
+
+  svc.getDataStream = function(){
+    var fakeData = ["TEST"];
+
+    return $q.when(fakeData)
+    .then(function(data){
+      angular.copy(data, svc.charPlayer);
+    });
+  };
+
+  return svc;
+
+});
+
+app.service('CharCreatorService', [function(){
 
   this.freebiePts = 15;
   this.freebieMode = false;
@@ -13,6 +30,10 @@ app.service('CharCreatorService', function(){
   this.charDemeanor = null;
   this.charGeneration = "13th";
   this.charSire = null;
+
+  this.getPlayer = function(){
+    return this.charPlayer;
+  }
 
   this.generations = ["3rd", "4th", "5th", "6th", "7th",
                       "8th", "9th", "10th", "11th", "12th",
@@ -34,4 +55,4 @@ app.service('CharCreatorService', function(){
     }
     this.freebieMode = !this.freebieMode;
   }
-});
+}]);

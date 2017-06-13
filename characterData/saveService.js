@@ -2,9 +2,9 @@ var app = angular.module("site");
 
 app.service("SaveService",
  ['CharCreatorService', 'LoginService', 'AttributeService', 'AbilitiesService',
-  'BackgroundsService', 'ClanService', 'DisciplineService', 'VirtuesService', 'WillpowerService',
+  'BackgroundsService', 'ClanService', 'DisciplineService', 'VirtuesService', 'WillpowerService', '$rootScope',
   function(CharCreatorService, LoginService, AttributeService, AbilitiesService,
-    BackgroundsService, ClanService, DisciplineService, VirtuesService, WillpowerService){
+    BackgroundsService, ClanService, DisciplineService, VirtuesService, WillpowerService, $rootScope){
 
     this.saveName;
 
