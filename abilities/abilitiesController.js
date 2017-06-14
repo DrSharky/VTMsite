@@ -71,6 +71,42 @@ app.controller("AbilitiesController",
     AbilitiesService.priorityChange(changedPriority, id, prevPriority);
   };
 
+  var self = this;
+  $scope.$on('loadCharacter', function(){
+    self.selectedPriorities = getSelectedPriorities();
+    self.alertness =  AbilitiesService.alertness;
+    self.athletics = AbilitiesService.athletics;
+    self.awareness = AbilitiesService.awareness;
+    self.brawl = AbilitiesService.brawl;
+    self.empathy = AbilitiesService.empathy;
+    self.expression = AbilitiesService.expression;
+    self.intimidation = AbilitiesService.intimidation;
+    self.leadership = AbilitiesService.leadership;
+    self.streetwise = AbilitiesService.streetwise;
+    self.subterfuge = AbilitiesService.subterfuge;
+    self.animalken = AbilitiesService.animalken;
+    self.crafts = AbilitiesService.crafts;
+    self.drive = AbilitiesService.drive;
+    self.etiquette = AbilitiesService.etiquette;
+    self.firearms = AbilitiesService.firearms;
+    self.larceny = AbilitiesService.larceny;
+    self.melee = AbilitiesService.melee;
+    self.performance = AbilitiesService.performance;
+    self.stealth = AbilitiesService.stealth;
+    self.survival = AbilitiesService.survival;
+    self.academics = AbilitiesService.academics;
+    self.computer = AbilitiesService.computer;
+    self.finance = AbilitiesService.finance;
+    self.investigation = AbilitiesService.investigation;
+    self.law = AbilitiesService.law;
+    self.medicine = AbilitiesService.medicine;
+    self.occult = AbilitiesService.occult;
+    self.politics = AbilitiesService.politics;
+    self.science = AbilitiesService.science;
+    self.technology = AbilitiesService.technology;
+    $scope.$apply();
+  });
+
 
   this.dataSet = function(){
     var data = [];
@@ -83,5 +119,4 @@ app.controller("AbilitiesController",
   }
   this.tableParams1 = new NgTableParams({count: 10},
                       { dataset: this.dataSet(), counts: [] });
-
 }]);

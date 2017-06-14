@@ -1,22 +1,5 @@
 var app = angular.module("site");
 
-app.factory('charFactory', function($q){
-  var svc = {};
-  svc.charPlayer = ["AAA"];
-
-  svc.getDataStream = function(){
-    var fakeData = ["TEST"];
-
-    return $q.when(fakeData)
-    .then(function(data){
-      angular.copy(data, svc.charPlayer);
-    });
-  };
-
-  return svc;
-
-});
-
 app.service('CharCreatorService', [function(){
 
   this.freebiePts = 15;

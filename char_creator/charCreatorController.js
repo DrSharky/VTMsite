@@ -1,12 +1,8 @@
 var app = angular.module("site");
 
 app.controller("CharCreatorController",
- [ 'CharCreatorService', 'LoginService', 'PdfService', '$scope', 'SaveService', 'charFactory',
- function(CharCreatorService, LoginService, PdfService, $scope, SaveService, charFactory){
-
-   this.player = charFactory.charPlayer;
-
-   charFactory.getDataStream();
+ ['CharCreatorService', 'LoginService', 'PdfService', '$scope', 'SaveService',
+ function(CharCreatorService, LoginService, PdfService, $scope, SaveService){
 
    this.setPlayer = setPlayer;
    function setPlayer(charPlayer){
@@ -80,14 +76,14 @@ app.controller("CharCreatorController",
      return CharCreatorService.charDemeanor;
    }
 
-   this.charGeneration = getCharGeneration();
-   function getCharGeneration(){
-     return CharCreatorService.charGeneration;
-   }
-
    this.charSire = getCharSire();
    function getCharSire(){
      return CharCreatorService.charSire;
+   }
+
+   this.charGeneration = getCharGeneration();
+   function getCharGeneration(){
+     return CharCreatorService.charGeneration;
    }
 
    this.generations = getGenerations();
@@ -109,4 +105,18 @@ app.controller("CharCreatorController",
 
    this.maxFreePts = 22;
    this.maxFlawBonus = 7;
+
+   var self = this;
+   $scope.$on('loadCharacter', function(){
+     self.charPlayer = CharCreatorService.charPlayer;
+     self.charChronicle = CharCreatorService.charChronicle;
+     self.charName = CharCreatorService.charName;
+     self.charConcept = CharCreatorService.charConcept;
+     self.charNature = CharCreatorService.charNature;
+     self.charDemeanor = CharCreatorService.charDemeanor;
+     self.charSire = CharCreatorService.charSire;
+     self.charGeneration = CharCreatorService.charGeneration;
+     $scope.$apply();
+   })
+
 }]);

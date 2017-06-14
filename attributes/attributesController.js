@@ -1,15 +1,13 @@
 var app = angular.module("site");
 
 app.controller("AttributesController",
- ['$scope', 'NgTableParams', 'UglyService', 'AttributeService', 'charFactory', '$timeout',
- function($scope, NgTableParams, UglyService, AttributeService, charFactory, $timeout){
+ ['NgTableParams', 'UglyService', 'AttributeService', '$scope',
+ function(NgTableParams, UglyService, AttributeService, $scope){
 
   this.priorityChange = priorityChange;
   this.selectAttribute = selectAttribute;
   this.getPriorityPts = getPriorityPts;
   this.isUglyClan = isUglyClan;
-
-  $timeout(charFactory.getDataStream, 2000);
 
   this.attributePriorities = getAttributePriorities();
   function getAttributePriorities(){
@@ -98,4 +96,19 @@ app.controller("AttributesController",
     AttributeService.priorityChange(changedPriority, id, prevPriority);
   };
 
+  var self = this;
+  $scope.$on('loadCharacter', function(){
+    self.selectedPriorities = getSelectedPriorities();
+    self.strength = AttributeService.strength;
+    self.dexterity = AttributeService.dexterity;
+    self.stamina = AttributeService.stamina;
+    self.charisma = AttributeService.charisma;
+    self.manipulation = AttributeService.manipulation;
+    self.appearance = AttributeService.appearance;
+    self.perception = AttributeService.perception;
+    self.intelligence = AttributeService.intelligence;
+    self.wits = AttributeService.wits;
+    $scope.$apply();
+  });
+  
 }]);

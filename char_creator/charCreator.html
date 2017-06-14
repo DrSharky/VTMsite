@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Player" for="charPlayer" style="margin-right: 3px;">Player: </label>
-          <input id="charPlayer" ng-model="creatorCtrl.player"
+          <input id="charPlayer" ng-model="creatorCtrl.charPlayer"
                  ng-blur="creatorCtrl.setPlayer(creatorCtrl.charPlayer)"/> <!--TODO: Remove the ng-blurs, Replace them with-->
         </div>                                                                   <!--a function in the service when saving.-->
         <div class="col-lg-3 col-md-3 col-sm-3">
@@ -89,7 +89,9 @@
   </div>
   <div ng-controller="SaveController as saveCtrl">
     <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
-    <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.loadCharacter()">Load Character</button>
+  </div>
+  <div ng-controller="LoadController as loadCtrl">
+    <button ng-hide="!creatorCtrl.loggedIn" ng-click="loadCtrl.loadClick(Sharky)">Load Character</button>
   </div>
 </div>
 
