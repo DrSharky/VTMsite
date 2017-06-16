@@ -13,15 +13,28 @@ app.service("SaveService",
       var attributes = {};
       var abilities = {};
       var disciplines = {};
+      var backgrounds = {};
+      var virtues = {};
       angular.copy(AbilitiesService.abilitiesList, abilities);
       angular.copy(AttributeService.attributesList, attributes);
-
+      angular.copy(DisciplineService.selectedClanDisciplines, disciplines);
+      angular.copy(BackgroundsService.selectedList, backgrounds);
+      angular.copy(VirtuesService.virtueList, virtues);
 
       for(var attribute in attributes){
         this.removeFunctions(attributes[attribute]);
       }
       for(var ability in abilities){
         this.removeFunctions(abilities[ability]);
+      }
+      for(var discipline in disciplines){
+        this.removeFunctions(disciplines[discipline]);
+      }
+      for(var background in backgrounds){
+        this.removeFunctions(backgrounds[background]);
+      }
+      for(var virtue in virtues){
+        this.removeFunctions(virtues[virtue]);
       }
 
       var charData = {
@@ -43,7 +56,13 @@ app.service("SaveService",
         abilitySecondary: AbilitiesService.secondaryPts,
         abilityTertiary: AbilitiesService.tertiaryPts,
         abilities: abilities,
-        clan: ClanService.selectedClan.name
+        clan: ClanService.selectedClan.name,
+        disciplines: disciplines,
+        disciplinePts: DisciplineService.disciplinePts,
+        backgrounds: backgrounds,
+        backgroundPts: BackgroundsService.backgroundPts,
+        virtues: virtues,
+        virtuePts: VirtuesService.virtuePts
       };
 
       var updates = {};
@@ -59,10 +78,10 @@ app.service("SaveService",
     }
 
     this.removeFunctions = removeFunctions;
-    function removeFunctions(ability){
-      delete ability.reset;
-      delete ability.select;
-      delete ability.zero;
+    function removeFunctions(content){
+      delete content.reset;
+      delete content.select;
+      delete content.zero;
     }
 
     var self = this;

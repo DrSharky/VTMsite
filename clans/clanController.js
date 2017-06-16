@@ -51,5 +51,11 @@ app.controller("ClanController",
       TermIndexService.setTerm(term);
     }
 
+    var self = this;
+    $scope.$on('loadCharacter', function(){
+      self.selectedClan = ClanService.selectedClan;
+      $scope.$apply();
+    });
+
   }
 ]);

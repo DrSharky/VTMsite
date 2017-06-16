@@ -1,7 +1,7 @@
 var app = angular.module("site");
 
-app.controller("BackgroundsController", ['BackgroundsService',
- function(BackgroundsService){
+app.controller("BackgroundsController", ['BackgroundsService', '$scope',
+ function(BackgroundsService, $scope){
 
    this.selectBackgroundPt = selectBackgroundPt;
    this.chooseBackground = chooseBackground;
@@ -29,5 +29,11 @@ app.controller("BackgroundsController", ['BackgroundsService',
    function chooseBackground(background, index){
      BackgroundsService.chooseBackground(background, index);
    }
+
+   var self = this;
+   $scope.$on('loadCharacter', function(){
+     self.selectedList = BackgroundsService.selectedList;
+     $scope.$apply();
+   })
 
  }]);

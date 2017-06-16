@@ -15,9 +15,6 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
     return CharCreatorService.freebieMode;
   }
 
-  //TODO: Going to have to edit this function to apply the point type rules.
-        //Moving logic outside the point.select function & in here possibly.
-
   function selectDisciplinePt(discipline, index){
 
     var pointDiff = 0;
@@ -146,16 +143,15 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
   function setClanDisciplines(clan){
     if(service.selectedClanDisciplines){
       var ptsToReset = 0;
-      service.selectedClanDisciplines.forEach(function(discipline){
-        ptsToReset+= discipline.pointCount;
-        discipline.reset();
-      });
+      for(var discipline in service.selectedClanDisciplines){
+        delete service.selectedClanDisciplines[discipline];
+      }
       if(CharCreatorService.freebieMode)
         CharCreatorService.freebiePts+=ptsToReset;
       else
         service.disciplinePts+=ptsToReset;
     }
-    var clanDisciplines = [];
+    var clanDisciplines = {};
     if(clan == "Children of Osiris"){
       clanDisciplines = [new Discipline("Bardo"), new Discipline(""), new Discipline("")];
     }
@@ -164,10 +160,26 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
     }
     else{
       for(var i = 0; i < service.selectedClan.disciplines.length; i++){
-        clanDisciplines.push(new Discipline(service.selectedClan.disciplines[i]));
+        clanDisciplines[service.selectedClan.disciplines[i]] = new Discipline(service.selectedClan.disciplines[i]);
       }
     }
     return clanDisciplines;
   };
+
+  this.addDiscipline = addDiscipline;
+  function addDiscipline(name = "", pointCount = 0, points = []){
+    if(name == "")
+      this.selectedClanDisciplines[name] = new Discipline("");
+    else{
+      this.selectedClanDisciplines[name] = new Discipline(name);
+      this.selectedClanDisciplines[name].pointCount = pointCount;
+      this.selectedClanDisciplines[name].points = points;
+    }
+  }
+
+  this.removeDiscipline = removeDiscipline;
+  function removeDiscipline(index){
+    delete this.selectedClanDisciplines[index];
+  }
 
 }]);

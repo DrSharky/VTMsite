@@ -1,8 +1,10 @@
 var app = angular.module("site");
 
 app.service("LoadService",
-['CharCreatorService', 'AttributeService', 'AbilitiesService', 'LoginService', '$rootScope',
-  function(CharCreatorService, AttributeService, AbilitiesService, LoginService, $rootScope){
+['CharCreatorService', 'AttributeService', 'AbilitiesService', 'ClanService',
+ 'BackgroundsService', 'LoginService', 'DisciplineService', 'VirtuesService', '$rootScope',
+  function(CharCreatorService, AttributeService, AbilitiesService, ClanService,
+           BackgroundsService, LoginService, DisciplineService, VirtuesService, $rootScope){
 
   var self = this;
   this.loadClick = loadClick;
@@ -12,7 +14,6 @@ app.service("LoadService",
     var character = firebase.database().ref(path);
     character.once('value', function(snapshot){
       if(snapshot.val()!=null){
-        // self.loadCharInfo(snapshot.val());
         self.loadCharacter(snapshot.val());
       }
     });
@@ -30,11 +31,30 @@ app.service("LoadService",
      AbilitiesService[ability.name.toLowerCase().replace(" ", "")].pointCount = ability.pointCount;
    }
 
+   this.loadDiscipline = loadDiscipline;
+   function loadDiscipline(discipline){
+     DisciplineService.addDiscipline(discipline.name, discipline.pointCount, discipline.points);
+   }
+
+   this.loadBackground = loadBackground;
+   function loadBackground(background){
+     BackgroundsService.addBackground(background.name, background.pointCount, background.points);
+   }
+
+   this.loadVirtue = loadVirtue;
+   function loadVirtue(virtue){
+     VirtuesService.virtueList[virtue.name].points = virtue.points;
+     VirtuesService.virtueList[virtue.name].pointCount = virtue.pointCount;
+   }
+
    this.loadCharacter = loadCharacter;
    function loadCharacter(character){
      this.mapCharInfo(character);
      this.mapAttributes(character);
      this.mapAbilities(character);
+     this.mapDisciplines(character);
+     this.mapBackgrounds(character);
+     this.mapVirtues(character);
      $rootScope.$broadcast('loadCharacter', CharCreatorService);
    }
 
@@ -60,6 +80,36 @@ app.service("LoadService",
      }
    }
 
+   this.mapDisciplines = mapDisciplines;
+   function mapDisciplines(character){
+     DisciplineService.disciplinePts = character.disciplinePts;
+     for(var discipline in DisciplineService.selectedClanDisciplines){
+       delete DisciplineService.selectedClanDisciplines[discipline];
+     }
+     for(var discipline in character.disciplines){
+       this.loadDiscipline(character.disciplines[discipline]);
+     }
+   }
+
+   this.mapBackgrounds = mapBackgrounds;
+   function mapBackgrounds(character){
+     BackgroundsService.backgroundPts = character.backgroundPts;
+     for(var background in BackgroundsService.selectedList){
+       delete BackgroundsService.selectedList[background];
+     }
+     for(var background in character.backgrounds){
+       this.loadBackground(character.backgrounds[background]);
+     }
+   }
+
+   this.mapVirtues = mapVirtues;
+   function mapVirtues(character){
+     VirtuesService.virtuePts = character.virtuePts;
+     for(var virtue in character.virtues){
+       this.loadVirtue(character.virtues[virtue]);
+     }
+   }
+
   this.mapCharInfo = mapCharInfo;
   function mapCharInfo(character){
     CharCreatorService.charPlayer = character.player;
@@ -70,5 +120,9 @@ app.service("LoadService",
     CharCreatorService.charDemeanor = character.demeanor;
     CharCreatorService.charSire = character.sire;
     CharCreatorService.charGeneration = character.generation;
+    var clanIndex = ClanService.clanList.map(function(clan){
+      return clan.name;
+    }).indexOf(character.clan);
+    ClanService.selectedClan = ClanService.clanList[clanIndex];
   };
 }]);

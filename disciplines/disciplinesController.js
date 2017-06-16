@@ -34,4 +34,14 @@ app.controller("DisciplinesController",
     return DisciplineService.disciplinePts;
   };
 
+  this.addDiscipline = addDiscipline;
+  function addDiscipline(){
+    DisciplineService.addDiscipline();
+  }
+
+  this.removeDiscipline = removeDiscipline;
+  function removeDiscipline(index){
+    DisciplineService.removeDiscipline(index);
+  }
+
 }]);

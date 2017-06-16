@@ -8,7 +8,6 @@ app.service("VirtuesService",
    this.selectVirtuePt = selectVirtuePt;
 
    function selectVirtuePt(virtue, index){
-     //TODO: add stuff to the path here maybe?
 
      var pointDiff = 0;
 
@@ -72,6 +71,14 @@ app.service("VirtuesService",
   class Virtue {
     constructor(name){
       this.name = name;
+      if(name == "Conscience")
+        this.displayName = "Conscience/Conviction";
+      else{
+        if(name == "Self-control")
+          this.displayName = "Self-Control/Instinct"
+        else
+          this.displayName = name;
+        }
       this.pointCount = 1;
       this.points = [{id:0, img:"./full.png"},
                      {id:1, img:"./empty.png"},
@@ -124,10 +131,10 @@ app.service("VirtuesService",
     };
   };
 
-  this.virtueList = [new Virtue("Conscience/Conviction"),
-                     new Virtue("Self-Control/Instinct"),
-                     new Virtue("Courage")];
+  this.virtueList = {"Conscience": new Virtue("Conscience"),
+                     "Self-control": new Virtue("Self-control"),
+                     "Courage": new Virtue("Courage")};
 
-  this.pathCount = this.virtueList[0].pointCount + this.virtueList[1].pointCount;
+  this.pathCount = this.virtueList["Conscience"].pointCount + this.virtueList["Self-control"].pointCount;
 
 }]);
