@@ -1,25 +1,29 @@
 var app = angular.module("site");
 
 app.service("SaveService",
- ['CharCreatorService', 'LoginService', 'AttributeService', 'AbilitiesService',
-  'BackgroundsService', 'ClanService', 'DisciplineService', 'VirtuesService', 'WillpowerService', '$rootScope',
-  function(CharCreatorService, LoginService, AttributeService, AbilitiesService,
-    BackgroundsService, ClanService, DisciplineService, VirtuesService, WillpowerService, $rootScope){
+ ['CharCreatorService', 'LoginService', 'AttributeService', 'AbilitiesService', 'BackgroundsService',
+  'ClanService', 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', '$rootScope',
+  function(CharCreatorService, LoginService, AttributeService, AbilitiesService, BackgroundsService,
+           ClanService, DisciplineService, VirtuesService, PathService, WillpowerService, $rootScope){
 
     this.saveName;
 
     this.pushCharData = pushCharData;
-    function pushCharData(path){
+    function pushCharData(savePath){
       var attributes = {};
       var abilities = {};
       var disciplines = {};
       var backgrounds = {};
       var virtues = {};
+      var path = {};
+      var willpower = {};
       angular.copy(AbilitiesService.abilitiesList, abilities);
       angular.copy(AttributeService.attributesList, attributes);
       angular.copy(DisciplineService.selectedClanDisciplines, disciplines);
       angular.copy(BackgroundsService.selectedList, backgrounds);
       angular.copy(VirtuesService.virtueList, virtues);
+      angular.copy(PathService.selectedPath, path);
+      angular.copy(WillpowerService.willpower, willpower);
 
       for(var attribute in attributes){
         this.removeFunctions(attributes[attribute]);
@@ -36,6 +40,8 @@ app.service("SaveService",
       for(var virtue in virtues){
         this.removeFunctions(virtues[virtue]);
       }
+      this.removeFunctions(path);
+      this.removeFunctions(willpower);
 
       var charData = {
         player: CharCreatorService.charPlayer,
@@ -62,11 +68,13 @@ app.service("SaveService",
         backgrounds: backgrounds,
         backgroundPts: BackgroundsService.backgroundPts,
         virtues: virtues,
-        virtuePts: VirtuesService.virtuePts
+        virtuePts: VirtuesService.virtuePts,
+        path: path,
+        willpower: willpower
       };
 
       var updates = {};
-      updates[path] = charData;
+      updates[savePath] = charData;
       return firebase.database().ref().update(updates);
     }
 

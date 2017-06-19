@@ -7,4 +7,14 @@ app.controller("LoadController", ['LoadService', function(LoadService){
   function loadClick(){
     LoadService.loadClick("Sharky");
   }
+
+  this.loadChars = loadChars;
+  function loadChars(){
+    LoadService.loadChars();
+  }
+
+  this.userCharacters = userCharacters();
+  function userCharacters(){
+    return LoadService.userCharacters;
+  }
 }]);

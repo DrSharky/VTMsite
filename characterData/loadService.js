@@ -1,10 +1,12 @@
 var app = angular.module("site");
 
 app.service("LoadService",
-['CharCreatorService', 'AttributeService', 'AbilitiesService', 'ClanService',
- 'BackgroundsService', 'LoginService', 'DisciplineService', 'VirtuesService', '$rootScope',
-  function(CharCreatorService, AttributeService, AbilitiesService, ClanService,
-           BackgroundsService, LoginService, DisciplineService, VirtuesService, $rootScope){
+['CharCreatorService', 'AttributeService', 'AbilitiesService', 'ClanService', 'BackgroundsService',
+ 'LoginService', 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', '$rootScope',
+  function(CharCreatorService, AttributeService, AbilitiesService, ClanService, BackgroundsService,
+           LoginService, DisciplineService, VirtuesService, PathService, WillpowerService, $rootScope){
+
+  this.userCharacters = [];
 
   var self = this;
   this.loadClick = loadClick;
@@ -17,6 +19,20 @@ app.service("LoadService",
         self.loadCharacter(snapshot.val());
       }
     });
+  }
+
+  this.loadChars = loadChars;
+  function loadChars(){
+    var uid = LoginService.getUID();
+    var path = '/characters/' + uid;
+    var user = firebase.database().ref(path);
+    user.once('value', function(snapshot){
+      if(snapshot.val()!=null){
+        for(var character in snapshot.val()){
+          self.userCharacters.push(snapshot.val()[character]);
+        }
+      }
+    })
   }
 
    this.loadAttribute = loadAttribute;
@@ -43,8 +59,8 @@ app.service("LoadService",
 
    this.loadVirtue = loadVirtue;
    function loadVirtue(virtue){
-     VirtuesService.virtueList[virtue.name].points = virtue.points;
-     VirtuesService.virtueList[virtue.name].pointCount = virtue.pointCount;
+      VirtuesService.virtueList[virtue.name].points = virtue.points;
+      VirtuesService.virtueList[virtue.name].pointCount = virtue.pointCount;
    }
 
    this.loadCharacter = loadCharacter;
@@ -55,6 +71,8 @@ app.service("LoadService",
      this.mapDisciplines(character);
      this.mapBackgrounds(character);
      this.mapVirtues(character);
+     this.mapPath(character);
+     this.mapWillpower(character);
      $rootScope.$broadcast('loadCharacter', CharCreatorService);
    }
 
@@ -104,10 +122,25 @@ app.service("LoadService",
 
    this.mapVirtues = mapVirtues;
    function mapVirtues(character){
-     VirtuesService.virtuePts = character.virtuePts;
+      VirtuesService.virtuePts = character.virtuePts;
      for(var virtue in character.virtues){
        this.loadVirtue(character.virtues[virtue]);
      }
+   }
+
+   this.mapPath = mapPath;
+   function mapPath(character){
+     PathService.selectedPath.name = character.path.name;
+     PathService.selectedPath.pointCount = character.path.pointCount;
+     PathService.selectedPath.pointMin = character.path.pointMin;
+     PathService.selectedPath.points = character.path.points;
+   }
+
+   this.mapWillpower = mapWillpower;
+   function mapWillpower(character){
+     WillpowerService.willpower.pointCount = character.willpower.pointCount;
+     WillpowerService.willpower.pointMin = character.willpower.pointMin;
+     WillpowerService.willpower.points = character.willpower.points;
    }
 
   this.mapCharInfo = mapCharInfo;

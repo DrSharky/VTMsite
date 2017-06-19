@@ -18,7 +18,7 @@ app.service("PathService",
   this.selectPathPt = selectPathPt;
 
   function selectPathPt(path, index){
-    
+
     if(!CharCreatorService.freebieMode || index < path.pointMin)
       return null;
 

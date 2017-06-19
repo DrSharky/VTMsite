@@ -25,4 +25,10 @@ app.controller("PathController",
      return PathService.selectedPath;
    }
 
+   var self = this;
+   $scope.$on('loadCharacter', function(){
+     self.selectedPath = PathService.selectedPath;
+     $scope.$apply();
+   })
+
 }]);
