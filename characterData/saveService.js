@@ -8,6 +8,8 @@ app.service("SaveService",
 
     this.saveName;
 
+    this.uid = LoginService.getUID();
+
     this.pushCharData = pushCharData;
     function pushCharData(savePath){
       var attributes = {};
@@ -93,33 +95,50 @@ app.service("SaveService",
     }
 
     var self = this;
+    this.saveCharacterName = saveCharacterName;
+    function saveCharacterName(){
+      var uid = LoginService.getUID();
+    }
+
+    this.pushCharName = pushCharName;
+    function pushCharName(savePath){
+      var updates = {};
+      var data = {};
+      data = {saveName: this.saveName};
+      updates[savePath] = data;
+      return firebase.database().ref().update(updates);
+    }
+
+    var self = this;
     this.saveCharacter = saveCharacter;
     function saveCharacter(){
-      var uid = LoginService.getUID();
       this.saveName = prompt("Enter save name: ", this.saveName);
       if(this.saveName!=null){
         if(this.saveName == ""){
           alert("Please enter a valid save name.");
           return null;
         }
-        var path = '/characters/' + uid + '/' + this.saveName;
-        var existingChar = firebase.database().ref(path);
-        existingChar.once('value', function(snapshot){
+        var pathCharName = '/characterNames/' + this.uid + '/' + this.saveName;
+        var pathData = '/characters/' + this.uid + '/' + this.saveName;
+        var existingCharName = firebase.database().ref(pathCharName);
+        existingCharName.once('value', function(snapshot){
           if(snapshot.val()!=null){
             if(confirm("Character exists. Overwrite?")){
-              self.pushCharData(path);
+              self.pushCharName(pathCharName);
+              self.pushCharData(pathData);
             }
             else{
               return null;
             }
           }
           else{
-            self.pushCharData(path);
+            self.pushCharName(pathCharName);
+            self.pushCharData(pathData);
           }
         })
       }
       else{
         return null;
       }
-    }
+    };
 }]);

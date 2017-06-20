@@ -1,16 +1,24 @@
 var app = angular.module("site");
 
-app.controller("LoadController", ['LoadService', function(LoadService){
+app.controller("LoadController",
+['LoadService', '$scope',
+ function(LoadService, $scope){
+
+  this.loadPage = "./characterData/load.html";
 
 
   this.loadClick = loadClick;
-  function loadClick(){
-    LoadService.loadClick("Sharky");
+  function loadClick(charName){
+    LoadService.loadClick(charName);
   }
 
+  var self = this;
   this.loadChars = loadChars;
   function loadChars(){
     LoadService.loadChars();
+    setTimeout(function(){
+      $scope.$apply();
+    }, 1000);
   }
 
   this.userCharacters = userCharacters();

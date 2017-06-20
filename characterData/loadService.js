@@ -6,7 +6,7 @@ app.service("LoadService",
   function(CharCreatorService, AttributeService, AbilitiesService, ClanService, BackgroundsService,
            LoginService, DisciplineService, VirtuesService, PathService, WillpowerService, $rootScope){
 
-  this.userCharacters = [];
+  this.userCharacters = {};
 
   var self = this;
   this.loadClick = loadClick;
@@ -24,12 +24,12 @@ app.service("LoadService",
   this.loadChars = loadChars;
   function loadChars(){
     var uid = LoginService.getUID();
-    var path = '/characters/' + uid;
+    var path = '/characterNames/' + uid;
     var user = firebase.database().ref(path);
     user.once('value', function(snapshot){
       if(snapshot.val()!=null){
         for(var character in snapshot.val()){
-          self.userCharacters.push(snapshot.val()[character]);
+          self.userCharacters[character] = snapshot.val()[character];
         }
       }
     })

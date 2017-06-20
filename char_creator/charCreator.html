@@ -90,8 +90,9 @@
   <div ng-controller="SaveController as saveCtrl">
     <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
   </div>
-  <div ng-controller="LoadController as loadCtrl">
-    <button ng-hide="!creatorCtrl.loggedIn" ng-click="loadCtrl.loadChars()">Load Character</button>
+  <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
+    <!-- <button ng-hide="!creatorCtrl.loggedIn" ng-click="loadCtrl.loadChars()">Load Character</button> -->
+    <ng-include src="loadCtrl.loadPage"></ng-include>
   </div>
 </div>
 

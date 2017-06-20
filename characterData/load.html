@@ -1,7 +1,7 @@
 <div>
-  <h4 style="display: inline;">Load Character</h4>
   <button ng-click="loadCtrl.loadChars()">Load Chars</button>
-  <div ng-repeat="loadCtrl.userCharacters">
-
+  <div ng-repeat="char in loadCtrl.userCharacters">
+    {{char.saveName}}
+    <button ng-click="loadCtrl.loadClick(char.saveName)">Load</button>
   </div>
 </div>
