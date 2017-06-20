@@ -1,0 +1,7 @@
+<div>
+  <button ng-click="loadCtrl.loadChars()">Load Chars</button>
+  <div ng-repeat="char in loadCtrl.userCharacters">
+    {{char.saveName}}
+    <button ng-click="loadCtrl.loadClick(char.saveName)">Load</button>
+  </div>
+</div>

@@ -1,8 +1,8 @@
 var app = angular.module("site");
 
 app.controller("PathController",
- ['PathService',
- function(PathService){
+ ['PathService', '$scope',
+ function(PathService, $scope){
    this.pathPage = "./path/path.html";
 
    this.freebieMode = freebieMode();
@@ -24,5 +24,11 @@ app.controller("PathController",
    function selectedPath(){
      return PathService.selectedPath;
    }
+
+   var self = this;
+   $scope.$on('loadCharacter', function(){
+     self.selectedPath = PathService.selectedPath;
+     $scope.$apply();
+   })
 
 }]);

@@ -95,9 +95,19 @@ app.service("BackgroundsService", ['CharCreatorService',
     }
   };
 
-  this.selectedList = [new Background(""), new Background(""),
-                       new Background(""), new Background(""),
-                       new Background(""), new Background("")];
+  this.selectedList = {0: new Background(""), 1: new Background(""),
+                       2: new Background(""), 3: new Background(""),
+                       4: new Background(""), 5: new Background("")};
+
+  // this.getBackgrounds = getBackgrounds;
+  // function getBackgrounds(){
+  //   var bgList = {};
+  //   for(var i = 0; i < this.selectedList.length; i++){
+  //     if(!this.selectedList[i].name == "")
+  //       bgList[this.selectedList[i].name] = this.selectedList[i];
+  //   }
+  //   return bgList;
+  // }
 
  function chooseBackground(background, index){
    var selectedBackground = this.selectedList[index];
@@ -111,6 +121,17 @@ app.service("BackgroundsService", ['CharCreatorService',
      selectedBackground.reset();
    }
    selectedBackground.name = background.name;
+ }
+
+ this.addBackground = addBackground;
+ function addBackground(name = "", pointCount = 0, points = []){
+   if(name == "")
+     this.selectedList[name] = new Background("");
+   else{
+     this.selectedList[name] = new Background(name);
+     this.selectedList[name].pointCount = pointCount;
+     this.selectedList[name].points = points;
+   }
  }
 
 }]);

@@ -1,7 +1,8 @@
 var app = angular.module("site");
 
-app.controller("WillpowerController", ['WillpowerService',
-  function(WillpowerService){
+app.controller("WillpowerController",
+ ['WillpowerService', '$scope',
+  function(WillpowerService, $scope){
     this.willPage = "./willpower/willpower.html";
 
     this.willpower = willpower();
@@ -20,5 +21,10 @@ app.controller("WillpowerController", ['WillpowerService',
       WillpowerService.selectWillPt(index);
     }
 
+    var self = this;
+    $scope.$on('loadCharacter', function(){
+      self.willpower = WillpowerService.willpower;
+      $scope.$apply();
+    })
 
   }]);

@@ -6,31 +6,31 @@
   <table>
       <tr>
         <td>
-          {{virtCtrl.virtueList[0].name}}&nbsp;
+          {{virtCtrl.virtueList['Conscience'].displayName}}&nbsp;
         </td>
         <td>
-          <div ng-repeat="virtPt in virtCtrl.virtueList[0].points" style="display: inline-block;">
-            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList[0], $index)" />
+          <div ng-repeat="virtPt in virtCtrl.virtueList['Conscience'].points" style="display: inline-block;">
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Conscience'], $index)" />
           </div>
         </td>
       </tr>
       <tr>
         <td>
-          {{virtCtrl.virtueList[1].name}}&nbsp;
+          {{virtCtrl.virtueList['Self-control'].displayName}}&nbsp;
         </td>
         <td>
-          <div ng-repeat="virtPt in virtCtrl.virtueList[1].points" style="display: inline-block;">
-            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList[1], $index)" />
+          <div ng-repeat="virtPt in virtCtrl.virtueList['Self-control'].points" style="display: inline-block;">
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Self-control'], $index)" />
           </div>
         </td>
       </tr>
       <tr>
         <td>
-          {{virtCtrl.virtueList[2].name}}&nbsp;
+          {{virtCtrl.virtueList['Courage'].displayName}}&nbsp;
         </td>
         <td>
-          <div ng-repeat="virtPt in virtCtrl.virtueList[2].points" style="display: inline-block;">
-            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList[2], $index)" />
+          <div ng-repeat="virtPt in virtCtrl.virtueList['Courage'].points" style="display: inline-block;">
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Courage'], $index)" />
           </div>
         </td>
       </tr>

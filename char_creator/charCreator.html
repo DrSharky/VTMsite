@@ -4,11 +4,12 @@
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Player" for="charPlayer" style="margin-right: 3px;">Player: </label>
-          <input id="charPlayer" ng-model="creatorCtrl.charPlayer" ng-blur="creatorCtrl.setPlayer(creatorCtrl.charPlayer)" />
-        </div>
+          <input id="charPlayer" ng-model="creatorCtrl.charPlayer"
+                 ng-blur="creatorCtrl.setPlayer(creatorCtrl.charPlayer)"/> <!--TODO: Remove the ng-blurs, Replace them with-->
+        </div>                                                                   <!--a function in the service when saving.-->
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Chronicle" for="charChronicle" style="margin-right: 3px;">Chronicle: </label>
-          <input id="charChronicle" ng-model="creatorCtrl.charChronicle" ng-blur="creatorCtrl.setChronicle(creatorCtrl.charChronicle)" />
+          <input id="charChronicle" ng-model="creatorCtrl.charChronicle" ng-blur="creatorCtrl.setChronicle(creatorCtrl.charChronicle)"/>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Name" for="charName">Name: </label>
@@ -22,7 +23,7 @@
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Nature" for="charNature">Nature: </label>
-          <input id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)" />
+          <input id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)"/>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Demeanor" for="charDemeanor">Demeanor: </label>
@@ -88,6 +89,10 @@
   </div>
   <div ng-controller="SaveController as saveCtrl">
     <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
+  </div>
+  <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
+    <!-- <button ng-hide="!creatorCtrl.loggedIn" ng-click="loadCtrl.loadChars()">Load Character</button> -->
+    <ng-include src="loadCtrl.loadPage"></ng-include>
   </div>
 </div>
 

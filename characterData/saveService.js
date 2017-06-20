@@ -1,28 +1,49 @@
 var app = angular.module("site");
 
 app.service("SaveService",
- ['CharCreatorService', 'LoginService', 'AttributeService', 'AbilitiesService',
-  'BackgroundsService', 'ClanService', 'DisciplineService', 'VirtuesService', 'WillpowerService',
-  function(CharCreatorService, LoginService, AttributeService, AbilitiesService,
-    BackgroundsService, ClanService, DisciplineService, VirtuesService, WillpowerService){
+ ['CharCreatorService', 'LoginService', 'AttributeService', 'AbilitiesService', 'BackgroundsService',
+  'ClanService', 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', '$rootScope',
+  function(CharCreatorService, LoginService, AttributeService, AbilitiesService, BackgroundsService,
+           ClanService, DisciplineService, VirtuesService, PathService, WillpowerService, $rootScope){
 
     this.saveName;
 
+    this.uid = LoginService.getUID();
+
     this.pushCharData = pushCharData;
-    function pushCharData(path){
+    function pushCharData(savePath){
       var attributes = {};
       var abilities = {};
+      var disciplines = {};
+      var backgrounds = {};
+      var virtues = {};
+      var path = {};
+      var willpower = {};
       angular.copy(AbilitiesService.abilitiesList, abilities);
       angular.copy(AttributeService.attributesList, attributes);
+      angular.copy(DisciplineService.selectedClanDisciplines, disciplines);
+      angular.copy(BackgroundsService.selectedList, backgrounds);
+      angular.copy(VirtuesService.virtueList, virtues);
+      angular.copy(PathService.selectedPath, path);
+      angular.copy(WillpowerService.willpower, willpower);
 
       for(var attribute in attributes){
-        this.removeHashKeys(attributes[attribute]);
         this.removeFunctions(attributes[attribute]);
       }
       for(var ability in abilities){
-        this.removeHashKeys(abilities[ability]);
         this.removeFunctions(abilities[ability]);
       }
+      for(var discipline in disciplines){
+        this.removeFunctions(disciplines[discipline]);
+      }
+      for(var background in backgrounds){
+        this.removeFunctions(backgrounds[background]);
+      }
+      for(var virtue in virtues){
+        this.removeFunctions(virtues[virtue]);
+      }
+      this.removeFunctions(path);
+      this.removeFunctions(willpower);
 
       var charData = {
         player: CharCreatorService.charPlayer,
@@ -34,12 +55,28 @@ app.service("SaveService",
         generation: CharCreatorService.charGeneration,
         sire: CharCreatorService.charSire,
         attributes: attributes,
+        attributePriorities: AttributeService.selectedPriorities,
+        attributePrimary: AttributeService.primaryPts,
+        attributeSecondary: AttributeService.secondaryPts,
+        attributeTertiary: AttributeService.tertiaryPts,
+        abilityPriorities: AbilitiesService.selectedPriorities,
+        abilityPrimary: AbilitiesService.primaryPts,
+        abilitySecondary: AbilitiesService.secondaryPts,
+        abilityTertiary: AbilitiesService.tertiaryPts,
         abilities: abilities,
-        clan: ClanService.selectedClan.name
+        clan: ClanService.selectedClan.name,
+        disciplines: disciplines,
+        disciplinePts: DisciplineService.disciplinePts,
+        backgrounds: backgrounds,
+        backgroundPts: BackgroundsService.backgroundPts,
+        virtues: virtues,
+        virtuePts: VirtuesService.virtuePts,
+        path: path,
+        willpower: willpower
       };
 
       var updates = {};
-      updates[path] = charData;
+      updates[savePath] = charData;
       return firebase.database().ref().update(updates);
     }
 
@@ -51,41 +88,57 @@ app.service("SaveService",
     }
 
     this.removeFunctions = removeFunctions;
-    function removeFunctions(ability){
-      delete ability.reset;
-      delete ability.select;
-      delete ability.zero;
+    function removeFunctions(content){
+      delete content.reset;
+      delete content.select;
+      delete content.zero;
+    }
+
+    var self = this;
+    this.saveCharacterName = saveCharacterName;
+    function saveCharacterName(){
+      var uid = LoginService.getUID();
+    }
+
+    this.pushCharName = pushCharName;
+    function pushCharName(savePath){
+      var updates = {};
+      var data = {};
+      data = {saveName: this.saveName};
+      updates[savePath] = data;
+      return firebase.database().ref().update(updates);
     }
 
     var self = this;
     this.saveCharacter = saveCharacter;
     function saveCharacter(){
-      var uid = LoginService.getUID();
       this.saveName = prompt("Enter save name: ", this.saveName);
       if(this.saveName!=null){
         if(this.saveName == ""){
           alert("Please enter a valid save name.");
           return null;
         }
-        var path = '/characters/' + uid + '/' + this.saveName;
-        var existingChar = firebase.database().ref(path);
-        existingChar.once('value', function(snapshot){
+        var pathCharName = '/characterNames/' + this.uid + '/' + this.saveName;
+        var pathData = '/characters/' + this.uid + '/' + this.saveName;
+        var existingCharName = firebase.database().ref(pathCharName);
+        existingCharName.once('value', function(snapshot){
           if(snapshot.val()!=null){
             if(confirm("Character exists. Overwrite?")){
-              self.pushCharData(path);
+              self.pushCharName(pathCharName);
+              self.pushCharData(pathData);
             }
             else{
               return null;
             }
           }
           else{
-            self.pushCharData(path);
+            self.pushCharName(pathCharName);
+            self.pushCharData(pathData);
           }
         })
       }
       else{
         return null;
       }
-    }
-
+    };
 }]);
