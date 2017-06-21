@@ -22,29 +22,40 @@ app.service("BackgroundsService", ['CharCreatorService',
     //priorityPts isn't equal to 0.
     //Case example: increase 3 pts when pts = 2.
     if(CharCreatorService.freebieMode){
+      if(background.points[index].type == "original")
+        return null;
+
       if((CharCreatorService.getFreebiePts() + pointDiff < 0))
         return null;
     }
     else if((this.backgroundPts + pointDiff < 0))
           return null;
 
+    if(index == background.pointCount - 1 && background.pointCount > 0){
+      index = 0;
+      pointDiff = 1;
+    }
+
     if(index == 0 && background.pointCount == 1){
       background.pointCount = 0;
       pointDiff = 1;
       index = -1;
+      background.points[0].type = "";
     }
     else{
       //Change the point count in the background.
       background.pointCount = (index+1);
     }
 
-    if(CharCreatorService.freebieMode)
+    if(CharCreatorService.freebieMode){
       CharCreatorService.changeFreebiePts(pointDiff);
-    else
+      background.select(index, "freebie");
+    }
+    else{
       this.backgroundPts += pointDiff;
+      background.select(index, "original");
+    }
 
-    //Fill in the dots!
-    background.select(index);
   };
 
   class Background {
@@ -58,18 +69,20 @@ app.service("BackgroundsService", ['CharCreatorService',
                      {id: 4, img: "./empty.png", type:""}];
 
       this.reset = function(){
-        this.points.forEach(function(background){
-          background.img = './empty.png';
+        this.points.forEach(function(backgroundPt){
+          backgroundPt.img = './empty.png';
+          backgroundPt.type = "";
         });
         this.pointCount = 0;
       };
 
-      this.select = function(index){
+      this.select = function(index, type){
         if(index == -1){
           this.reset();
           return;
         }
-       if(this.points[index].img=="./full.png")
+       if(this.points[index].img=="./full.png" ||
+          this.points[index].img=="./free.png")
        {
          this.points.forEach(function(point){
            if(point.id <= index){
@@ -77,6 +90,7 @@ app.service("BackgroundsService", ['CharCreatorService',
            }
            else{
              point.img = "./empty.png";
+             point.type = "";
            }
          });
        }
@@ -87,27 +101,24 @@ app.service("BackgroundsService", ['CharCreatorService',
              return;
            }
            else{
-             point.img = "./full.png";
+             if(CharCreatorService.freebieMode && point.img != "./full.png"){
+               point.img = "./free.png";
+               point.type = "freebie";
+             }
+             else{
+               point.img = "./full.png";
+               point.type = "original";
+             }
            }
          });
        }
-      };
-    }
-  };
+     };
+   }
+ };
 
   this.selectedList = {0: new Background(""), 1: new Background(""),
                        2: new Background(""), 3: new Background(""),
                        4: new Background(""), 5: new Background("")};
-
-  // this.getBackgrounds = getBackgrounds;
-  // function getBackgrounds(){
-  //   var bgList = {};
-  //   for(var i = 0; i < this.selectedList.length; i++){
-  //     if(!this.selectedList[i].name == "")
-  //       bgList[this.selectedList[i].name] = this.selectedList[i];
-  //   }
-  //   return bgList;
-  // }
 
  function chooseBackground(background, index){
    var selectedBackground = this.selectedList[index];
@@ -125,13 +136,19 @@ app.service("BackgroundsService", ['CharCreatorService',
 
  this.addBackground = addBackground;
  function addBackground(name = "", pointCount = 0, points = []){
+   var index = Object.keys(this.selectedList).length;
    if(name == "")
-     this.selectedList[name] = new Background("");
+     this.selectedList[index] = new Background("");
    else{
-     this.selectedList[name] = new Background(name);
-     this.selectedList[name].pointCount = pointCount;
-     this.selectedList[name].points = points;
+     this.selectedList[index] = new Background(name);
+     this.selectedList[index].pointCount = pointCount;
+     this.selectedList[index].points = points;
    }
+ }
+
+ this.removeBackground = removeBackground;
+ function removeBackground(index){
+   delete this.selectedList[index];
  }
 
 }]);
