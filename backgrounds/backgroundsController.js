@@ -1,11 +1,27 @@
 var app = angular.module("site");
 
-app.controller("BackgroundsController", ['BackgroundsService', '$scope',
- function(BackgroundsService, $scope){
+app.controller("BackgroundsController",
+['BackgroundsService', 'CharCreatorService', '$scope',
+ function(BackgroundsService, CharCreatorService, $scope){
 
    this.selectBackgroundPt = selectBackgroundPt;
    this.chooseBackground = chooseBackground;
    this.backgroundsPage = "./backgrounds/backgrounds.html";
+
+   this.getFreebieMode = getFreebieMode;
+   function getFreebieMode(){
+     return CharCreatorService.freebieMode;
+   }
+
+   this.removeBackground = removeBackground;
+   function removeBackground(index){
+     BackgroundsService.removeBackground(index);
+   }
+
+   this.addBackground = addBackground;
+   function addBackground(){
+     BackgroundsService.addBackground();
+   }
 
    this.getBackgroundPts = getBackgroundPts;
    function getBackgroundPts(){

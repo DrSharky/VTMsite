@@ -6,10 +6,15 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
   this.setClan = setClan;
   this.setClanDisciplines = setClanDisciplines;
   this.selectDisciplinePt = selectDisciplinePt;
+  this.changeDiscipline = changeDiscipline;
   this.selectedClan = ClanService.selectedClan;
   this.disciplinePts = 3;
 
   this.getFreebieMode = getFreebieMode;
+
+  function changeDiscipline(discipline, index){
+     this.selectedClanDisciplines[index] = new Discipline(discipline);
+  }
 
   function getFreebieMode(){
     return CharCreatorService.freebieMode;
@@ -153,14 +158,14 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
     }
     var clanDisciplines = {};
     if(clan == "Children of Osiris"){
-      clanDisciplines = [new Discipline("Bardo"), new Discipline(""), new Discipline("")];
+      clanDisciplines = {0: new Discipline("Bardo"), 1: new Discipline(""), 2: new Discipline("")};
     }
     else if(clan == "Caitiff"){
-      clanDisciplines = [new Discipline(""), new Discipline(""), new Discipline("")];
+      clanDisciplines = {0: new Discipline(""), 1: new Discipline(""), 2: new Discipline("")};
     }
     else{
       for(var i = 0; i < service.selectedClan.disciplines.length; i++){
-        clanDisciplines[service.selectedClan.disciplines[i]] = new Discipline(service.selectedClan.disciplines[i]);
+        clanDisciplines[i] = new Discipline(service.selectedClan.disciplines[i]);
       }
     }
     return clanDisciplines;
@@ -168,12 +173,13 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
 
   this.addDiscipline = addDiscipline;
   function addDiscipline(name = "", pointCount = 0, points = []){
+    var index = Object.keys(this.selectedClanDisciplines).length;
     if(name == "")
-      this.selectedClanDisciplines[name] = new Discipline("");
+      this.selectedClanDisciplines[index] = new Discipline("");
     else{
-      this.selectedClanDisciplines[name] = new Discipline(name);
-      this.selectedClanDisciplines[name].pointCount = pointCount;
-      this.selectedClanDisciplines[name].points = points;
+      this.selectedClanDisciplines[index] = new Discipline(name);
+      this.selectedClanDisciplines[index].pointCount = pointCount;
+      this.selectedClanDisciplines[index].points = points;
     }
   }
 

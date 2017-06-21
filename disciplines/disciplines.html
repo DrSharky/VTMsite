@@ -7,19 +7,19 @@
     <tr>
       <td>
         <div ng-repeat="discipline in discCtrl.selectedClanDisciplines">
+          <span class="fa fa-minus" ng-hide="!discCtrl.getFreebieMode()"
+                 ng-click="discCtrl.removeDiscipline($index)">
+          </span>
           <select ng-disabled="!discCtrl.getFreebieMode()" ng-model="discipline.name"
-                  ng-options="discipline for discipline in discCtrl.disciplineList">
+                  ng-options="discipline for discipline in discCtrl.disciplineList" ng-change="discCtrl.changeDiscipline(discipline.name, $index)">
           </select>
-          <!--TODO: Implement adding & removing disciplines.-->
-           <!-- <span class="fa fa-minus" ng-hide="!discCtrl.getFreebieMode()"
-                 ng-click="discCtrl.removeDiscipline($index)">Remove Discipline</span> -->
           <div ng-repeat="discPt in discipline.points" style="display: inline-block;">
             <img class="discimg" ng-src="{{discPt.img}}" ng-click="discCtrl.selectDisciplinePt(discipline, $index)" />
           </div>
         </div>
-        <!--TODO: Implement adding & removing disciplines.-->
-        <!-- <span class="fa fa-plus" ng-hide="!discCtrl.getFreebieMode()"
-                              ng-click="discCtrl.addDiscipline()"> Add Discipline</span> -->
+        <span class="fa fa-plus" ng-hide="!discCtrl.getFreebieMode()"
+              ng-click="discCtrl.addDiscipline()"> Add Discipline
+        </span>
       </td>
     </tr>
   </table>

@@ -18,7 +18,7 @@ app.controller("LoadController",
     LoadService.loadChars();
     setTimeout(function(){
       $scope.$apply();
-    }, 1000);
+    }, 600);
   }
 
   this.userCharacters = userCharacters();
