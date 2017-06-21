@@ -34,7 +34,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
 
       if(index < discipline.pointCount - 1)
         pointDiff = (discipline.pointCount * 7) - (index + 1 * 7);
-      if((index == discipline.pointCount-1)){
+      if(index == discipline.pointCount-1){
         pointDiff = (discipline.pointCount * 7) - (index * 7);
         index -= 1;
       }
@@ -96,10 +96,10 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
                      {id: 4, img: "./empty.png", type:""}];
 
       this.reset = function(){
-        this.points.forEach(function(discipline){
-          discipline.img = './empty.png';
+        this.points.forEach(function(disciplinePt){
+          disciplinePt.img = './empty.png';
+          disciplinePt.type = "";
         });
-
         this.pointCount = 0;
       };
 
@@ -128,13 +128,14 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
               return;
             }
             else{
-              if(!(point.img == "./full.png")){
+              if(CharCreatorService.freebieMode && point.img != "./full.png"){
+                point.img = "./free.png";
                 point.type = type;
               }
-              if(CharCreatorService.freebieMode)
-                point.img = "./free.png";
-              else
+              else{
                 point.img = "./full.png";
+                point.type = "original";
+              }
             }
           });
         }
