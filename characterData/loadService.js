@@ -1,7 +1,7 @@
 var app = angular.module("site");
 
 app.service("LoadService",
-['CharCreatorService', 'AttributeService', 'AbilitiesService', 'ClanService', 'BackgroundsService',
+['CharCreatorService', 'AttributesService', 'AbilitiesService', 'ClanService', 'BackgroundsService',
  'LoginService', 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', '$rootScope',
   function(CharCreatorService, AttributeService, AbilitiesService, ClanService, BackgroundsService,
            LoginService, DisciplineService, VirtuesService, PathService, WillpowerService, $rootScope){

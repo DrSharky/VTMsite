@@ -1,5 +1,5 @@
 var app = angular.module("site");
-app.service('AttributeService', ['UglyService', 'CharCreatorService',
+app.service('AttributesService', ['UglyService', 'CharCreatorService',
  function(UglyService, CharCreatorService){
 
   this.priorityChange = priorityChange;

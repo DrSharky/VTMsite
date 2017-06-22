@@ -1,7 +1,7 @@
 var app = angular.module("site");
 
 app.controller("AttributesController",
- ['NgTableParams', 'UglyService', 'AttributeService', '$scope',
+ ['NgTableParams', 'UglyService', 'AttributesService', '$scope',
  function(NgTableParams, UglyService, AttributeService, $scope){
 
   this.priorityChange = priorityChange;
@@ -110,5 +110,5 @@ app.controller("AttributesController",
     self.wits = AttributeService.wits;
     $scope.$apply();
   });
-  
+
 }]);

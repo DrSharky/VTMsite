@@ -10,8 +10,8 @@ app.service("WillpowerService", ['CharCreatorService',
     }
 
     function selectWillPt(index){
-      
-      if(!CharCreatorService.freebieMode || index < this.willpower.pointMin)
+
+      if(!CharCreatorService.freebieMode)
         return null;
 
       var pointDiff = this.willpower.pointCount - (index+1);
@@ -19,8 +19,19 @@ app.service("WillpowerService", ['CharCreatorService',
       if((CharCreatorService.getFreebiePts() + pointDiff < 0))
         return null;
 
+      if(this.willpower.points[index] == "original")
+        return;
+
+      if(index == this.willpower.pointCount - 1){
+        pointDiff = 1;
+        index -= 1;
+      }
+
+      if(index = -1)
+        return;
+
       CharCreatorService.changeFreebiePts(pointDiff);
-      this.willpower.select(index);
+      this.willpower.select(index, "freebie");
       this.willpower.pointCount = index+1;
     };
 
@@ -40,8 +51,9 @@ app.service("WillpowerService", ['CharCreatorService',
                        {id:8, img:"./empty.png"},
                        {id:9, img:"./empty.png"}];
 
-       this.select = function(index){
-         if(this.points[index].img=="./full.png")
+       this.select = function(index, type){
+         if(this.points[index].img=="./full.png" ||
+            this.points[index].img=="./free.png")
          {
            this.points.forEach(function(point){
              if(point.id <= index){
@@ -49,6 +61,7 @@ app.service("WillpowerService", ['CharCreatorService',
              }
              else{
                point.img = "./empty.png";
+               point.type = "";
              }
            });
          }
@@ -59,7 +72,14 @@ app.service("WillpowerService", ['CharCreatorService',
                return;
              }
              else{
-               point.img = "./full.png";
+               if(type == "freebie" && point.img != "./full.png"){
+                 point.img = "./free.png";
+                 point.type = "freebie";
+               }
+               else{
+                 point.img = "./full.png";
+                 point.type = "original";
+               }
              }
            });
          }
