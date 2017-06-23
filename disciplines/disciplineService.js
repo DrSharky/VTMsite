@@ -97,6 +97,12 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
 
       this.reset = function(){
         this.points.forEach(function(disciplinePt){
+          if(disciplinePt.type == "freebie"){
+            CharCreatorService.changeFreebiePts(7);
+          }
+          else{
+            self.disciplinePts += 1;
+          }
           disciplinePt.img = './empty.png';
           disciplinePt.type = "";
         });
@@ -105,7 +111,9 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
 
       this.select = function(index, type){
         if(index == -1){
-          this.reset();
+          this.pointCount = 0;
+          this.points[index+1].img = "./empty.png";
+          this.points[index+1].type = "";
           return;
         }
         if(this.points[index].img=="./full.png" ||
@@ -153,7 +161,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
         delete service.selectedClanDisciplines[discipline];
       }
       if(CharCreatorService.freebieMode)
-        CharCreatorService.freebiePts+=ptsToReset;
+        CharCreatorService.changeFreebiePts(ptsToReset);
       else
         service.disciplinePts+=ptsToReset;
     }
@@ -186,6 +194,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
 
   this.removeDiscipline = removeDiscipline;
   function removeDiscipline(index){
+    this.selectedClanDisciplines[index].reset();
     delete this.selectedClanDisciplines[index];
   }
 

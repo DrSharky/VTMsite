@@ -58,6 +58,7 @@ app.service("BackgroundsService", ['CharCreatorService',
 
   };
 
+  var self = this;
   class Background {
     constructor(name){
       this.name = name;
@@ -70,6 +71,12 @@ app.service("BackgroundsService", ['CharCreatorService',
 
       this.reset = function(){
         this.points.forEach(function(backgroundPt){
+          if(backgroundPt.type == "freebie"){
+            CharCreatorService.changeFreebiePts(1);
+          }
+          else{
+            self.backgroundPts += 1;
+          }
           backgroundPt.img = './empty.png';
           backgroundPt.type = "";
         });
@@ -78,7 +85,9 @@ app.service("BackgroundsService", ['CharCreatorService',
 
       this.select = function(index, type){
         if(index == -1){
-          this.reset();
+          this.pointCount = 0;
+          this.points[index+1].img = "./empty.png";
+          this.points[index+1].type = "";
           return;
         }
        if(this.points[index].img=="./full.png" ||
@@ -148,6 +157,7 @@ app.service("BackgroundsService", ['CharCreatorService',
 
  this.removeBackground = removeBackground;
  function removeBackground(index){
+   this.selectedList[index].reset();
    delete this.selectedList[index];
  }
 
