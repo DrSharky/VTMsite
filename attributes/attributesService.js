@@ -33,6 +33,9 @@ app.service('AttributesService', ['UglyService', 'CharCreatorService',
         vm.attributePtsTotal += (this.pointCount - 1);
         this.pointCount = 1;
         this.points.forEach(function(point){
+          if(point.type == "freebie"){
+            CharCreatorService.changeFreebiePts(5);
+          }
           if(point.id == 0){
             point.img = "./full.png";
             point.type = "original";

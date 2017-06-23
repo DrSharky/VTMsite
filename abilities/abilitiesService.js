@@ -29,10 +29,14 @@ app.service("AbilitiesService",
                       {id: 2, img: "./empty.png", type: ""},
                       {id: 3, img: "./empty.png", type: ""},
                       {id: 4, img: "./empty.png", type: ""}];
-                      
+
        this.reset = function(){
          this.points.forEach(function(ability){
+           if(ability.type == "freebie"){
+             CharCreatorService.changeFreebiePts(2);
+           }
            ability.img = './empty.png';
+           ability.type = "";
          });
          this.pointCount = 0;
        };
