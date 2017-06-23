@@ -1,7 +1,7 @@
 var app = angular.module("site");
 
 app.service("LoadService",
-['CharCreatorService', 'AttributeService', 'AbilitiesService', 'ClanService', 'BackgroundsService',
+['CharCreatorService', 'AttributesService', 'AbilitiesService', 'ClanService', 'BackgroundsService',
  'LoginService', 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', '$rootScope',
   function(CharCreatorService, AttributeService, AbilitiesService, ClanService, BackgroundsService,
            LoginService, DisciplineService, VirtuesService, PathService, WillpowerService, $rootScope){
@@ -153,6 +153,8 @@ app.service("LoadService",
     CharCreatorService.charDemeanor = character.demeanor;
     CharCreatorService.charSire = character.sire;
     CharCreatorService.charGeneration = character.generation;
+    CharCreatorService.freebiePts = character.freebiePts;
+    CharCreatorService.freebieMode = character.freebieMode;
     var clanIndex = ClanService.clanList.map(function(clan){
       return clan.name;
     }).indexOf(character.clan);

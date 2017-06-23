@@ -1,5 +1,5 @@
 var app = angular.module("site");
-app.service('AttributeService', ['UglyService', 'CharCreatorService',
+app.service('AttributesService', ['UglyService', 'CharCreatorService',
  function(UglyService, CharCreatorService){
 
   this.priorityChange = priorityChange;
@@ -33,6 +33,9 @@ app.service('AttributeService', ['UglyService', 'CharCreatorService',
         vm.attributePtsTotal += (this.pointCount - 1);
         this.pointCount = 1;
         this.points.forEach(function(point){
+          if(point.type == "freebie"){
+            CharCreatorService.changeFreebiePts(5);
+          }
           if(point.id == 0){
             point.img = "./full.png";
             point.type = "original";

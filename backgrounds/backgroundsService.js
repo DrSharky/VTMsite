@@ -32,7 +32,7 @@ app.service("BackgroundsService", ['CharCreatorService',
           return null;
 
     if(index == background.pointCount - 1 && background.pointCount > 0){
-      index = 0;
+      index -= 1;
       pointDiff = 1;
     }
 

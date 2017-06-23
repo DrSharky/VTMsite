@@ -1,7 +1,7 @@
 var app = angular.module("site");
 
 app.service("SaveService",
- ['CharCreatorService', 'LoginService', 'AttributeService', 'AbilitiesService', 'BackgroundsService',
+ ['CharCreatorService', 'LoginService', 'AttributesService', 'AbilitiesService', 'BackgroundsService',
   'ClanService', 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', '$rootScope',
   function(CharCreatorService, LoginService, AttributeService, AbilitiesService, BackgroundsService,
            ClanService, DisciplineService, VirtuesService, PathService, WillpowerService, $rootScope){
@@ -54,6 +54,8 @@ app.service("SaveService",
         demeanor: CharCreatorService.charDemeanor,
         generation: CharCreatorService.charGeneration,
         sire: CharCreatorService.charSire,
+        freebiePts: CharCreatorService.freebiePts,
+        freebieMode: CharCreatorService.freebieMode,
         attributes: attributes,
         attributePriorities: AttributeService.selectedPriorities,
         attributePrimary: AttributeService.primaryPts,

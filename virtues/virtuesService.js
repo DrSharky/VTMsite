@@ -13,10 +13,14 @@ app.service("VirtuesService",
 
      //Different operations if using Freebie points.
      if(CharCreatorService.freebieMode){
+
+       if(virtue.points[index].type == "original")
+        return null;
+
        var virtueFree = CharCreatorService.getFreebiePts();
 
        if(index < virtue.pointCount - 1)
-         pointDiff = (virtue.pointCount * 2) - (index + 1 * 2);
+         pointDiff = (virtue.pointCount * 2) - ((index + 1) * 2);
        if((index == virtue.pointCount-1)){
          pointDiff = (virtue.pointCount * 2) - (index * 2);
          index -= 1;
@@ -32,38 +36,39 @@ app.service("VirtuesService",
        virtue.select(index);
        return;
      }
-     else
-        pointDiff = virtue.pointCount - (index+1);
-
-     //Do math to make sure they can't spend points they don't have, even when
-     //priorityPts isn't equal to 0.
-     //Case example: increase 3 pts when pts = 2.
-     if((this.virtuePts + pointDiff < 0))
-       return null;
-
-     if(index == 0 && virtue.pointCount == 1){
-       pointDiff = 0;
-     }
      else{
-       //Change the point count in the virtue.
-       virtue.pointCount = (index+1);
-     }
+          pointDiff = virtue.pointCount - (index+1);
 
-     if(virtue.name != "Courage"){
-       PathService.selectedPath.pointCount += (-pointDiff);
-       PathService.selectedPath.select(PathService.selectedPath.pointCount-1);
-       PathService.selectedPath.pointMin = PathService.selectedPath.pointCount;
-     }
-     else{
-       var willpower = WillpowerService.willpower;
-       willpower.pointCount +=(-pointDiff);
-       willpower.select(willpower.pointCount-1);
-       willpower.pointMin = willpower.pointCount;
-     }
+       //Do math to make sure they can't spend points they don't have, even when
+       //priorityPts isn't equal to 0.
+       //Case example: increase 3 pts when pts = 2.
+       if((this.virtuePts + pointDiff < 0))
+         return null;
 
-     this.virtuePts += pointDiff;
-     //Fill in the dots!
-     virtue.select(index);
+       if(index == 0 && virtue.pointCount == 1){
+         pointDiff = 0;
+       }
+       else{
+         //Change the point count in the virtue.
+         virtue.pointCount = (index+1);
+       }
+
+       if(virtue.name != "Courage"){
+         PathService.selectedPath.pointCount += (-pointDiff);
+         PathService.selectedPath.select(PathService.selectedPath.pointCount-1);
+         PathService.selectedPath.pointMin = PathService.selectedPath.pointCount;
+       }
+       else{
+         var willpower = WillpowerService.willpower;
+         willpower.pointCount +=(-pointDiff);
+         willpower.select(willpower.pointCount-1);
+         willpower.pointMin = willpower.pointCount;
+       }
+
+       this.virtuePts += pointDiff;
+       //Fill in the dots!
+       virtue.select(index);
+     }
    };
 
   var vm = this;
@@ -80,11 +85,11 @@ app.service("VirtuesService",
           this.displayName = name;
         }
       this.pointCount = 1;
-      this.points = [{id:0, img:"./full.png"},
-                     {id:1, img:"./empty.png"},
-                     {id:2, img:"./empty.png"},
-                     {id:3, img:"./empty.png"},
-                     {id:4, img:"./empty.png"}];
+      this.points = [{id:0, img:"./full.png", type: "original"},
+                     {id:1, img:"./empty.png", type: ""},
+                     {id:2, img:"./empty.png", type: ""},
+                     {id:3, img:"./empty.png", type: ""},
+                     {id:4, img:"./empty.png", type: ""}];
 
       this.reset = function(){
         vm.virtuePts += (this.pointCount - 1);
@@ -98,8 +103,9 @@ app.service("VirtuesService",
         });
       }
 
-      this.select = function(index){
-        if(this.points[index].img=="./full.png")
+      this.select = function(index, type){
+        if(this.points[index].img=="./full.png" ||
+           this.points[index].img=="./free.png")
         {
           this.points.forEach(function(point){
             if(point.id <= index){
@@ -107,6 +113,7 @@ app.service("VirtuesService",
             }
             else{
               point.img = "./empty.png";
+              point.type = "";
             }
           });
         }
@@ -117,19 +124,21 @@ app.service("VirtuesService",
               return;
             }
             else{
-              point.img = "./full.png";
+              if(CharCreatorService.freebieMode && point.img != "./full.png"){
+                point.img = "./free.png";
+                point.type = type;
+              }
+              else{
+                point.img = "./full.png";
+                point.type = "original";
+              }
             }
           });
         }
-      };
-
-      this.zero = function(){
-        this.points.forEach(function(virtue){
-          virtue.img = './empty.png';
-        });
-      };
+      }
     };
   };
+
 
   this.virtueList = {"Conscience": new Virtue("Conscience"),
                      "Self-control": new Virtue("Self-control"),
