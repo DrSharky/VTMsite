@@ -72,7 +72,7 @@
     angular.element(function(){
       setTimeout(function(){
         angular.bootstrap(document, ['site']);
-      }, 100);
+      }, 400);
     });
   </script>
   <!--/Firebase stuff-->
@@ -114,7 +114,7 @@
                           <input type="password" class="form-control" id="passwordDD"
                                  ng-model="loginCtrl.password" placeholder="Password" required />
                           <div class="help-block text-right">
-                            <a ng-click="loginCtrl.forgotPW">Forgot Password?</a>
+                            <a ng-click="loginCtrl.forgotPW(loginCtrl.email)">Forgot Password?</a>
                           </div>
                         </div>
                         <div class="form-group">
@@ -127,7 +127,7 @@
                         </div>
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" />keep me logged in
+                            <input ng-model="loginCtrl.noCloseLogout" type="checkbox" />keep me logged in
                           </label>
                         </div>
                       </form>
