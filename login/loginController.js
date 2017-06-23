@@ -1,14 +1,17 @@
 var app = angular.module("site");
-app.controller("LoginController",['$firebaseObject', '$firebaseAuth', 'LoginService', '$scope',
- function ($firebaseObject, $firebaseAuth, LoginService, $scope) {
+app.controller("LoginController",
+['$firebaseObject', '$firebaseAuth', 'LoginService', '$scope', '$window',
+ function ($firebaseObject, $firebaseAuth, LoginService, $scope, $window) {
    this.email = "";
    this.password = "";
    this.registered = false;
    this.loggedIn = LoginService.loggedIn();
+   this.noCloseLogout = false;
 
    this.register = register;
    this.login = login;
    this.logout = logout;
+   this.forgotPW = forgotPW;
 
    var self = this;
    function register(){
@@ -33,6 +36,13 @@ app.controller("LoginController",['$firebaseObject', '$firebaseAuth', 'LoginServ
     this.loggedIn = true;
     $("#DDList").removeClass("open");
   }
+
+  function forgotPW(email){
+    LoginService.forgotPW(email);
+  }
+
+  //TODO: Implement keep logged in button.
+  $window.onunload = logout;
 
   function logout(){
     firebase.auth().signOut().catch(function(error){

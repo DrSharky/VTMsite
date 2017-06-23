@@ -23,4 +23,10 @@ app.service("LoginService", ['$firebaseObject', '$firebaseAuth',
        return null;
      }
    }
+
+   this.forgotPW = forgotPW;
+   function forgotPW(email){
+     firebase.auth().sendPasswordResetEmail(email);
+     alert("Password Reset Email Sent!");
+   }
  }]);
