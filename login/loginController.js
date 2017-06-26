@@ -12,6 +12,7 @@ app.controller("LoginController",
    this.login = login;
    this.logout = logout;
    this.forgotPW = forgotPW;
+   this.ifKeepLogin = ifKeepLogin;
 
    var self = this;
    function register(){
@@ -41,13 +42,17 @@ app.controller("LoginController",
     LoginService.forgotPW(email);
   }
 
-  //TODO: Implement keep logged in button.
-  $window.onunload = logout;
-
   function logout(){
     firebase.auth().signOut().catch(function(error){
       alert(error.message);
     });
     this.loggedIn = false;
+  }
+
+  $window.onunload = ifKeepLogin;
+  function ifKeepLogin(){
+    if(!self.noCloseLogout){
+      self.logout();
+    }
   }
 }]);
