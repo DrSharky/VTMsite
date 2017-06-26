@@ -27,7 +27,7 @@ app.service("WillpowerService", ['CharCreatorService',
         index -= 1;
       }
 
-      if(index = -1)
+      if(index == -1)
         return;
 
       CharCreatorService.changeFreebiePts(pointDiff);
