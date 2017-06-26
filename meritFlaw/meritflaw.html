@@ -1,0 +1,28 @@
+<div>
+  <h4 style="display: inline;">Merits/Flaws</h4>
+  <table>
+    <tr>
+      <td>
+          <span class="fa fa-minus" ng-hide="!meritFlawCtrl.getFreebieMode()"
+                 ng-click="meritFlawCtrl.removeMeritFlaw($index)">
+          </span>
+          <div>
+            Physical Merits
+          </div>
+          <div>
+            <select ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlaw, $index, 'physicalMerit')" ng-model="meritFlaw.name"
+                    ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.physicalMeritList">
+            </select>
+          </div>
+          <div>
+            Physical Flaws
+          </div>
+            <select ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlaw, $index, 'physicalFlaw')" ng-model="meritFlaw"
+                    ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.physicalFlawList">
+        <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
+              ng-click="meritFlawCtrl.addMeritFlaw()"> Add Merit/Flaw
+        </span>
+      </td>
+    </tr>
+  </table>
+</div>
