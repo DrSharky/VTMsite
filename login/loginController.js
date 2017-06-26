@@ -6,13 +6,13 @@ app.controller("LoginController",
    this.password = "";
    this.registered = false;
    this.loggedIn = LoginService.loggedIn();
-   this.noCloseLogout = false;
+  //  this.noCloseLogout = false;
 
    this.register = register;
    this.login = login;
    this.logout = logout;
    this.forgotPW = forgotPW;
-   this.ifKeepLogin = ifKeepLogin;
+  //  this.ifKeepLogin = ifKeepLogin;
 
    var self = this;
    function register(){
@@ -49,10 +49,10 @@ app.controller("LoginController",
     this.loggedIn = false;
   }
 
-  $window.onunload = ifKeepLogin;
-  function ifKeepLogin(){
-    if(!self.noCloseLogout){
-      self.logout();
-    }
-  }
+  // $window.onunload = ifKeepLogin;
+  // function ifKeepLogin(){
+  //   if(!self.noCloseLogout){
+  //     self.logout();
+  //   }
+  // }
 }]);
