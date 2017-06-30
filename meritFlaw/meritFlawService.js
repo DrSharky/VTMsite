@@ -61,7 +61,9 @@ app.service("MeritFlawService", ['CharCreatorService',
 
  this.physicalFlaws = {};
 
- function chooseMeritFlaw(meritFlaw, index, category){
+ function chooseMeritFlaw(prevMeritFlaw, meritFlaw, index, category){
+   if(prevMeritFlaw)
+    CharCreatorService.changeFreebiePts(-prevMeritFlaw.pointCost);
    switch(category){
      case "physicalFlaw":
       if(this.addedFlawPts + meritFlaw.pointCost <= this.maxFlawPts){

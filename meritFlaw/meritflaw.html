@@ -10,7 +10,7 @@
             Physical Merits
           </div>
           <div>
-            <select ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlaw, $index, 'physicalMerit')" ng-model="meritFlaw.name"
+            <select ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.physicalFlaws[$index], meritFlaw, $index, 'physicalMerit')" ng-model="meritFlaw.name"
                     ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.physicalMeritList">
             </select>
           </div>

@@ -57,7 +57,7 @@ app.controller("MeritFlawController",
      MeritFlawService.selectMeritFlawPt(meritFlaw, index);
    }
 
-   function chooseMeritFlaw(meritFlaw, index, category){
+   function chooseMeritFlaw(prevMeritFlaw, meritFlaw, index, category){
      MeritFlawService.chooseMeritFlaw(meritFlaw, index, category);
    }
 
