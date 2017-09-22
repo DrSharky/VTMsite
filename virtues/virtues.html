@@ -6,7 +6,9 @@
   <table>
       <tr>
         <td>
+          <div termindex term="{{virtCtrl.virtueList['Conscience'].displayName}}">
           {{virtCtrl.virtueList['Conscience'].displayName}}&nbsp;
+          </div>
         </td>
         <td>
           <div ng-repeat="virtPt in virtCtrl.virtueList['Conscience'].points" style="display: inline-block;">
@@ -16,7 +18,9 @@
       </tr>
       <tr>
         <td>
+          <div termindex term="{{virtCtrl.virtueList['Self-control'].displayName}}">
           {{virtCtrl.virtueList['Self-control'].displayName}}&nbsp;
+          </div>
         </td>
         <td>
           <div ng-repeat="virtPt in virtCtrl.virtueList['Self-control'].points" style="display: inline-block;">
@@ -26,7 +30,9 @@
       </tr>
       <tr>
         <td>
+          <div termindex term="{{virtCtrl.virtueList['Courage'].displayName}}">
           {{virtCtrl.virtueList['Courage'].displayName}}&nbsp;
+          </div>
         </td>
         <td>
           <div ng-repeat="virtPt in virtCtrl.virtueList['Courage'].points" style="display: inline-block;">
@@ -50,5 +56,11 @@
     font-weight: bold;
     display: inline;
     margin-left: 35px;
+  }
+
+  .virtLabel{
+    font-size: 16px;
+    font-weight: 500;
+    width: 87px;
   }
 </style>

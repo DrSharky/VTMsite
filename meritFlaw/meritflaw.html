@@ -23,6 +23,13 @@
       </tr>
       <tr>
         <td>
+          <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
+                ng-click="meritFlawCtrl.addMeritFlaw('physicalMerit')"> Add Physical Merit
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
         <div>
           Physical Flaws
         </div>
@@ -39,6 +46,13 @@
                     ng-model="physicalFlaw" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.physicalFlawList">
             </select>
           </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
+                ng-click="meritFlawCtrl.addMeritFlaw('physicalFlaw')"> Add Physical Flaw
+          </span>
         </td>
       </tr>
       <tr>
@@ -63,6 +77,13 @@
       </tr>
       <tr>
         <td>
+          <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
+                ng-click="meritFlawCtrl.addMeritFlaw('mentalMerit')"> Add Mental Merit
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <div>
             Mental Flaws
           </div>
@@ -79,6 +100,13 @@
                     ng-model="mentalFlaw" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.mentalFlawList">
             </select>
           </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
+                ng-click="meritFlawCtrl.addMeritFlaw('mentalFlaw')"> Add Mental Flaw
+          </span>
         </td>
       </tr>
       <tr>
@@ -103,6 +131,13 @@
       </tr>
       <tr>
         <td>
+          <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
+                ng-click="meritFlawCtrl.addMeritFlaw('socialMerit')"> Add Social Merit
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <div>
             Social Flaws
           </div>
@@ -119,6 +154,13 @@
                     ng-model="socialFlaw" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.socialFlawList">
             </select>
           </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
+                ng-click="meritFlawCtrl.addMeritFlaw('socialFlaw')"> Add Social Flaw
+          </span>
         </td>
       </tr>
       <tr>
@@ -143,6 +185,13 @@
       </tr>
       <tr>
         <td>
+          <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
+                ng-click="meritFlawCtrl.addMeritFlaw('supernaturalMerit')"> Add Supernatural Merit
+          </span>
+        </td>
+      </tr>
+      <tr>
+        <td>
           <div>
             Supernatural Flaws
           </div>
@@ -159,6 +208,13 @@
                     ng-model="supernaturalFlaw" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.supernaturalFlawList">
             </select>
           </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
+                ng-click="meritFlawCtrl.addMeritFlaw('supernaturalFlaw')"> Add Supernatural Flaw
+          </span>
         </td>
       </tr>
     </table>

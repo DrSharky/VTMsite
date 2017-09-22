@@ -19,8 +19,8 @@ app.controller("MeritFlawController",
    }
 
    this.addMeritFlaw = addMeritFlaw;
-   function addMeritFlaw(){
-     MeritFlawService.addMeritFlaw();
+   function addMeritFlaw(category){
+     MeritFlawService.addMeritFlaw(category);
    }
 
    this.getMeritFlawPts = getMeritFlawPts;
@@ -115,7 +115,7 @@ app.controller("MeritFlawController",
      return MeritFlawService.supernaturalFlawList;
    }
    //---------------------------------------------
-   
+
    function selectMeritFlawPt(meritFlaw, index){
      MeritFlawService.selectMeritFlawPt(meritFlaw, index);
    }
