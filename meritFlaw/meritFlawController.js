@@ -28,9 +28,15 @@ app.controller("MeritFlawController",
      return MeritFlawService.MeritFlawPts;
    }
 
-   this.selectedList = selectedList();
-   function selectedList(){
-     return MeritFlawService.selectedList;
+   //Physical Stuff-----------------------------------
+   this.selectedPhysicalMerits = selectedPhysicalMerits();
+   function selectedPhysicalMerits(){
+     return MeritFlawService.selectedPhysicalMerits;
+   }
+
+   this.selectedPhysicalFlaws = selectedPhysicalFlaws();
+   function selectedPhysicalFlaws(){
+     return MeritFlawService.selectedPhysicalFlaws;
    }
 
    this.physicalMeritList = physicalMeritList();
@@ -42,23 +48,80 @@ app.controller("MeritFlawController",
    function physicalFlawList(){
      return MeritFlawService.physicalFlawList;
    }
+   //------------------------------------------------
+
+   //Mental Stuff------------------------------------
+   this.selectedMentalMerits = selectedMentalMerits();
+   function selectedMentalMerits(){
+     return MeritFlawService.selectedMentalMerits;
+   }
+
+   this.selectedMentalFlaws = selectedMentalFlaws();
+   function selectedMentalFlaws(){
+     return MeritFlawService.selectedMentalFlaws;
+   }
+
+   this.mentalMeritList = mentalMeritList();
+   function mentalMeritList(){
+     return MeritFlawService.mentalMeritList;
+   }
+
+   this.mentalFlawList = mentalFlawList();
+   function mentalFlawList(){
+     return MeritFlawService.mentalFlawList;
+   }
+   //----------------------------------------------
+
+   //Social Stuff----------------------------------
+   this.selectedSocialMerits = selectedSocialMerits();
+   function selectedSocialMerits(){
+     return MeritFlawService.selectedSocialMerits;
+   }
+
+   this.selectedSocialFlaws = selectedSocialFlaws();
+   function selectedSocialFlaws(){
+     return MeritFlawService.selectedSocialFlaws;
+   }
 
    this.socialMeritList = socialMeritList();
    function socialMeritList(){
      return MeritFlawService.socialMeritList;
    }
 
-   this.physicalFlaws = physicalFlaws();
-   function physicalFlaws(){
-     return MeritFlawService.physicalFlaws;
+   this.socialFlawList = socialFlawList();
+   function socialFlawList(){
+     return MeritFlawService.socialFlawList;
+   }
+   //---------------------------------------------
+
+   //Supernatural Stuff---------------------------
+   this.selectedSupernaturalMerits = selectedSupernaturalMerits();
+   function selectedSupernaturalMerits(){
+     return MeritFlawService.selectedSupernaturalMerits;
    }
 
+   this.selectedSupernaturalFlaws = selectedSupernaturalFlaws();
+   function selectedSupernaturalFlaws(){
+     return MeritFlawService.selectedSupernaturalFlaws;
+   }
+
+   this.supernaturalMeritList = supernaturalMeritList();
+   function supernaturalMeritList(){
+     return MeritFlawService.supernaturalMeritList;
+   }
+
+   this.supernaturalFlawList = supernaturalFlawList();
+   function supernaturalFlawList(){
+     return MeritFlawService.supernaturalFlawList;
+   }
+   //---------------------------------------------
+   
    function selectMeritFlawPt(meritFlaw, index){
      MeritFlawService.selectMeritFlawPt(meritFlaw, index);
    }
 
    function chooseMeritFlaw(prevMeritFlaw, meritFlaw, index, category){
-     MeritFlawService.chooseMeritFlaw(meritFlaw, index, category);
+     MeritFlawService.chooseMeritFlaw(prevMeritFlaw, meritFlaw, index, category);
    }
 
    var self = this;
