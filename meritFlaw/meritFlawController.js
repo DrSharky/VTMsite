@@ -126,7 +126,14 @@ app.controller("MeritFlawController",
 
    var self = this;
    $scope.$on('loadCharacter', function(){
-     self.selectedList = MeritFlawService.selectedList;
+     self.selectedPhysicalMerits = MeritFlawService.selectedPhysicalMerits;
+     self.selectedPhysicalFlaws = MeritFlawService.selectedPhysicalFlaws;
+     self.selectedMentalMerits = MeritFlawService.selectedMentalMerits;
+     self.selectedMentalFlaws = MeritFlawService.selectedMentalFlaws;
+     self.selectedSocialMerits = MeritFlawService.selectedSocialMerits;
+     self.selectedSocialFlaws = MeritFlawService.selectedSocialFlaws;
+     self.selectedSupernaturalMerits = MeritFlawService.selectedSupernaturalMerits;
+     self.selectedSupernaturalFlaws = MeritFlawService.selectedSupernaturalFlaws;
      $scope.$apply();
    })
 

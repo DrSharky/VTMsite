@@ -32,9 +32,6 @@ app.service("AbilitiesService",
 
        this.reset = function(){
          this.points.forEach(function(ability){
-           if(ability.type == "freebie"){
-             CharCreatorService.changeFreebiePts(2);
-           }
            ability.img = './empty.png';
            ability.type = "";
          });
@@ -207,7 +204,7 @@ app.service("AbilitiesService",
           pointDiff = (ability.pointCount * 2) - (index + 1 * 2);
         if((index == ability.pointCount-1)){
           pointDiff = (ability.pointCount * 2) - (index * 2);
-          index -= 1;
+           index -= 1;
         }
         else if(index > ability.pointCount-1)
           pointDiff = ((ability.pointCount-1) * 2) + (-2 * index);

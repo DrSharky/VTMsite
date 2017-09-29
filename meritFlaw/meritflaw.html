@@ -14,9 +14,10 @@
           <span class="fa fa-minus" ng-hide="!meritFlawCtrl.getFreebieMode()"
                 ng-click="meritFlawCtrl.removeMeritFlaw($index)">
           </span>
-          <select ng-init="physicalMerit=meritFlawCtrl.physicalMeritList[0]"
+          <!--Do something with this...-->
+          <select ng-init="physicalMerit=meritFlawCtrl.physicalMeritList['']"
                   ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedPhysicalMerits[$index], physicalMerit, $index, 'physicalMerit')"
-                  ng-model="physicalMerit" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.physicalMeritList">
+                  ng-model="physicalMerit.name" ng-options="meritFlaw for meritFlaw in meritFlawCtrl.physicalMeritList">
           </select>
           </div>
         </td>
@@ -24,7 +25,7 @@
       <tr>
         <td>
           <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
-                ng-click="meritFlawCtrl.addMeritFlaw('physicalMerit')"> Add Physical Merit
+                ng-click="meritFlawCtrl.addMeritFlaw('physicalMerit', '', 0)"> Add Physical Merit
           </span>
         </td>
       </tr>
@@ -51,7 +52,7 @@
       <tr>
         <td>
           <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
-                ng-click="meritFlawCtrl.addMeritFlaw('physicalFlaw')"> Add Physical Flaw
+                ng-click="meritFlawCtrl.addMeritFlaw('physicalFlaw', '', 0)"> Add Physical Flaw
           </span>
         </td>
       </tr>
@@ -78,7 +79,7 @@
       <tr>
         <td>
           <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
-                ng-click="meritFlawCtrl.addMeritFlaw('mentalMerit')"> Add Mental Merit
+                ng-click="meritFlawCtrl.addMeritFlaw('mentalMerit', '', 0)"> Add Mental Merit
           </span>
         </td>
       </tr>
@@ -105,7 +106,7 @@
       <tr>
         <td>
           <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
-                ng-click="meritFlawCtrl.addMeritFlaw('mentalFlaw')"> Add Mental Flaw
+                ng-click="meritFlawCtrl.addMeritFlaw('mentalFlaw', '', 0)"> Add Mental Flaw
           </span>
         </td>
       </tr>
@@ -123,7 +124,7 @@
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
             <select ng-init="socialMerit=meritFlawCtrl.socialMeritList[0]"
-                    ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedsocialMerits[$index], socialMerit, $index, 'socialMerit')"
+                    ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedSocialMerits[$index], socialMerit, $index, 'socialMerit')"
                     ng-model="socialMerit" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.socialMeritList">
             </select>
           </div>
@@ -132,7 +133,7 @@
       <tr>
         <td>
           <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
-                ng-click="meritFlawCtrl.addMeritFlaw('socialMerit')"> Add Social Merit
+                ng-click="meritFlawCtrl.addMeritFlaw('socialMerit', '', 0)"> Add Social Merit
           </span>
         </td>
       </tr>
@@ -150,7 +151,7 @@
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
             <select ng-init="socialFlaw=meritFlawCtrl.socialFlawList[0]"
-                    ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedsocialFlaws[$index], socialFlaw, $index, 'socialFlaw')"
+                    ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedSocialFlaws[$index], socialFlaw, $index, 'socialFlaw')"
                     ng-model="socialFlaw" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.socialFlawList">
             </select>
           </div>
@@ -159,7 +160,7 @@
       <tr>
         <td>
           <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
-                ng-click="meritFlawCtrl.addMeritFlaw('socialFlaw')"> Add Social Flaw
+                ng-click="meritFlawCtrl.addMeritFlaw('socialFlaw', '', 0)"> Add Social Flaw
           </span>
         </td>
       </tr>
@@ -177,7 +178,7 @@
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
             <select ng-init="supernaturalMerit=meritFlawCtrl.supernaturalMeritList[0]"
-                    ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedsupernaturalMerits[$index], supernaturalMerit, $index, 'supernaturalMerit')"
+                    ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedSupernaturalMerits[$index], supernaturalMerit, $index, 'supernaturalMerit')"
                     ng-model="supernaturalMerit" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.supernaturalMeritList">
             </select>
           </div>
@@ -186,7 +187,7 @@
       <tr>
         <td>
           <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
-                ng-click="meritFlawCtrl.addMeritFlaw('supernaturalMerit')"> Add Supernatural Merit
+                ng-click="meritFlawCtrl.addMeritFlaw('supernaturalMerit', '', 0)"> Add Supernatural Merit
           </span>
         </td>
       </tr>
@@ -204,7 +205,7 @@
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
             <select ng-init="supernaturalFlaw=meritFlawCtrl.supernaturalFlawList[0]"
-                    ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedsupernaturalFlaws[$index], supernaturalFlaw, $index, 'supernaturalFlaw')"
+                    ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedSupernaturalFlaws[$index], supernaturalFlaw, $index, 'supernaturalFlaw')"
                     ng-model="supernaturalFlaw" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.supernaturalFlawList">
             </select>
           </div>
@@ -213,7 +214,7 @@
       <tr>
         <td>
           <span class="fa fa-plus" ng-hide="!meritFlawCtrl.getFreebieMode()"
-                ng-click="meritFlawCtrl.addMeritFlaw('supernaturalFlaw')"> Add Supernatural Flaw
+                ng-click="meritFlawCtrl.addMeritFlaw('supernaturalFlaw', '', 0)"> Add Supernatural Flaw
           </span>
         </td>
       </tr>

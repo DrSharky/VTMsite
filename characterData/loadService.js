@@ -1,10 +1,10 @@
 var app = angular.module("site");
 
 app.service("LoadService",
-['CharCreatorService', 'AttributesService', 'AbilitiesService', 'ClanService', 'BackgroundsService',
- 'LoginService', 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', '$rootScope',
-  function(CharCreatorService, AttributeService, AbilitiesService, ClanService, BackgroundsService,
-           LoginService, DisciplineService, VirtuesService, PathService, WillpowerService, $rootScope){
+['CharCreatorService', 'AttributesService', 'AbilitiesService', 'ClanService', 'BackgroundsService', 'LoginService',
+ 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', 'MeritFlawService', '$rootScope',
+  function(CharCreatorService, AttributeService, AbilitiesService, ClanService, BackgroundsService, LoginService,
+           DisciplineService, VirtuesService, PathService, WillpowerService, MeritFlawService, $rootScope){
 
   this.userCharacters = {};
 
@@ -63,6 +63,11 @@ app.service("LoadService",
       VirtuesService.virtueList[virtue.name].pointCount = virtue.pointCount;
    }
 
+   this.loadMeritFlaw = loadMeritFlaw;
+   function loadMeritFlaw(meritFlaw, category, index){
+     MeritFlawService.addMeritFlaw(category, meritFlaw.name, meritFlaw.pointCost, index);
+   }
+
    this.loadCharacter = loadCharacter;
    function loadCharacter(character){
      this.mapCharInfo(character);
@@ -73,7 +78,36 @@ app.service("LoadService",
      this.mapVirtues(character);
      this.mapPath(character);
      this.mapWillpower(character);
+     this.mapMeritsFlaws(character);
      $rootScope.$broadcast('loadCharacter', CharCreatorService);
+   }
+
+   this.mapMeritsFlaws = mapMeritsFlaws;
+   function mapMeritsFlaws(character){
+     for(var physicalMerit in character.physicalMerits){
+       this.loadMeritFlaw(character.physicalMerits[physicalMerit], 'physicalMerit', physicalMerit);
+     }
+     for(var physicalFlaw in character.physicalFlaws){
+       this.loadMeritFlaw(character.physicalFlaws[physicalFlaw], 'physicalFlaw', physicalFlaw);
+     }
+     for(var mentalMerit in character.mentalMerits){
+       this.loadMeritFlaw(character.mentalMerits[mentalMerit], 'mentalMerit', mentalMerit);
+     }
+     for(var mentalFlaw in character.mentalFlaws){
+       this.loadMeritFlaw(character.mentalFlaws[mentalFlaw], 'mentalFlaw', mentalFlaw);
+     }
+     for(var socialMerit in character.socialMerits){
+       this.loadMeritFlaw(character.socialMerits[socialMerit], 'socialMerit', socialMerit);
+     }
+     for(var socialFlaw in character.socialFlaws){
+       this.loadMeritFlaw(character.socialFlaws[socialFlaw], 'socialFlaw', socialFlaw);
+     }
+     for(var supernaturalMerit in character.supernaturalMerits){
+       this.loadMeritFlaw(character.supernaturalMerits[supernaturalMerit], 'supernaturalMerit', supernaturalMerit);
+     }
+     for(var supernaturalFlaw in character.supernaturalFlaws){
+       this.loadMeritFlaw(character.supernaturalFlaws[supernaturalFlaw], 'supernaturalFlaw', supernaturalFlaw);
+     }
    }
 
    this.mapAttributes = mapAttributes;

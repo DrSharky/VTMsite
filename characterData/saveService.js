@@ -1,10 +1,10 @@
 var app = angular.module("site");
 
 app.service("SaveService",
- ['CharCreatorService', 'LoginService', 'AttributesService', 'AbilitiesService', 'BackgroundsService',
-  'ClanService', 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', '$rootScope',
-  function(CharCreatorService, LoginService, AttributeService, AbilitiesService, BackgroundsService,
-           ClanService, DisciplineService, VirtuesService, PathService, WillpowerService, $rootScope){
+ ['CharCreatorService', 'LoginService', 'AttributesService', 'AbilitiesService', 'BackgroundsService', 'ClanService',
+  'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', 'MeritFlawService', '$rootScope',
+  function(CharCreatorService, LoginService, AttributeService, AbilitiesService, BackgroundsService, ClanService,
+           DisciplineService, VirtuesService, PathService, WillpowerService, MeritFlawService, $rootScope){
 
     this.saveName;
 
@@ -19,6 +19,14 @@ app.service("SaveService",
       var virtues = {};
       var path = {};
       var willpower = {};
+      var physicalMerits = {};
+      var physicalFlaws = {};
+      var mentalMerits = {};
+      var mentalFlaws = {};
+      var socialMerits = {};
+      var socialFlaws = {};
+      var supernaturalMerits = {};
+      var supernaturalFlaws = {};
       angular.copy(AbilitiesService.abilitiesList, abilities);
       angular.copy(AttributeService.attributesList, attributes);
       angular.copy(DisciplineService.selectedClanDisciplines, disciplines);
@@ -26,6 +34,14 @@ app.service("SaveService",
       angular.copy(VirtuesService.virtueList, virtues);
       angular.copy(PathService.selectedPath, path);
       angular.copy(WillpowerService.willpower, willpower);
+      angular.copy(MeritFlawService.selectedPhysicalMerits, physicalMerits);
+      angular.copy(MeritFlawService.selectedPhysicalFlaws, physicalFlaws);
+      angular.copy(MeritFlawService.selectedMentalMerits, mentalMerits);
+      angular.copy(MeritFlawService.selectedMentalFlaws, mentalFlaws);
+      angular.copy(MeritFlawService.selectedSocialMerits, socialMerits);
+      angular.copy(MeritFlawService.selectedSocialFlaws, socialFlaws);
+      angular.copy(MeritFlawService.selectedSupernaturalMerits, supernaturalMerits);
+      angular.copy(MeritFlawService.selectedSupernaturalFlaws, supernaturalFlaws);
 
       for(var attribute in attributes){
         this.removeFunctions(attributes[attribute]);
@@ -74,7 +90,15 @@ app.service("SaveService",
         virtues: virtues,
         virtuePts: VirtuesService.virtuePts,
         path: path,
-        willpower: willpower
+        willpower: willpower,
+        physicalMerits: physicalMerits,
+        physicalFlaws: physicalFlaws,
+        mentalMerits: mentalMerits,
+        mentalFlaws: mentalFlaws,
+        socialMerits: socialMerits,
+        socialFlaws: socialFlaws,
+        supernaturalMerits: supernaturalMerits,
+        supernaturalFlaws: supernaturalFlaws
       };
 
       var updates = {};
