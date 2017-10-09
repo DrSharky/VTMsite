@@ -14,8 +14,7 @@
           <span class="fa fa-minus" ng-hide="!meritFlawCtrl.getFreebieMode()"
                 ng-click="meritFlawCtrl.removeMeritFlaw($index)">
           </span>
-          <!--Do something with this...-->
-          <select ng-init="physicalMerit=meritFlawCtrl.physicalMeritList['']"
+          <select ng-init="physicalMerit.name=meritFlawCtrl.physicalMeritList[0]"
                   ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedPhysicalMerits[$index], physicalMerit, $index, 'physicalMerit')"
                   ng-model="physicalMerit.name" ng-options="meritFlaw for meritFlaw in meritFlawCtrl.physicalMeritList">
           </select>
@@ -42,9 +41,9 @@
             <span class="fa fa-minus" ng-hide="!meritFlawCtrl.getFreebieMode()"
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
-            <select ng-init="physicalFlaw=meritFlawCtrl.physicalFlawList[0]"
+            <select ng-init="physicalFlaw.name=meritFlawCtrl.physicalFlawList[0]"
                     ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedPhysicalFlaws[$index], physicalFlaw, $index, 'physicalFlaw')"
-                    ng-model="physicalFlaw" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.physicalFlawList">
+                    ng-model="physicalFlaw.name" ng-options="meritFlaw for meritFlaw in meritFlawCtrl.physicalFlawList">
             </select>
           </div>
         </td>
@@ -69,9 +68,9 @@
             <span class="fa fa-minus" ng-hide="!meritFlawCtrl.getFreebieMode()"
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
-            <select ng-init="mentalMerit=meritFlawCtrl.mentalMeritList[0]"
+            <select ng-init="mentalMerit.name=meritFlawCtrl.mentalMeritList[0]"
                     ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedMentalMerits[$index], mentalMerit, $index, 'mentalMerit')"
-                    ng-model="mentalMerit" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.mentalMeritList">
+                    ng-model="mentalMerit.name" ng-options="meritFlaw for meritFlaw in meritFlawCtrl.mentalMeritList">
             </select>
           </div>
         </td>
@@ -96,9 +95,9 @@
             <span class="fa fa-minus" ng-hide="!meritFlawCtrl.getFreebieMode()"
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
-            <select ng-init="mentalFlaw=meritFlawCtrl.mentalFlawList[0]"
+            <select ng-init="mentalFlaw.name=meritFlawCtrl.mentalFlawList[0]"
                     ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedMentalFlaws[$index], mentalFlaw, $index, 'mentalFlaw')"
-                    ng-model="mentalFlaw" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.mentalFlawList">
+                    ng-model="mentalFlaw.name" ng-options="meritFlaw for meritFlaw in meritFlawCtrl.mentalFlawList">
             </select>
           </div>
         </td>
@@ -123,9 +122,9 @@
             <span class="fa fa-minus" ng-hide="!meritFlawCtrl.getFreebieMode()"
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
-            <select ng-init="socialMerit=meritFlawCtrl.socialMeritList[0]"
+            <select ng-init="socialMerit.name=meritFlawCtrl.socialMeritList[0]"
                     ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedSocialMerits[$index], socialMerit, $index, 'socialMerit')"
-                    ng-model="socialMerit" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.socialMeritList">
+                    ng-model="socialMerit.name" ng-options="meritFlaw for meritFlaw in meritFlawCtrl.socialMeritList">
             </select>
           </div>
         </td>
@@ -150,9 +149,9 @@
             <span class="fa fa-minus" ng-hide="!meritFlawCtrl.getFreebieMode()"
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
-            <select ng-init="socialFlaw=meritFlawCtrl.socialFlawList[0]"
+            <select ng-init="socialFlaw.name=meritFlawCtrl.socialFlawList[0]"
                     ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedSocialFlaws[$index], socialFlaw, $index, 'socialFlaw')"
-                    ng-model="socialFlaw" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.socialFlawList">
+                    ng-model="socialFlaw.name" ng-options="meritFlaw for meritFlaw in meritFlawCtrl.socialFlawList">
             </select>
           </div>
         </td>
@@ -177,9 +176,9 @@
             <span class="fa fa-minus" ng-hide="!meritFlawCtrl.getFreebieMode()"
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
-            <select ng-init="supernaturalMerit=meritFlawCtrl.supernaturalMeritList[0]"
+            <select ng-init="supernaturalMerit.name=meritFlawCtrl.supernaturalMeritList[0]"
                     ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedSupernaturalMerits[$index], supernaturalMerit, $index, 'supernaturalMerit')"
-                    ng-model="supernaturalMerit" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.supernaturalMeritList">
+                    ng-model="supernaturalMerit.name" ng-options="meritFlaw for meritFlaw in meritFlawCtrl.supernaturalMeritList">
             </select>
           </div>
         </td>
@@ -204,9 +203,9 @@
             <span class="fa fa-minus" ng-hide="!meritFlawCtrl.getFreebieMode()"
                   ng-click="meritFlawCtrl.removeMeritFlaw($index)">
             </span>
-            <select ng-init="supernaturalFlaw=meritFlawCtrl.supernaturalFlawList[0]"
+            <select ng-init="supernaturalFlaw.name=meritFlawCtrl.supernaturalFlawList[0]"
                     ng-change="meritFlawCtrl.chooseMeritFlaw(meritFlawCtrl.selectedSupernaturalFlaws[$index], supernaturalFlaw, $index, 'supernaturalFlaw')"
-                    ng-model="supernaturalFlaw" ng-options="meritFlaw.name for meritFlaw in meritFlawCtrl.supernaturalFlawList">
+                    ng-model="supernaturalFlaw.name" ng-options="meritFlaw for meritFlaw in meritFlawCtrl.supernaturalFlawList">
             </select>
           </div>
         </td>

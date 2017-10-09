@@ -3,9 +3,7 @@ var app = angular.module("site");
 app.service("MeritFlawService", ['CharCreatorService',
  function(CharCreatorService){
 
-   this.meritFlawPts = 5;
    this.maxFlawPts = 7;
-   this.chooseMeritFlaw = chooseMeritFlaw;
    this.addedFlawPts = 0;
 
   class MeritFlaw {
@@ -15,109 +13,61 @@ app.service("MeritFlawService", ['CharCreatorService',
    }
  };
 
- this.physicalMeritList = {"": new MeritFlaw("", 0), "Acute Sense (1pt)": new MeritFlaw("Acute Sense (1pt)", 1),
-                           "Ambidextrous (1pt)": new MeritFlaw("Ambidextrous (1pt)", 1), "Bruiser (1pt)": new MeritFlaw("Bruiser (1pt)", 1),
-                           "Catlike Balance (1pt)": new MeritFlaw("Catlike Balance (1pt)", 1), "Early Riser (1pt)": new MeritFlaw("Early Riser (1pt)", 1),
-                           "Eat Food (1pt)": new MeritFlaw("Eat Food (1pt)", 1), "Friendly Face (1pt)": new MeritFlaw("Friendly Face (1pt)", 1),
-                           "Blush of Health (2pt)": new MeritFlaw("Blush of Health (2pt)", 2), "Enchanting Voice (2pt)": new MeritFlaw("Enchanting Voice (2pt)", 2),
-                           "Daredevil (3pt)": new MeritFlaw("Daredevil (3pt)", 3), "Efficient Digestion (3pt)": new MeritFlaw("Efficient Digestion (3pt)", 3),
-                           "Huge Size (4pt)": new MeritFlaw("Huge Size (4pt)", 4)};
+ this.physicalMeritList = {"": 0, "Acute Sense (1pt)": 1, "Ambidextrous (2pt)": 1, "Bruiser (1pt)": 1, "Catlike Balance (1pt)": 1,
+                           "Early Riser (1pt)": 1, "Eat Food (1pt)": 1, "Friendly Face (1pt)": 1, "Blush of Health (2pt)": 2,
+                           "Enchanting Voice (2pt)": 2, "Daredevil (3pt)": 3, "Efficient Digestion (3pt)": 3, "Huge Size (4pt)": 4};
 
- this.physicalFlawList = {0: new MeritFlaw("", 0), 1: new MeritFlaw("Hard of Hearing (1pt)", 1),
-                          2: new MeritFlaw("Short (1pt)", 1), 3: new MeritFlaw("Smell of the Grave (1pt)", 1),
-                          4: new MeritFlaw("Tic/Twitch (1pt)", 1), 5: new MeritFlaw("Bad Sight (1pt)", 1),
-                          6: new MeritFlaw("Bad Sight (3pt)", 3), 7: new MeritFlaw("Fourteenth Generation (2pt)", 2),
-                          8: new MeritFlaw("Fifteenth Generation (4pt)", 4), 9: new MeritFlaw("Disfigured (2pt)", 2),
-                          10: new MeritFlaw("Dulled Bite (2pt)", 2), 11: new MeritFlaw("Infectious Bite (2pt)", 2),
-                          12: new MeritFlaw("One Eye (2pt)", 2), 13: new MeritFlaw("Vulnerability to Silver (2pt)", 2),
-                          14: new MeritFlaw("Open Wound (2pt)", 2), 15: new MeritFlaw("Open Wound (4pt)", 4),
-                          16: new MeritFlaw("Addiction (3pt)", 3), 17: new MeritFlaw("Child (3pt)", 3),
-                          18: new MeritFlaw("Deformity (3pt)", 3), 19: new MeritFlaw("Glowing Eyes", 3),
-                          20: new MeritFlaw("Lame (3pt)", 3), 21: new MeritFlaw("Lazy (3pt)", 3),
-                          22: new MeritFlaw("Monstrous (3pt)", 3), 23: new MeritFlaw("Permanent Fangs (3pt)", 3),
-                          24: new MeritFlaw("Permanent Wound (3pt)", 3), 25: new MeritFlaw("Slow Healing (3pt)", 3),
-                          26: new MeritFlaw("Disease Carrier (4pt)", 4), 27: new MeritFlaw("Deaf (4pt)", 4),
-                          28: new MeritFlaw("Mute (4pt)", 4), 29: new MeritFlaw("Thin Blood (4pt)", 4),
-                          30: new MeritFlaw("Flesh of the Corpse (5pt)", 5), 31: new MeritFlaw("Infertile Vitae (5pt)", 5),
-                          32: new MeritFlaw("Blind (6pt)", 6)};
+ this.physicalFlawList = {"": 0, "Hard of Hearing (1pt)": 1, "Short (1pt)": 1, "Smell of the Grave (1pt)": 1,
+                          "Tic/Twitch (1pt)": 1, "Bad Sight (1pt)": 1, "Bad Sight (3pt)": 3, "Fourteenth Generation (2pt)": 2,
+                          "Fifteenth Generation (4pt)": 4, "Disfigured (2pt)": 2, "Dulled Bite (2pt)": 2, "Infectious Bite (2pt)": 2,
+                          "One Eye (2pt)":2, "Vulnerability to Silver (2pt)": 2, "Open Wound (2pt)": 2, "Open Wound (4pt)": 4,
+                          "Addiction (3pt)": 3, "Child (3pt)": 3, "Deformity (3pt)": 3, "Glowing Eyes (3pt)": 3,
+                          "Lame (3pt)": 3, "Lazy (3pt)": 3, "Monstrous (3pt)": 3, "Permanent Fangs (3pt)": 3,
+                          "Permanent Wound (3pt)": 3, "Slow Healing (3pt)": 3, "Disease Carrier (4pt)": 4, "Deaf (4pt)": 4,
+                          "Mute (4pt)": 4, "Thin Blood (4pt)": 4, "Flesh of the Corpse (5pt)": 5, "Infertile Vitae (5pt)": 5,
+                          "Blind (6pt)": 6};
 
- this.mentalMeritList = {0: new MeritFlaw("", 0), 1: new MeritFlaw("Coldly Logical (1pt)", 1),
-                         2: new MeritFlaw("Common Sense (1pt)", 1), 3: new MeritFlaw("Concentration (1pt)", 1),
-                         4: new MeritFlaw("Introspection (1pt)", 1), 5: new MeritFlaw("Language (1pt)", 1),
-                         6: new MeritFlaw("Time Sense (1pt)", 1), 7: new MeritFlaw("Useful Knowledge (1pt)", 1),
-                         8: new MeritFlaw("Code of Honor (2pt)", 2), 9: new MeritFlaw("Computer Aptitude (2pt)", 2),
-                         10: new MeritFlaw("Eidetic Memory (2pt)", 2), 11: new MeritFlaw("Light Sleeper (2pt)", 2),
-                         12: new MeritFlaw("Natural Linguist (2pt)", 2), 13: new MeritFlaw("Calm Heart (3pt)", 3),
-                         14: new MeritFlaw("Iron Will (3pt)", 3), 15: new MeritFlaw("Precocious (3pt)", 3)};
+ this.mentalMeritList = {"": 0, "Coldly Logical (1pt)": 1, "Common Sense (1pt)": 1, "Concentration (1pt)": 1,
+                         "Introspection (1pt)": 1, "Language (1pt)": 1, "Time Sense (1pt)": 1, "Useful Knowledge (1pt)": 1,
+                         "Code of Honor (2pt)": 2,"Computer Aptitude (2pt)": 2, "Eidetic Memory (2pt)": 2, "Light Sleeper (2pt)": 2,
+                         "Natural Linguist (2pt)": 2, "Calm Heart (3pt)": 3, "Iron Will (3pt)": 3, "Precocious (3pt)": 3};
 
- this.mentalFlawList = {0: new MeritFlaw("", 0), 1: new MeritFlaw("Deep Sleeper (1pt)", 1),
-                        2: new MeritFlaw("Impatient (1pt)", 1), 3: new MeritFlaw("Nightmares (1pt)", 1),
-                        4: new MeritFlaw("Prey Exclusion (1pt)", 1), 5: new MeritFlaw("Shy (1pt)", 1),
-                        6: new MeritFlaw("Soft-Hearted (1pt)", 1), 7: new MeritFlaw("Speech Impediment (1pt)", 1),
-                        8: new MeritFlaw("Unconvinced (1pt)", 1), 9: new MeritFlaw("Amnesia (2pt)", 2),
-                        10: new MeritFlaw("Lunacy (2pt)", 2), 11: new MeritFlaw("Phobia (2pt)", 2),
-                        12: new MeritFlaw("Short Fuse (2pt)", 2), 13: new MeritFlaw("Stereotype (2pt)", 2),
-                        14: new MeritFlaw("Territorial (2pt)", 2), 15: new MeritFlaw("Thirst for Innocence (2pt)", 2),
-                        16: new MeritFlaw("Vengeful (2pt)", 2), 17: new MeritFlaw("Victim of the Masquerade (2pt)", 2),
-                        18: new MeritFlaw("Weak-Willed (3pt)", 3), 19: new MeritFlaw("Conspicuous Consumption (4pt)", 4),
-                        20: new MeritFlaw("Guilt-Wracked (4pt)", 4), 21: new MeritFlaw("Flashbacks (6pt)", 6)};
+ this.mentalFlawList = {"": 0, "Deep Sleeper (1pt)": 1, "Impatient (1pt)": 1, "Nightmares (1pt)": 1,
+                        "Prey Exclusion (1pt)": 1, "Shy (1pt)": 1, "Soft-Hearted (1pt)": 1, "Speech Impediment (1pt)": 1,
+                        "Unconvinced (1pt)": 1, "Amnesia (2pt)": 2, "Lunacy (2pt)": 2, "Phobia (2pt)": 2,
+                        "Short Fuse (2pt)": 2, "Stereotype (2pt)": 2, "Territorial (2pt)": 2, "Thirst for Innocence (2pt)": 2,
+                        "Vengeful (2pt)": 2, "Victim of the Masquerade (2pt)": 2, "Weak-Willed (3pt)": 3, "Conspicuous Consumption (4pt)": 4,
+                        "Guilt-Wracked (4pt)": 4, "Flashbacks (6pt)": 6};
 
+ this.socialMeritList = {"": 0, "Elysium Regular (1pt)": 1, "Former Ghoul (1pt)": 1, "Harmless (1pt)": 1,
+                         "Natural Leader (1pt)": 1, "Prestigious Sire (1pt)": 1, "Protege (1pt)": 1, "Rep (1pt)": 1,
+                         "Sabbat Survivor (1pt)": 1, "Boon (1pt)": 1, "Boon (2pt)": 2, "Boon (3pt)": 3,
+                         "Boon (4pt)": 4, "Boon (5pt)": 5, "Boon (6pt)": 6, "Bullyboy (2pt)": 2,
+                         "Old Pal (2pt)": 2, "Lawman's Friend (2pt)": 2, "Open Road (2pt)": 2, "Sanctity (2pt)": 2,
+                         "Scholar of Enemies (2pt)": 2, "Scholar of Others (2pt)": 2, "Friend of the Underground (3pt)": 3, "Mole (3pt)": 3,
+                         "Rising Star (3pt)": 3, "Broken Bond (4pt)": 4, "Clan Friendship (4pt)": 4, "Primogen/Bishop Friendship (4pt)": 4};
 
- this.socialMeritList = {0: new MeritFlaw("", 0), 1: new MeritFlaw("Elysium Regular (1pt)", 1),
-                         2: new MeritFlaw("Former Ghoul (1pt)", 1), 3: new MeritFlaw("Harmless (1pt)", 1),
-                         4: new MeritFlaw("Natural Leader (1pt)", 1), 5: new MeritFlaw("Prestigious Sire (1pt)", 1),
-                         6: new MeritFlaw("Protege (1pt)", 1), 7: new MeritFlaw("Rep (1pt)", 1),
-                         8: new MeritFlaw("Sabbat Survivor (1pt)", 1), 9: new MeritFlaw("Boon (1pt)", 1),
-                         10: new MeritFlaw("Boon (2pt)", 2), 11: new MeritFlaw("Boon (3pt)", 3),
-                         12: new MeritFlaw("Boon (4pt)", 4), 13: new MeritFlaw("Boon (5pt)", 5),
-                         14: new MeritFlaw("Boon (6pt)", 6), 15: new MeritFlaw("Bullyboy (2pt)", 2),
-                         16: new MeritFlaw("Old Pal (2pt)", 2), 17: new MeritFlaw("Lawman's Friend (2pt)", 2),
-                         18: new MeritFlaw("Open Road (2pt)", 2), 19: new MeritFlaw("Sanctity (2pt)", 2),
-                         20: new MeritFlaw("Scholar of Enemies (2pt)", 2), 21: new MeritFlaw("Scholar of Others (2pt)", 2),
-                         22: new MeritFlaw("Friend of the Underground (3pt)", 3), 23: new MeritFlaw("Mole (3pt)", 3),
-                         24: new MeritFlaw("Rising Star (3pt)", 3), 25: new MeritFlaw("Broken Bond (4pt)", 4),
-                         26: new MeritFlaw("Clan Friendship (4pt)", 4), 27: new MeritFlaw("Primogen/Bishop Friendship (4pt)", 4)};
+ this.socialFlawList = {"": 0, "Botched Presentation (1pt)": 1, "Dark Secret (1pt)": 1, "Expendable (1pt)": 1,
+                        "Incomplete Understanding (1pt)": 1, "Infamous Sire (1pt)": 1, "Mistaken Identity (1pt)": 1, "New Arrival (1pt)": 1,
+                        "New Kid (1pt)": 1, "Recruitment Target (1pt)": 1, "Sire's Resentment (1pt)": 1, "Special Responsibility (1pt)": 1,
+                        "Sympathizer (1pt)": 1, "Enemy (1pt)": 1, "Enemy (2pt)": 2, "Enemy (3pt)": 3,
+                        "Enemy (4pt)": 4, "Enemy (5pt)": 5, "Bound (2pt)": 2, "Catspaw (2pt)": 2,
+                        "Escaped Target (2pt)": 2, "Failure (2pt)": 2, "Masquerade Breaker (2pt)": 2, "Hunted (2pt)": 2,
+                        "Old Flame (2pt)": 2, "Rival Sires (2pt)": 2, "Uppity (2pt)": 2, "Disgrace to the Blood (3pt)": 3,
+                        "Former Prince (3pt)": 3, "Hunted Like a Dog (3pt)": 3, "Narc (3pt)": 3, "Sleeping With the Enemy (3pt)": 3,
+                        "Clan Enmity (4pt)": 4, "Loathsome Regnant (4pt)": 4, "Overextended (4pt)": 4, "Probationary Sect Member (4pt)": 4,
+                        "Blood Hunted (4pt)": 4, "Blood Hunted (6pt)": 6, "Laughingstock (5pt)": 5, "Red List (7pt)": 7};
 
- this.socialFlawList = {0: new MeritFlaw("", 0), 1: new MeritFlaw("Botched Presentation (1pt)", 1),
-                        2: new MeritFlaw("Dark Secret (1pt)", 1), 3: new MeritFlaw("Expendable (1pt)", 1),
-                        4: new MeritFlaw("Incomplete Understanding (1pt)", 1), 5: new MeritFlaw("Infamous Sire (1pt)", 1),
-                        6: new MeritFlaw("Mistaken Identity (1pt)", 1), 7: new MeritFlaw("New Arrival (1pt)", 1),
-                        8: new MeritFlaw("New Kid (1pt)", 1), 9: new MeritFlaw("Recruitment Target (1pt)", 1),
-                        10: new MeritFlaw("Sire's Resentment (1pt)", 1), 11: new MeritFlaw("Special Responsibility (1pt)", 1),
-                        12: new MeritFlaw("Sympathizer (1pt)", 1), 13: new MeritFlaw("Enemy (1pt)", 1),
-                        14: new MeritFlaw("Enemy (2pt)", 2), 15: new MeritFlaw("Enemy (3pt)", 3),
-                        16: new MeritFlaw("Enemy (4pt)", 4), 17: new MeritFlaw("Enemy (5pt)", 5),
-                        18: new MeritFlaw("Bound (2pt)", 2), 19: new MeritFlaw("Catspaw (2pt)", 2),
-                        20: new MeritFlaw("Escaped Target (2pt)", 2), 21: new MeritFlaw("Failure (2pt)", 2),
-                        22: new MeritFlaw("Masquerade Breaker (2pt)", 2), 23: new MeritFlaw("Hunted (2pt)", 2),
-                        24: new MeritFlaw("Old Flame (2pt)", 2), 25: new MeritFlaw("Rival Sires (2pt)", 2),
-                        26: new MeritFlaw("Uppity (2pt)", 2), 27: new MeritFlaw("Disgrace to the Blood (3pt)", 3),
-                        28: new MeritFlaw("Former Prince (3pt)", 3), 29: new MeritFlaw("Hunted Like a Dog (3pt)", 3),
-                        30: new MeritFlaw("Narc (3pt)", 3), 31: new MeritFlaw("Sleeping With the Enemy (3pt)", 3),
-                        32: new MeritFlaw("Clan Enmity (4pt)", 4), 33: new MeritFlaw("Loathsome Regnant (4pt)", 4),
-                        34: new MeritFlaw("Overextended (4pt)", 4), 35: new MeritFlaw("Probationary Sect Member (4pt)", 4),
-                        36: new MeritFlaw("Blood Hunted (4pt)", 4), 37: new MeritFlaw("Blood Hunted (6pt)", 6),
-                        38: new MeritFlaw("Laughingstock (5pt)", 5), 39: new MeritFlaw("Red List (7pt)", 7)};
+ this.supernaturalMeritList = {"": 0, "Deceptive Aura (1pt)": 1, "Healing Touch (1pt)": 1, "Inoffensive to Animals (1pt)": 1,
+                               "Medium (2pt)": 2, "Magic Resistance (2pt)": 2, "Hidden Diablerie (3pt)": 3, "Lucky (3pt)": 3,
+                               "Oracular Ability (3pt)": 3, "Spirit Mentor (3pt)": 3, "True Love (4pt)": 4, "Additional Discipline (5pt)": 5,
+                               "Unbondable (5pt)": 5, "Nine Lives (6pt)": 6, "True Faith (7pt)": 7};
 
- this.supernaturalMeritList = {0: new MeritFlaw("", 0), 1: new MeritFlaw("Deceptive Aura (1pt)", 1),
-                               2: new MeritFlaw("Healing Touch (1pt)", 1), 3: new MeritFlaw("Inoffensive to Animals (1pt)", 1),
-                               4: new MeritFlaw("Medium (2pt)", 2), 5: new MeritFlaw("Magic Resistance (2pt)", 2),
-                               6: new MeritFlaw("Hidden Diablerie (3pt)", 3), 7: new MeritFlaw("Lucky (3pt)", 3),
-                               8: new MeritFlaw("Oracular Ability (3pt)", 3), 9: new MeritFlaw("Spirit Mentor (3pt)", 3),
-                               10: new MeritFlaw("True Love (4pt)", 4), 11: new MeritFlaw("Additional Discipline (5pt)", 5),
-                               12: new MeritFlaw("Unbondable (5pt)", 5), 13: new MeritFlaw("Nine Lives (6pt)", 6),
-                               14: new MeritFlaw("True Faith (7pt)", 7)};
-
- this.supernaturalFlawList = {0: new MeritFlaw("", 0), 1: new MeritFlaw("Cast No Reflection (1pt)", 1),
-                              2: new MeritFlaw("Cold Breeze (1pt)", 1), 3: new MeritFlaw("Repulsed by Garlic (1pt)", 1),
-                              4: new MeritFlaw("Touch of Frost (1pt)", 1), 5: new MeritFlaw("Cursed (1pt)", 1),
-                              6: new MeritFlaw("Cursed (2pt)", 2), 7: new MeritFlaw("Cursed (3pt)", 3),
-                              8: new MeritFlaw("Cursed (4pt)", 4), 9: new MeritFlaw("Cursed (5pt)", 5),
-                              10: new MeritFlaw("Beacon of the Unholy (2pt)", 2), 11: new MeritFlaw("Deathsight (2pt)", 2),
-                              12: new MeritFlaw("Eerie Presence (2pt)", 2), 13: new MeritFlaw("Lord of the Flies (2pt)", 2),
-                              14: new MeritFlaw("Can't Cross Running Water (3pt)", 3), 15: new MeritFlaw("Haunted (3pt)", 3),
-                              16: new MeritFlaw("Repelled by Crosses (3pt)", 3), 17: new MeritFlaw("Grip of the Damned (4pt)", 4),
-                              18: new MeritFlaw("Dark Fate (5pt)", 5), 19: new MeritFlaw("Light-Sensitive (5pt)", 5)};
+ this.supernaturalFlawList = {"": 0, "Cast No Reflection (1pt)": 1, "Cold Breeze (1pt)": 1, "Repulsed by Garlic (1pt)": 1,
+                              "Touch of Frost (1pt)": 1, "Cursed (1pt)": 1, "Cursed (2pt)": 2, "Cursed (3pt)": 3,
+                              "Cursed (4pt)": 4, "Cursed (5pt)": 5, "Beacon of the Unholy (2pt)": 2, "Deathsight (2pt)": 2,
+                              "Eerie Presence (2pt)": 2, "Lord of the Flies (2pt)": 2, "Can't Cross Running Water (3pt)": 3, "Haunted (3pt)": 3,
+                              "Repelled by Crosses (3pt)": 3, "Grip of the Damned (4pt)": 4, "Dark Fate (5pt)": 5, "Light-Sensitive (5pt)": 5};
 
  this.selectedPhysicalMerits = {0: new MeritFlaw("", 0)};
  this.selectedPhysicalFlaws = {0: new MeritFlaw("", 0)};
@@ -131,10 +81,11 @@ app.service("MeritFlawService", ['CharCreatorService',
  this.selectedSupernaturalMerits = {0: new MeritFlaw("", 0)};
  this.selectedSupernaturalFlaws = {0: new MeritFlaw("", 0)};
 
-
+this.chooseMeritFlaw = chooseMeritFlaw;
  function chooseMeritFlaw(prevMeritFlaw, meritFlaw, index, category){
    switch(category){
       case "physicalMerit":
+        meritFlaw = new MeritFlaw(meritFlaw.name, this.physicalMeritList[meritFlaw.name]);
         CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedPhysicalMerits[index] = meritFlaw;
@@ -142,6 +93,7 @@ app.service("MeritFlawService", ['CharCreatorService',
           break;
         }
      case "physicalFlaw":
+        meritFlaw = new MeritFlaw(meritFlaw.name, this.physicalFlawList[meritFlaw.name]);
         CharCreatorService.changeFreebiePts(-prevMeritFlaw.pointCost);
         if(this.addedFlawPts + meritFlaw.pointCost <= this.maxFlawPts){
           this.selectedPhysicalFlaws[index] = meritFlaw;
@@ -149,6 +101,7 @@ app.service("MeritFlawService", ['CharCreatorService',
         }
         break;
      case "mentalMerit":
+        meritFlaw = new MeritFlaw(meritFlaw.name, this.mentalMeritList[meritFlaw.name]);
         CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedMentalMerits[index] = meritFlaw;
@@ -156,6 +109,7 @@ app.service("MeritFlawService", ['CharCreatorService',
         }
         break;
      case "mentalFlaw":
+        meritFlaw = new MeritFlaw(meritFlaw.name, this.mentalFlawList[meritFlaw.name]);
         CharCreatorService.changeFreebiePts(-prevMeritFlaw.pointCost);
         if(this.addedFlawPts + meritFlaw.pointCost <= this.maxFlawPts){
           this.selectedMentalFlaws[index] = meritFlaw;
@@ -163,6 +117,7 @@ app.service("MeritFlawService", ['CharCreatorService',
         }
         break;
      case "socialMerit":
+        meritFlaw = new MeritFlaw(meritFlaw.name, this.socialMeritList[meritFlaw.name]);
         CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedSocialMerits[index] = meritFlaw;
@@ -170,6 +125,7 @@ app.service("MeritFlawService", ['CharCreatorService',
         }
         break;
      case "socialFlaw":
+        meritFlaw = new MeritFlaw(meritFlaw.name, this.socialFlawList[meritFlaw.name]);
         CharCreatorService.changeFreebiePts(-prevMeritFlaw.pointCost);
         if(this.addedFlawPts + meritFlaw.pointCost <= this.maxFlawPts){
           this.selectedSocialFlaws[index] = meritFlaw;
@@ -177,6 +133,7 @@ app.service("MeritFlawService", ['CharCreatorService',
         }
         break;
      case "supernaturalMerit":
+        meritFlaw = new MeritFlaw(meritFlaw.name, this.supernaturalMeritList[meritFlaw.name]);
         CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedSupernaturalMerits[index] = meritFlaw;
@@ -184,6 +141,7 @@ app.service("MeritFlawService", ['CharCreatorService',
         }
         break;
      case "supernaturalFlaw":
+        meritFlaw = new MeritFlaw(meritFlaw.name, this.supernaturalFlawList[meritFlaw.name]);
         CharCreatorService.changeFreebiePts(-prevMeritFlaw.pointCost);
         if(this.addedFlawPts + meritFlaw.pointCost <= this.maxFlawPts){
           this.selectedSupernaturalFlaws[index] = meritFlaw;
@@ -203,37 +161,43 @@ app.service("MeritFlawService", ['CharCreatorService',
    }
    switch(category){
      case "physicalMerit":
-        if(!index)
+        if(!index && name == "")
           index = Object.keys(this.selectedPhysicalMerits).length;
         this.selectedPhysicalMerits[index] = new MeritFlaw(name, pointCost);
         break;
      case "physicalFlaw":
-        if(!index)
+        if(!index && name == "")
           index = Object.keys(this.selectedPhysicalFlaws).length;
         this.selectedPhysicalFlaws[index] = new MeritFlaw(name, pointCost);
         break;
      case "mentalMerit":
-        var index = Object.keys(this.selectedMentalMerits).length;
+        if(!index && name == "")
+          var index = Object.keys(this.selectedMentalMerits).length;
         this.selectedMentalMerits[index] = new MeritFlaw(name, pointCost);
         break;
      case "mentalFlaw":
-        var index = Object.keys(this.selectedMentalFlaws).length;
+        if(!index && name == "")
+          var index = Object.keys(this.selectedMentalFlaws).length;
         this.selectedMentalFlaws[index] = new MeritFlaw(name, pointCost);
         break;
      case "socialMerit":
-        var index = Object.keys(this.selectedSocialMerits).length;
+        if(!index && name == "")
+          var index = Object.keys(this.selectedSocialMerits).length;
         this.selectedSocialMerits[index] = new MeritFlaw(name, pointCost);
         break;
      case "socialFlaw":
-        var index = Object.keys(this.selectedSocialFlaws).length;
+        if(!index && name == "")
+          var index = Object.keys(this.selectedSocialFlaws).length;
         this.selectedSocialFlaws[index] = new MeritFlaw(name, pointCost);
         break;
      case "supernaturalMerit":
-        var index = Object.keys(this.selectedSupernaturalMerits).length;
+        if(!index && name == "")
+          var index = Object.keys(this.selectedSupernaturalMerits).length;
         this.selectedSupernaturalMerits[index] = new MeritFlaw(name, pointCost);
         break;
      case "supernaturalFlaw":
-        var index = Object.keys(this.selectedSupernaturalFlaws).length;
+        if(!index && name == "")
+          var index = Object.keys(this.selectedSupernaturalFlaws).length;
         this.selectedSupernaturalFlaws[index] = new MeritFlaw(name, pointCost);
         break;
    }

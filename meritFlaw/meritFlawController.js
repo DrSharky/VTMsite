@@ -4,7 +4,6 @@ app.controller("MeritFlawController",
 ['MeritFlawService', 'CharCreatorService', '$scope',
  function(MeritFlawService, CharCreatorService, $scope){
 
-   this.selectMeritFlawPt = selectMeritFlawPt;
    this.chooseMeritFlaw = chooseMeritFlaw;
    this.meritFlawPage = "./meritFlaw/meritflaw.html";
 
@@ -23,11 +22,6 @@ app.controller("MeritFlawController",
      MeritFlawService.addMeritFlaw(category);
    }
 
-   this.getMeritFlawPts = getMeritFlawPts;
-   function getMeritFlawPts(){
-     return MeritFlawService.MeritFlawPts;
-   }
-
    //Physical Stuff-----------------------------------
    this.selectedPhysicalMerits = selectedPhysicalMerits();
    function selectedPhysicalMerits(){
@@ -41,12 +35,12 @@ app.controller("MeritFlawController",
 
    this.physicalMeritList = physicalMeritList();
    function physicalMeritList(){
-     return MeritFlawService.physicalMeritList;
+     return Object.keys(MeritFlawService.physicalMeritList);
    }
 
    this.physicalFlawList = physicalFlawList();
    function physicalFlawList(){
-     return MeritFlawService.physicalFlawList;
+     return Object.keys(MeritFlawService.physicalFlawList);
    }
    //------------------------------------------------
 
@@ -63,12 +57,12 @@ app.controller("MeritFlawController",
 
    this.mentalMeritList = mentalMeritList();
    function mentalMeritList(){
-     return MeritFlawService.mentalMeritList;
+     return Object.keys(MeritFlawService.mentalMeritList);
    }
 
    this.mentalFlawList = mentalFlawList();
    function mentalFlawList(){
-     return MeritFlawService.mentalFlawList;
+     return Object.keys(MeritFlawService.mentalFlawList);
    }
    //----------------------------------------------
 
@@ -85,12 +79,12 @@ app.controller("MeritFlawController",
 
    this.socialMeritList = socialMeritList();
    function socialMeritList(){
-     return MeritFlawService.socialMeritList;
+     return Object.keys(MeritFlawService.socialMeritList);
    }
 
    this.socialFlawList = socialFlawList();
    function socialFlawList(){
-     return MeritFlawService.socialFlawList;
+     return Object.keys(MeritFlawService.socialFlawList);
    }
    //---------------------------------------------
 
@@ -107,18 +101,14 @@ app.controller("MeritFlawController",
 
    this.supernaturalMeritList = supernaturalMeritList();
    function supernaturalMeritList(){
-     return MeritFlawService.supernaturalMeritList;
+     return Object.keys(MeritFlawService.supernaturalMeritList);
    }
 
    this.supernaturalFlawList = supernaturalFlawList();
    function supernaturalFlawList(){
-     return MeritFlawService.supernaturalFlawList;
+     return Object.keys(MeritFlawService.supernaturalFlawList);
    }
    //---------------------------------------------
-
-   function selectMeritFlawPt(meritFlaw, index){
-     MeritFlawService.selectMeritFlawPt(meritFlaw, index);
-   }
 
    function chooseMeritFlaw(prevMeritFlaw, meritFlaw, index, category){
      MeritFlawService.chooseMeritFlaw(prevMeritFlaw, meritFlaw, index, category);

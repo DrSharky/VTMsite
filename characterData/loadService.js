@@ -88,6 +88,7 @@ app.service("LoadService",
        this.loadMeritFlaw(character.physicalMerits[physicalMerit], 'physicalMerit', physicalMerit);
      }
      for(var physicalFlaw in character.physicalFlaws){
+       physicalFlaw = parseInt(physicalFlaw);
        this.loadMeritFlaw(character.physicalFlaws[physicalFlaw], 'physicalFlaw', physicalFlaw);
      }
      for(var mentalMerit in character.mentalMerits){
