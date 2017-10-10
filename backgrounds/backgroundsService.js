@@ -74,7 +74,7 @@ app.service("BackgroundsService", ['CharCreatorService',
           if(backgroundPt.type == "freebie"){
             CharCreatorService.changeFreebiePts(1);
           }
-          else{
+          else if(backgroundPt.type == "original"){
             self.backgroundPts += 1;
           }
           backgroundPt.img = './empty.png';

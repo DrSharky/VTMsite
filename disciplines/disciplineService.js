@@ -100,7 +100,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
           if(disciplinePt.type == "freebie"){
             CharCreatorService.changeFreebiePts(7);
           }
-          else{
+          else if (disciplinePt.type == "original"){
             self.disciplinePts += 1;
           }
           disciplinePt.img = './empty.png';
