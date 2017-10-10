@@ -204,9 +204,43 @@ this.chooseMeritFlaw = chooseMeritFlaw;
  }
 
  this.removeMeritFlaw = removeMeritFlaw;
- function removeMeritFlaw(index){
-   this.selectedList[index].reset();
-   delete this.selectedList[index];
+ function removeMeritFlaw(index, category){
+   switch(category){
+   case "physicalMerit":
+      CharCreatorService.changeFreebiePts(this.selectedPhysicalMerits[index].pointCost);
+      delete this.selectedPhysicalMerits[index];
+      break;
+   case "physicalFlaw":
+      CharCreatorService.changeFreebiePts(-this.selectedPhysicalFlaws[index].pointCost);
+      delete this.selectedPhysicalFlaws[index];
+      break;
+   case "mentalMerit":
+      CharCreatorService.changeFreebiePts(this.selectedMentalMerits[index].pointCost);
+      delete this.selectedMentalMerits[index];
+      break;
+   case "mentalFlaw":
+      CharCreatorService.changeFreebiePts(-this.selectedMentalFlaws[index].pointCost);
+      delete this.selectedMentalFlaws[index];
+      break;
+   case "socialMerit":
+      CharCreatorService.changeFreebiePts(this.selectedSocialMerits[index].pointCost);
+      delete this.selectedSocialMerits[index];
+      break;
+   case "socialFlaw":
+      CharCreatorService.changeFreebiePts(-this.selectedSocialFlaws[index].pointCost);
+      delete this.selectedSocialFlaws[index];
+      break;
+   case "supernaturalMerit":
+      CharCreatorService.changeFreebiePts(this.selectedSupernaturalMerits[index].pointCost);
+      delete this.supernaturalMeritList[index];
+      break;
+   case "supernaturalFlaw":
+      CharCreatorService.changeFreebiePts(-this.selectedSupernaturalFlaws[index].pointCost);
+      delete this.supernaturalFlawList[index];
+      break;
+   default:
+      break;
+    }
  }
 
 }]);

@@ -13,8 +13,8 @@ app.controller("MeritFlawController",
    }
 
    this.removeMeritFlaw = removeMeritFlaw;
-   function removeMeritFlaw(index){
-     MeritFlawService.removeMeritFlaw(index);
+   function removeMeritFlaw(index, category){
+     MeritFlawService.removeMeritFlaw(index, category);
    }
 
    this.addMeritFlaw = addMeritFlaw;
