@@ -97,7 +97,11 @@
     <!-- <button ng-hide="!creatorCtrl.loggedIn" ng-click="loadCtrl.loadChars()">Load Character</button> -->
     <ng-include src="loadCtrl.loadPage"></ng-include>
   </div>
+  <div ng-controller="PdfController as pdfCtrl">
+    <button ng-click="pdfCtrl.generatePDF()">Make PDF</button>
+  </div>
 </div>
+
 
 <style>
  .inline-headers h3, .inline-headers h4 {

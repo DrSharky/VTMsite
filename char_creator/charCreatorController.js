@@ -1,8 +1,9 @@
 var app = angular.module("site");
 
 app.controller("CharCreatorController",
- ['CharCreatorService', 'LoginService', 'PdfService', '$scope', 'SaveService',
- function(CharCreatorService, LoginService, PdfService, $scope, SaveService){
+ ['CharCreatorService', 'LoginService', '$scope', 'SaveService', '$window',
+ function(CharCreatorService, LoginService, $scope, SaveService, $window){
+
 
    this.setPlayer = setPlayer;
    function setPlayer(charPlayer){
