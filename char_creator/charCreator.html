@@ -63,6 +63,19 @@
     <div ng-controller="AbilitiesController as abCtrl">
       <ng-include src="abCtrl.abilitiesPage"></ng-include>
     </div>
+    <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
+      <ng-include src="tindexCtrl.termIndexPage"></ng-include>
+    </div>
+    <div ng-controller="SaveController as saveCtrl">
+      <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
+    </div>
+    <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
+      <!-- <button ng-hide="!creatorCtrl.loggedIn" ng-click="loadCtrl.loadChars()">Load Character</button> -->
+      <ng-include src="loadCtrl.loadPage"></ng-include>
+    </div>
+    <div ng-controller="PdfController as pdfCtrl">
+      <button ng-click="pdfCtrl.generatePDF()">Export PDF</button>
+    </div>
 </div>
 <div class="row">
   <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="DisciplinesController as discCtrl">
@@ -86,19 +99,6 @@
   </div>
   <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="MeritFlawController as meritFlawCtrl">
     <ng-include src="meritFlawCtrl.meritFlawPage"></ng-include>
-  </div>
-  <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
-    <ng-include src="tindexCtrl.termIndexPage"></ng-include>
-  </div>
-  <div ng-controller="SaveController as saveCtrl">
-    <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
-  </div>
-  <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
-    <!-- <button ng-hide="!creatorCtrl.loggedIn" ng-click="loadCtrl.loadChars()">Load Character</button> -->
-    <ng-include src="loadCtrl.loadPage"></ng-include>
-  </div>
-  <div ng-controller="PdfController as pdfCtrl">
-    <button ng-click="pdfCtrl.generatePDF()">Make PDF</button>
   </div>
 </div>
 

@@ -1,10 +1,13 @@
 var app = angular.module("site");
 app.service('PdfService',
 ['$http', 'CharCreatorService', 'ClanService', 'AttributesService',
-function($http, CharCreatorService, ClanService, AttributesService){
+ 'AbilitiesService', 'DisciplineService', 'BackgroundsService',
+function($http, CharCreatorService, ClanService, AttributesService,
+   AbilitiesService, DisciplineService, BackgroundsService){
 
   this.imgData = "";
   this.generatePDF = generatePDF;
+  this.drawPoints = drawPoints;
 
   var self = this;
   $http.get('./pdf/pdfImage.txt').then(function(response){
@@ -29,29 +32,74 @@ function($http, CharCreatorService, ClanService, AttributesService){
     doc.text(93.2, 53.5, CharCreatorService.charConcept);
     doc.text(144.1, 53.5, CharCreatorService.charSire);
 
-    doc.setDrawColor(0);
-    doc.setFillColor(0);
-    var strengthPosition = 59.74;
-    doc.circle(strengthPosition, 71.52, 1.28, 'FD');
+    var attrRow = 0;
+    var attrColumn = 0;
+    var attrPosition = 59.74;
+    var attrHeight = 71.52;
 
-    for(var strengthPoint in AttributesService.strength.points){
-      if(AttributesService.strength.points[strengthPoint].id ||
-         AttributesService.strength.points[strengthPoint].type == ""){
-        strengthPosition += 2.87;
-        if(AttributesService.strength.points[strengthPoint].type == "original"){
-          doc.setDrawColor(0);
-          doc.setFillColor(0);
-          doc.circle(strengthPosition, 71.52, 1.28, 'FD');
-        }
-        else if(AttributesService.strength.points[strengthPoint].type == "freebie"){
-          doc.setDrawColor(187, 0, 0);
-          doc.setFillColor(187, 0, 0);
-          doc.circle(strengthPosition, 71.52, 1.28, 'FD');
-        }
+    for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
+      this.drawPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
+      attrHeight += 4.7;
+      if(i == 2){
+        attrPosition += 57.3;
+        attrHeight = 71.52;
+      }
+      if(i == 5){
+        attrPosition += 57;
+        attrHeight = 71.52;
       }
     }
 
-    doc.save("character_sheet.pdf");
+    var abPosition = 59.74;
+    var abHeight = 99.8;
+    for(var i = 0; i < Object.keys(AbilitiesService.abilitiesList).length; i++){
+      this.drawPoints(Object.values(AbilitiesService.abilitiesList)[i], abPosition, abHeight, doc);
+      abHeight += 4.72;
+      if(i == 9){
+        abPosition += 57.3;
+        abHeight = 99.8;
+      }
+      if(i == 19){
+        abPosition += 57.1;
+        abHeight = 99.8;
+      }
+    }
+
+    var discPosition = 59.74;
+    var discHeight = 165.8;
+    for(var i = 0; i < Object.keys(DisciplineService.selectedClanDisciplines).length; i++){
+      doc.text(24.7, discHeight+1, Object.values(DisciplineService.selectedClanDisciplines)[i].name);
+      this.drawPoints(Object.values(DisciplineService.selectedClanDisciplines)[i], discPosition, discHeight, doc);
+      discHeight += 4.7;
+    }
+
+    var backPosition = 117;
+    var backHeight = 165.8;
+    for(var i = 0; i < Object.keys(BackgroundsService.selectedList).length; i++){
+      doc.text(82.7, backHeight+1, Object.values(BackgroundsService.selectedList)[i].name);
+      this.drawPoints(Object.values(BackgroundsService.selectedList)[i], backPosition, backHeight, doc);
+      backHeight += 4.7;
+    }
+
+    doc.save("character_sheet_" + CharCreatorService.charName+".pdf");
+  }
+
+  function drawPoints(attribute, position, height, doc){
+    for(point in attribute.points){
+      if(attribute.points[point].type != ""){
+        doc.circle(position, height, 1.28, 'FD');
+        position += 2.87;
+      }
+    }
+  }
+
+  function drawAbility(ability, position, height, doc){
+    for(point in ability.points){
+      if(ability.points[point].type != ""){
+        doc.circle(position, height, 1.28, 'FD');
+        position += 2.87;
+      }
+    }
   }
 
 }]);
