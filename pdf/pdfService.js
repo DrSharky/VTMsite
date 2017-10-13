@@ -1,9 +1,11 @@
 var app = angular.module("site");
 app.service('PdfService',
 ['$http', 'CharCreatorService', 'ClanService', 'AttributesService',
- 'AbilitiesService', 'DisciplineService', 'BackgroundsService',
+ 'AbilitiesService', 'DisciplineService', 'BackgroundsService', 'VirtuesService',
+ 'MeritFlawService',
 function($http, CharCreatorService, ClanService, AttributesService,
-   AbilitiesService, DisciplineService, BackgroundsService){
+   AbilitiesService, DisciplineService, BackgroundsService, VirtuesService,
+   MeritFlawService){
 
   this.imgData = "";
   this.generatePDF = generatePDF;
@@ -79,6 +81,19 @@ function($http, CharCreatorService, ClanService, AttributesService,
       doc.text(82.7, backHeight+1, Object.values(BackgroundsService.selectedList)[i].name);
       this.drawPoints(Object.values(BackgroundsService.selectedList)[i], backPosition, backHeight, doc);
       backHeight += 4.7;
+    }
+
+    var virtPosition = 173.9;
+    var virtHeight = 165.8;
+    for(var i = 0; i < Object.keys(VirtuesService.virtueList).length; i++){
+      this.drawPoints(Object.values(VirtuesService.virtueList)[i], virtPosition, virtHeight, doc);
+      virtHeight += 9.4;
+    }
+
+    var meritPosition = 59.74;
+    var meritHeight = 167.2;
+    for(var i = 0; i < 1; i++){
+      var test = 1;
     }
 
     doc.save("character_sheet_" + CharCreatorService.charName+".pdf");
