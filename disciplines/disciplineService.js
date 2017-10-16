@@ -12,8 +12,15 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
 
   this.getFreebieMode = getFreebieMode;
 
-  function changeDiscipline(discipline, index){
+  function changeDiscipline(discipline, index, prevDisc){
      this.selectedClanDisciplines[index] = new Discipline(discipline);
+     for(var i = 0; i < prevDisc.points.length; i++){
+       if(prevDisc.points[i].type == "original"){
+         this.disciplinePts++;
+       }
+       if(prevDisc.points[i].type == "freebie")
+         CharCreatorService.changeFreebiePts(1);
+     }
   }
 
   function getFreebieMode(){

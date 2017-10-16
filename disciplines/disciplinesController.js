@@ -25,8 +25,8 @@ app.controller("DisciplinesController",
   }
 
   this.changeDiscipline = changeDiscipline;
-  function changeDiscipline(discipline, index){
-    DisciplineService.changeDiscipline(discipline, index);
+  function changeDiscipline(discipline, index, prevDisc){
+    DisciplineService.changeDiscipline(discipline, index, prevDisc);
   }
 
   this.selectedClanDisciplines = getDisciplines();
