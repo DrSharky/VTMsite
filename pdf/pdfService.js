@@ -115,7 +115,7 @@ function($http, CharCreatorService, ClanService, AttributesService,
     this.drawPath(PathService.selectedPath, pathPosition, pathHeight+3.21, doc);
 
     var willPosition = 84.89;
-    var willHeight = 234.09;
+    var willHeight = 234.12;
     this.drawPath(WillpowerService.willpower, willPosition, willHeight, doc);
 
     doc.save("character_sheet_" + CharCreatorService.charName+".pdf");
@@ -133,7 +133,7 @@ function($http, CharCreatorService, ClanService, AttributesService,
   function drawPath(attr, position, height, doc){
     for(point in attr.points){
       if(attr.points[point].type != ""){
-        doc.circle(position, height, 1.29, 'FD');
+        doc.circle(position, height, 1.5, 'FD');
         position += 4.2;
       }
     }
