@@ -98,7 +98,8 @@ app.service("SaveService",
         socialMerits: socialMerits,
         socialFlaws: socialFlaws,
         supernaturalMerits: supernaturalMerits,
-        supernaturalFlaws: supernaturalFlaws
+        supernaturalFlaws: supernaturalFlaws,
+        addedFlawPts: MeritFlawService.addedFlawPts
       };
 
       var updates = {};
