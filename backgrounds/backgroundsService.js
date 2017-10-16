@@ -135,9 +135,6 @@ app.service("BackgroundsService", ['CharCreatorService',
      if(CharCreatorService.freebieMode){
        CharCreatorService.changeFreebiePts(selectedBackground.pointCount);
      }
-     else{
-       this.backgroundPts += background.pointCount;
-     }
      selectedBackground.reset();
    }
    selectedBackground.name = background.name;
