@@ -15,8 +15,8 @@ app.service("MeritFlawService", ['CharCreatorService',
    }
  };
 
- this.masterMeritList = [];
- this.masterFlawList = [];
+ this.masterMeritList;
+ this.masterFlawList;
 
  this.physicalMeritList = {"": 0, "Acute Sense (1pt)": 1, "Ambidextrous (2pt)": 1, "Bruiser (1pt)": 1, "Catlike Balance (1pt)": 1,
                            "Early Riser (1pt)": 1, "Eat Food (1pt)": 1, "Friendly Face (1pt)": 1, "Blush of Health (2pt)": 2,
@@ -86,10 +86,6 @@ app.service("MeritFlawService", ['CharCreatorService',
  this.selectedSupernaturalMerits = {0: new MeritFlaw("", 0)};
  this.selectedSupernaturalFlaws = {0: new MeritFlaw("", 0)};
 
-
-//TODO: ***********************//TODO: Add a delete of the previously chosen merit/flaw
-//TODO: When a meritFlaw is switched from one to another one. *****************
-
 this.chooseMeritFlaw = chooseMeritFlaw;
  function chooseMeritFlaw(prevMeritFlaw, meritFlaw, index, category){
    if(meritFlaw.name != ""){
@@ -115,10 +111,6 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedPhysicalMerits[index] = meritFlaw;
           CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
-          if(meritFlaw.name != "")
-            this.masterMeritList.push(meritFlaw);
-          else
-            delete this.masterMeritList[this.masterMeritList.indexOf(meritFlaw)];
         }
         break;
      case "physicalFlaw":
@@ -128,10 +120,6 @@ this.chooseMeritFlaw = chooseMeritFlaw;
           this.selectedPhysicalFlaws[index] = meritFlaw;
           CharCreatorService.changeFreebiePts(meritFlaw.pointCost);
           this.addedFlawPts = (this.addedFlawPts + meritFlaw.pointCost - prevMeritFlaw.pointCost);
-          if(meritFlaw.name != "")
-            this.masterFlawList.push(meritFlaw);
-          else
-            delete this.masterFlawList[this.masterFlawList.indexOf(meritFlaw)];
         }
         else{
           this.selectedPhysicalFlaws[index] = prevMeritFlaw;
@@ -144,10 +132,6 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedMentalMerits[index] = meritFlaw;
           CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
-          if(meritFlaw.name != "")
-            this.masterMeritList.push(meritFlaw);
-          else
-            delete this.masterMeritList[this.masterMeritList.indexOf(meritFlaw)];
         }
         break;
      case "mentalFlaw":
@@ -157,10 +141,6 @@ this.chooseMeritFlaw = chooseMeritFlaw;
           this.selectedMentalFlaws[index] = meritFlaw;
           CharCreatorService.changeFreebiePts(meritFlaw.pointCost);
           this.addedFlawPts = (this.addedFlawPts + meritFlaw.pointCost - prevMeritFlaw.pointCost);
-          if(meritFlaw.name != "")
-            this.masterFlawList.push(meritFlaw);
-          else
-            delete this.masterFlawList[this.masterFlawList.indexOf(meritFlaw)];
         }
         else{
           this.selectedMentalFlaws[index] = prevMeritFlaw;
@@ -173,10 +153,6 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedSocialMerits[index] = meritFlaw;
           CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
-          if(meritFlaw.name != "")
-            this.masterMeritList.push(meritFlaw);
-          else
-            delete this.masterMeritList[this.masterMeritList.indexOf(meritFlaw)];
         }
         break;
      case "socialFlaw":
@@ -186,10 +162,6 @@ this.chooseMeritFlaw = chooseMeritFlaw;
           this.selectedSocialFlaws[index] = meritFlaw;
           CharCreatorService.changeFreebiePts(meritFlaw.pointCost);
           this.addedFlawPts = (this.addedFlawPts + meritFlaw.pointCost - prevMeritFlaw.pointCost);
-          if(meritFlaw.name != "")
-            this.masterFlawList.push(meritFlaw);
-          else
-            delete this.masterFlawList[this.masterFlawList.indexOf(meritFlaw)];
         }
         else{
           this.selectedSocialFlaws[index] = prevMeritFlaw;
@@ -202,10 +174,6 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedSupernaturalMerits[index] = meritFlaw;
           CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
-          if(meritFlaw.name != "")
-            this.masterMeritList.push(meritFlaw);
-          else
-            delete this.masterMeritList[this.masterMeritList.indexOf(meritFlaw)];
         }
         break;
      case "supernaturalFlaw":
@@ -215,10 +183,6 @@ this.chooseMeritFlaw = chooseMeritFlaw;
           this.selectedSupernaturalFlaws[index] = meritFlaw;
           CharCreatorService.changeFreebiePts(meritFlaw.pointCost);
           this.addedFlawPts = (this.addedFlawPts + meritFlaw.pointCost - prevMeritFlaw.pointCost);
-          if(meritFlaw.name != "")
-            this.masterFlawList.push(meritFlaw);
-          else
-            delete this.masterFlawList[this.masterFlawList.indexOf(meritFlaw)];
         }
         else{
           this.selectedSupernaturalFlaws[index] = prevMeritFlaw;
@@ -240,73 +204,57 @@ this.chooseMeritFlaw = chooseMeritFlaw;
      case "physicalMerit":
         if(!index)
           index = Object.keys(this.selectedPhysicalMerits).length;
-        if(name != "" && !this.checkMasterList(name, "merit")){
+        if(name != "")
           this.meritCount++;
-          this.masterMeritList.push(new MeritFlaw(name, pointCost));
-        }
         this.selectedPhysicalMerits[index] = new MeritFlaw(name, pointCost);
         break;
      case "physicalFlaw":
         if(!index)
           index = Object.keys(this.selectedPhysicalFlaws).length;
-          if(name != "" && !this.checkMasterList(name, "flaw")){
+          if(name != "")
             this.flawCount++;
-            this.masterFlawList.push(new MeritFlaw(name, pointCost));
-          }
         this.selectedPhysicalFlaws[index] = new MeritFlaw(name, pointCost);
         break;
      case "mentalMerit":
         if(!index)
           var index = Object.keys(this.selectedMentalMerits).length;
-          if(name != "" && !this.checkMasterList(name, "merit")){
+          if(name != "")
             this.meritCount++;
-            this.masterMeritList.push(new MeritFlaw(name, pointCost));
-          }
         this.selectedMentalMerits[index] = new MeritFlaw(name, pointCost);
         break;
      case "mentalFlaw":
         if(!index)
           var index = Object.keys(this.selectedMentalFlaws).length;
-          if(name != "" && !this.checkMasterList(name, "flaw")){
+          if(name != "")
             this.flawCount++;
-            this.masterFlawList.push(new MeritFlaw(name, pointCost));
-          }
         this.selectedMentalFlaws[index] = new MeritFlaw(name, pointCost);
         break;
      case "socialMerit":
         if(!index)
           var index = Object.keys(this.selectedSocialMerits).length;
-          if(name != "" && !this.checkMasterList(name, "merit")){
+          if(name != "")
             this.meritCount++;
-            this.masterMeritList.push(new MeritFlaw(name, pointCost));
-          }
         this.selectedSocialMerits[index] = new MeritFlaw(name, pointCost);
         break;
      case "socialFlaw":
         if(!index)
           var index = Object.keys(this.selectedSocialFlaws).length;
-          if(name != "" && !this.checkMasterList(name, "flaw")){
+          if(name != "")
             this.flawCount++;
-            this.masterFlawList.push(new MeritFlaw(name, pointCost));
-          }
         this.selectedSocialFlaws[index] = new MeritFlaw(name, pointCost);
         break;
      case "supernaturalMerit":
         if(!index)
           var index = Object.keys(this.selectedSupernaturalMerits).length;
-          if(name != "" && !this.checkMasterList(name, "merit")){
+          if(name != "")
             this.meritCount++;
-            this.masterMeritList.push(new MeritFlaw(name, pointCost));
-          }
         this.selectedSupernaturalMerits[index] = new MeritFlaw(name, pointCost);
         break;
      case "supernaturalFlaw":
         if(!index)
           var index = Object.keys(this.selectedSupernaturalFlaws).length;
-          if(name != "" && !this.checkMasterList(name, "flaw")){
+          if(name != "")
             this.flawCount++;
-            this.masterFlawList.push(new MeritFlaw(name, pointCost));
-          }
         this.selectedSupernaturalFlaws[index] = new MeritFlaw(name, pointCost);
         break;
    }
@@ -318,54 +266,45 @@ this.chooseMeritFlaw = chooseMeritFlaw;
    case "physicalMerit":
       CharCreatorService.changeFreebiePts(this.selectedPhysicalMerits[index].pointCost);
       delete this.selectedPhysicalMerits[index];
-      delete this.masterMeritList[this.masterMeritList.indexOf(this.masterMeritList.indexOf(this.selectedPhysicalMerits[index]))];
       this.meritCount--;
       break;
    case "physicalFlaw":
       CharCreatorService.changeFreebiePts(-this.selectedPhysicalFlaws[index].pointCost);
       this.addedFlawPts -= this.selectedPhysicalFlaws[index].pointCost;
       delete this.selectedPhysicalFlaws[index];
-      delete this.masterFlawList[this.masterFlawList.indexOf(this.masterFlawList.indexOf(this.selectedPhysicalFlaws[index]))];
       this.flawCount--;
       break;
    case "mentalMerit":
       CharCreatorService.changeFreebiePts(this.selectedMentalMerits[index].pointCost);
       delete this.selectedMentalMerits[index];
-      delete this.masterMeritList[this.masterMeritList.indexOf(this.masterMeritList.indexOf(this.selectedMentalMerits[index]))];
       this.meritCount--;
       break;
    case "mentalFlaw":
       CharCreatorService.changeFreebiePts(-this.selectedMentalFlaws[index].pointCost);
       this.addedFlawPts -= this.selectedMentalFlaws[index].pointCost;
       delete this.selectedMentalFlaws[index];
-      delete this.masterFlawList[this.masterFlawList.indexOf(this.masterFlawList.indexOf(this.selectedMentalFlaws[index]))];
       this.flawCount--;
       break;
    case "socialMerit":
       CharCreatorService.changeFreebiePts(this.selectedSocialMerits[index].pointCost);
       delete this.selectedSocialMerits[index];
-      delete this.masterMeritList[this.masterMeritList.indexOf(this.masterMeritList.indexOf(this.selectedSocialMerits[index]))];
       this.meritCount--;
       break;
    case "socialFlaw":
       CharCreatorService.changeFreebiePts(-this.selectedSocialFlaws[index].pointCost);
       this.addedFlawPts -= this.selectedSocialFlaws[index].pointCost;
       delete this.selectedSocialFlaws[index];
-      delete this.masterFlawList[this.masterFlawList.indexOf(this.masterFlawList.indexOf(this.selectedSocialFlaws[index]))];
       this.flawCount--;
       break;
    case "supernaturalMerit":
       CharCreatorService.changeFreebiePts(this.selectedSupernaturalMerits[index].pointCost);
-      delete this.supernaturalMeritList[index];
-      delete this.masterMeritList.indexOf(this.masterMeritList.indexOf(this.selectedPhysicalMerits[index]));
-      delete this.masterMeritList[this.masterMeritList.indexOf(this.masterMeritList.indexOf(this.selectedSupernaturalMerits[index]))];
+      delete this.selectedSupernaturalMerits[index];
       this.meritCount--;
       break;
    case "supernaturalFlaw":
       CharCreatorService.changeFreebiePts(-this.selectedSupernaturalFlaws[index].pointCost);
       this.addedFlawPts -= this.selectedSupernaturalFlaws[index].pointCost;
-      delete this.supernaturalFlawList[index];
-      delete this.masterFlawList[this.masterFlawList.indexOf(this.masterFlawList.indexOf(this.selectedSupernaturalFlaws[index]))];
+      delete this.selectedSupernaturalFlaws[index];
       this.flawCount--;
       break;
    default:
@@ -373,22 +312,27 @@ this.chooseMeritFlaw = chooseMeritFlaw;
     }
  }
 
-  this.checkMasterList = checkMasterList;
-  function checkMasterList(name, type){
-    if(type == "merit"){
-      for(var i = 0; i < this.masterMeritList.length; i++){
-        if(this.masterMeritList[i].name == name)
-          return true;
-      }
-      return false;
-    }
-    else{
-      for(var i = 0; i < this.masterFlawList.length; i++){
-        if(this.masterFlawList[i].name == name)
-          return true;
-      }
-      return false;
-    }
-  }
+ this.createMasterLists = createMasterLists;
+ function createMasterLists(){
+   this.masterMeritList = [];
+   this.masterFlawList = [];
+   var meritFlawList = [this.selectedPhysicalMerits, this.selectedPhysicalFlaws,
+                        this.selectedMentalMerits, this.selectedMentalFlaws,
+                        this.selectedSocialMerits, this.selectedSocialFlaws,
+                        this.selectedSupernaturalMerits, this.selectedSupernaturalFlaws];
+
+   for(var i = 0; i < meritFlawList.length; i++){
+     for(var j = 0; j < Object.values(meritFlawList[i]).length; j++){
+       if(meritFlawList[i][j].name == "")
+        continue;
+       var meritFlawName = meritFlawList[i][j].name.substr(0, meritFlawList[i][j].name.lastIndexOf(' '));
+       var meritFlaw = new MeritFlaw(meritFlawName, meritFlawList[i][j].pointCost);
+       if((i%2))
+         this.masterFlawList.push(meritFlaw);
+        else
+         this.masterMeritList.push(meritFlaw);
+     }
+   }
+ }
 
 }]);

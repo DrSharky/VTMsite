@@ -2,14 +2,15 @@ var app = angular.module("site");
 app.service('PdfService',
 ['$http', 'CharCreatorService', 'ClanService', 'AttributesService',
  'AbilitiesService', 'DisciplineService', 'BackgroundsService', 'VirtuesService',
- 'MeritFlawService',
+ 'MeritFlawService', 'PathService', 'WillpowerService',
 function($http, CharCreatorService, ClanService, AttributesService,
    AbilitiesService, DisciplineService, BackgroundsService, VirtuesService,
-   MeritFlawService){
+   MeritFlawService, PathService, WillpowerService){
 
   this.imgData = "";
   this.generatePDF = generatePDF;
   this.drawPoints = drawPoints;
+  this.drawPath = drawPath;
 
   var self = this;
   $http.get('./pdf/pdfImage.txt').then(function(response){
@@ -90,11 +91,32 @@ function($http, CharCreatorService, ClanService, AttributesService,
       virtHeight += 9.4;
     }
 
-    var meritPosition = 59.74;
-    var meritHeight = 167.2;
-    for(var i = 0; i < 1; i++){
-      var test = 1;
+    MeritFlawService.createMasterLists();
+
+    var meritPosition = 67.5;
+    var meritHeight = 214;
+    for(var i = 0; i < MeritFlawService.masterMeritList.length; i++){
+      doc.text(24.7, meritHeight, MeritFlawService.masterMeritList[i].name);
+      doc.text(meritPosition, meritHeight, MeritFlawService.masterMeritList[i].pointCost.toString());
+      meritHeight += 4.7;
     }
+
+    var flawPosition = 67.5;
+    var flawHeight = 247;
+    for(var i = 0; i < MeritFlawService.masterFlawList.length; i++){
+      doc.text(24.7, flawHeight, MeritFlawService.masterFlawList[i].name);
+      doc.text(flawPosition, flawHeight, MeritFlawService.masterFlawList[i].pointCost.toString());
+      flawHeight += 4.7;
+    }
+
+    var pathPosition = 84.89;
+    var pathHeight = 208.4;
+    doc.text(pathPosition+2, pathHeight, PathService.selectedPath.name);
+    this.drawPath(PathService.selectedPath, pathPosition, pathHeight+3.21, doc);
+
+    var willPosition = 84.89;
+    var willHeight = 234.09;
+    this.drawPath(WillpowerService.willpower, willPosition, willHeight, doc);
 
     doc.save("character_sheet_" + CharCreatorService.charName+".pdf");
   }
@@ -108,11 +130,11 @@ function($http, CharCreatorService, ClanService, AttributesService,
     }
   }
 
-  function drawAbility(ability, position, height, doc){
-    for(point in ability.points){
-      if(ability.points[point].type != ""){
-        doc.circle(position, height, 1.28, 'FD');
-        position += 2.87;
+  function drawPath(attr, position, height, doc){
+    for(point in attr.points){
+      if(attr.points[point].type != ""){
+        doc.circle(position, height, 1.29, 'FD');
+        position += 4.2;
       }
     }
   }
