@@ -31,11 +31,14 @@ app.controller("LoginController",
   }
 
   function login(){
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function(error){
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(function(){
+      $window.location.reload();
+      self.loggedIn = true;
+      $("#DDList").removeClass("open");
+    })
+    .catch(function(error){
       alert(error.message);
     });
-    this.loggedIn = true;
-    $("#DDList").removeClass("open");
   }
 
   function forgotPW(email){

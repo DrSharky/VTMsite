@@ -14,12 +14,17 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
 
   function changeDiscipline(discipline, index, prevDisc){
      this.selectedClanDisciplines[index] = new Discipline(discipline);
+     for(var i = 0; i < Object.values(this.selectedClanDisciplines).length; i++){
+       if(this.selectedClanDisciplines[i].name == this.selectedClanDisciplines[index].name && i != index){
+         this.selectedClanDisciplines[index].name = "";
+       }
+     }
      for(var i = 0; i < prevDisc.points.length; i++){
        if(prevDisc.points[i].type == "original"){
          this.disciplinePts++;
        }
        if(prevDisc.points[i].type == "freebie")
-         CharCreatorService.changeFreebiePts(1);
+         CharCreatorService.changeFreebiePts(7);
      }
   }
 
