@@ -101,7 +101,6 @@ this.chooseMeritFlaw = chooseMeritFlaw;
       }
      else{
         this.meritCount--;
-        delete this.masterFlawList[this.masterFlawList.indexOf(meritFlaw)];
       }
    }
    switch(category){
@@ -110,6 +109,13 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedPhysicalMerits[index] = meritFlaw;
+          for(var i = 0; i < Object.values(this.selectedPhysicalMerits).length; i++){
+            if(this.selectedPhysicalMerits[i].name == meritFlaw.name && i != index){
+              this.selectedPhysicalMerits[index].name = "";
+              this.selectedPhysicalMerits[index].pointCost = 0;
+              return;
+            }
+          }
           CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
         }
         break;
@@ -118,6 +124,13 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         CharCreatorService.changeFreebiePts(-prevMeritFlaw.pointCost);
         if((this.addedFlawPts + meritFlaw.pointCost - prevMeritFlaw.pointCost) <= this.maxFlawPts){
           this.selectedPhysicalFlaws[index] = meritFlaw;
+          for(var i = 0; i < Object.values(this.selectedPhysicalFlaws).length; i++){
+            if(this.selectedPhysicalFlaws[i].name == meritFlaw.name && i != index){
+              this.selectedPhysicalFlaws[index].name = "";
+              this.selectedPhysicalFlaws[index].pointCost = 0;
+              return;
+            }
+          }
           CharCreatorService.changeFreebiePts(meritFlaw.pointCost);
           this.addedFlawPts = (this.addedFlawPts + meritFlaw.pointCost - prevMeritFlaw.pointCost);
         }
@@ -131,6 +144,13 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedMentalMerits[index] = meritFlaw;
+          for(var i = 0; i < Object.values(this.selectedMentalMerits).length; i++){
+            if(this.selectedMentalMerits[i].name == meritFlaw.name && i != index){
+              this.selectedMentalMerits[index].name = "";
+              this.selectedMentalMerits[index].pointCost = 0;
+              return;
+            }
+          }
           CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
         }
         break;
@@ -139,6 +159,13 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         CharCreatorService.changeFreebiePts(-prevMeritFlaw.pointCost);
         if(this.addedFlawPts + meritFlaw.pointCost <= this.maxFlawPts){
           this.selectedMentalFlaws[index] = meritFlaw;
+          for(var i = 0; i < Object.values(this.selectedMentalFlaws).length; i++){
+            if(this.selectedMentalFlaws[i].name == meritFlaw.name && i != index){
+              this.selectedMentalFlaws[index].name = "";
+              this.selectedMentalFlaws[index].pointCost = 0;
+              return;
+            }
+          }
           CharCreatorService.changeFreebiePts(meritFlaw.pointCost);
           this.addedFlawPts = (this.addedFlawPts + meritFlaw.pointCost - prevMeritFlaw.pointCost);
         }
@@ -152,6 +179,13 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedSocialMerits[index] = meritFlaw;
+          for(var i = 0; i < Object.values(this.selectedSocialMerits).length; i++){
+            if(this.selectedSocialMerits[i].name == meritFlaw.name && i != index){
+              this.selectedSocialMerits[index].name = "";
+              this.selectedSocialMerits[index].pointCost = 0;
+              return;
+            }
+          }
           CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
         }
         break;
@@ -160,6 +194,13 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         CharCreatorService.changeFreebiePts(-prevMeritFlaw.pointCost);
         if((this.addedFlawPts + meritFlaw.pointCost -prevMeritFlaw.pointCost) <= this.maxFlawPts){
           this.selectedSocialFlaws[index] = meritFlaw;
+          for(var i = 0; i < Object.values(this.selectedSocialFlaws).length; i++){
+            if(this.selectedSocialFlaws[i].name == meritFlaw.name && i != index){
+              this.selectedSocialFlaws[index].name = "";
+              this.selectedSocialFlaws[index].pointCost = 0;
+              return;
+            }
+          }
           CharCreatorService.changeFreebiePts(meritFlaw.pointCost);
           this.addedFlawPts = (this.addedFlawPts + meritFlaw.pointCost - prevMeritFlaw.pointCost);
         }
@@ -173,6 +214,13 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedSupernaturalMerits[index] = meritFlaw;
+          for(var i = 0; i < Object.values(this.selectedSupernaturalMerits).length; i++){
+            if(this.selectedSupernaturalMerits[i].name == meritFlaw.name && i != index){
+              this.selectedSupernaturalMerits[index].name = "";
+              this.selectedSupernaturalMerits[index].pointCost = 0;
+              return;
+            }
+          }
           CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
         }
         break;
@@ -181,6 +229,13 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         CharCreatorService.changeFreebiePts(-prevMeritFlaw.pointCost);
         if(this.addedFlawPts + meritFlaw.pointCost <= this.maxFlawPts){
           this.selectedSupernaturalFlaws[index] = meritFlaw;
+          for(var i = 0; i < Object.values(this.selectedSupernaturalFlaws).length; i++){
+            if(this.selectedSupernaturalFlaws[i].name == meritFlaw.name && i != index){
+              this.selectedSupernaturalFlaws[index].name = "";
+              this.selectedSupernaturalFlaws[index].pointCost = 0;
+              return;
+            }
+          }
           CharCreatorService.changeFreebiePts(meritFlaw.pointCost);
           this.addedFlawPts = (this.addedFlawPts + meritFlaw.pointCost - prevMeritFlaw.pointCost);
         }

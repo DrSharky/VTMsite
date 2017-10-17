@@ -131,6 +131,13 @@ app.service("BackgroundsService", ['CharCreatorService',
 
  function chooseBackground(background, index){
    var selectedBackground = this.selectedList[index];
+   for(var i = 0; i < Object.values(this.selectedList).length; i++){
+     if(this.selectedList[i].name == background.name && i != index){
+       selectedBackground.reset();
+       selectedBackground.name = "";
+      //  chooseBackground(new Background(""), index);
+     }
+   }
    if(background.name == "" && selectedBackground.pointCount > 0){
      if(CharCreatorService.freebieMode){
        CharCreatorService.changeFreebiePts(selectedBackground.pointCount);
