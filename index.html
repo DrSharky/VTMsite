@@ -64,6 +64,7 @@
   <script type="text/javascript" src="./pdf/pdfController.js"></script>
   <script type="text/javascript" src="./meritFlaw/meritFlawController.js"></script>
   <script type="text/javascript" src="./meritFlaw/meritFlawService.js"></script>
+  <script type="text/javascript" src="./glossary/glossaryController.js"></script>
   <!--/dependencies-->
   <!--Firebase stuff-->
   <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
@@ -99,6 +100,9 @@
             </li>
             <li ng-class="{active: nav.isActive('/creator')}">
               <a href="#!/creator">Character Creator</a>
+            </li>
+            <li ng-class="{active: nav.isActive('/glossary')}">
+              <a href="#!/glossary">Glossary</a>
             </li>
             <!-- <li ng-class="{active: nav.isActive('/login')}">
               <a href="#!/login">Login</a>
