@@ -106,7 +106,7 @@ this.chooseMeritFlaw = chooseMeritFlaw;
    switch(category){
       case "physicalMerit":
         meritFlaw = new MeritFlaw(meritFlaw.name, this.physicalMeritList[meritFlaw.name]);
-        CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost, true);
+        CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedPhysicalMerits[index] = meritFlaw;
           for(var i = 0; i < Object.values(this.selectedPhysicalMerits).length; i++){
@@ -116,7 +116,7 @@ this.chooseMeritFlaw = chooseMeritFlaw;
               return;
             }
           }
-          CharCreatorService.changeFreebiePts(-meritFlaw.pointCost, true);
+          CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
         }
         break;
      case "physicalFlaw":
@@ -141,7 +141,7 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         break;
      case "mentalMerit":
         meritFlaw = new MeritFlaw(meritFlaw.name, this.mentalMeritList[meritFlaw.name]);
-        CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost, true);
+        CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedMentalMerits[index] = meritFlaw;
           for(var i = 0; i < Object.values(this.selectedMentalMerits).length; i++){
@@ -151,7 +151,7 @@ this.chooseMeritFlaw = chooseMeritFlaw;
               return;
             }
           }
-          CharCreatorService.changeFreebiePts(-meritFlaw.pointCost, true);
+          CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
         }
         break;
      case "mentalFlaw":
@@ -176,7 +176,7 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         break;
      case "socialMerit":
         meritFlaw = new MeritFlaw(meritFlaw.name, this.socialMeritList[meritFlaw.name]);
-        CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost, true);
+        CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedSocialMerits[index] = meritFlaw;
           for(var i = 0; i < Object.values(this.selectedSocialMerits).length; i++){
@@ -186,7 +186,7 @@ this.chooseMeritFlaw = chooseMeritFlaw;
               return;
             }
           }
-          CharCreatorService.changeFreebiePts(-meritFlaw.pointCost, true);
+          CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
         }
         break;
      case "socialFlaw":
@@ -211,7 +211,7 @@ this.chooseMeritFlaw = chooseMeritFlaw;
         break;
      case "supernaturalMerit":
         meritFlaw = new MeritFlaw(meritFlaw.name, this.supernaturalMeritList[meritFlaw.name]);
-        CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost, true);
+        CharCreatorService.changeFreebiePts(prevMeritFlaw.pointCost);
         if(CharCreatorService.getFreebiePts() > 0){
           this.selectedSupernaturalMerits[index] = meritFlaw;
           for(var i = 0; i < Object.values(this.selectedSupernaturalMerits).length; i++){
@@ -221,7 +221,7 @@ this.chooseMeritFlaw = chooseMeritFlaw;
               return;
             }
           }
-          CharCreatorService.changeFreebiePts(-meritFlaw.pointCost, true);
+          CharCreatorService.changeFreebiePts(-meritFlaw.pointCost);
         }
         break;
      case "supernaturalFlaw":
