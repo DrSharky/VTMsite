@@ -4,6 +4,7 @@ app.service('CharCreatorService', [function(){
 
   this.freebiePts = 15;
   this.freebieMode = false;
+  this.freebieSpent = 0;
 
   this.charPlayer = null;
   this.charChronicle = null;
@@ -28,12 +29,15 @@ app.service('CharCreatorService', [function(){
   this.changeFreebiePts = changeFreebiePts;
   this.toggleFreebieMode = toggleFreebieMode;
 
-  function changeFreebiePts(addPts){
+  function changeFreebiePts(addPts, meritFlaw){
+    if(!meritFlaw)
+      this.freebieSpent -= addPts;
+
     this.freebiePts += addPts;
   }
 
   function toggleFreebieMode(){
-    if(this.freebiePts < 15){
+    if(this.freebieSpent > 0){
       return;
     }
     this.freebieMode = !this.freebieMode;
