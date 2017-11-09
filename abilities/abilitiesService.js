@@ -198,10 +198,14 @@ app.service("AbilitiesService",
 
       //Different operations if using Freebie points.
       if(CharCreatorService.freebieMode){
+
+        if(ability.points[index].type == "original")
+          return null;
+          
         priorityPts = CharCreatorService.getFreebiePts();
 
         if(index < ability.pointCount - 1)
-          pointDiff = (ability.pointCount * 2) - (index + 1 * 2);
+          pointDiff = (ability.pointCount * 2) - ((index + 1) * 2);
         if((index == ability.pointCount-1)){
           pointDiff = (ability.pointCount * 2) - (index * 2);
            index -= 1;

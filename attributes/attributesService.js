@@ -214,8 +214,10 @@ function selectAttribute(attribute, index, catIndex){
 
     priorityPts = CharCreatorService.getFreebiePts();
 
+    if(index )
+
     if(index < attribute.pointCount - 1)
-      pointDiff = (attribute.pointCount * 5) - (index + 1 * 5);
+      pointDiff = (attribute.pointCount * 5) - ((index + 1) * 5);
     if((index == attribute.pointCount-1 && index!=0)){
       pointDiff = (attribute.pointCount * 5) - (index * 5);
       index -= 1;

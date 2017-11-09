@@ -14,13 +14,14 @@ app.service("WillpowerService", ['CharCreatorService',
       if(!CharCreatorService.freebieMode)
         return null;
 
+      if(this.willpower.points[index].type == "original")
+        return;
+
       var pointDiff = this.willpower.pointCount - (index+1);
 
       if((CharCreatorService.getFreebiePts() + pointDiff < 0))
         return null;
 
-      if(this.willpower.points[index] == "original")
-        return;
 
       if(index == this.willpower.pointCount - 1){
         pointDiff = 1;

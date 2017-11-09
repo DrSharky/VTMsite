@@ -101,11 +101,8 @@
             <li ng-class="{active: nav.isActive('/creator')}">
               <a href="#!/creator">Character Creator</a>
             </li>
-            <li ng-class="{active: nav.isActive('/glossary')}">
+            <!--<li ng-class="{active: nav.isActive('/glossary')}">
               <a href="#!/glossary">Glossary</a>
-            </li>
-            <!-- <li ng-class="{active: nav.isActive('/login')}">
-              <a href="#!/login">Login</a>
             </li> -->
             <li id="DDList" class="dropdown" ng-controller="LoginController as loginCtrl">
               <a ng-hide="!loginCtrl.loggedIn" href="" ng-click="loginCtrl.logout()"><b>Logout</b></a>
