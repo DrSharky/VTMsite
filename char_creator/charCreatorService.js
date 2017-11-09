@@ -29,8 +29,8 @@ app.service('CharCreatorService', [function(){
   this.changeFreebiePts = changeFreebiePts;
   this.toggleFreebieMode = toggleFreebieMode;
 
-  function changeFreebiePts(addPts, meritFlaw){
-    if(!meritFlaw)
+  function changeFreebiePts(addPts, flaw){
+    if(!flaw)
       this.freebieSpent -= addPts;
 
     this.freebiePts += addPts;
