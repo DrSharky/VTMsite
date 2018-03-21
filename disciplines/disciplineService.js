@@ -45,7 +45,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService',
       var disciplineFree = CharCreatorService.getFreebiePts();
 
       if(index < discipline.pointCount - 1)
-        pointDiff = (discipline.pointCount * 7) - (index + 1 * 7);
+        pointDiff = (discipline.pointCount * 7) - ((index + 1) * 7);
       if(index == discipline.pointCount-1){
         pointDiff = (discipline.pointCount * 7) - (index * 7);
         index -= 1;

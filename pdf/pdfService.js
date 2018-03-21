@@ -25,6 +25,15 @@ function($http, CharCreatorService, ClanService, AttributesService,
     doc.addImage(this.imgData, 'JPEG', 0, 0, width, height);
     doc.setFontSize(11);
 
+    if(CharCreatorService.charName == null || CharCreatorService.charNature == null ||
+       ClanService.selectedClan.name == null || CharCreatorService.charPlayer == null ||
+       CharCreatorService.charDemeanor == null || CharCreatorService.charGeneration == null ||
+       CharCreatorService.charChronicle == null || CharCreatorService.charConcept == null ||
+       CharCreatorService.charSire == null){
+         alert("At least all player info boxes must be filled to create a pdf!");
+         return;
+       }
+
     doc.text(32.9, 41.8, CharCreatorService.charName);
     doc.text(91.5, 41.8, CharCreatorService.charNature);
     doc.text(144.7, 41.8, ClanService.selectedClan.name);
