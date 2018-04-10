@@ -162,13 +162,18 @@ app.service("ClanService", function(){
       disciplines: ["Auspex", "Dominate", "Thaumaturgy"]
     },
     {
-      id: 28, name: "Tzimisce",
+      id: 28, name: "True Brujah",
+      filters: ["All Bloodlines", "Independent", "Dark Ages"],
+      disciplines: ["Potence", "Presence", "Temporis"]
+    },
+    {
+      id: 29, name: "Tzimisce",
       filters: ["Thirteen", "Sabbat", "All Clans", "Sabbat (clans only)",
                 "Dark Ages", "High Clans"],
       disciplines: ["Animalism", "Auspex", "Vicissitude"]
     },
     {
-      id: 29, name: "Ventrue",
+      id: 30, name: "Ventrue",
       filters: ["Thirteen", "Camarilla", "All Clans",
                 "Camarilla (clans only)", "Dark Ages", "High Clans"],
       disciplines: ["Dominate", "Fortitude", "Presence"]

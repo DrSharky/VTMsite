@@ -24,5 +24,13 @@ app.service('UglyService', function(){
       return true;
     else
       return false;
-  }
+  };
+
+  this.isGargoyle = function(){
+    if(this.currentClan == 'Gargoyles')
+      return true;
+    else
+      return false;
+  };
+
 });
