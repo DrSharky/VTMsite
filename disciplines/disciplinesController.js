@@ -7,8 +7,9 @@ app.controller("DisciplinesController",
    this.getFreebieMode = getFreebieMode;
    function getFreebieMode(){
      return DisciplineService.getFreebieMode();
-   }
+   };
 
+  this.isGargoyle = isGargoyle;
   this.selectDisciplinePt = selectDisciplinePt;
   this.disciplinesPage = "./disciplines/disciplines.html";
   this.disciplineList = ["Animalism", "Auspex", "Bardo", "Celerity",
@@ -22,12 +23,16 @@ app.controller("DisciplinesController",
 
   function selectDisciplinePt(discipline, index){
     DisciplineService.selectDisciplinePt(discipline, index);
-  }
+  };
+
+  function isGargoyle(){
+    return DisciplineService.isGargoyle();
+  };
 
   this.changeDiscipline = changeDiscipline;
   function changeDiscipline(discipline, index, prevDisc){
     DisciplineService.changeDiscipline(discipline, index, prevDisc);
-  }
+  };
 
   this.selectedClanDisciplines = getDisciplines();
   function getDisciplines(){
@@ -42,11 +47,11 @@ app.controller("DisciplinesController",
   this.addDiscipline = addDiscipline;
   function addDiscipline(){
     DisciplineService.addDiscipline();
-  }
+  };
 
   this.removeDiscipline = removeDiscipline;
   function removeDiscipline(index){
     DisciplineService.removeDiscipline(index);
-  }
+  };
 
 }]);
