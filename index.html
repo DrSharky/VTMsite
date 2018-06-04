@@ -85,11 +85,89 @@
         angular.bootstrap(document, ['site']);
       }, 400);
     });
+
+    $(window).scroll(function() {
+  if ($(document).scrollTop() > 50) {
+    $('nav').addClass('shrink');
+  } else {
+    $('nav').removeClass('shrink');
+  }
+});
   </script>
   <!--/Firebase stuff-->
 </head>
 <body>
-  <div class="navbar-sm">
+  <nav class="navbar navbar-default" ng-controller="NavController as nav">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img class="navbar-brand" src="v20ankh.png"/>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li ng-class="{active: nav.isActive('/home')}">
+            <a href="#">Home</a>
+          </li>
+          <li ng-class="{active: nav.isActive('/creator')}">
+            <a href="#!/creator">Creator</a>
+          </li>
+          <!-- <li ng-class="{active: nav.isActive('/glossary')}">
+            <a href="#!/glossary">Glossary</a> -->
+          </li>
+          <li id="DDList" class="dropdown" ng-controller="LoginController as loginCtrl">
+           <a ng-hide="!loginCtrl.loggedIn" href="" ng-click="loginCtrl.logout()"><b>Logout</b></a>
+           <a ng-hide="loginCtrl.loggedIn" href="" class="dropdown-toggle" data-toggle="dropdown">
+             <b>Login</b>
+             <span class="caret"></span>
+           </a>
+           <ul id="login-dp" class="dropdown-menu" ng-hide="loginCtrl.loggedIn">
+             <li>
+               <div class="row">
+                 <div class="col-md-12">
+                   <form class="form" role="form" method="post" id="login-nav">
+                     <div class="form-group">
+                       <label class="sr-only" for="emailDD">Email: </label>
+                       <input type="email" class="form-control" id="emailDD"
+                              ng-model="loginCtrl.email" placeholder="Email Address" required/>
+                     </div>
+                     <div class="form-group">
+                       <label class="sr-only" for="passwordDD">Password: </label>
+                       <input type="password" class="form-control" id="passwordDD"
+                              ng-model="loginCtrl.password" placeholder="Password" required />
+                       <div class="help-block text-right">
+                         <a ng-click="loginCtrl.forgotPW(loginCtrl.email)">Forgot Password?</a>
+                       </div>
+                     </div>
+                     <div class="form-group">
+                       <button class="btn btn-primary btn-block"
+                               ng-click="loginCtrl.login()">Sign in</button>
+                     </div>
+                     <div class="form-group">
+                       <button class="btn btn-primary btn-block"
+                               ng-click="loginCtrl.register()">Register</button>
+                     </div>
+                     <!-- <div class="checkbox">
+                       <label>
+                         <input ng-model="loginCtrl.noCloseLogout" type="checkbox" />keep me logged in
+                       </label>
+                     </div> -->
+                   </form>
+                 </div>
+               </div>
+             </li>
+           </ul>
+         </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+   <!-- <div class="navbar-sm">
     <div class="navbar-primary">
       <nav class="navbar-default navbar-fixed-top" role="navigation" ng-controller="NavController as nav">
         <div class="container-fluid">
@@ -100,11 +178,11 @@
             </li>
             <li ng-class="{active: nav.isActive('/creator')}">
               <a href="#!/creator">Character Creator</a>
-            </li>
+            </li> -->
             <!--<li ng-class="{active: nav.isActive('/glossary')}">
               <a href="#!/glossary">Glossary</a>
             </li> -->
-            <li id="DDList" class="dropdown" ng-controller="LoginController as loginCtrl">
+             <!-- <li id="DDList" class="dropdown" ng-controller="LoginController as loginCtrl">
               <a ng-hide="!loginCtrl.loggedIn" href="" ng-click="loginCtrl.logout()"><b>Logout</b></a>
               <a ng-hide="loginCtrl.loggedIn" href="" class="dropdown-toggle" data-toggle="dropdown">
                 <b>Login</b>
@@ -135,52 +213,62 @@
                         <div class="form-group">
                           <button class="btn btn-primary btn-block"
                                   ng-click="loginCtrl.register()">Register</button>
-                        </div>
+                        </div> -->
                         <!-- <div class="checkbox">
                           <label>
                             <input ng-model="loginCtrl.noCloseLogout" type="checkbox" />keep me logged in
                           </label>
                         </div> -->
-                      </form>
+                       <!-- </form>
                     </div>
                   </div>
                 </li>
               </ul>
-            </li>
-          </ul>
+            </li> -->
+          <!-- </ul>
         </div>
       </nav>
     </div>
-  </div>
+  </div> -->
   <br />
-  <div class="container-fluid">
-    <div class="row" style="margin-left: 100px; margin-right: 100px;">
-      <div class="col-lg-12">
+  <div class="container">
+    <div class="container-fluid">
+    <div class="row">
         <div ng-controller="TermIndexController as tindexCtrl">
           <div ng-view></div>
         </div>
-      </div>
+    </div>
     </div>
   </div>
 </body>
 </html>
 
 <style>
-  body{
+  /* body{
     padding-top: 10px;
     padding-bottom:20px;
-  }
+  } */
   #title-logo{
     height: 32px;
     margin-left: -15px;
     padding-top:5px;
   }
-.navbar-primary .navbar-default .nav li > a .caret, .tnav .navbar .nav li > a:hover .caret {border-top-color: #fff;border-bottom-color: #fff;}
+   nav {
+  .navbar-brand {font-size: 30px;}
+	.navbar-toggle {margin: 13px 15px 13px 0;}
+	a {
+		font-size: 18px;
+		padding-bottom: 20px !important;
+		padding-top: 20px !important;
+    transition: all 0.3s ease;
+	}
+}
+/* .navbar-primary .navbar-default .nav li > a .caret, .tnav .navbar .nav li > a:hover .caret {border-top-color: #fff;border-bottom-color: #fff;}
 .navbar-primary .navbar-default .nav > li.dropdown.open.active > a:hover .caret, .tnav .navbar .nav > li.dropdown.open > a .caret {border-top-color: #fff;}
 .navbar-primary .navbar-default .nav.pull-right {margin-left: 10px; margin-right: 0;}
 .navbar-sm .navbar-primary .navbar-default { min-height:40px; height: 40px; }
 .navbar-sm .navbar-primary .navbar-default .navbar-brand{ padding: 0px 12px;font-size: 16px;line-height: 40px; }
-.navbar-sm .navbar-primary .navbar-default .navbar-nav > li > a {  padding-top: 0px; padding-bottom: 0px; line-height: 40px; }
+.navbar-sm .navbar-primary .navbar-default .navbar-nav > li > a {  padding-top: 0px; padding-bottom: 0px; line-height: 40px; } */
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;
@@ -208,5 +296,8 @@
         background-color: inherit;
         border-top:0 none;
     }
+    /* body{
+      padding-top: 100px;
+    } */
 }
 </style>

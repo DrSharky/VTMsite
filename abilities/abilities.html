@@ -1,4 +1,4 @@
-<table>
+<table class="center">
   <tr>
     <th></th>
     <th></th>
@@ -40,7 +40,7 @@
     </th>
   </tr>
 </table>
-<table ng-table="abCtrl.tableParams1" show-filter="false" >
+<table ng-table="abCtrl.tableParams" show-filter="false" class="center" >
   <tr ng-repeat="ability in $data">
     <td style="width:100px;">
       <div termindex term="{{ability.col1.name}}" class="abLabel">
@@ -80,6 +80,10 @@
     padding-top: 30px;
     color: #BB0000;
     font-size: 24px;
+  }
+  table.center {
+    margin-left:auto;
+    margin-right:auto;
   }
   .abHead{
     font-size: 18.5px;

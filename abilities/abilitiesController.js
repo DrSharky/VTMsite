@@ -117,6 +117,6 @@ app.controller("AbilitiesController",
     }
     return data;
   }
-  this.tableParams1 = new NgTableParams({count: 10},
+  this.tableParams = new NgTableParams({count: 10},
                       { dataset: this.dataSet(), counts: [] });
 }]);

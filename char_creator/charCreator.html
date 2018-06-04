@@ -1,64 +1,159 @@
 <h3>Character Creator</h3>
-<div class="col-lg-9">
-  <div class="col-lg-12 col-md-12 col-sm-12">
-      <div class="row">
+  <!-- <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="col-lg-3 col-md-3 col-sm-3">
-          <label termindex term="Player" for="charPlayer" style="margin-right: 3px;">Player: </label>
-          <input id="charPlayer" ng-model="creatorCtrl.charPlayer"
-                 ng-blur="creatorCtrl.setPlayer(creatorCtrl.charPlayer)"/> <!--TODO: Remove the ng-blurs, Replace them with-->
-        </div>                                                                   <!--a function in the service when saving.-->
-        <div class="col-lg-3 col-md-3 col-sm-3">
-          <label termindex term="Chronicle" for="charChronicle" style="margin-right: 3px;">Chronicle: </label>
-          <input id="charChronicle" ng-model="creatorCtrl.charChronicle" ng-blur="creatorCtrl.setChronicle(creatorCtrl.charChronicle)"/>
+          <div class="col-lg-4">
+            <label termindex term="Player" for="charPlayer" style="margin-right: 3px;">Player: </label>
+          </div>
+          <div class="col-lg-8">
+            <input id="charPlayer" ng-model="creatorCtrl.charPlayer"
+                 ng-blur="creatorCtrl.setPlayer(creatorCtrl.charPlayer)"/>
+          </div>
+          <div class="col-lg-4">
+            <label termindex term="Nature" for="charNature">Nature: </label>
+          </div>
+          <div class="col-lg-8">
+            <input id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)"/> -->
+          <!-- </div>                                                                                                            TODO: Remove the ng-blurs, Replace them with -->
+        <!-- </div>                                                                                                              a function in the service when saving.-->
+        <!-- <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="col-lg-4">
+            <label termindex term="Chronicle" for="charChronicle" style="margin-right: 3px;">Chronicle: </label>
+          </div>
+          <div class="col-lg-8">
+            <input id="charChronicle" ng-model="creatorCtrl.charChronicle" ng-blur="creatorCtrl.setChronicle(creatorCtrl.charChronicle)"/>
+          </div>
+          <div class="col-lg-4">
+            <label termindex term="Demeanor" for="charDemeanor">Demeanor: </label>
+          </div>
+          <div class="col-lg-8">
+            <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)"/>
+          </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
-          <label termindex term="Name" for="charName">Name: </label>
-          <input id="charName" ng-model="creatorCtrl.charName" ng-blur="creatorCtrl.setName(creatorCtrl.charName)"/>
+          <div class="col-lg-4">
+            <label termindex term="Name" for="charName">Name: </label>
+          </div>
+          <div class="col-lg-8">
+            <input id="charName" ng-model="creatorCtrl.charName" ng-blur="creatorCtrl.setName(creatorCtrl.charName)"/>
+          </div>
+          <div class="col-lg-4">
+            <label termindex term="Sire" for="charSire" style="margin-right: 12px;">Sire: </label>
+          </div>
+          <div class="col-lg-8">
+            <input id="charSire" ng-model="creatorCtrl.charSire" ng-blur="creatorCtrl.setSire(creatorCtrl.charSire)"/>
+          </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
-          <label termindex term="Concept" for="charConcept">Concept: </label>
-          <input id="charConcept" ng-model="creatorCtrl.charConcept" ng-blur="creatorCtrl.setConcept(creatorCtrl.charConcept)"/>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3">
-          <label termindex term="Nature" for="charNature">Nature: </label>
-          <input id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)"/>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3">
-          <label termindex term="Demeanor" for="charDemeanor">Demeanor: </label>
-          <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)"/>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3">
-          <label termindex term="Sire" for="charSire" style="margin-right: 12px;">Sire: </label>
-          <input id="charSire" ng-model="creatorCtrl.charSire" ng-blur="creatorCtrl.setSire(creatorCtrl.charSire)"/>
-        </div>
-        <div class="col-lg-3 col-md-3 col-sm-3">
-          <label termindex term="Generation" for="charGeneration">Generation: </label>
-          <select id="charGeneration" ng-model="creatorCtrl.charGeneration"
+          <div class="col-lg-4">
+            <label termindex term="Concept" for="charConcept">Concept: </label>
+          </div>
+          <div class="col-lg-8">
+            <input id="charConcept" ng-model="creatorCtrl.charConcept" ng-blur="creatorCtrl.setConcept(creatorCtrl.charConcept)"/>
+          </div>
+          <div class="col-lg-4">
+            <label termindex term="Generation" for="charGeneration">Generation: </label>
+          </div>
+          <div class="col-lg-8">
+            <select id="charGeneration" ng-model="creatorCtrl.charGeneration"
                   ng-options="charGen for charGen in creatorCtrl.generations" ng-blur="creatorCtrl.setGeneration(creatorCtrl.charGeneration)">
+          </div>
           </select>
         </div>
+      </div> -->
+      <div class="col-xs-12 col-md-4 input-column form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-md-4" termindex term="Name" for="charName" style="text-align: left">Name: </label>
+          <div class="col-md-8">
+            <input id="charName" ng-model="creatorCtrl.charName" ng-blur="creatorCtrl.setName(creatorCtrl.charName)"/>
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-4" termindex term="Player" for="charPlayer" style="text-align: left">Player: </label>
+          <div class="col-md-8">
+            <input id="charPlayer" ng-model="creatorCtrl.charPlayer"
+                 ng-blur="creatorCtrl.setPlayer(creatorCtrl.charPlayer)"/>
+          </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-4" termindex term="Chronicle" for="charChronicle" style="text-align: left">Chronicle: </label>
+          <div class="col-md-8">
+            <input id="charChronicle" ng-model="creatorCtrl.charChronicle" ng-blur="creatorCtrl.setChronicle(creatorCtrl.charChronicle)"/>
+          </div>
+        </div>
       </div>
-      <br />
+      <div class="col-xs-12 col-md-4 input-column form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-md-4" termindex term="Nature" for="charNature" style="text-align: left">Nature: </label>
+        <div class="col-md-8">
+          <input id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)"/>
+        </div>                                                                                                            <!--TODO: Remove the ng-blurs, Replace them with-->
+      </div>                                                                                                              <!--a function in the service when saving.-->
+        <div class="form-group">
+          <label class="control-label col-md-4" termindex term="Demeanor" for="charDemeanor" style="text-align: left">Demeanor: </label>
+          <div class="col-md-8">
+            <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-4" termindex term="Concept" for="charConcept" style="text-align: left">Concept: </label>
+          <div class="col-md-8">
+            <input id="charConcept" ng-model="creatorCtrl.charConcept" ng-blur="creatorCtrl.setConcept(creatorCtrl.charConcept)"/>
+          </div>
+        </div>
+        <!-- <div class="form-group">
+          <label class="control-label col-md-4" termindex term="Name" for="charName" style="text-align: left">Name: </label>
+          <div class="col-md-8">
+            <input id="charName" ng-model="creatorCtrl.charName" ng-blur="creatorCtrl.setName(creatorCtrl.charName)"/>
+          </div>
+        </div> -->
+        <!-- <div class="form-group">
+          <label class="control-label col-md-4" termindex term="Sire" for="charSire" style="text-align: left">Sire: </label>
+          <div class="col-md-8">
+            <input id="charSire" ng-model="creatorCtrl.charSire" ng-blur="creatorCtrl.setSire(creatorCtrl.charSire)"/>
+          </div>
+        </div> -->
+      </div>
       <div ng-controller="ClanController as clanCtrl">
-        <div class="row">
+      <div class="col-xs-12 col-md-4 input-column form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-md-4" termindex term="Clan" for="clanSelect" style="text-align: left">Clan/Bloodline: </label>
+          <div class="col-md-8">
+            <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList"
+                    ng-change="setUClan(clanCtrl.selectedClan)" ng-blur="clanCtrl.setClan(clanCtrl.selectedClan)" style="min-height:26px">
+            </select>
+        </div>
+      </div>
+        <div class="form-group">
+          <label class="control-label col-md-4" termindex term="Generation" for="charGeneration" style="text-align: left">Generation: </label>
+          <div class="col-md-8">
+            <select id="charGeneration" ng-model="creatorCtrl.charGeneration"
+                  ng-options="charGen for charGen in creatorCtrl.generations" ng-blur="creatorCtrl.setGeneration(creatorCtrl.charGeneration)" style="min-height:26px">
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-4" termindex term="Sire" for="charSire" style="text-align: left">Sire: </label>
+          <div class="col-md-8">
+            <input id="charSire" ng-model="creatorCtrl.charSire" ng-blur="creatorCtrl.setSire(creatorCtrl.charSire)"/>
+          </div>
+        </div>
+      </div>
+        <!-- <div class="col-lg-12">
           <label for="clanFilter" style="margin-right: 30px;">Clan Filter: </label>
           <select id="clanFilter" ng-model="clanCtrl.selectedClanFilter" ng-options="filter for filter in clanCtrl.clanFilters"
                   ng-change="clanCtrl.filterClans(clanCtrl.selectedClanFilter)">
           </select>
         </div>
-        <div class="row">
+        <div class="col-lg-12">
           <label for="clanSelect">Clan/Bloodline: </label>
           <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList"
                   ng-change="setUClan(clanCtrl.selectedClan)" ng-blur="clanCtrl.setClan(clanCtrl.selectedClan)">
           </select>
-        </div>
+        </div> -->
       <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
-    </div>
-    </div>
+  </div>
     <div ng-controller="AttributesController as attrCtrl">
-    <ng-include src="attrCtrl.attributesPage"></ng-include>
+        <ng-include src="attrCtrl.attributesPage"></ng-include>
     </div>
     <div ng-controller="AbilitiesController as abCtrl">
       <ng-include src="abCtrl.abilitiesPage"></ng-include>
@@ -76,7 +171,6 @@
     <div ng-controller="PdfController as pdfCtrl">
       <button ng-click="pdfCtrl.generatePDF()">Export PDF</button>
     </div>
-</div>
 <div class="row">
   <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="DisciplinesController as discCtrl">
     <div class="numdis">
