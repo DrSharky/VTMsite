@@ -126,7 +126,7 @@
         <div class="form-group">
           <label class="control-label col-md-4" termindex term="Generation" for="charGeneration" style="text-align: left">Generation: </label>
           <div class="col-md-8">
-            <select id="charGeneration" ng-model="creatorCtrl.charGeneration"
+            <select id="charGeneration" ng-model="creatorCtrl.charGeneration" style="min-width: 179px; min-height: 26px;"
                   ng-options="charGen for charGen in creatorCtrl.generations" ng-blur="creatorCtrl.setGeneration(creatorCtrl.charGeneration)" style="min-height:26px">
             </select>
           </div>
@@ -212,5 +212,8 @@
     font-weight: bold;
     display: inline;
     margin-left: 35px;
+  }
+  input{
+    min-width: 179px;
   }
 </style>

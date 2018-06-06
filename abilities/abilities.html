@@ -1,5 +1,48 @@
-<table class="center">
-  <tr>
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center" style="font-size: 18pt; font-weight: 500; margin-top:10px; margin-bottom: 10px;">Abilities</p>
+  </div>
+  <div class="col-md-4 abil-select">
+    <select style="margin-right: 10px;" ng-model="abCtrl.selectedPriorities[0]"
+     ng-options="priority for priority in abCtrl.abilityPriorities"
+     ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[0], 0, abCtrl.abilityCategories[0].priority)">
+    </select>
+    <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[0])}}</span>
+  </div>
+  <div class="col-md-4 abil-select">
+    <select style="margin-right: 10px;" ng-model="abCtrl.selectedPriorities[1]"
+     ng-options="priority for priority in abCtrl.abilityPriorities"
+     ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[1], 1, abCtrl.abilityCategories[1].priority)">
+    </select>
+    <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[1])}}</span>
+  </div>
+  <div class="col-md-4 abil-select">
+    <select style="margin-right: 10px;" ng-model="abCtrl.selectedPriorities[2]"
+    ng-options="priority for priority in abCtrl.abilityPriorities"
+    ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[2], 2, abCtrl.abilityCategories[2].priority)">
+    </select>
+    <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[2])}}</span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="abHead">
+      Talents
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="abHead">
+      Skills
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="abHead">
+      Knowledges
+    </div>
+  </div>
+</div>
+<!-- <table class="center">
+   <tr>
     <th></th>
     <th></th>
       <th style="text-align: center; font-size: 18pt; font-weight: 500;">Abilities</th>
@@ -39,8 +82,18 @@
       <div class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[2])}}</div>
     </th>
   </tr>
-</table>
-<table ng-table="abCtrl.tableParams" show-filter="false" class="center" >
+</table> -->
+<div class="row">
+  <div class="col-md-4 abil-center" ng-repeat="ability in abCtrl.abCatRows">
+    <div termindex term="{{ability.name}}" class="abLabel">
+      {{ability.name}}
+    </div>
+    <div ng-repeat="abPt in ability.points" style="display: inline-block;">
+      <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability, $index)"/>
+    </div>
+  </div>
+ </div>
+<!-- <table ng-table="abCtrl.tableParams" show-filter="false" class="center" >
   <tr ng-repeat="ability in $data">
     <td style="width:100px;">
       <div termindex term="{{ability.col1.name}}" class="abLabel">
@@ -73,12 +126,13 @@
       </div>
     </td>
   </tr>
-</table>
+</table> -->
 
 <style>
   .num {
     color: #BB0000;
     font-size: 24px;
+    font-weight: bold;
   }
   table.center {
     margin-left:auto;
@@ -87,19 +141,34 @@
   .abHead{
     font-size: 18.5px;
     font-weight: 500;
-    margin-top: 20px;
     margin-bottom: 10px;
+    text-align: center;
   }
   .abLabel{
     font-size: 16px;
     font-weight: 500;
-    width: 87px;
+    min-width: 92px;
+    margin-right: 10px;
+    display: inline-block;
   }
-
   .abimg{
     width:15px;
     height: 15px;
     vertical-align: top;
     margin-top: 2px;
+  }
+  .col-md-4.abil-select{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    max-height: 20px;
+  }
+  .col-md-4.abil-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 </style>

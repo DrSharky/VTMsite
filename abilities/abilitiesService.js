@@ -165,6 +165,13 @@ app.service("AbilitiesService",
       ]
     }];
 
+    this.abCatRows = [];
+      for(var i = 0; i < 10; i++){
+        for(var j = 0; j < 3; j++){
+          this.abCatRows.push(this.abilityCategories[j].abilities[i]);
+        }
+      }
+
     function getPriority(ability){
      for(var i = 0; i < this.abilityCategories.length; i++){
        if(this.abilityCategories[i].abilities.indexOf(ability)!=-1){
@@ -201,7 +208,7 @@ app.service("AbilitiesService",
 
         if(ability.points[index].type == "original")
           return null;
-          
+
         priorityPts = CharCreatorService.getFreebiePts();
 
         if(index < ability.pointCount - 1)
@@ -246,7 +253,6 @@ app.service("AbilitiesService",
         //Change the point count in the ability.
         ability.pointCount = (index+1);
       }
-
 
       //Change the total amount of points still available for that category.
       switch(priority){

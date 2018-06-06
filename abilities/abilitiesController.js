@@ -59,6 +59,11 @@ app.controller("AbilitiesController",
     return AbilitiesService.abilityCategories;
   };
 
+  this.abCatRows = getAbCatRows();
+  function getAbCatRows(){
+    return AbilitiesService.abCatRows;
+  };
+
   function getPriorityPts(index){
     return AbilitiesService.getPriorityPts(index);
   };
@@ -117,6 +122,8 @@ app.controller("AbilitiesController",
     }
     return data;
   }
+
+  //TODO TODO TODO TODO TODO REMOVE NG TABLE STUFF TODO TODO TODO TODO TODO
   this.tableParams = new NgTableParams({count: 10},
                       { dataset: this.dataSet(), counts: [] });
 }]);
