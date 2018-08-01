@@ -10,12 +10,12 @@
   <meta name="theme-color" content="#ffffff">
   <!--/icon stuff-->
   <!--dependencies-->
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
   <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.min.css" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.1.0/toaster.min.css" />
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/></script>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"/></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"/></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.js"></script>
@@ -97,32 +97,29 @@
   <!--/Firebase stuff-->
 </head>
 <body>
-  <nav class="navbar navbar-default" ng-controller="NavController as nav">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+  <nav class="navbar navbar-light navbar-expand-md" ng-controller="NavController as nav">
+    <!-- <div class="container"> -->
+        <button type="button" class="navbar-toggler" data-toggle="collapse"
+          data-target="#collapsenav">
+          <img class="img-fluid" style="width:10px;" src="v20ankh.png"/>
         </button>
-        <img class="navbar-brand" src="v20ankh.png"/>
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li ng-class="{active: nav.isActive('/home')}">
-            <a href="#">Home</a>
-          </li>
+        <a class="navbar-brand">
+          <img class="img-fluid d-none d-md-block" style="width:10px;" src="v20ankh.png"/>
+        </a>
+      <div class="collapse navbar-collapse" id="collapsenav">
+        <ul class="navbar-nav">
+          <li class="nav-item" ng-class="{active: nav.isActive('/home')}">
+            <a class="nav-link" href="#">Home</a>
+          </li class="nav-item">
           <li ng-class="{active: nav.isActive('/creator')}">
-            <a href="#!/creator">Creator</a>
+            <a class="nav-link" href="#!/creator">Creator</a>
           </li>
           <!-- <li ng-class="{active: nav.isActive('/glossary')}">
             <a href="#!/glossary">Glossary</a> -->
           </li>
           <li id="DDList" class="dropdown" ng-controller="LoginController as loginCtrl">
-           <a ng-hide="!loginCtrl.loggedIn" href="" ng-click="loginCtrl.logout()"><b>Logout</b></a>
-           <a ng-hide="loginCtrl.loggedIn" href="" class="dropdown-toggle" data-toggle="dropdown">
+           <a class="nav-link" ng-hide="!loginCtrl.loggedIn" href="" ng-click="loginCtrl.logout()"><b>Logout</b></a>
+           <a class="nav-link" ng-hide="loginCtrl.loggedIn" href="" class="dropdown-toggle" data-toggle="dropdown">
              <b>Login</b>
              <span class="caret"></span>
            </a>
@@ -165,7 +162,7 @@
          </li>
         </ul>
       </div>
-    </div>
+    <!-- </div> -->
   </nav>
    <!-- <div class="navbar-sm">
     <div class="navbar-primary">
@@ -232,13 +229,13 @@
   </div> -->
   <br />
   <div class="container">
-    <div class="container-fluid">
-    <div class="row">
+    <!-- <div class="container-fluid"> -->
+    <!-- <div class="row"> -->
         <div ng-controller="TermIndexController as tindexCtrl">
           <div ng-view></div>
         </div>
-    </div>
-    </div>
+    <!-- </div> -->
+    <!-- </div> -->
   </div>
 </body>
 </html>
@@ -252,6 +249,9 @@
     height: 32px;
     margin-left: -15px;
     padding-top:5px;
+  }
+  .active{
+    background-color: rgba(225,225,225);
   }
    nav {
   .navbar-brand {font-size: 30px;}

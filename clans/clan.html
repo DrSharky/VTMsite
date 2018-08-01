@@ -3,6 +3,7 @@
     </div>
     <div class="col-lg-9 col-md-9 col-sm-9">
       <h3>{{clanCtrl.selectedClan.name}}</h3>
+      <div style="font-size: 18px; margin-bottom: 10px;">{{clanCtrl.selectedClan.class}}</div>
         <clandescription clan="clanCtrl.selectedClan.name"></clandescription><br/>
       <b><termindex term="Discipline">Disciplines:</termindex> </b>
       <span discipline-html="clanCtrl.clanList[clanCtrl.selectedClan.id].disciplines" style="display: inline-block;"></span>

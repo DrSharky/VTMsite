@@ -1,4 +1,5 @@
 <h3>Character Creator</h3>
+<div class="row" ng-controller="ClanController as clanCtrl">
   <!-- <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="col-lg-3 col-md-3 col-sm-3">
           <div class="col-lg-4">
@@ -113,7 +114,7 @@
           </div>
         </div> -->
       </div>
-      <div ng-controller="ClanController as clanCtrl">
+      <!-- <div ng-controller="ClanController as clanCtrl"> -->
       <div class="col-xs-12 col-md-4 input-column form-horizontal">
         <div class="form-group">
           <label class="control-label col-md-4" termindex term="Clan" for="clanSelect" style="text-align: left">Clan/Bloodline: </label>
@@ -138,6 +139,7 @@
           </div>
         </div>
       </div>
+      <!-- </div> -->
         <!-- <div class="col-lg-12">
           <label for="clanFilter" style="margin-right: 30px;">Clan Filter: </label>
           <select id="clanFilter" ng-model="clanCtrl.selectedClanFilter" ng-options="filter for filter in clanCtrl.clanFilters"
@@ -151,32 +153,47 @@
           </select>
         </div> -->
       <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
-  </div>
+  <!-- </div> -->
+</div>
     <div ng-controller="AttributesController as attrCtrl">
         <ng-include src="attrCtrl.attributesPage"></ng-include>
     </div>
     <div ng-controller="AbilitiesController as abCtrl">
       <ng-include src="abCtrl.abilitiesPage"></ng-include>
     </div>
-    <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
+    <!-- <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
       <ng-include src="tindexCtrl.termIndexPage"></ng-include>
-    </div>
-    <div ng-controller="SaveController as saveCtrl">
+    </div> -->
+    <!-- <div ng-controller="SaveController as saveCtrl">
       <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
-    </div>
-    <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
-      <!-- <button ng-hide="!creatorCtrl.loggedIn" ng-click="loadCtrl.loadChars()">Load Character</button> -->
+    </div> -->
+    <!-- <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
       <ng-include src="loadCtrl.loadPage"></ng-include>
-    </div>
-    <div ng-controller="PdfController as pdfCtrl">
+    </div> -->
+    <!-- <div ng-controller="PdfController as pdfCtrl">
       <button ng-click="pdfCtrl.generatePDF()">Export PDF</button>
-    </div>
+    </div> -->
+<!-- <ng-include src="creatorCtrl.advantagesPage"></ng-include> -->
 <div class="row">
+  <div class="col-md-12">
+    <p class="text-center" style="font-size: 18pt; font-weight: 500;">Advantages</p>
+  </div>
+  <div class="col-md-4 adv-select" ng-controller="DisciplinesController as discCtrl">
+    <ng-include src="discCtrl.disciplinesPage"></ng-include>
+  </div>
+  <div class="col-md-4 adv-select" ng-controller="BackgroundsController as backCtrl">
+    <ng-include src="backCtrl.backgroundsPage"></ng-include>
+  </div>
+  <div class="col-md-4 adv-select" ng-controller="VirtuesController as virtCtrl">
+    <ng-include src="virtCtrl.virtuesPage"></ng-include>
+  </div>
+</div>
+<!-- <div class="row">
   <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="DisciplinesController as discCtrl">
-    <div class="numdis">
+     <div class="numdis">
       {{creatorCtrl.getFreebiePts()}}
     </div>
-    <button ng-click="creatorCtrl.toggleFreebieMode()">Toggle Freebie Mode</button>
+     <button ng-click="creatorCtrl.toggleFreebieMode()">Toggle Freebie Mode</button>
     <ng-include src="discCtrl.disciplinesPage"></ng-include>
   </div>
   <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="BackgroundsController as backCtrl">
@@ -194,7 +211,7 @@
   <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="MeritFlawController as meritFlawCtrl">
     <ng-include src="meritFlawCtrl.meritFlawPage"></ng-include>
   </div>
-</div>
+</div> -->
 
 
 <style>
@@ -215,5 +232,12 @@
   }
   input{
     min-width: 179px;
+  }
+  .col-md-4.adv-select{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
   }
 </style>

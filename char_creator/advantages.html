@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center" style="font-size: 18pt; font-weight: 500;">Advantages</p>
+  </div>
+  <div class="col-md-4 adv-select" ng-controller="DisciplinesController as discCtrl">
+    <ng-include src=discCtrl.disciplinesPage></ng-include>
+  </div>
+  <div class="col-md-4 adv-select" ng-controller="BackgroundsController as backCtrl">
+    <ng-include src="backCtrl.backgroundsPage"></ng-include>
+  </div>
+  <div class="col-md-4 adv-select" ng-controller="VirtuesController as virtCtrl">
+    <ng-include src="virtCtrl.virtuesPage"></ng-include>
+  </div>
+</div>

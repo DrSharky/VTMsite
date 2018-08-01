@@ -10,6 +10,8 @@ app.controller("CharCreatorController",
      CharCreatorService.charPlayer = charPlayer;
    }
 
+   this.advantagesPage = "./char_creator/advantages.html";
+
    this.setChronicle = setChronicle;
    function setChronicle(charChronicle){
      CharCreatorService.charChronicle = charChronicle;
