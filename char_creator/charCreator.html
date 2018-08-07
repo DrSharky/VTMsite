@@ -1,5 +1,7 @@
-<h3>Character Creator</h3>
+<h3 class="text-center" style="padding-bottom:5px;">Character Creator</h3>
 <div class="row" ng-controller="ClanController as clanCtrl">
+  <div class="container-fluid">
+    <div class="row">
   <!-- <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="col-lg-3 col-md-3 col-sm-3">
           <div class="col-lg-4">
@@ -61,44 +63,56 @@
           </select>
         </div>
       </div> -->
-      <div class="col-xs-12 col-md-4 input-column form-horizontal">
-        <div class="form-group">
-          <label class="control-label col-md-4" termindex term="Name" for="charName" style="text-align: left">Name: </label>
-          <div class="col-md-8">
-            <input id="charName" ng-model="creatorCtrl.charName" ng-blur="creatorCtrl.setName(creatorCtrl.charName)"/>
+      <div class="col-12 col-lg-4">
+        <div class="form-group row">
+          <div class="sm-test row">
+            <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Name" for="charName">Name: </label>
+            <div class="col-8">
+              <input class="charInput form-control" id="charName" ng-model="creatorCtrl.charName" ng-blur="creatorCtrl.setName(creatorCtrl.charName)"/>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-4" termindex term="Player" for="charPlayer" style="text-align: left">Player: </label>
-          <div class="col-md-8">
-            <input id="charPlayer" ng-model="creatorCtrl.charPlayer"
-                 ng-blur="creatorCtrl.setPlayer(creatorCtrl.charPlayer)"/>
+        <div class="form-group row">
+          <div class="sm-test row">
+            <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Player" for="charPlayer">Player: </label>
+            <div class="col-8">
+              <input class="charInput form-control" id="charPlayer" ng-model="creatorCtrl.charPlayer"
+                ng-blur="creatorCtrl.setPlayer(creatorCtrl.charPlayer)"/>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-            <label class="control-label col-md-4" termindex term="Chronicle" for="charChronicle" style="text-align: left">Chronicle: </label>
-          <div class="col-md-8">
-            <input id="charChronicle" ng-model="creatorCtrl.charChronicle" ng-blur="creatorCtrl.setChronicle(creatorCtrl.charChronicle)"/>
+        <div class="form-group row">
+          <div class="sm-test row">
+            <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Chronicle" for="charChronicle">Chronicle: </label>
+            <div class="col-8">
+              <input class="charInput form-control" id="charChronicle" ng-model="creatorCtrl.charChronicle" ng-blur="creatorCtrl.setChronicle(creatorCtrl.charChronicle)"/>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-xs-12 col-md-4 input-column form-horizontal">
-        <div class="form-group">
-          <label class="control-label col-md-4" termindex term="Nature" for="charNature" style="text-align: left">Nature: </label>
-        <div class="col-md-8">
-          <input id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)"/>
-        </div>                                                                                                            <!--TODO: Remove the ng-blurs, Replace them with-->
-      </div>                                                                                                              <!--a function in the service when saving.-->
-        <div class="form-group">
-          <label class="control-label col-md-4" termindex term="Demeanor" for="charDemeanor" style="text-align: left">Demeanor: </label>
-          <div class="col-md-8">
-            <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)"/>
+      <div class="col-12 col-lg-4">
+        <div class="form-group row">
+          <div class="sm-test row">
+            <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Nature" for="charNature" style="text-align: left">Nature: </label>
+            <div class="col-8">
+              <input class="charInput form-control" id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)"/>
+            </div>                                                                                                            <!--TODO: Remove the ng-blurs, Replace them with-->
+          </div>                                                                                                              <!--a function in the service when saving.-->
+        </div>
+        <div class="form-group row">
+          <div class="sm-test row">
+            <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Demeanor" for="charDemeanor" style="text-align: left">Demeanor: </label>
+            <div class="col-8">
+              <input class="charInput form-control" id="charDemeanor" ng-model="creatorCtrl.charDemeanor" ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)"/>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="control-label col-md-4" termindex term="Concept" for="charConcept" style="text-align: left">Concept: </label>
-          <div class="col-md-8">
-            <input id="charConcept" ng-model="creatorCtrl.charConcept" ng-blur="creatorCtrl.setConcept(creatorCtrl.charConcept)"/>
+        <div class="form-group row">
+          <div class="sm-test row">
+            <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Concept" for="charConcept">Concept: </label>
+            <div class="col-8">
+              <input class="charInput form-control" id="charConcept" ng-model="creatorCtrl.charConcept" ng-blur="creatorCtrl.setConcept(creatorCtrl.charConcept)"/>
+            </div>
           </div>
         </div>
         <!-- <div class="form-group">
@@ -115,27 +129,33 @@
         </div> -->
       </div>
       <!-- <div ng-controller="ClanController as clanCtrl"> -->
-      <div class="col-xs-12 col-md-4 input-column form-horizontal">
-        <div class="form-group">
-          <label class="control-label col-md-4" termindex term="Clan" for="clanSelect" style="text-align: left">Clan/Bloodline: </label>
-          <div class="col-md-8">
-            <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList"
-                    ng-change="setUClan(clanCtrl.selectedClan)" ng-blur="clanCtrl.setClan(clanCtrl.selectedClan)" style="min-height:26px">
-            </select>
+      <div class="col-12 col-lg-4">
+        <div class="form-group row">
+          <div class="sm-test row">
+            <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Clan" for="clanSelect">Clan: </label>
+            <div class="col-8">
+              <select class="charInput form-control" id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList"
+                      ng-change="setUClan(clanCtrl.selectedClan)" ng-blur="clanCtrl.setClan(clanCtrl.selectedClan)" style="min-height:26px">
+              </select>
+            </div>
         </div>
       </div>
-        <div class="form-group">
-          <label class="control-label col-md-4" termindex term="Generation" for="charGeneration" style="text-align: left">Generation: </label>
-          <div class="col-md-8">
-            <select id="charGeneration" ng-model="creatorCtrl.charGeneration" style="min-width: 179px; min-height: 26px;"
-                  ng-options="charGen for charGen in creatorCtrl.generations" ng-blur="creatorCtrl.setGeneration(creatorCtrl.charGeneration)" style="min-height:26px">
-            </select>
+        <div class="form-group row">
+          <div class="sm-test row">
+            <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Generation" for="charGeneration">Generation: </label>
+            <div class="col-8">
+              <select class="charInput form-control" id="charGeneration" ng-model="creatorCtrl.charGeneration" style="min-width: 179px; min-height: 26px;"
+                    ng-options="charGen for charGen in creatorCtrl.generations" ng-blur="creatorCtrl.setGeneration(creatorCtrl.charGeneration)" style="min-height:26px">
+              </select>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="control-label col-md-4" termindex term="Sire" for="charSire" style="text-align: left">Sire: </label>
-          <div class="col-md-8">
-            <input id="charSire" ng-model="creatorCtrl.charSire" ng-blur="creatorCtrl.setSire(creatorCtrl.charSire)"/>
+        <div class="form-group row">
+          <div class="sm-test row">
+            <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Sire" for="charSire">Sire: </label>
+            <div class="col-8">
+              <input class="charInput form-control" id="charSire" ng-model="creatorCtrl.charSire" ng-blur="creatorCtrl.setSire(creatorCtrl.charSire)"/>
+            </div>
           </div>
         </div>
       </div>
@@ -155,39 +175,51 @@
       <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
   <!-- </div> -->
 </div>
-    <div ng-controller="AttributesController as attrCtrl">
-        <ng-include src="attrCtrl.attributesPage"></ng-include>
-    </div>
-    <div ng-controller="AbilitiesController as abCtrl">
-      <ng-include src="abCtrl.abilitiesPage"></ng-include>
-    </div>
-    <!-- <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
-      <ng-include src="tindexCtrl.termIndexPage"></ng-include>
-    </div> -->
-    <!-- <div ng-controller="SaveController as saveCtrl">
-      <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
-    </div> -->
-    <!-- <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
-      <ng-include src="loadCtrl.loadPage"></ng-include>
-    </div> -->
-    <!-- <div ng-controller="PdfController as pdfCtrl">
-      <button ng-click="pdfCtrl.generatePDF()">Export PDF</button>
-    </div> -->
-<!-- <ng-include src="creatorCtrl.advantagesPage"></ng-include> -->
-<div class="row">
-  <div class="col-md-12">
-    <p class="text-center" style="font-size: 18pt; font-weight: 500;">Advantages</p>
-  </div>
-  <div class="col-md-4 adv-select" ng-controller="DisciplinesController as discCtrl">
-    <ng-include src="discCtrl.disciplinesPage"></ng-include>
-  </div>
-  <div class="col-md-4 adv-select" ng-controller="BackgroundsController as backCtrl">
-    <ng-include src="backCtrl.backgroundsPage"></ng-include>
-  </div>
-  <div class="col-md-4 adv-select" ng-controller="VirtuesController as virtCtrl">
-    <ng-include src="virtCtrl.virtuesPage"></ng-include>
-  </div>
 </div>
+</div>
+<section class="panels row">
+  <div class="container-fluid character-sheet">
+    <div class="content-holder char-tabs">
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div ng-controller="AttributesController as attrCtrl">
+              <ng-include src="attrCtrl.attributesPage"></ng-include>
+          </div>
+        </div>
+        <div ng-controller="AbilitiesController as abCtrl">
+          <ng-include src="abCtrl.abilitiesPage"></ng-include>
+        </div>
+        <!-- <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
+          <ng-include src="tindexCtrl.termIndexPage"></ng-include>
+        </div> -->
+        <!-- <div ng-controller="SaveController as saveCtrl">
+          <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
+        </div> -->
+        <!-- <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
+          <ng-include src="loadCtrl.loadPage"></ng-include>
+        </div> -->
+        <!-- <div ng-controller="PdfController as pdfCtrl">
+          <button ng-click="pdfCtrl.generatePDF()">Export PDF</button>
+        </div> -->
+    <!-- <ng-include src="creatorCtrl.advantagesPage"></ng-include> -->
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center" style="font-size: 18pt; font-weight: 500;">Advantages</p>
+          </div>
+          <div class="col-md-4 adv-select" ng-controller="DisciplinesController as discCtrl">
+            <ng-include src="discCtrl.disciplinesPage"></ng-include>
+          </div>
+          <div class="col-md-4 adv-select" ng-controller="BackgroundsController as backCtrl">
+            <ng-include src="backCtrl.backgroundsPage"></ng-include>
+          </div>
+          <div class="col-md-4 adv-select" ng-controller="VirtuesController as virtCtrl">
+            <ng-include src="virtCtrl.virtuesPage"></ng-include>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- <div class="row">
   <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="DisciplinesController as discCtrl">
      <div class="numdis">
@@ -215,6 +247,17 @@
 
 
 <style>
+
+@media(max-width:991.98px){
+  .sm-test{
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+.charInput{
+  width: 200px;
+}
  .inline-headers h3, .inline-headers h4 {
     display: inline-block;
     vertical-align: baseline;

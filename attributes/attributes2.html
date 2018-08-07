@@ -1,4 +1,8 @@
-<div class="row">
+<!-- <div class="row"> -->
+<div class="panel-heading" role="tab">
+  <hr style="width:427.5px; display: inline-block">
+  <h4 class="panel-title collapsed" style="display: inline-block">Attributes</h4>
+  <hr style="width:427.5px; display: inline-block">
   <div class="col-md-12">
     <p class="text-center" style="font-size: 18pt; font-weight: 500;">Attributes</p>
   </div>
@@ -110,9 +114,15 @@
       </div>
     </div>
   </div>
-</div>
+<!-- </div> -->
 
 <style>
+.panel-group {
+    margin-bottom: 20px;
+}
+.panel-default .panel-heading {
+    padding: 15px 0;
+}
   .num {
     color: #BB0000;
     font-size: 24px;
@@ -162,4 +172,25 @@
     justify-content: center;
     align-items: center;
   }
+  .panel .panel-heading hr {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    border-color: #00BF8E;
+    background-color: #00BF8E
+}
+.panel-title {
+    -ms-flex: 0 1 25%;
+    flex: 0 1 25%;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+.panel-group .panel {
+    margin-top: 35px;
+    margin-bottom: 0;
+    border-radius: 4px;
+}
+.modal, .panel-group .panel{
+  overflow: visible;
+}
 </style>
