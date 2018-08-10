@@ -24,6 +24,10 @@ app.controller("VirtuesController",
    $scope.$on('loadCharacter', function(){
      self.virtueList = VirtuesService.virtueList;
      $scope.$apply();
+   });
+
+   $scope.$on('resetCharacter', function(){
+     VirtuesService.resetVirtues();
    })
 
 }]);

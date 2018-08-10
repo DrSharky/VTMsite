@@ -100,6 +100,22 @@ app.service("PathService",
     };
   };
 
+  this.resetPath = resetPath;
+  function resetPath(){
+    this.selectedPath.points = [{id:0, img:"./full.png", type: "original"},
+                                {id:1, img:"./full.png", type: "original"},
+                                {id:2, img:"./empty.png", type: ""},
+                                {id:3, img:"./empty.png", type: ""},
+                                {id:4, img:"./empty.png", type: ""},
+                                {id:5, img:"./empty.png", type: ""},
+                                {id:6, img:"./empty.png", type: ""},
+                                {id:7, img:"./empty.png", type: ""},
+                                {id:8, img:"./empty.png", type: ""},
+                                {id:9, img:"./empty.png", type: ""}];
+    this.selectedPath.name = this.pathList[0];
+    this.selectedPath.pointCount = 2;
+  };
+
   this.selectedPath = new Path("");
 
 }]);

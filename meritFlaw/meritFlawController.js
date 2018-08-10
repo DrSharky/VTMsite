@@ -125,6 +125,10 @@ app.controller("MeritFlawController",
      self.selectedSupernaturalMerits = MeritFlawService.selectedSupernaturalMerits;
      self.selectedSupernaturalFlaws = MeritFlawService.selectedSupernaturalFlaws;
      $scope.$apply();
-   })
+   });
+
+   $scope.$on('resetCharacter', function(){
+     MeritFlawService.resetMeritFlaws();
+   });
 
  }]);

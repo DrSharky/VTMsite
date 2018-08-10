@@ -390,4 +390,28 @@ this.chooseMeritFlaw = chooseMeritFlaw;
    }
  }
 
+ this.resetMeritFlaws = resetMeritFlaws;
+ function resetMeritFlaws(){
+
+   this.meritCount = 0;
+   this.flawCount = 0;
+
+   for(var i = 0; i < this.meritFlawList.length; i++){
+     var objLength = Object.keys(this.meritFlawList[i]).length;
+
+     if(objLength > 1){
+       for(var j = 1; j <= objLength; j++){
+         delete this.meritFlawList[i][j];
+       }
+     }
+     this.meritFlawList[i][0] = new MeritFlaw("", 0);
+
+   }
+ }
+
+ this.meritFlawList = [this.selectedPhysicalMerits, this.selectedPhysicalFlaws,
+                       this.selectedMentalMerits, this.selectedMentalFlaws,
+                       this.selectedSocialMerits, this.selectedSocialFlaws,
+                       this.selectedSupernaturalMerits, this.selectedSupernaturalFlaws];
+
 }]);

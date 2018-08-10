@@ -88,6 +88,21 @@ app.service("WillpowerService", ['CharCreatorService',
       };
     };
 
+    this.resetWillpower = resetWillpower;
+    function resetWillpower(){
+      this.willpower.points = [{id:0, img:"./full.png", type: "original"},
+                               {id:1, img:"./empty.png", type: ""},
+                               {id:2, img:"./empty.png", type: ""},
+                               {id:3, img:"./empty.png", type: ""},
+                               {id:4, img:"./empty.png", type: ""},
+                               {id:5, img:"./empty.png", type: ""},
+                               {id:6, img:"./empty.png", type: ""},
+                               {id:7, img:"./empty.png", type: ""},
+                               {id:8, img:"./empty.png", type: ""},
+                               {id:9, img:"./empty.png", type: ""}];
+      this.willpower.pointCount = 1;
+    }
+
     this.willpower = new Willpower();
 
   }]);
