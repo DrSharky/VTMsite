@@ -139,6 +139,12 @@ app.service("VirtuesService",
     };
   };
 
+  this.resetVirtues = resetVirtues;
+  function resetVirtues(){
+    for(var virtue in this.virtueList){
+      this.virtueList[virtue].reset();
+    }
+  }
 
   this.virtueList = {"Conscience": new Virtue("Conscience"),
                      "Self-control": new Virtue("Self-control"),

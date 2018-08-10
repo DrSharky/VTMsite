@@ -120,4 +120,15 @@ app.controller("CharCreatorController",
      $scope.$apply();
    })
 
+   $scope.$on('resetCharacter', function(){
+     self.charPlayer = null;
+     self.charChronicle = null;
+     self.charName = null;
+     self.charConcept = null;
+     self.charNature = null;
+     self.charDemeanor = null;
+     self.charSire = null;
+     self.charGeneration = "13th";
+   });
+
 }]);

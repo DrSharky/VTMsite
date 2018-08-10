@@ -42,7 +42,10 @@ app.controller("ClanController",
       this.selectedClan = this.filteredClanList[0];
     }
 
-    $scope.setUClan = function(clan) {
+    $scope.setUClan = setUClan;
+    this.setUClan = setUClan;
+
+    function setUClan(clan) {
       UglyService.setClan(clan);
       DisciplineService.setClan(clan);
     }
@@ -56,6 +59,11 @@ app.controller("ClanController",
       self.selectedClan = ClanService.selectedClan;
       $scope.$apply();
     });
+
+    //SHOULD RESET CLAN & DISCIPLINE SECTIONS
+    $scope.$on('resetCharacter', function(){
+      self.setUClan(ClanService.clanList[0]);
+    })
 
   }
 ]);

@@ -107,6 +107,11 @@ app.controller("AbilitiesController",
     $scope.$apply();
   });
 
+  $scope.$on('resetCharacter', function(){
+    AbilitiesService.resetAbilities();
+    AbilitiesService.resetPriorities();
+  });
+
 
   this.dataSet = function(){
     var data = [];

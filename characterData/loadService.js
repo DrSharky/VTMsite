@@ -21,6 +21,11 @@ app.service("LoadService",
     });
   }
 
+  this.resetCharacter = resetCharacter;
+  function resetCharacter(){
+    $rootScope.$broadcast('resetCharacter', CharCreatorService);
+  }
+
   this.loadChars = loadChars;
   function loadChars(){
     var uid = LoginService.getUID();

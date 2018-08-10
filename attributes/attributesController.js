@@ -111,4 +111,9 @@ app.controller("AttributesController",
     $scope.$apply();
   });
 
+  $scope.$on('resetCharacter', function(){
+    AttributeService.resetAttributes();
+    AttributeService.resetPriorities();
+  })
+
 }]);

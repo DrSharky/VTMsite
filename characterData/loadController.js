@@ -9,6 +9,7 @@ app.controller("LoadController",
 
   this.loadClick = loadClick;
   function loadClick(charName){
+    LoadService.resetCharacter();
     LoadService.loadClick(charName);
   }
 

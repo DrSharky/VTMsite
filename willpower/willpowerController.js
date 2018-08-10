@@ -25,6 +25,10 @@ app.controller("WillpowerController",
     $scope.$on('loadCharacter', function(){
       self.willpower = WillpowerService.willpower;
       $scope.$apply();
-    })
+    });
+
+    $scope.$on('resetCharacter', function(){
+      WillpowerService.resetWillpower();
+    });
 
   }]);
