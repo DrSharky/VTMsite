@@ -1,16 +1,29 @@
-<div class="form-group">
-    <div class="col-lg-2 col-md-2 col-sm-2">
-      <div class="col">
-        <img src="./clans/images/{{clanCtrl.selectedClan.name.toLowerCase()}}.png" style="width: 100px; height: 100px; margin-top: 30px;" />
-      </div>
-    </div>
-</div>
-    <div class="col-lg-9 col-md-9 col-sm-9">
-      <div class="col">
-        <h3>{{clanCtrl.selectedClan.name}}</h3>
-        <div style="font-size: 18px; margin-bottom: 10px;">{{clanCtrl.selectedClan.class}}</div>
-          <clandescription clan="clanCtrl.selectedClan.name"></clandescription><br/>
-        <b><termindex term="Discipline">Disciplines:</termindex> </b>
-        <span discipline-html="clanCtrl.clanList[clanCtrl.selectedClan.id].disciplines" style="display: inline-block;"></span>
-      </div>
+<!-- <div class="form-group"> -->
+  <!-- <div class="col-2 offset-5 offset-md-4 col-lg-3 offset-lg-4 col-xl-2 text-center"> -->
+  <div class="col-4 offset-4 text-center">
+    <img class="clan-image" src="./clans/images/{{clanCtrl.selectedClan.name.toLowerCase()}}.png"/>
   </div>
+<!-- </div> -->
+<div class="col-8 offset-2 text-center">
+  <div class="col">
+    <h3>{{clanCtrl.selectedClan.name}}</h3>
+    <div style="font-size: 18px; margin-bottom: 10px;">{{clanCtrl.selectedClan.class}}</div>
+    <clandescription clan="clanCtrl.selectedClan.name"></clandescription><br/>
+    <b><termindex term="Discipline">Disciplines:</termindex> </b>
+    <span discipline-html="clanCtrl.clanList[clanCtrl.selectedClan.id].disciplines" style="display: inline-block;"></span>
+  </div>
+</div>
+
+<style>
+.clan-image{
+  width: 100px;
+  height: 100px;
+  margin-top: 30px;
+}
+@media(max-width:991.98px){
+  .sm-clan-image{
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+</style>
