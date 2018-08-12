@@ -19,11 +19,18 @@ function($http, CharCreatorService, ClanService, AttributesService,
 
   function generatePDF(){
     var doc = new jsPDF();
-    var width = doc.internal.pageSize.width;
-    var height = doc.internal.pageSize.height;
+    var width = doc.internal.pageSize.getWidth();
+    var height = doc.internal.pageSize.getHeight();
 
     doc.addImage(this.imgData, 'JPEG', 0, 0, width, height);
     doc.setFontSize(11);
+
+    AcroForm.Appearance.CheckBox = AcroForm.Appearance.RadioButton.Circle;
+
+    // var test = new CheckBox();
+    // test.Rect = [20, 20, 10, 10];
+    // test.T = 'Test Check';
+    // doc.addField(test);
 
     if(CharCreatorService.charName == null || CharCreatorService.charNature == null ||
        ClanService.selectedClan.name == null || CharCreatorService.charPlayer == null ||
@@ -34,11 +41,41 @@ function($http, CharCreatorService, ClanService, AttributesService,
          return;
        }
 
-    doc.text(32.9, 41.8, CharCreatorService.charName);
-    doc.text(91.5, 41.8, CharCreatorService.charNature);
-    doc.text(144.7, 41.8, ClanService.selectedClan.name);
-    doc.text(34.1, 47.7, CharCreatorService.charPlayer);
-    doc.text(97.2, 47.7, CharCreatorService.charDemeanor);
+    var charName = new TextField();
+    charName.Rect = [32.9, 37.8, 45, 6];
+    charName.V = CharCreatorService.charName;
+    charName.T = 'CharName';
+    charName.DA = null;
+    doc.addField(charName);
+    // doc.text(32.9, 41.8, CharCreatorService.charName);
+    var charNature = new TextField();
+    charNature.Rect = [91.5, 37.8, 43, 6];
+    charNature.V = CharCreatorService.charNature;
+    charNature.T = 'CharNature';
+    charNature.DA = null;
+    doc.addField(charNature);
+    // doc.text(91.5, 41.8, CharCreatorService.charNature);
+    var charClan = new TextField();
+    charClan.Rect = [144.7, 37.8, 43, 6];
+    charClan.V = ClanService.selectedClan.name;
+    charClan.T = 'CharClan';
+    charClan.DA = null;
+    doc.addField(charClan);
+    // doc.text(144.7, 41.8, ClanService.selectedClan.name);
+    var charPlayer = new TextField();
+    charPlayer.Rect = [33.1, 44, 42, 6];
+    charPlayer.V = CharCreatorService.charPlayer;
+    charPlayer.T = 'CharPlayer';
+    charPlayer.DA = null;
+    doc.addField(charPlayer);
+    // doc.text(34.1, 47.7, CharCreatorService.charPlayer);
+    var charDemeanor = new TextField();
+    charDemeanor.Rect = [95.4, 44, 39, 6];
+    charDemeanor.V = CharCreatorService.charDemeanor;
+    charDemeanor.T = 'CharDemeanor';
+    charDemeanor.DA = null;
+    doc.addField(charDemeanor);
+    // doc.text(97.2, 47.7, CharCreatorService.charDemeanor);
     doc.text(155.8, 47.7, CharCreatorService.charGeneration);
     doc.text(39.4, 53.5, CharCreatorService.charChronicle);
     doc.text(93.2, 53.5, CharCreatorService.charConcept);
