@@ -25,12 +25,102 @@ function($http, CharCreatorService, ClanService, AttributesService,
     doc.addImage(this.imgData, 'JPEG', 0, 0, width, height);
     doc.setFontSize(11);
 
-    AcroForm.Appearance.CheckBox = AcroForm.Appearance.RadioButton.Circle;
+    //----------------------------------------------------------------------
+    // var radioButtonCircleAS = AcroForm.Appearance.RadioButton.Circle.createAppearanceStream();
+    // var checkBoxASContent = AcroForm.Appearance.CheckBox.createAppearanceStream();
+    // AcroForm.Appearance.CheckBox.createAppearanceStream = AcroForm.Appearance.RadioButton.Circle.createAppearanceStream;
+    // AcroForm.Appearance.CheckBox.createMK = AcroForm.Appearance.RadioButton.Circle.createMK;
 
-    // var test = new CheckBox();
-    // test.Rect = [20, 20, 10, 10];
-    // test.T = 'Test Check';
-    // doc.addField(test);
+    // var test5 = new CheckBox();
+    // test5.Rect = [5, 10, 10, 10];
+    // test5.T = 'Test Check';
+    // doc.addField(test5);
+
+    // test2.appearanceStreamContent.D["On"] = test2.appearanceStreamContent.D["undefined"];
+    // delete test2.appearanceStreamContent.D["undefined"];
+    // test2.appearanceStreamContent.N["On"] = test2.appearanceStreamContent.N["undefined"];
+    // delete test2.appearanceStreamContent.N["undefined"];
+    //----------------------------------------------------------------------
+
+
+
+    // var test1 = new CheckCircle();
+    // test1.Rect = [68.65, 69.12, 5, 5];
+    // doc.addField(test1);
+    //
+    // var test2 = new CheckCircle();
+    // test2.Rect = [65.80, 69.12, 5, 5];
+    // doc.addField(test2);
+    //
+    // var test3 = new CheckCircle();
+    // test3.Rect = [62.95, 69.12, 5, 5];
+    // doc.addField(test3);
+    //
+    // var test4 = new CheckCircle();
+    // test4.Rect = [60.10, 69.12, 5, 5];
+    // doc.addField(test4);
+    //
+    // var test5 = new CheckCircle();
+    // test5.Rect = [57.25, 69.12, 5, 5];
+    // doc.addField(test5);
+    //
+    // var rest1 = new CheckCircle();
+    // rest1.Rect = [68.65, 73.8, 5, 5];
+    // doc.addField(rest1);
+    //
+    // var rest2 = new CheckCircle();
+    // rest2.Rect = [65.80, 73.8, 5, 5];
+    // doc.addField(rest2);
+    //
+    // var rest3 = new CheckCircle();
+    // rest3.Rect = [62.95, 73.8, 5, 5];
+    // doc.addField(rest3);
+    //
+    // var rest4 = new CheckCircle();
+    // rest4.Rect = [60.10, 73.8, 5, 5];
+    // doc.addField(rest4);
+    //
+    // var rest5 = new CheckCircle();
+    // rest5.Rect = [57.25, 73.8, 5, 5];
+    // doc.addField(rest5);
+    //
+    // var best1 = new CheckCircle();
+    // best1.Rect = [114.59, 69.12, 5, 5];
+    // doc.addField(best1);
+
+    var attrRow = 0;
+    var attrColumn = 0;
+    var attrPosition = 57.25;
+    var attrHeight = 69.12;
+
+    for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
+      // this.drawPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
+      var reckt = new CheckCircle();
+      reckt.Rect = [attrPosition, attrHeight, 5, 5];
+      doc.addField(reckt);
+      attrHeight += 4.68;
+      if(i == 2){
+        attrPosition += 45.94
+        attrHeight = 69.12;
+      }
+      if(i == 5){
+        attrPosition += 45.64;
+        attrHeight = 69.12;
+      }
+    }
+
+    // for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
+    //   this.drawPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
+    //   attrHeight += 4.7;
+    //   if(i == 2){
+    //     attrPosition += 57.3;
+    //     attrHeight = 71.52;
+    //   }
+    //   if(i == 5){
+    //     attrPosition += 57;
+    //     attrHeight = 71.52;
+    //   }
+    // }
 
     if(CharCreatorService.charName == null || CharCreatorService.charNature == null ||
        ClanService.selectedClan.name == null || CharCreatorService.charPlayer == null ||
@@ -76,28 +166,29 @@ function($http, CharCreatorService, ClanService, AttributesService,
     charDemeanor.DA = null;
     doc.addField(charDemeanor);
     // doc.text(97.2, 47.7, CharCreatorService.charDemeanor);
-    doc.text(155.8, 47.7, CharCreatorService.charGeneration);
-    doc.text(39.4, 53.5, CharCreatorService.charChronicle);
-    doc.text(93.2, 53.5, CharCreatorService.charConcept);
-    doc.text(144.1, 53.5, CharCreatorService.charSire);
+    // doc.text(155.8, 47.7, CharCreatorService.charGeneration);
+    // doc.text(39.4, 53.5, CharCreatorService.charChronicle);
+    // doc.text(93.2, 53.5, CharCreatorService.charConcept);
+    // doc.text(144.1, 53.5, CharCreatorService.charSire);
 
-    var attrRow = 0;
-    var attrColumn = 0;
-    var attrPosition = 59.74;
-    var attrHeight = 71.52;
+    // var attrRow = 0;
+    // var attrColumn = 0;
+    // var attrPosition = 59.74;
+    // var attrHeight = 71.52;
+    //
+    // for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
+    //   this.drawPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
+    //   attrHeight += 4.7;
+    //   if(i == 2){
+    //     attrPosition += 57.3;
+    //     attrHeight = 71.52;
+    //   }
+    //   if(i == 5){
+    //     attrPosition += 57;
+    //     attrHeight = 71.52;
+    //   }
+    // }
 
-    for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
-      this.drawPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
-      attrHeight += 4.7;
-      if(i == 2){
-        attrPosition += 57.3;
-        attrHeight = 71.52;
-      }
-      if(i == 5){
-        attrPosition += 57;
-        attrHeight = 71.52;
-      }
-    }
 
     var abPosition = 59.74;
     var abHeight = 99.8;
