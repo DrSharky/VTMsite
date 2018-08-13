@@ -11,6 +11,7 @@ function($http, CharCreatorService, ClanService, AttributesService,
   this.generatePDF = generatePDF;
   this.drawPoints = drawPoints;
   this.drawPath = drawPath;
+  this.createPoints = createPoints;
 
   var self = this;
   $http.get('./pdf/pdfImage.txt').then(function(response){
@@ -24,25 +25,6 @@ function($http, CharCreatorService, ClanService, AttributesService,
 
     doc.addImage(this.imgData, 'JPEG', 0, 0, width, height);
     doc.setFontSize(11);
-
-    //----------------------------------------------------------------------
-    // var radioButtonCircleAS = AcroForm.Appearance.RadioButton.Circle.createAppearanceStream();
-    // var checkBoxASContent = AcroForm.Appearance.CheckBox.createAppearanceStream();
-    // AcroForm.Appearance.CheckBox.createAppearanceStream = AcroForm.Appearance.RadioButton.Circle.createAppearanceStream;
-    // AcroForm.Appearance.CheckBox.createMK = AcroForm.Appearance.RadioButton.Circle.createMK;
-
-    // var test5 = new CheckBox();
-    // test5.Rect = [5, 10, 10, 10];
-    // test5.T = 'Test Check';
-    // doc.addField(test5);
-
-    // test2.appearanceStreamContent.D["On"] = test2.appearanceStreamContent.D["undefined"];
-    // delete test2.appearanceStreamContent.D["undefined"];
-    // test2.appearanceStreamContent.N["On"] = test2.appearanceStreamContent.N["undefined"];
-    // delete test2.appearanceStreamContent.N["undefined"];
-    //----------------------------------------------------------------------
-
-
 
     // var test1 = new CheckCircle();
     // test1.Rect = [68.65, 69.12, 5, 5];
@@ -87,40 +69,6 @@ function($http, CharCreatorService, ClanService, AttributesService,
     // var best1 = new CheckCircle();
     // best1.Rect = [114.59, 69.12, 5, 5];
     // doc.addField(best1);
-
-    var attrRow = 0;
-    var attrColumn = 0;
-    var attrPosition = 57.25;
-    var attrHeight = 69.12;
-
-    for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
-      // this.drawPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
-      var reckt = new CheckCircle();
-      reckt.Rect = [attrPosition, attrHeight, 5, 5];
-      doc.addField(reckt);
-      attrHeight += 4.68;
-      if(i == 2){
-        attrPosition += 45.94
-        attrHeight = 69.12;
-      }
-      if(i == 5){
-        attrPosition += 45.64;
-        attrHeight = 69.12;
-      }
-    }
-
-    // for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
-    //   this.drawPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
-    //   attrHeight += 4.7;
-    //   if(i == 2){
-    //     attrPosition += 57.3;
-    //     attrHeight = 71.52;
-    //   }
-    //   if(i == 5){
-    //     attrPosition += 57;
-    //     attrHeight = 71.52;
-    //   }
-    // }
 
     if(CharCreatorService.charName == null || CharCreatorService.charNature == null ||
        ClanService.selectedClan.name == null || CharCreatorService.charPlayer == null ||
@@ -189,21 +137,53 @@ function($http, CharCreatorService, ClanService, AttributesService,
     //   }
     // }
 
+    var attrPosition = 57.25;
+    var attrHeight = 69.05;
 
-    var abPosition = 59.74;
-    var abHeight = 99.8;
-    for(var i = 0; i < Object.keys(AbilitiesService.abilitiesList).length; i++){
-      this.drawPoints(Object.values(AbilitiesService.abilitiesList)[i], abPosition, abHeight, doc);
-      abHeight += 4.72;
-      if(i == 9){
-        abPosition += 57.3;
-        abHeight = 99.8;
+    for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
+      this.createPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
+      attrHeight += 4.72;
+      if(i == 2){
+        attrPosition += 57.37;
+        attrHeight = 69.05;
       }
-      if(i == 19){
-        abPosition += 57.1;
-        abHeight = 99.8;
+      if(i == 5){
+        attrPosition += 56.96;
+        attrHeight = 69.05;
       }
     }
+
+    var abPosition = 57.25;
+    var abHeight = 97.37;
+
+    for(var i = 0; i < Object.keys(AbilitiesService.abilitiesList).length; i++){
+      this.createPoints(Object.values(AbilitiesService.abilitiesList)[i], abPosition, abHeight, doc);
+      abHeight += 4.7095;
+      if(i == 9){
+        abPosition += 57.37;
+        abHeight = 97.37;
+      }
+      if(i == 19){
+        abPosition += 56.96;
+        abHeight = 97.37;
+      }
+    }
+
+
+    // var abPosition = 59.74;
+    // var abHeight = 99.8;
+    // for(var i = 0; i < Object.keys(AbilitiesService.abilitiesList).length; i++){
+    //   this.drawPoints(Object.values(AbilitiesService.abilitiesList)[i], abPosition, abHeight, doc);
+    //   abHeight += 4.72;
+    //   if(i == 9){
+    //     abPosition += 57.3;
+    //     abHeight = 99.8;
+    //   }
+    //   if(i == 19){
+    //     abPosition += 57.1;
+    //     abHeight = 99.8;
+    //   }
+    // }
 
     var discPosition = 59.74;
     var discHeight = 165.8;
@@ -256,6 +236,25 @@ function($http, CharCreatorService, ClanService, AttributesService,
     this.drawPath(WillpowerService.willpower, willPosition, willHeight, doc);
 
     doc.save("character_sheet_" + CharCreatorService.charName+".pdf");
+  }
+
+  function createPoints(attribute, position, height, doc){
+    for(point in attribute.points){
+      if(attribute.points[point].type != ""){
+        var circle = new CheckCircle();
+        circle.Rect = [position, height, 5, 5];
+        doc.addField(circle);
+        position += 2.83;
+      }
+      else{
+        var circle = new CheckCircle();
+        circle.Rect = [position, height, 5, 5];
+        circle.V = "/Off";
+        circle.AS = "/Off";
+        doc.addField(circle);
+        position += 2.83;
+      }
+    }
   }
 
   function drawPoints(attribute, position, height, doc){
