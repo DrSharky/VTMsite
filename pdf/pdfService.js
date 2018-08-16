@@ -52,177 +52,36 @@ function($http, CharCreatorService, ClanService, AttributesService,
          return;
        }
 
-    // var charName = new TextField();
-    // charName.Rect = [32.9, 37.8, 45, 6];
-    // charName.V = CharCreatorService.charName;
-    // charName.T = 'CharName';
-    // charName.DA = null;
-    // doc.addField(charName);
     doc.text(32.9, 41.8, CharCreatorService.charName);
-    // var charNature = new TextField();
-    // charNature.Rect = [91.5, 37.8, 43, 6];
-    // charNature.V = CharCreatorService.charNature;
-    // charNature.T = 'CharNature';
-    // charNature.DA = null;
-    // doc.addField(charNature);
     doc.text(91.5, 41.8, CharCreatorService.charNature);
-    // var charClan = new TextField();
-    // charClan.Rect = [144.7, 37.8, 43, 6];
-    // charClan.V = ClanService.selectedClan.name;
-    // charClan.T = 'CharClan';
-    // charClan.DA = null;
-    // doc.addField(charClan);
     doc.text(144.7, 41.8, ClanService.selectedClan.name);
-    // var charPlayer = new TextField();
-    // charPlayer.Rect = [33.1, 44, 42, 6];
-    // charPlayer.V = CharCreatorService.charPlayer;
-    // charPlayer.T = 'CharPlayer';
-    // charPlayer.DA = null;
-    // doc.addField(charPlayer);
     doc.text(34.1, 47.7, CharCreatorService.charPlayer);
-    // var charDemeanor = new TextField();
-    // charDemeanor.Rect = [95.4, 44, 39, 6];
-    // charDemeanor.V = CharCreatorService.charDemeanor;
-    // charDemeanor.T = 'CharDemeanor';
-    // charDemeanor.DA = null;
-    // doc.addField(charDemeanor);
     doc.text(97.2, 47.7, CharCreatorService.charDemeanor);
-    // var charGeneration = new TextField();
-    // charGeneration.Rect = [154, 44, 32, 6];
-    // charGeneration.V = CharCreatorService.charGeneration;
-    // charGeneration.T = 'CharGeneration';
-    // charGeneration.DA = null;
-    // doc.addField(charGeneration);
     doc.text(155.8, 47.7, CharCreatorService.charGeneration);
-    // var charChronicle = new TextField();
-    // charChronicle.Rect = [37.4, 49.7, 38.5, 6];
-    // charChronicle.V = CharCreatorService.charChronicle;
-    // charChronicle.T = 'CharChronicle';
-    // charChronicle.DA = null;
-    // doc.addField(charChronicle);
     doc.text(39.4, 53.5, CharCreatorService.charChronicle);
-    // var charConcept = new TextField();
-    // charConcept.Rect = [92, 49.7, 43, 6];
-    // charConcept.V = CharCreatorService.charConcept;
-    // charConcept.T = 'CharConcept';
-    // charConcept.DA = null;
-    // doc.addField(charConcept);
     doc.text(93.2, 53.5, CharCreatorService.charConcept);
-    // var charSire = new TextField();
-    // charSire.Rect = [143.8, 49.7, 43, 6];
-    // charSire.V = CharCreatorService.charSire;
-    // charSire.T = 'CharSire';
-    // charSire.DA = null;
-    // doc.addField(charSire);
     doc.text(144.1, 53.5, CharCreatorService.charSire);
 
-    // addAttrSpecialties(doc);
-    // addTalentSpecialties(doc);
-    // addSkillSpecialties(doc);
-    // addKnowledgeSpecialties(doc);
+    var attrPosition = 59.74;
+    var attrHeight = 71.52;
 
-    // var attrRow = 0;
-    // var attrColumn = 0;
-    // var attrPosition = 59.74;
-    // var attrHeight = 71.52;
-    //
-    // for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
-    //   this.drawPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
-    //   attrHeight += 4.7;
-    //   if(i == 2){
-    //     attrPosition += 57.3;
-    //     attrHeight = 71.52;
-    //   }
-    //   if(i == 5){
-    //     attrPosition += 57;
-    //     attrHeight = 71.52;
-    //   }
-    // }
-
-    // var attrPosition = 57.25;
-    // var attrHeight = 69.05;
-    //
-    // for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
-    //   this.createPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
-    //   attrHeight += 4.72;
-    //   if(i == 2){
-    //     attrPosition += 57.37;
-    //     attrHeight = 69.05;
-    //   }
-    //   if(i == 5){
-    //     attrPosition += 56.96;
-    //     attrHeight = 69.05;
-    //   }
-    // }
-
-    // var abPosition = 57.25;
-    // var abHeight = 97.37;
-
-    // for(var i = 0; i < Object.keys(AbilitiesService.abilitiesList).length; i++){
-    //   this.createPoints(Object.values(AbilitiesService.abilitiesList)[i], abPosition, abHeight, doc);
-    //   abHeight += 4.7095;
-    //   if(i == 9){
-    //     abPosition += 57.37;
-    //     abHeight = 97.37;
-    //   }
-    //   if(i == 19){
-    //     abPosition += 56.96;
-    //     abHeight = 97.37;
-    //   }
-    // }
-
-    // var customDotPos = 57.25;
-    // var customDotHeight = 144.465;
-    // addCustomDots(customDotPos, customDotHeight, doc);
-
-    // var discNamePos = 20.45;
-    // var discNameHeight = 162.39;
-    // var discPtHeight = 163.32;
-    // var discPtPos = 57.25;
-    // createDisciplinePoints(discNamePos, discNameHeight, discPtPos, discPtHeight, doc);
-
-
-    // var bgNamePos = 77.55;
-    // var bgNameHeight = 162.39;
-    // var bgPtPos = 114.54;
-    // var bgPtHeight = 163.32;
-    // createBackgroundPoints(bgNamePos, bgNameHeight, bgPtPos, bgPtHeight, doc);
+    for(var i = 0; i < Object.keys(AttributesService.attributesList).length; i++){
+      this.drawPoints(Object.values(AttributesService.attributesList)[i], attrPosition, attrHeight, doc);
+      attrHeight += 4.7;
+      if(i == 2){
+        attrPosition += 57.3;
+        attrHeight = 71.52;
+      }
+      if(i == 5){
+        attrPosition += 57;
+        attrHeight = 71.52;
+      }
+    }
 
     var virtPosition = 174.04;
     var virtHeight = 165.8;
 
-    // for(var i = 0; i < Object.keys(VirtuesService.virtueList).length; i++){
-    //   this.createPoints(Object.values(VirtuesService.virtueList)[i], virtPosition, virtHeight, doc);
-    //   virtHeight += 9.45;
-    // }
-
-    // addVirtueText(doc);
-
     MeritFlawService.createMasterLists();
-
-    // var meritBoxPos = 20.45;
-    // var meritBoxHeight = 209.07;
-    // addMeritBoxes(meritBoxPos, meritBoxHeight, doc);
-    //
-    // var flawBoxPos = 20.45;
-    // var flawBoxHeight = 242.6;
-    // addFlawBoxes(flawBoxPos, flawBoxHeight, doc);
-    //
-    // var pathBoxPos = 84;
-    // var pathBoxHeight = 203.9;
-    // addPathBoxes(pathBoxPos, pathBoxHeight, doc);
-
-    // createPathPoints(PathService.selectedPath, 82.26, 209.13, doc);
-    //
-    // createWillPoints(82.26, 231.6, doc);
-    //
-    // createBloodBoxes(83.46, 254.9, doc);
-    //
-    // createHealthBoxes(181.015, 205.13, doc);
-    //
-    // createWeaknessBox(137.6, 245.4, doc);
-    //
-    // createExpBox(137.6, 259.4, doc);
 
     var abPosition = 59.74;
     var abHeight = 99.8;
