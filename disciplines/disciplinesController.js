@@ -12,14 +12,12 @@ app.controller("DisciplinesController",
   this.isGargoyle = isGargoyle;
   this.selectDisciplinePt = selectDisciplinePt;
   this.disciplinesPage = "./disciplines/disciplines.html";
-  this.disciplineList = ["Animalism", "Auspex", "Bardo", "Celerity",
-                         "Chimerstry", "Daimonion", "Dementation",
-                         "Dominate", "Flight", "Fortitude", "Melpominee",
-                         "Mytherceria", "Necromancy", "Obeah", "Obfuscate",
-                         "Obtenebration", "Ogham", "Potence", "Presence",
-                         "Protean", "Quietus", "Sanguinus", "Serpentis",
-                         "Spiritus", "Temporis", "Thanatosis", "Thaumaturgy",
-                         "Valeren", "Vicissitude", "Visceratika"];
+  
+  this.disciplineList = getDisciplineList();
+
+  function getDisciplineList(){
+    return DisciplineService.disciplineList;
+  }
 
   function selectDisciplinePt(discipline, index){
     DisciplineService.selectDisciplinePt(discipline, index);
