@@ -194,6 +194,7 @@ app.service("LoadService",
     CharCreatorService.charSire = character.sire;
     CharCreatorService.charGeneration = character.generation;
     CharCreatorService.freebiePts = character.freebiePts;
+    CharCreatorService.freebieSpent = character.freebieSpent;
     CharCreatorService.freebieMode = character.freebieMode;
     var clanIndex = ClanService.clanList.map(function(clan){
       return clan.name;

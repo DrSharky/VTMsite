@@ -1190,6 +1190,15 @@
     };
     inherit(AcroFormCheckCircle, AcroFormButton);
 
+     var AcroFormFillBox = function () {
+       AcroFormButton.call(this);
+       this.appearanceStreamContent = AcroFormAppearance.FillBox.createAppearanceStream();
+       this.MK = AcroFormAppearance.FillBox.createMK();
+       this.AS = "/Off";
+       this.V = "/Off";
+     };
+     inherit(AcroFormFillBox, AcroFormButton);
+
     var AcroFormCheckBox = function () {
       AcroFormButton.call(this);
       this.appearanceStreamContent = AcroFormAppearance.CheckBox.createAppearanceStream();
@@ -1329,6 +1338,84 @@
 
   // Contains Methods for creating standard appearances
   var AcroFormAppearance = {
+    FillBox: {
+      createAppearanceStream: function () {
+        var appearance = {
+          N: {
+            On: AcroFormAppearance.FillBox.YesNormal
+          },
+          D: {
+            On: AcroFormAppearance.FillBox.YesPushDown,
+            Off: AcroFormAppearance.FillBox.OffPushDown
+          }
+        };
+        return appearance;
+      },
+
+      createMK: function () {
+        return "<< /CA (n)>>";
+      },
+
+      YesNormal: function (formObject) {
+        var xobj = createFormXObject(formObject);
+        var stream = [];
+        var boxRadius = (AcroFormAppearance.internal.getWidth(formObject));
+        boxRadius *= 0.9;
+        var c = AcroFormAppearance.internal.Bezier_C;
+        stream.push("q");
+        stream.push("1 0 0 1 " + (AcroFormAppearance.internal.getWidth(formObject) / 2).toFixed(2) + " " + (AcroFormAppearance.internal.getHeight(formObject) / 2).toFixed(2) + " cm");
+        stream.push(boxRadius + " 0 m");
+        stream.push(boxRadius + " " + boxRadius * c + " " + boxRadius * c + " " + boxRadius + " 0 " + boxRadius + " c");
+        stream.push("-" + boxRadius * c + " " + boxRadius + " -" + boxRadius + " " + boxRadius * c + " -" + boxRadius + " 0 c");
+        stream.push("-" + boxRadius + " -" + boxRadius * c + " -" + boxRadius * c + " -" + boxRadius + " 0 -" + boxRadius + " c");
+        stream.push(boxRadius * c + " -" + boxRadius + " " + boxRadius + " -" + boxRadius * c + " " + boxRadius + " 0 c");
+        stream.push("f");
+        stream.push("Q");
+        xobj.stream = stream.join("\n");
+        return xobj;
+      },
+      YesPushDown: function(formObject) {
+        var xobj = createFormXObject(formObject);
+        var stream = [];
+        var boxRadius = (AcroFormAppearance.internal.getWidth(formObject));
+        boxRadius *= 0.9;
+        var c = AcroFormAppearance.internal.Bezier_C;
+        stream.push("q");
+        stream.push("1 0 0 1 " + (AcroFormAppearance.internal.getWidth(formObject) / 2).toFixed(2) + " " + (AcroFormAppearance.internal.getHeight(formObject) / 2).toFixed(2) + " cm");
+        stream.push(boxRadius + " 0 m");
+        stream.push(boxRadius + " " + boxRadius * c + " " + boxRadius * c + " " + boxRadius + " 0 " + boxRadius + " c");
+        stream.push("-" + boxRadius * c + " " + boxRadius + " -" + boxRadius + " " + boxRadius * c + " -" + boxRadius + " 0 c");
+        stream.push("-" + boxRadius + " -" + boxRadius * c + " -" + boxRadius * c + " -" + boxRadius + " 0 -" + boxRadius + " c");
+        stream.push(boxRadius * c + " -" + boxRadius + " " + boxRadius + " -" + boxRadius * c + " " + boxRadius + " 0 c");
+        stream.push("f");
+        stream.push("Q");
+        xobj.stream = stream.join("\n");
+        return xobj;
+      },
+      OffPushDown: function (formObject) {
+        var xobj = createFormXObject(formObject);
+        var stream = [];
+        var boxRadius = (AcroFormAppearance.internal.getWidth(formObject));
+        // The Borderpadding...
+        boxRadius *= 0.9;
+        // Save results for later use; no need to waste
+          // processor ticks on doing math
+        var k = boxRadius;
+        // var c = AcroFormAppearance.internal.Bezier_C;
+        var kc = k * AcroFormAppearance.internal.Bezier_C;
+        stream.push("q");
+        stream.push("1 0 0 1 " + (AcroFormAppearance.internal.getWidth(formObject) / 2).toFixed(2) + " " + (AcroFormAppearance.internal.getHeight(formObject) / 2).toFixed(2) + " cm");
+        stream.push(k + " 0 m");
+        stream.push(k + " " + kc + " " + kc + " " + k + " 0 " + k + " c");
+        stream.push("-" + kc + " " + k + " -" + k + " " + kc + " -" + k + " 0 c");
+        stream.push("-" + k + " -" + kc + " -" + kc + " -" + k + " 0 -" + k + " c");
+        stream.push(kc + " -" + k + " " + k + " -" + kc + " " + k + " 0 c");
+        stream.push("f");
+        stream.push("Q");
+        xobj.stream = stream.join("\n");
+        return xobj;
+      }
+    },
     CheckCircle: {
       createAppearanceStream: function () {
         var appearance = {
@@ -1836,6 +1923,7 @@
     globalObj["TextField"] = AcroFormTextField;
     globalObj["PasswordField"] = AcroFormPasswordField;
     globalObj["CheckCircle"] = AcroFormCheckCircle;
+    globalObj["FillBox"] = AcroFormFillBox;
 
     // backwardsCompatibility
     globalObj["AcroForm"] = {Appearance: AcroFormAppearance};
@@ -1853,6 +1941,7 @@
   jsPDFAPI.AcroFormPasswordField = AcroFormPasswordField;
   jsPDFAPI.AcroFormAppearance = AcroFormAppearance;
   jsPDFAPI.AcroFormCheckCircle = AcroFormCheckCircle;
+  jsPDFAPI.AcroFormFillBox = AcroFormFillBox;
 
   jsPDFAPI.AcroForm = {
     ChoiceField : AcroFormChoiceField,
@@ -1866,6 +1955,7 @@
     TextField : AcroFormTextField,
     PasswordField : AcroFormPasswordField,
     Appearance : AcroFormAppearance,
-    CheckCircle : AcroFormCheckCircle
+    CheckCircle : AcroFormCheckCircle,
+    FillBox : AcroFormFillBox
   };
 })(jsPDF.API, (typeof window !== "undefined" && window || typeof global !== "undefined" && global));

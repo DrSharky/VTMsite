@@ -30,6 +30,7 @@ app.service('CharCreatorService', [function(){
   this.toggleFreebieMode = toggleFreebieMode;
 
   function changeFreebiePts(addPts, flaw){
+    //Add to freebie pts spent when using anything other than a flaw.
     if(!flaw)
       this.freebieSpent -= addPts;
 

@@ -7,4 +7,9 @@ function(PdfService){
   function generatePDF(){
     return PdfService.generatePDF();
   }
+
+  this.generateInteractivePDF = generateInteractivePDF;
+  function generateInteractivePDF(){
+    return PdfService.generateInteractivePDF();
+  }
 }])
