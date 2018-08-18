@@ -1,30 +1,71 @@
 <div class="row">
-  <div class="col-md-12">
-    <p class="text-center" style="font-size: 18pt; font-weight: 500; margin-top:10px; margin-bottom: 10px;">Abilities</p>
+  <div class="col-md-12" style="margin-bottom:15px">
+    <hr style="width:427.5px; display:block">
+    <p class="text-center" style="font-size: 18pt; font-weight: 500;">Abilities</p>
+    <hr style="width:427.5px; display:block">
   </div>
-  <div class="col-md-4 abil-select">
-    <select style="margin-right: 10px;" ng-model="abCtrl.selectedPriorities[0]"
-     ng-options="priority for priority in abCtrl.abilityPriorities"
-     ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[0], 0, abCtrl.abilityCategories[0].priority)">
-    </select>
-    <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[0])}}</span>
+  <div class="col-md-4 abil-column">
+    <div class="abil-select">
+      <select class="form-control" style="margin-right: 10px; max-width:150px;" ng-model="abCtrl.selectedPriorities[0]"
+        ng-options="priority for priority in abCtrl.abilityPriorities"
+        ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[0], 0, abCtrl.abilityCategories[0].priority)">
+      </select>
+      <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[0])}}</span>
+    </div>
+    <div class="abHead">
+      Talents
+    </div>
+    <div ng-repeat="ability in abCtrl.abilityCategories[0].abilities">
+      <div ability-direct ability="{{ability}}"></div>
+    </div>
   </div>
-  <div class="col-md-4 abil-select">
-    <select style="margin-right: 10px;" ng-model="abCtrl.selectedPriorities[1]"
-     ng-options="priority for priority in abCtrl.abilityPriorities"
-     ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[1], 1, abCtrl.abilityCategories[1].priority)">
-    </select>
-    <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[1])}}</span>
+  <div class="col-md-4 abil-column">
+    <div class="abil-select">
+      <select class="form-control" style="margin-right: 10px; max-width:150px;" ng-model="abCtrl.selectedPriorities[1]"
+        ng-options="priority for priority in abCtrl.abilityPriorities"
+        ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[1], 1, abCtrl.abilityCategories[1].priority)">
+      </select>
+      <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[1])}}</span>
+    </div>
+    <div class="abHead">
+      Skills
+    </div>
+    <div ng-repeat="ability in abCtrl.abilityCategories[1].abilities">
+      <div ability-direct ability="{{ability}}"></div>
+    </div>
   </div>
-  <div class="col-md-4 abil-select">
+  <div class="col-md-4 abil-column">
+    <div class="abil-select">
+      <select class="form-control" style="margin-right: 10px; max-width:150px;" ng-model="abCtrl.selectedPriorities[2]"
+        ng-options="priority for priority in abCtrl.abilityPriorities"
+        ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[2], 2, abCtrl.abilityCategories[2].priority)">
+      </select>
+      <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[2])}}</span>
+    </div>
+    <div class="abHead">
+      Knowledges
+    </div>
+    <div ng-repeat="ability in abCtrl.abilityCategories[2].abilities">
+      <div ability-direct ability="{{ability}}"></div>
+    </div>
+  </div>
+</div>
+    <!-- <div class="col-md-4 abil-select">
+      <select style="margin-right: 10px;" ng-model="abCtrl.selectedPriorities[1]"
+        ng-options="priority for priority in abCtrl.abilityPriorities"
+        ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[1], 1, abCtrl.abilityCategories[1].priority)">
+      </select>
+      <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[1])}}</span>
+    </div> -->
+  <!-- <div class="col-md-4 abil-select">
     <select style="margin-right: 10px;" ng-model="abCtrl.selectedPriorities[2]"
     ng-options="priority for priority in abCtrl.abilityPriorities"
     ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[2], 2, abCtrl.abilityCategories[2].priority)">
     </select>
     <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[2])}}</span>
-  </div>
-</div>
-<div class="row">
+  </div> -->
+
+<!-- <div class="row">
   <div class="col-md-4">
     <div class="abHead">
       Talents
@@ -40,7 +81,7 @@
       Knowledges
     </div>
   </div>
-</div>
+</div> -->
 <!-- <table class="center">
    <tr>
     <th></th>
@@ -83,7 +124,7 @@
     </th>
   </tr>
 </table> -->
-<div class="row">
+<!-- <div class="row">
   <div class="col-md-4 abil-center" ng-repeat="ability in abCtrl.abCatRows">
     <div termindex term="{{ability.name}}" class="abLabel">
       {{ability.name}}
@@ -92,7 +133,7 @@
       <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability, $index)"/>
     </div>
   </div>
- </div>
+ </div> -->
 <!-- <table ng-table="abCtrl.tableParams" show-filter="false" class="center" >
   <tr ng-repeat="ability in $data">
     <td style="width:100px;">
@@ -129,10 +170,28 @@
 </table> -->
 
 <style>
+hr {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  border-color: #000000;
+  background-color: #000000;
+}
+@media (max-width:767.98px){
+  .abil-column{
+    margin-bottom:10px;
+  }
+}
+.panel-group{
+  margin-bottom: 20px;
+}
+.panel-default .panel-heading {
+    padding: 15px 0;
+}
   .num {
     color: #BB0000;
     font-size: 24px;
     font-weight: bold;
+    display: block;
   }
   table.center {
     margin-left:auto;
@@ -141,34 +200,50 @@
   .abHead{
     font-size: 18.5px;
     font-weight: 500;
+    margin-top: 10px;
     margin-bottom: 10px;
     text-align: center;
   }
   .abLabel{
     font-size: 16px;
     font-weight: 500;
-    min-width: 92px;
+    min-width: 97px;
     margin-right: 10px;
-    display: inline-block;
+    /* display: inline-block; */
   }
   .abimg{
     width:15px;
     height: 15px;
-    vertical-align: top;
-    margin-top: 2px;
+    vertical-align: middle;
+    margin-top: -3px;
   }
-  .col-md-4.abil-select{
+  .abil-select{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    margin-top: 20px;
     max-height: 20px;
   }
-  .col-md-4.abil-center{
+  /* .col-md-4.abil-center{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+  } */
+  .abil-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+  }
+  .panel-group .panel {
+      margin-top: 35px;
+      margin-bottom: 0;
+      border-radius: 4px;
+  }
+  .modal, .panel-group .panel{
+    overflow: visible;
   }
 </style>

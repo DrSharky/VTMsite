@@ -6,11 +6,11 @@
   </div>
   <div class="col-md-4 attr-column">
     <div class="attr-select">
-    <select class="form-control" style="margin-right: 10px; max-width:150px;" ng-model="attrCtrl.selectedPriorities[0]"
-     ng-options="priority for priority in attrCtrl.attributePriorities"
-     ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[0], 0, attrCtrl.attributeCategories[0].priority)">
-    </select>
-    <span class="num">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[0])}}</span>
+      <select class="form-control" style="margin-right: 10px; max-width:150px;" ng-model="attrCtrl.selectedPriorities[0]"
+        ng-options="priority for priority in attrCtrl.attributePriorities"
+        ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[0], 0, attrCtrl.attributeCategories[0].priority)">
+      </select>
+      <span class="num">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[0])}}</span>
     </div>
     <div class="attrHead">
       Physical

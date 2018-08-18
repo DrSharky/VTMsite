@@ -1,6 +1,8 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12" style="margin-bottom:15px;">
+    <hr style="width:427.5px; display:block;">
     <p class="text-center" style="font-size: 18pt; font-weight: 500;">Advantages</p>
+    <hr style="width:427.5px; display:block;">
   </div>
   <div class="col-md-4 adv-select" ng-controller="DisciplinesController as discCtrl">
     <ng-include src=discCtrl.disciplinesPage></ng-include>
@@ -12,3 +14,43 @@
     <ng-include src="virtCtrl.virtuesPage"></ng-include>
   </div>
 </div>
+
+<style>
+hr {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  border-color: #000000;
+  background-color: #000000;
+}
+@media (max-width:767.98px){
+  .abil-column{
+    margin-bottom:10px;
+  }
+}
+.panel-group{
+  margin-bottom: 20px;
+}
+.panel-default .panel-heading {
+    padding: 15px 0;
+}
+  .num {
+    color: #BB0000;
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+  }
+  /* .col-md-4.abil-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  } */
+  .panel-group .panel {
+      margin-top: 35px;
+      margin-bottom: 0;
+      border-radius: 4px;
+  }
+  .modal, .panel-group .panel{
+    overflow: visible;
+  }
+</style>
