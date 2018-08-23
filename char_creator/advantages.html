@@ -4,18 +4,24 @@
     <p class="text-center" style="font-size: 18pt; font-weight: 500;">Advantages</p>
     <hr style="width:427.5px; display:block;">
   </div>
-  <div class="col-md-4 adv-select" ng-controller="DisciplinesController as discCtrl">
+  <div class="col-md-4 adv-column" ng-controller="DisciplinesController as discCtrl">
     <ng-include src=discCtrl.disciplinesPage></ng-include>
   </div>
-  <div class="col-md-4 adv-select" ng-controller="BackgroundsController as backCtrl">
+  <div class="col-md-4 adv-column" ng-controller="BackgroundsController as backCtrl">
     <ng-include src="backCtrl.backgroundsPage"></ng-include>
   </div>
-  <div class="col-md-4 adv-select" ng-controller="VirtuesController as virtCtrl">
+  <div class="col-md-4 adv-column" ng-controller="VirtuesController as virtCtrl">
     <ng-include src="virtCtrl.virtuesPage"></ng-include>
   </div>
 </div>
 
 <style>
+.adv-center{
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* max-height: 20px; */
+}
 hr {
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -23,7 +29,7 @@ hr {
   background-color: #000000;
 }
 @media (max-width:767.98px){
-  .abil-column{
+  .adv-column{
     margin-bottom:10px;
   }
 }
