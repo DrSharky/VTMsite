@@ -29,11 +29,47 @@ function($http, CharCreatorService, ClanService, AttributesService,
   this.createHealthBoxes = createHealthBoxes;
   this.createWeaknessBox = createWeaknessBox;
   this.createExpBox = createExpBox;
+  this.generateLongPDF = generateLongPDF;
 
   var self = this;
   $http.get('./pdf/pdfImage.txt').then(function(response){
     self.imgData = response.data;
   });
+
+  this.page1 = "";
+  this.page2 = "";
+  this.page3 = "";
+  this.page4 = "";
+  $http.get('./pdf/4pgimages/page1.txt').then(function(response){
+    self.page1 += response.data;
+  });
+  $http.get('./pdf/4pgimages/page2.txt').then(function(response){
+    self.page2 += response.data;
+  });
+  $http.get('./pdf/4pgimages/page3.txt').then(function(response){
+    self.page3 += response.data;
+  });
+  $http.get('./pdf/4pgimages/page4.txt').then(function(response){
+    self.page4 += response.data;
+  });
+
+
+  function generateLongPDF(){
+    var doc = new jsPDF();
+    var width = doc.internal.pageSize.getWidth();
+    var height = doc.internal.pageSize.getHeight();
+    doc.addImage(this.page1, 'JPEG', 0, 0, width, height);
+    doc.addPage();
+    doc.setPage(2);
+    doc.addImage(this.page2, 'JPEG', 0, 0, width, height);
+    doc.addPage();
+    doc.setPage(3);
+    doc.addImage(this.page3, 'JPEG', 0, 0, width, height);
+    doc.addPage();
+    doc.setPage(4);
+    doc.addImage(this.page4, 'JPEG', 0, 0, width, height);
+    doc.save("Long.pdf");
+  }
 
   function generatePDF(){
     var doc = new jsPDF();

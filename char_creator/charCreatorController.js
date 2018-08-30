@@ -30,6 +30,7 @@ app.controller("CharCreatorController",
      CharCreatorService.charNature = charNature;
    }
 
+   this.customDemeanor = false;
    this.setDemeanor = setDemeanor;
    function setDemeanor(charDemeanor){
      CharCreatorService.charDemeanor = charDemeanor;
@@ -106,6 +107,21 @@ app.controller("CharCreatorController",
 
    this.maxFreePts = 22;
    this.maxFlawBonus = 7;
+
+   this.natureDemeanorList = ["Architect", "Autocrat", "Bon Vivant",
+                              "Bravo", "Capitalist", "Caregiver",
+                              "Celebrant", "Chameleon", "Child",
+                              "Competitor", "Conformist", "Conniver",
+                              "Creep Show", "Curmudgeon", "Dabbler",
+                              "Deviant", "Director", "Enigma",
+                              "Eye of the Storm", "Fanatic", "Gallant",
+                              "Guru", "Idealist", "Judge",
+                              "Loner", "Martyr", "Masochist",
+                              "Monster", "Pedagogue", "Penitent",
+                              "Perfectionist", "Rebel", "Rogue",
+                              "Sadist", "Scientist", "Sociopath",
+                              "Soldier", "Survivor", "Thrill-Seeker",
+                              "Traditionalist", "Trickster", "Visionary"];
 
    var self = this;
    $scope.$on('loadCharacter', function(){

@@ -12,4 +12,10 @@ function(PdfService){
   function generateInteractivePDF(){
     return PdfService.generateInteractivePDF();
   }
+
+  this.generateLongPDF = generateLongPDF;
+  function generateLongPDF(){
+    return PdfService.generateLongPDF();
+  }
+
 }])
