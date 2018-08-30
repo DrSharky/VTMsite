@@ -24,10 +24,14 @@
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Nature" for="charNature">Nature: </label>
           <input id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)"/>
+          <select id="charNatSelect" ng-model="creatorCtrl.charNature" ng-options="charNat for charNat in creatorCtrl.natureDemeanorList"
+                  ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)" style="width:20px; height:26px; position:absolute;"></select>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Demeanor" for="charDemeanor">Demeanor: </label>
           <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)"/>
+          <select id="charDemSelect" ng-model="creatorCtrl.charDemeanor" ng-options="charDem for charDem in creatorCtrl.natureDemeanorList"
+                  ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)" style="max-width:20px; height:26px; position: absolute;"></select>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3">
           <label termindex term="Sire" for="charSire" style="margin-right: 12px;">Sire: </label>
