@@ -118,7 +118,7 @@ app.controller("CharCreatorController",
                               "Guru", "Idealist", "Judge",
                               "Loner", "Martyr", "Masochist",
                               "Monster", "Pedagogue", "Penitent",
-                              "Perfectionist", "Rogue",
+                              "Perfectionist", "Rebel", "Rogue",
                               "Sadist", "Scientist", "Sociopath",
                               "Soldier", "Survivor", "Thrill-Seeker",
                               "Traditionalist", "Trickster", "Visionary"];
