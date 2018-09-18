@@ -7,9 +7,4 @@ app.controller("SaveController", [ 'SaveService', function(SaveService){
     SaveService.saveCharacter();
   }
 
-  this.loadCharacter = loadCharacter;
-  function loadCharacter(){
-    SaveService.loadCharacter("Sharky");
-  }
-
 }]);

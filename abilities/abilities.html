@@ -43,8 +43,14 @@
 <table ng-table="abCtrl.tableParams1" show-filter="false" >
   <tr ng-repeat="ability in $data">
     <td style="width:100px;">
-      <div termindex term="{{ability.col1.name}}" class="abLabel">
-        {{ability.col1.name}}
+      <div ng-if="ability.col1.id != null">
+        <input class="custom-ability" ng-model="abCtrl.customtalent.name"
+               ng-blur="abCtrl.setCustomAbility(ability.col1, abCtrl.customtalent.name)">
+      </div>
+      <div ng-if="ability.col1.id == null">
+        <div termindex term="{{ability.col1.name}}" class="abLabel">
+          {{ability.col1.name}}
+        </div>
       </div>
     </td>
     <td class="points-cell" style="width:245px;">
@@ -53,8 +59,14 @@
       </div>
     </td>
     <td style="width:100px;">
-      <div termindex term="{{ability.col2.name}}" class="abLabel">
-        {{ability.col2.name}}
+      <div ng-if="ability.col2.id != null">
+        <input class="custom-ability" ng-model="abCtrl.customskill.name"
+               ng-blur="abCtrl.setCustomAbility(ability.col2, abCtrl.customskill.name)">
+      </div>
+      <div ng-if="ability.col2.id == null">
+        <div termindex term="{{ability.col2.name}}" class="abLabel">
+          {{ability.col2.name}}
+        </div>
       </div>
     </td>
     <td class="points-cell" style="width:245px;">
@@ -63,8 +75,14 @@
       </div>
     </td>
     <td style="width:100px;">
-      <div termindex term="{{ability.col3.name}}" class="abLabel">
-        {{ability.col3.name}}
+      <div ng-if="ability.col3.id != null">
+        <input class="custom-ability" ng-model="abCtrl.customknowledge.name"
+               ng-blur="abCtrl.setCustomAbility(ability.col3, abCtrl.customknowledge.name)">
+      </div>
+      <div ng-if="ability.col2.id == null">
+        <div termindex term="{{ability.col3.name}}" class="abLabel">
+          {{ability.col3.name}}
+        </div>
       </div>
     </td>
     <td class="points-cell" style="width:245px;">
@@ -76,6 +94,10 @@
 </table>
 
 <style>
+
+  .custom-ability{
+    max-width: 91.6px;
+  }
   .num {
     padding-top: 30px;
     color: #BB0000;

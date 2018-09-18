@@ -2,9 +2,9 @@ var app = angular.module("site");
 
 app.service("LoadService",
 ['CharCreatorService', 'AttributesService', 'AbilitiesService', 'ClanService', 'BackgroundsService', 'LoginService',
- 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', 'MeritFlawService', '$rootScope',
+ 'DisciplineService', 'VirtuesService', 'PathService', 'WillpowerService', 'MeritFlawService', 'SaveService', '$rootScope',
   function(CharCreatorService, AttributeService, AbilitiesService, ClanService, BackgroundsService, LoginService,
-           DisciplineService, VirtuesService, PathService, WillpowerService, MeritFlawService, $rootScope){
+           DisciplineService, VirtuesService, PathService, WillpowerService, MeritFlawService, SaveService, $rootScope){
 
   this.userCharacters = {};
 
@@ -16,7 +16,7 @@ app.service("LoadService",
     var character = firebase.database().ref(path);
     character.once('value', function(snapshot){
       if(snapshot.val()!=null){
-        self.loadCharacter(snapshot.val());
+        self.loadCharacter(snapshot.val(), characterName);
       }
     });
   }
@@ -47,9 +47,13 @@ app.service("LoadService",
    }
 
    this.loadAbility = loadAbility;
-   function loadAbility(ability){
-     AbilitiesService[ability.name.toLowerCase().replace(" ", "")].points = ability.points;
-     AbilitiesService[ability.name.toLowerCase().replace(" ", "")].pointCount = ability.pointCount;
+   function loadAbility(ability, abName){
+     AbilitiesService[abName].points = ability.points;
+     AbilitiesService[abName].pointCount = ability.pointCount;
+     if(abName.startsWith("custom")){
+       AbilitiesService[abName].name = ability.name;
+       AbilitiesService[abName].id = abName;
+     }
    }
 
    this.loadDiscipline = loadDiscipline;
@@ -74,7 +78,7 @@ app.service("LoadService",
    }
 
    this.loadCharacter = loadCharacter;
-   function loadCharacter(character){
+   function loadCharacter(character, charName){
      this.mapCharInfo(character);
      this.mapAttributes(character);
      this.mapAbilities(character);
@@ -84,6 +88,7 @@ app.service("LoadService",
      this.mapPath(character);
      this.mapWillpower(character);
      this.mapMeritsFlaws(character);
+     SaveService.saveName = charName;
      $rootScope.$broadcast('loadCharacter', CharCreatorService);
    }
 
@@ -134,7 +139,7 @@ app.service("LoadService",
      AbilitiesService.tertiaryPts = character.abilityTertiary;
      AbilitiesService.selectedPriorities = character.abilityPriorities;
      for(var ability in character.abilities){
-       this.loadAbility(character.abilities[ability]);
+       this.loadAbility(character.abilities[ability], ability);
      }
    }
 

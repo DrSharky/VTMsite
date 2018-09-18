@@ -10,6 +10,7 @@ app.service("AbilitiesService",
    this.getPriorityPts = getPriorityPts;
    this.resetAbilities = resetAbilities;
    this.resetPriorities = resetPriorities;
+   this.setCustomAbility = setCustomAbility;
    this.abilityPriorities = ["Primary", "Secondary", "Tertiary"];
    this.abilitiesPage = "./abilities/abilities.html";
    this.abilityPtsTotal = 27;
@@ -21,8 +22,11 @@ app.service("AbilitiesService",
    var vm = this;
 
    class Ability {
-     constructor(name){
+     constructor(name, id){
        this.name = name;
+       if(id != null){
+         this.id = id;
+       }
        this.pointCount = 0;
        this.points = [{id: 0, img: "./empty.png", type: ""},
                       {id: 1, img: "./empty.png", type: ""},
@@ -31,6 +35,10 @@ app.service("AbilitiesService",
                       {id: 4, img: "./empty.png", type: ""}];
 
        this.reset = function(){
+         //Reset name for custom abilities on load, then load names if they exist.
+         if(this.id != null){
+           this.name = "";
+         }
          this.points.forEach(function(ability){
            ability.img = './empty.png';
            ability.type = "";
@@ -96,6 +104,8 @@ app.service("AbilitiesService",
    this.abilitiesList.streetwise = this.streetwise;
    this.subterfuge = new Ability("Subterfuge");
    this.abilitiesList.subterfuge = this.subterfuge;
+   this.customtalent = new Ability('', 'customtalent');
+   this.abilitiesList.customtalent = this.customtalent;
    this.animalken = new Ability("Animal Ken");
    this.abilitiesList.animalken = this.animalken;
    this.crafts = new Ability("Crafts");
@@ -116,6 +126,8 @@ app.service("AbilitiesService",
    this.abilitiesList.stealth = this.stealth;
    this.survival = new Ability("Survival");
    this.abilitiesList.survival = this.survival;
+   this.customskill = new Ability('', 'customskill');
+   this.abilitiesList.customskill = this.customskill;
    this.academics = new Ability("Academics");
    this.abilitiesList.academics = this.academics;
    this.computer = new Ability("Computer");
@@ -136,6 +148,8 @@ app.service("AbilitiesService",
    this.abilitiesList.science = this.science;
    this.technology = new Ability("Technology");
    this.abilitiesList.technology = this.technology;
+   this.customknowledge = new Ability('', 'customknowledge');
+   this.abilitiesList.customknowledge = this.customknowledge;
 
    this.abilityCategories = [
      {
@@ -144,7 +158,7 @@ app.service("AbilitiesService",
        [
          this.alertness, this.athletics, this.awareness, this.brawl,
          this.empathy, this.expression, this.intimidation, this.leadership,
-         this.streetwise, this.subterfuge
+         this.streetwise, this.subterfuge, this.customtalent
        ]
     },
     {
@@ -152,7 +166,7 @@ app.service("AbilitiesService",
       abilities:
       [
         this.animalken, this.crafts, this.drive, this.etiquette, this.firearms,
-        this.larceny, this.melee, this.performance, this.stealth, this.survival
+        this.larceny, this.melee, this.performance, this.stealth, this.survival, this.customskill
       ]
     },
     {
@@ -161,7 +175,7 @@ app.service("AbilitiesService",
       [
         this.academics, this.computer, this.finance, this.investigation,
         this.law, this.medicine, this.occult, this.politics, this.science,
-        this.technology
+        this.technology, this.customknowledge
       ]
     }];
 
@@ -201,7 +215,7 @@ app.service("AbilitiesService",
 
         if(ability.points[index].type == "original")
           return null;
-          
+
         priorityPts = CharCreatorService.getFreebiePts();
 
         if(index < ability.pointCount - 1)
@@ -318,6 +332,18 @@ app.service("AbilitiesService",
       this.primaryPts = 13;
       this.secondaryPts = 9;
       this.tertiaryPts = 5;
+    };
+
+    function setCustomAbility(ability, name){
+      if(ability == this.customtalent){
+        this.customtalent.name = name;
+      }
+      else if(ability == this.customskill){
+        this.customskill.name = name;
+      }
+      else{
+        this.customknowledge.name = name;
+      }
     };
 
 }]);
