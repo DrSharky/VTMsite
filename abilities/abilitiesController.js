@@ -7,6 +7,7 @@ app.controller("AbilitiesController",
   this.priorityChange = priorityChange;
   this.selectAbility = selectAbility;
   this.getPriorityPts = getPriorityPts;
+  this.setCustomAbility = setCustomAbility;
 
   this.abilityPriorities = getAbilityPriorities();
   function getAbilityPriorities(){
@@ -53,6 +54,9 @@ app.controller("AbilitiesController",
   this.politics = AbilitiesService.politics;
   this.science = AbilitiesService.science;
   this.technology = AbilitiesService.technology;
+  this.customtalent = AbilitiesService.customtalent;
+  this.customskill = AbilitiesService.customskill;
+  this.customknowledge = AbilitiesService.customknowledge;
 
   this.abilityCategories = getAbilityCategories();
   function getAbilityCategories(){
@@ -70,6 +74,10 @@ app.controller("AbilitiesController",
   function priorityChange(changedPriority, id, prevPriority){
     AbilitiesService.priorityChange(changedPriority, id, prevPriority);
   };
+
+  function setCustomAbility(ability, name){
+    AbilitiesService.setCustomAbility(ability, name);
+  }
 
   var self = this;
   $scope.$on('loadCharacter', function(){
@@ -104,6 +112,9 @@ app.controller("AbilitiesController",
     self.politics = AbilitiesService.politics;
     self.science = AbilitiesService.science;
     self.technology = AbilitiesService.technology;
+    self.customtalent = AbilitiesService.customtalent;
+    self.customskill = AbilitiesService.customskill;
+    self.customknowledge = AbilitiesService.customknowledge;
     $scope.$apply();
   });
 
@@ -115,13 +126,13 @@ app.controller("AbilitiesController",
 
   this.dataSet = function(){
     var data = [];
-    for(var i = 0; i < 10; i++){
+    for(var i = 0; i < this.abilityCategories[0].abilities.length; i++){
       data.push({col1: this.abilityCategories[0].abilities[i],
                  col2: this.abilityCategories[1].abilities[i],
                  col3: this.abilityCategories[2].abilities[i] });
     }
     return data;
   }
-  this.tableParams1 = new NgTableParams({count: 10},
+  this.tableParams1 = new NgTableParams({count: this.abilityCategories[0].abilities.length},
                       { dataset: this.dataSet(), counts: [] });
 }]);

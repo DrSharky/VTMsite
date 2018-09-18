@@ -20,7 +20,7 @@ function($http, CharCreatorService, ClanService, AttributesService,
   this.addTalentSpecialties = addTalentSpecialties;
   this.addSkillSpecialties = addSkillSpecialties;
   this.addKnowledgeSpecialties = addKnowledgeSpecialties;
-  this.addCustomDots = addCustomDots;
+  // this.addCustomDots = addCustomDots;
   this.addVirtueText = addVirtueText;
   this.addMeritBoxes = addMeritBoxes;
   this.addFlawBoxes = addFlawBoxes;
@@ -114,21 +114,31 @@ function($http, CharCreatorService, ClanService, AttributesService,
       }
     }
 
-    var virtPosition = 174.04;
-    var virtHeight = 165.8;
-
-    MeritFlawService.createMasterLists();
-
     var abPosition = 59.74;
     var abHeight = 99.8;
     for(var i = 0; i < Object.keys(AbilitiesService.abilitiesList).length; i++){
-      this.drawPoints(Object.values(AbilitiesService.abilitiesList)[i], abPosition, abHeight, doc);
+      var ability = Object.values(AbilitiesService.abilitiesList)[i];
+      switch(ability.id){
+        case "customtalent":
+            doc.text(21, 148.05, ability.name);
+            break;
+        case "customskill":
+            doc.text(77.9, 148.05, ability.name);
+            break;
+        case "customknowledge":
+            doc.text(135.3, 148.05, ability.name);
+            break;
+        default:
+            break;
+      }
+
+      this.drawPoints(ability, abPosition, abHeight, doc);
       abHeight += 4.72;
-      if(i == 9){
+      if(i == 10){
         abPosition += 57.3;
         abHeight = 99.8;
       }
-      if(i == 19){
+      if(i == 21){
         abPosition += 57.1;
         abHeight = 99.8;
       }
@@ -150,10 +160,14 @@ function($http, CharCreatorService, ClanService, AttributesService,
       backHeight += 4.7;
     }
 
+    var virtPosition = 174.04;
+    var virtHeight = 165.8;
     for(var i = 0; i < Object.keys(VirtuesService.virtueList).length; i++){
       this.drawPoints(Object.values(VirtuesService.virtueList)[i], virtPosition, virtHeight, doc);
       virtHeight += 9.4;
     }
+
+    MeritFlawService.createMasterLists();
 
     var meritPosition = 67.5;
     var meritHeight = 214;
@@ -288,21 +302,47 @@ function($http, CharCreatorService, ClanService, AttributesService,
     var abHeight = 97.37;
 
     for(var i = 0; i < Object.keys(AbilitiesService.abilitiesList).length; i++){
-      this.createPoints(Object.values(AbilitiesService.abilitiesList)[i], abPosition, abHeight, doc);
+      var ability = Object.values(AbilitiesService.abilitiesList)[i];
+      switch(ability.id){
+        case "customtalent":
+            var customTalent = new TextField();
+            customTalent.Rect = [20, 143.67, 39, 6];
+            customTalent.DA = null;
+            customTalent.V = ability.name;
+            doc.addField(customTalent);
+            break;
+        case "customskill":
+            var customSkill = new TextField();
+            customSkill.Rect = [77, 143.67, 38.6, 6];
+            customSkill.DA = null;
+            customSkill.V = ability.name
+            doc.addField(customSkill);
+            break;
+        case "customknowledge":
+            var customKnowledge = new TextField();
+            customKnowledge.Rect = [134.21, 143.67, 38.6, 6];
+            customKnowledge.DA = null;
+            customKnowledge.V = ability.name;
+            doc.addField(customKnowledge);
+            break;
+        default:
+            break;
+      }
+      this.createPoints(ability, abPosition, abHeight, doc);
       abHeight += 4.7095;
-      if(i == 9){
+      if(i == 10){
         abPosition += 57.37;
         abHeight = 97.37;
       }
-      if(i == 19){
+      if(i == 21){
         abPosition += 56.96;
         abHeight = 97.37;
       }
     }
 
-    var customDotPos = 57.25;
-    var customDotHeight = 144.465;
-    addCustomDots(customDotPos, customDotHeight, doc);
+    // var customDotPos = 57.25;
+    // var customDotHeight = 144.465;
+    // addCustomDots(customDotPos, customDotHeight, doc);
 
     var discNamePos = 20.45;
     var discNameHeight = 162.39;
@@ -546,10 +586,6 @@ function($http, CharCreatorService, ClanService, AttributesService,
     subSpec.Rect = [38.4, 138.97, 20.3, 6];
     subSpec.DA = null;
     doc.addField(subSpec);
-    var customTalent = new TextField();
-    customTalent.Rect = [20, 143.67, 39, 6];
-    customTalent.DA = null;
-    doc.addField(customTalent);
   }
 
   function addSkillSpecialties(doc){
@@ -592,10 +628,6 @@ function($http, CharCreatorService, ClanService, AttributesService,
     var survivalSpec = new TextField();
     survivalSpec.Rect = [91, 138.97, 25.2, 6];
     doc.addField(survivalSpec);
-    var customSkill = new TextField();
-    customSkill.Rect = [77.5, 143.67, 38.6, 6];
-    customSkill.DA = null;
-    doc.addField(customSkill);
   }
 
   function addKnowledgeSpecialties(doc){
@@ -639,10 +671,6 @@ function($http, CharCreatorService, ClanService, AttributesService,
     techSpec.Rect = [154, 138.97, 18.6, 6];
     techSpec.DA = null;
     doc.addField(techSpec);
-    var customKnowledge = new TextField();
-    customKnowledge.Rect = [134.21, 143.67, 38.6, 6];
-    customKnowledge.DA = null;
-    doc.addField(customKnowledge);
   }
 
   function addVirtueText(doc){
@@ -714,19 +742,19 @@ function($http, CharCreatorService, ClanService, AttributesService,
     doc.addField(bearingValBox);
   }
 
-  function addCustomDots(dotPos, dotHeight, doc){
-    for(var i = 0; i < 3; i++){
-      for(var j = 0; j < 5; j++){
-        var circle = new CheckCircle();
-        circle.Rect = [dotPos, dotHeight, 5, 5];
-        circle.V = "/Off";
-        circle.AS = "/Off";
-        doc.addField(circle);
-        dotPos += 2.83;
-      }
-      dotPos += 43.075;
-    }
-  }
+  // function addCustomDots(dotPos, dotHeight, doc){
+  //   for(var i = 0; i < 3; i++){
+  //     for(var j = 0; j < 5; j++){
+  //       var circle = new CheckCircle();
+  //       circle.Rect = [dotPos, dotHeight, 5, 5];
+  //       circle.V = "/Off";
+  //       circle.AS = "/Off";
+  //       doc.addField(circle);
+  //       dotPos += 2.83;
+  //     }
+  //     dotPos += 43.075;
+  //   }
+  // }
 
   function drawPoints(attribute, position, height, doc){
     for(point in attribute.points){
