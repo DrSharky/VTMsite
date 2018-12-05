@@ -3,5 +3,15 @@
   <div ng-repeat="char in loadCtrl.userCharacters">
     {{char.saveName}}
     <button ng-click="loadCtrl.loadClick(char.saveName)">Load</button>
+    <div class="divider"/>
+    <button ng-click="loadCtrl.removeCharData(char.saveName)">Delete</button>
   </div>
 </div>
+
+<style>
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+</style>
