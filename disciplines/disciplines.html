@@ -1,8 +1,8 @@
 
+<div class="numdisc">
+  {{discCtrl.getDisciplinePts()}}
+</div>
 <div class="advHead">Disciplines
-  <div class="numdis">
-    {{discCtrl.getDisciplinePts()}}
-  </div>
 </div>
 <div ng-repeat="discipline in discCtrl.selectedClanDisciplines">
   <div class="adv-center">
@@ -10,10 +10,10 @@
           ng-click="discCtrl.removeDiscipline($index)">
     </span>
     <div align="center">
-      <select style="margin-right: 10px; max-width:150px; display:inline-flex;" class="discSelect form-control"
+      <select class="discSelect form-control"
               ng-disabled="!discCtrl.getFreebieMode()" ng-model="discipline.name"
               ng-options="discipline for discipline in discCtrl.disciplineList"
-              ng-change="discCtrl.changeDiscipline(discipline.name, $index {{discipline}})">
+              ng-change="discCtrl.changeDiscipline(discipline.name, $index, {{discipline}})">
       </select>
       <div ng-disabled="discCtrl.isGargoyle()" ng-repeat="discPt in discipline.points" style="display: inline-block;">
         <img class="discimg" ng-src="{{discPt.img}}" ng-click="discCtrl.selectDisciplinePt(discipline, $index)" />
@@ -50,6 +50,12 @@
   font-size: 16px;
   font-weight:500;
   min-width:97px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 10px;
+  max-width:150px;
+  display:inline-flex;
 }
   .discimg{
     width: 15px;
@@ -57,18 +63,18 @@
     vertical-align: top;
     margin-top: 2px;
   }
-  .numdis{
+  .numdisc{
     color: #BB0000;
     font-size: 24px;
     font-weight: bold;
-    display: inline;
     margin-left: 35px;
   }
   .advHead{
     font-size: 18.5px;
     font-weight: 500;
-    margin-bottom: 10px;
     margin-top: 10px;
+    margin-bottom: 10px;
     text-align: center;
   }
 </style>
+<!-- display: inline; -->
