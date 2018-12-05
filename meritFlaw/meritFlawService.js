@@ -46,9 +46,8 @@ app.service("MeritFlawService", ['CharCreatorService',
 
  this.socialMeritList = {"": 0, "Elysium Regular (1pt)": 1, "Former Ghoul (1pt)": 1, "Harmless (1pt)": 1,
                          "Natural Leader (1pt)": 1, "Prestigious Sire (1pt)": 1, "Protege (1pt)": 1, "Rep (1pt)": 1,
-                         "Sabbat Survivor (1pt)": 1, "Boon (1pt)": 1, "Boon (2pt)": 2, "Boon (3pt)": 3,
-                         "Boon (4pt)": 4, "Boon (5pt)": 5, "Boon (6pt)": 6, "Bullyboy (2pt)": 2,
-                         "Old Pal (2pt)": 2, "Lawman's Friend (2pt)": 2, "Open Road (2pt)": 2, "Sanctity (2pt)": 2,
+                         "Sabbat Survivor (1pt)": 1, "Boon (1pt)": 1, "Boon (2pt)": 2, "Boon (3pt)": 3,"Boon (4pt)": 4, "Boon (5pt)": 5,
+                         "Boon (6pt)": 6, "Bullyboy (2pt)": 2, "Old Pal (2pt)": 2, "Lawman's Friend (2pt)": 2, "Open Road (2pt)": 2, "Sanctity (2pt)": 2,
                          "Scholar of Enemies (2pt)": 2, "Scholar of Others (2pt)": 2, "Friend of the Underground (3pt)": 3, "Mole (3pt)": 3,
                          "Rising Star (3pt)": 3, "Broken Bond (4pt)": 4, "Clan Friendship (4pt)": 4, "Primogen/Bishop Friendship (4pt)": 4};
 
@@ -71,8 +70,79 @@ app.service("MeritFlawService", ['CharCreatorService',
  this.supernaturalFlawList = {"": 0, "Cast No Reflection (1pt)": 1, "Cold Breeze (1pt)": 1, "Repulsed by Garlic (1pt)": 1,
                               "Touch of Frost (1pt)": 1, "Cursed (1pt)": 1, "Cursed (2pt)": 2, "Cursed (3pt)": 3,
                               "Cursed (4pt)": 4, "Cursed (5pt)": 5, "Beacon of the Unholy (2pt)": 2, "Deathsight (2pt)": 2,
-                              "Eerie Presence (2pt)": 2, "Lord of the Flies (2pt)": 2, "Can't Cross Running Water (3pt)": 3, "Haunted (3pt)": 3,
-                              "Repelled by Crosses (3pt)": 3, "Grip of the Damned (4pt)": 4, "Dark Fate (5pt)": 5, "Light-Sensitive (5pt)": 5};
+                              "Eerie Presence (2pt)": 2, "Lord of the Flies (2pt)": 2, "Can't Cross Running Water (3pt)": 3,
+                              "Haunted (3pt)": 3, "Repelled by Crosses (3pt)": 3, "Grip of the Damned (4pt)": 4, "Dark Fate (5pt)": 5,
+                              "Light-Sensitive (5pt)": 5};
+
+this.clansMeritList = {"": 0, "Sectarian Ally (1pt)": 1, "Thousand Meter Killer (1pt)": 1,
+                              "Fury's Focus (3pt, Prerequisite: Path of Entelechy)": 3, "Dynamic Personality (5pt)": 5,
+                              "Drug Resistance (2pt)": 2, "Addictive Blood (3pt)": 3,
+                              "Setite Initiate (5pt)": 5, "Hive-Minded (1pt)": 1,
+                              "Hive-Minded (2pt)": 2, "Skald (2pt)": 2, "Lesser Mark of the Beast (4pt)": 4,
+                              "Totemic Change (5pt)": 5, "Cannibal (1pt)": 1, "Consanguineous Reistance (1pt)": 1,
+                              "Mortuario (2pt)": 2, "Mortuario (4pt)": 4, "Sanguine Incongruity (5pt)": 5,
+                              "Court Favorite (1pt)": 1, "Court Favorite (2pt)": 2, "Court Favorite (3pt)": 3,
+                              "Court Favorite (4pt)": 4, "Court Favorite (5pt)": 5, "Eyes of Shadow (1pt)": 1,
+                              "Eyes of Shadow (2pt)": 2, "Eyes of Shadow (3pt)": 3, "Eyes of Shadow (4pt)": 4,
+                              "Bigger Boys Came (2pt)": 2, "Call of the Sea (2pt)": 2, "Controllable Night Sight (2pt)": 2,
+                              "Secret Stash (2pt)": 2, "Secret Stash (3pt)": 3, "Secret Stash (4pt)": 4,
+                              "Secret Stash (5pt)": 5, "Aura of Command (3pt)": 3, "King or Queen of Shadow (4pt)": 4,
+                              "Long-Term Planning (4pt)": 4, "Instrument of God (5pt)": 5,  "Distracting Aura (2pt)": 2,
+                              "Prophetic Dreams (2pt)": 2, "Cold Read (3pt)": 3, "Foul Blood (1pt)": 1,
+                              "Lizard Limbs (1pt)": 1, "Long Fingers (1pt)": 1, "Monstrous Maw (1pt)": 1,
+                              "Piscine (1pt)": 1, "Slimy (1pt)": 1, "Spawning Pool (1pt)": 1, "Spawning Pool (2pt)": 2,
+                              "Spawning Pool (3pt)": 3, "Tunnel Rat (1pt)": 1, "Tunnel Rat (2pt)": 2, "Tunnel Rat (3pt)": 3,
+                              "Tunnel Rat (4pt)": 4, "Tunnel Rat (5pt)": 5, "Sleep Unseen (1pt)": 1, "Tough Hide (2pt)": 2,
+                              "False Reflection (3pt)": 3, "Patagia (4pt)": 4, "Rugged Bad Looks (5pt)": 5,
+                              "Antitoxin Blood (1pt)": 1, "Brahmin (1pt)": 1, "Kshatriya (1pt)": 1, "Legerdemain (1pt)": 1,
+                              "Mute Devotion (1pt)": 1, "Vaishya (1pt)": 1, "Critters (2pt)": 2, "Heart of Needles (3pt)": 3,
+                              "Indelible (1pt)": 1, "Indelible (2pt)": 2, "Impressive Restraint (2pt)": 2,
+                              "Master of the Masquerade (2pt)": 2, "Slowed Degeneration (5pt)": 5,
+                              "Embraced without the Cup (1pt)": 1, "Secret Society Member (1pt)": 1, "Keys to the Library (1pt)": 1,
+                              "Keys to the Library (2pt)": 2, "Keys to the Library (3pt)": 3, "Keys to the Library (4pt)": 4,
+                              "Keys to the Library (5pt)": 5, "Unmarked Antitribu (2pt)": 2, "Unmarked Antitribu (5pt)": 5,
+                              "Quartermaster (3pt)": 3, "Bioluminescence (1pt)": 1, "Pain Tolerance (2pt)": 2,
+                              "Dracon's Temperament (3pt)": 3, "Haven Affinity (3pt)": 3, "Revenant Disciplines (3pt)": 3,
+                              "Promethean Clay (5pt)": 5, "Connoisseur (2pt)": 2, "Blessed by St. Gustav (4pt)": 4};
+
+this.clansFlawList = {"": 0, "Outcast (2pt)": 2, "Broken Antitribu (3pt)": 3, "Multiple Curses (3pt)": 3,
+                             "Obvious Predator (2pt)": 2, "Scales (1pt)": 1, "Scales (2pt)": 2,
+                             "Scales (3pt)": 3, "Venemous Bite (2pt)": 2, "Forked Tongue (2pt)": 2,
+                             "Heartless (4pt)": 4, "Aura of the Typhon (5pt)": 5, "Member of the Pack (2pt)": 2,
+                             "Rat in a Cage (2pt)": 2, "Inbred (1pt)": 1, "Inbred (2pt)": 2, "Inbred (3pt)": 3,
+                             "Inbred (4pt)": 4, "Inbred (5pt)": 5, "Shadow Walker (6pt)": 6, "Uncontrollable Night Sight (2pt)": 2,
+                             "Insubordinate (3pt)": 3, "Unproven (3pt)": 3, "Paper Trail (2pt)": 2, "Stigmata (2pt)": 2,
+                             "Stigmata (4pt)": 4, "Infectious (3pt)": 3, "Overstimulated (3pt)": 3, "Dead Inside (4pt)": 4,
+                             "Stench (1pt)": 1, "Dangerous Secret (1pt)": 1, "Dangerous Secret (2pt)": 2, "Dangerous Secret (3pt)": 3,
+                             "Dangerous Secret (4pt)": 4, "Dangerous Secret (5pt)": 5, "Anosmia (2pt)": 2, "Parasitic Infestation (2pt)": 2,
+                             "Bestial (3pt)": 3, "Enemy Brood (3pt)": 3, "Putrescent (4pt)": 4, "Contagious (5pt)": 5, "Incoherent (5pt)": 5,
+                             "Chandala (1pt)": 1, "Flawed Reality (2pt)": 2, "Oathbreaker (2pt)": 2, "Lost Svadharma (3pt)": 3,
+                             "Tortured Artist (1pt)": 1, "Private Life (3pt)": 3, "Arcane Curse (1pt)": 1, "Arcane Curse (2pt)": 2,
+                             "Arcane Curse (3pt)": 3, "Arcane Curse (4pt)": 4, "Arcane Curse (5pt)": 5, "Cloistered (2pt)": 2,
+                             "Betrayer's Mark (3pt)": 3, "Bound to the Clan (3pt)": 3, "Mage Blood (5pt)": 5, "Thaumaturgically Inept (5pt)": 5,
+                             "Unblinking (1pt)": 1, "Ancestral Soil Dependence (2pt)": 2, "Faceless (3pt)": 3, "Privacy Obsession (3pt)": 3,
+                             "Revenant Weakness (3pt)": 3, "Consumption (5pt)": 5, "Uncommon Vitae Preference (2pt)": 2};
+
+this.bloodlinesMeritList = {"": 0, "The High Price (3pt)": 3, "Simply Waiting (4pt)": 4, "Chorus Trained (3pt)": 3,
+                            "Chorus Trained (5pt)": 5, "Fugue Instinct (3pt)": 3, "Stillness of Death (2pt)": 2,
+                            "Heavy Hands (3pt)": 3, "Disciple of Lazarus/Japheth (2pt)": 2, "Styx Baptism (3pt)": 3,
+                            "Half-Life (6pt)": 6, "Prized Collection (1pt)": 1, "Prized Collection (2pt)": 2,
+                            "Alien Perfection (2pt)": 2, "Paranormal Link (2pt)": 2, "Skin of Porcelain (4pt)": 4,
+                            "Vitae Mutation (5pt)": 5, "Extra Sharp (2pt)": 2, "Speed Eater (2pt)": 2,
+                            "Speed Eater (4pt)": 4, "Wolverine's Palate (3pt)": 3, "Scent of the Other (1pt)": 1,
+                            "Sight Beyond Sight (3pt)": 3, "Warrior's Heart (3pt)": 3, "Death Grip (3pt)": 3,
+                            "Stitcher (3pt)": 3, "Advanced Tech (1pt)": 1, "Advanced Tech (2pt)": 2,
+                            "Advanced Tech (3pt)": 3, "Advanced Tech (4pt)": 4, "Advanced Tech (5pt)": 5,
+                            "Fatalist (3pt)": 3, "True Celerity (5pt)": 5};
+
+this.bloodlinesFlawList = {"": 0, "Carrion Presence (2pt)": 2, "Dark Aura (3pt)": 3, "Plague of Demons (4pt)": 4,
+                           "Banshee-in-Waiting (5pt)": 5, "Stone Tongue (3pt)": 3, "Blood Weakness (4pt)": 4,
+                           "Blood Weakness (7pt)": 7, "Unsanctioned Embrace (2pt)": 2, "Shadow Scarred (3pt)": 3,
+                           "Lightweight (1pt)": 1, "Illiterate (1pt)": 1, "Illiterate (2pt)": 2, "Refined Palate (1pt)": 1,
+                           "Refined Palate (2pt)": 2, "Refined Palate (3pt)": 3, "Dreadful Mara (4pt)": 4, "The Largest Maw (2pt)": 2,
+                           "Body Trail (4pt)": 4, "The Eighth (6pt)": 6, "Permanent Third Eye (2pt)": 2,
+                           "Permanent Third Eye (4pt)": 4, "Brittle Body (2pt)": 2, "Brittle Body (4pt)": 4,
+                           "Mortal Flashbacks (5pt)": 5, "Out of Phase (2pt)": 2};
 
  this.selectedPhysicalMerits = {0: new MeritFlaw("", 0)};
  this.selectedPhysicalFlaws = {0: new MeritFlaw("", 0)};
@@ -85,6 +155,12 @@ app.service("MeritFlawService", ['CharCreatorService',
 
  this.selectedSupernaturalMerits = {0: new MeritFlaw("", 0)};
  this.selectedSupernaturalFlaws = {0: new MeritFlaw("", 0)};
+
+ this.selectedClanMerits = {0: new MeritFlaw("", 0)};
+ this.selectedClanFlaws = {0: new MeritFlaw("", 0)};
+
+ this.selectedBloodlineMerits = {0: new MeritFlaw("", 0)};
+ this.selectedBloodlineFlaw = {0: new MeritFlaw("", 0)};
 
 this.chooseMeritFlaw = chooseMeritFlaw;
  function chooseMeritFlaw(prevMeritFlaw, meritFlaw, index, category){

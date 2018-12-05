@@ -21,6 +21,24 @@ app.service("LoadService",
     });
   }
 
+  var self = this;
+  this.removeCharData = removeCharData;
+  function removeCharData(characterName){
+    var uid = LoginService.getUID();
+    var path = '/characters/' + uid + '/' + characterName;
+    var namePath = '/characterNames/' + uid + '/' + characterName;
+    var character = firebase.database().ref(path);
+    character.once('value', function(snapshot){
+      if(snapshot.val() != null){
+        if(confirm("Are you sure you wish to delete this character?: " + characterName)){
+          firebase.database().ref(path).remove();
+          firebase.database().ref(namePath).remove();
+        }
+      }
+    })
+  }
+
+
   this.resetCharacter = resetCharacter;
   function resetCharacter(){
     $rootScope.$broadcast('resetCharacter', CharCreatorService);

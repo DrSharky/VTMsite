@@ -122,7 +122,6 @@ app.service("SaveService",
       delete content.zero;
     }
 
-    var self = this;
     this.saveCharacterName = saveCharacterName;
     function saveCharacterName(){
       var uid = LoginService.getUID();

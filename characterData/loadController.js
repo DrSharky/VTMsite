@@ -13,6 +13,11 @@ app.controller("LoadController",
     LoadService.loadClick(charName);
   }
 
+  this.removeCharData = removeCharData;
+  function removeCharData(charName){
+    LoadService.removeCharData(charName);
+  }
+
   var self = this;
   this.loadChars = loadChars;
   function loadChars(){
