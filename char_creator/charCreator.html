@@ -63,7 +63,7 @@
           </select>
         </div>
       </div> -->
-      <div class="col-12 col-lg-4">
+      <div class="col-12 col-md-4">
         <div class="form-group row">
           <div class="sm-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Name" for="charName">Name: </label>
@@ -90,7 +90,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-lg-4">
+      <div class="col-12 col-md-4">
         <div class="form-group row">
           <div class="sm-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Nature" for="charNature" style="text-align: left">Nature: </label>
@@ -129,7 +129,7 @@
         </div> -->
       </div>
       <!-- <div ng-controller="ClanController as clanCtrl"> -->
-      <div class="col-12 col-lg-4">
+      <div class="col-12 col-md-4">
         <div class="form-group row">
           <div class="sm-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Clan" for="clanSelect">Clan: </label>
@@ -250,20 +250,32 @@
   </div>
 </div> -->
 
+<!-- <script type="text/javascript">
+  $('#clanSelect').change(function(){
+    var textLength = $('#clanSelect option:selected').text().length;
+    if(textLength > 19)
+      $(this).css('font-size', '85%');
+    else
+      $(this).css('font-size', '100%');
+  });
+</script> -->
+
 
 <style>
-
-@media(max-width:991.98px){
+/*Use this to align char info columns to center when resolution is smaller than 991.98px
+I'd rather keep the 3 columns though, so we're commenting this out for now.
+Keep 3 columns at least for the larger resolutions, if it gets REALLY small, then align to center
+  probably. I'll tinker with this some more.*/
+ /*@media(max-width:991.98px){
   .sm-test{
     margin-left:auto;
     margin-right:auto;
   }
-}
-
-.charInput{
-  width: 200px;
-}
- .inline-headers h3, .inline-headers h4 {
+}*/
+  .charInput{
+    width:200px;
+  }
+  .inline-headers h3, .inline-headers h4 {
     display: inline-block;
     vertical-align: baseline;
   }
@@ -278,14 +290,15 @@
     display: inline;
     margin-left: 35px;
   }
-  input{
-    min-width: 179px;
-  }
   .col-md-4.adv-select{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding-bottom: 20px;
+  }
+
+  input{
+    min-width: 179px;
   }
 </style>

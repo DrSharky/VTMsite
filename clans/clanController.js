@@ -42,7 +42,14 @@ app.controller("ClanController",
       this.selectedClan = this.filteredClanList[0];
     }
 
+    //Will change font size in clan selection box based on length.
     $scope.setUClan = function(clan) {
+      var textLength = $('#clanSelect option:selected').text().length;
+      if(textLength > 19)
+        $('#clanSelect').css('font-size', '86%');
+      else
+        $('#clanSelect').css('font-size', '100%');
+
       UglyService.setClan(clan);
       DisciplineService.setClan(clan);
     }
