@@ -65,15 +65,15 @@
       </div> -->
       <div class="col-12 col-md-4">
         <div class="form-group row">
-          <div class="sm-test row">
-            <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Name" for="charName">Name: </label>
+          <div class="xs-test row">
+            <label style="width:120px;" class="col-3 offset-lg-1 col-md-test" for="charName" termindex term="Name">Name: </label>
             <div class="col-8">
               <input class="charInput form-control" id="charName" ng-model="creatorCtrl.charName" ng-blur="creatorCtrl.setName(creatorCtrl.charName)"/>
             </div>
           </div>
         </div>
         <div class="form-group row">
-          <div class="sm-test row">
+          <div class="xs-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Player" for="charPlayer">Player: </label>
             <div class="col-8">
               <input class="charInput form-control" id="charPlayer" ng-model="creatorCtrl.charPlayer"
@@ -82,7 +82,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <div class="sm-test row">
+          <div class="xs-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Chronicle" for="charChronicle">Chronicle: </label>
             <div class="col-8">
               <input class="charInput form-control" id="charChronicle" ng-model="creatorCtrl.charChronicle" ng-blur="creatorCtrl.setChronicle(creatorCtrl.charChronicle)"/>
@@ -92,7 +92,7 @@
       </div>
       <div class="col-12 col-md-4">
         <div class="form-group row">
-          <div class="sm-test row">
+          <div class="xs-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Nature" for="charNature" style="text-align: left">Nature: </label>
             <div class="col-8">
               <input class="charInput form-control" id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)"/>
@@ -100,7 +100,7 @@
           </div>                                                                                                              <!--a function in the service when saving.-->
         </div>
         <div class="form-group row">
-          <div class="sm-test row">
+          <div class="xs-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Demeanor" for="charDemeanor" style="text-align: left">Demeanor: </label>
             <div class="col-8">
               <input class="charInput form-control" id="charDemeanor" ng-model="creatorCtrl.charDemeanor" ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)"/>
@@ -108,7 +108,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <div class="sm-test row">
+          <div class="xs-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Concept" for="charConcept">Concept: </label>
             <div class="col-8">
               <input class="charInput form-control" id="charConcept" ng-model="creatorCtrl.charConcept" ng-blur="creatorCtrl.setConcept(creatorCtrl.charConcept)"/>
@@ -131,7 +131,7 @@
       <!-- <div ng-controller="ClanController as clanCtrl"> -->
       <div class="col-12 col-md-4">
         <div class="form-group row">
-          <div class="sm-test row">
+          <div class="xs-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Clan" for="clanSelect">Clan: </label>
             <div class="col-8">
               <select class="charInput form-control" id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList"
@@ -141,7 +141,7 @@
         </div>
       </div>
         <div class="form-group row">
-          <div class="sm-test row">
+          <div class="xs-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Generation" for="charGeneration">Generation: </label>
             <div class="col-8">
               <select class="charInput form-control" id="charGeneration" ng-model="creatorCtrl.charGeneration" style="min-width: 179px; min-height: 26px;"
@@ -151,7 +151,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <div class="sm-test row">
+          <div class="xs-test row">
             <label style="width:120px;" class="col-3 offset-lg-1 col-form-label" termindex term="Sire" for="charSire">Sire: </label>
             <div class="col-8">
               <input class="charInput form-control" id="charSire" ng-model="creatorCtrl.charSire" ng-blur="creatorCtrl.setSire(creatorCtrl.charSire)"/>
@@ -262,16 +262,34 @@
 
 
 <style>
-/*Use this to align char info columns to center when resolution is smaller than 991.98px
-I'd rather keep the 3 columns though, so we're commenting this out for now.
+@media(min-width:992px){
+  .col-md-test{
+    padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
+  }
+  .label-move{
+    display:inline;
+  }
+}
+
+@media(min-width:768px) and (max-width:991.98px){
+  .label-move{
+    display:block;
+  }
+}
+
+/*Use this to align char info columns to center when resolution is smaller than 767.98px
 Keep 3 columns at least for the larger resolutions, if it gets REALLY small, then align to center
-  probably. I'll tinker with this some more.*/
- /*@media(max-width:991.98px){
-  .sm-test{
+I'll tinker with this some more. I'd prefer to enlarge the text when it is center aligned.*/
+ @media(max-width:767.98px){
+  .xs-test{
     margin-left:auto;
     margin-right:auto;
   }
-}*/
+}
   .charInput{
     width:200px;
   }
