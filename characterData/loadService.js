@@ -218,6 +218,8 @@ app.service("LoadService",
     CharCreatorService.charGeneration = character.generation;
     CharCreatorService.freebiePts = character.freebiePts;
     CharCreatorService.freebieSpent = character.freebieSpent;
+    if(character.freebieSpent == null) //Error checking that freebieSpent update.
+      CharCreatorService.freebieSpent = ((15 + character.addedFlawPts) - character.freebiePts);
     CharCreatorService.freebieMode = character.freebieMode;
     var clanIndex = ClanService.clanList.map(function(clan){
       return clan.name;
