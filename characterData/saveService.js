@@ -103,9 +103,20 @@ app.service("SaveService",
         addedFlawPts: MeritFlawService.addedFlawPts
       };
 
+      errorCheckPriorities(charData.abilityPriorities);
+      errorCheckPriorities(charData.attributePriorities);
+
       var updates = {};
       updates[savePath] = charData;
       return firebase.database().ref().update(updates);
+    }
+
+    this.errorCheckPriorities = errorCheckPriorities;
+    function errorCheckPriorities(priorityArray){
+      for(var i = 0; i < priorityArray.length; i++){
+        if(priorityArray[i]==null)
+          priorityArray[i] = "";
+      }
     }
 
     this.removeHashKeys = removeHashKeys;
