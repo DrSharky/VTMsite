@@ -4,16 +4,16 @@ app.service("PathService",
  ['CharCreatorService',
  function(CharCreatorService){
 
-   this.pathList = ["Humanity", "Path of Blood", "Path of the Bones",
-                    "Path of Caine", "Path of Cathari", "Path of the Feral Heart",
-                    "Path of Honorable Accord", "Path of Lilith",
-                    "Path of Metamorphosis", "Path of Night",
+   this.pathList = ["Humanity", "Path of Asakku", "Path of the Beast", "Path of Blood",
+                    "Path of Bones", "Path of Caine", "Path of Cathari",
+                    "Path of Death and the Soul", "Path of Ecstasy", "Path of Entelechy",
+                    "Path of Evil Revelations", "Path of the Feral Heart", "Path of Harmony",
+                    "Path of the Hive", "Path of Honorable Accord", "Path of Lilith",
+                    "Path of Metamorphosis", "Path of Night", "Path of Orion",
                     "Path of Paradox (Mayaparisatya)", "Path of Paradox (Samsara)",
                     "Path of Paradox (Western)", "Path of Power and the Inner Voice",
-                    "Path of Typhon", "Path of Entelechy",
-                    "Path of Evil Revelations", "Path of the Warrior",
-                    "Path of Ecstasy", "Path of the Scorched Heart",
-                    "Path of the Hive"];
+                    "Path of Redemption", "Path of Typhon", "Path of Self-Focus",
+                    "Path of the Scorched Heart", "Sharia El-Sama", "Path of the Warrior"];
 
   this.selectPathPt = selectPathPt;
 
