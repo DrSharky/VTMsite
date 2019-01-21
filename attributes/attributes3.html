@@ -1,0 +1,25 @@
+<div class="container">
+  <hr style="width:427.5px; display:block">
+  <p class="text-center" style="font-size: 18pt; font-weight: 500;">Attributes</p>
+  <hr style="width:427.5px; display:block">
+  <div class="row pt-4 pb-2">
+    <div class="mx-auto col-9 col-sm-8 col-md-7 col-lg-4 col-xl-3">
+      <select class="form-control mx-auto" style="width:150px;" ng-model="attrCtrl.selectedPriorities[0]"
+        ng-options="priority for priority in attrCtrl.attributePriorities"
+        ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[0], 0, attrCtrl.attributeCategories[0].priority)">
+      </select>
+    </div>
+    <div class="mx-auto col-9 col-sm-8 col-md-7 col-lg-4 col-xl-3">
+      <select class="form-control mx-auto" style="width:150px;" ng-model="attrCtrl.selectedPriorities[1]"
+        ng-options="priority for priority in attrCtrl.attributePriorities"
+        ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[1], 1, attrCtrl.attributeCategories[1].priority)">
+      </select>
+    </div>
+    <div class="mx-auto col-9 col-sm-8 col-md-7 col-lg-4 col-xl-3">
+      <select class="form-control mx-auto" style="width:150px;" ng-model="attrCtrl.selectedPriorities[2]"
+        ng-options="priority for priority in attrCtrl.attributePriorities"
+        ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[2], 2, attrCtrl.attributeCategories[2].priority)">
+      </select>
+    </div>
+  </div>
+</div>

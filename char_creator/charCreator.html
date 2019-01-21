@@ -62,15 +62,19 @@
     <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
   </div>
 
+      <div ng-controller="AttributesController as attrCtrl">
+        <ng-include src="attrCtrl.attributesPage"></ng-include>
+      </div>
+
   <section class="panels row">
     <div class="container-fluid character-sheet">
       <div class="content-holder char-tabs">
         <div class="panel-group">
-          <div class="panel panel-default" style="margin-top:20px;">
+          <!-- <div class="panel panel-default" style="margin-top:20px;">
             <div ng-controller="AttributesController as attrCtrl">
                 <ng-include src="attrCtrl.attributesPage"></ng-include>
             </div>
-          </div>
+          </div> -->
           <div class="panel panel-default" style="margin-top:20px;">
             <div ng-controller="AbilitiesController as abCtrl">
               <ng-include src="abCtrl.abilitiesPage"></ng-include>
