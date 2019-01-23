@@ -1,7 +1,7 @@
 <div class="container">
-  <hr style="width:427.5px; display:block">
+  <hr style="width:427.5px; display:block;">
   <p class="text-center" style="font-size: 18pt; font-weight: 500;">Attributes</p>
-  <hr style="width:427.5px; display:block">
+  <hr style="width:427.5px; display:block;">
   <div class="row pt-4 pb-2">
     <div class="col-lg-2 offset-lg-1">
       <select class="form-control" ng-model="attrCtrl.selectedPriorities[0]" style="max-width: 160px;"
@@ -39,7 +39,7 @@
     <div class="col-lg-1 text-center">
       <span class="num">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[0])}}</span>
     </div>
-    <div class="col-lg-2 offset-lg-1 text-center">
+    <div class="col-lg-2 offset-lg-1">
       <select class="form-control" ng-model="attrCtrl.selectedPriorities[1]" style="max-width: 160px;"
               ng-options="priority for priority in attrCtrl.attributePriorities"
               ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[1], 1, attrCtrl.attributeCategories[1].priority)">
@@ -75,7 +75,7 @@
     <div class="col-lg-1 text-center">
       <span class="num">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[1])}}</span>
     </div>
-    <div class="col-lg-2 offset-lg-1 text-center">
+    <div class="col-lg-2 offset-lg-1">
       <select class="form-control" ng-model="attrCtrl.selectedPriorities[2]" style="max-width: 160px;"
               ng-options="priority for priority in attrCtrl.attributePriorities"
               ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[2], 2, attrCtrl.attributeCategories[2].priority)">

@@ -1,35 +1,37 @@
-<div>
-  <h4 style="display: inline;">Backgrounds</h4>
-  <div class="numdis">
-    {{backCtrl.getBackgroundPts()}}
+<div class="row">
+  <div class="col-6 text-center">
+    <h4>Backgrounds</h4>
   </div>
-  <table>
-    <tr>
-      <td>
-        <div ng-repeat="background in backCtrl.selectedList">
-          <span class="fa fa-minus" ng-hide="!backCtrl.getFreebieMode()"
-                 ng-click="backCtrl.removeBackground($index)">
-          </span>
-          <select ng-change="backCtrl.chooseBackground(background, $index)" ng-model="background.name"
-                  ng-options="background for background in backCtrl.backgroundList">
-          </select>
-          <div ng-repeat="backPt in background.points" style="display: inline-block;">
-            <img class="backimg" ng-src="{{backPt.img}}" ng-click="backCtrl.selectBackgroundPt(background, $index)" />
-          </div>
-        </div>
-        <span class="fa fa-plus" ng-hide="!backCtrl.getFreebieMode()"
-              ng-click="backCtrl.addBackground()"> Add Background
-        </span>
-      </td>
-    </tr>
-  </table>
+  <div class="col-6 text-center">
+    <h4 class="numdis">{{backCtrl.getBackgroundPts()}}</h4>
+  </div>
 </div>
+<div ng-repeat="background in backCtrl.selectedList">
+  <div class="row">
+    <div class="col-6">
+      <span class="fa fa-minus" ng-hide="!backCtrl.getFreebieMode()"
+             ng-click="backCtrl.removeBackground($index)">
+      </span>
+      <select class="form-control" ng-change="backCtrl.chooseBackground(background, $index)"
+              ng-model="background.name" ng-options="background for background in backCtrl.backgroundList">
+      </select>
+    </div>
+    <div class="col-6 text-center">
+      <div ng-repeat="backPt in background.points" style="display: inline-block;">
+        <img class="backimg" ng-src="{{backPt.img}}" ng-click="backCtrl.selectBackgroundPt(background, $index)" />
+      </div>
+    </div>
+  </div>
+</div>
+<span class="fa fa-plus" ng-hide="!backCtrl.getFreebieMode()"
+      ng-click="backCtrl.addBackground()"> Add Background
+</span>
 
 <style>
   .backimg{
     width: 15px;
     height: 15px;
-    vertical-align: top;
+    vertical-align: middle;
     margin-top: 2px;
   }
   .numdis{
@@ -37,6 +39,5 @@
     font-size: 24px;
     font-weight: bold;
     display: inline;
-    margin-left: 35px;
   }
 </style>

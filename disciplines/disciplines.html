@@ -1,5 +1,52 @@
-
-<div class="numdisc">
+<div class="row">
+  <div class="col-7 text-center">
+    <h4>Disciplines</h4>
+  </div>
+  <div class="col-5 text-center">
+    <h4 class="numdisc">{{discCtrl.getDisciplinePts()}}</h4>
+    </div>
+</div>
+<div ng-repeat="discipline in discCtrl.selectedClanDisciplines">
+  <div class="row">
+    <div class="col-7">
+      <span class="fa fa-minus" ng-hide="!discCtrl.getFreebieMode()"
+            ng-click="discCtrl.removeDiscipline($index)">
+      </span>
+      <select class="discSelect form-control"
+              ng-disabled="!discCtrl.getFreebieMode()" ng-model="discipline.name"
+              ng-options="discipline for discipline in discCtrl.disciplineList"
+              ng-change="discCtrl.changeDiscipline(discipline.name, $index, {{discipline}})">
+      </select>
+    </div>
+    <div class="col-5 text-center">
+      <div ng-disabled="discCtrl.isGargoyle()" ng-repeat="discPt in discipline.points" style="display:inline-block;">
+        <img class="discimg" ng-src="{{discPt.img}}" ng-click="discCtrl.selectDisciplinePt(discipline, $index)" />
+      </div>
+    </div>
+  </div>
+</div>
+<span class="fa fa-plus" ng-hide="!discCtrl.getFreebieMode()"
+      ng-click="discCtrl.addDiscipline()"> Add Discipline
+</span>
+<!-- <h4 style="display: inline;">Disciplines</h4>
+<div class="numdisc">{{discCtrl.getDisciplinePts()}}</div>
+<div ng-repeat="discipline in discCtrl.selectedClanDisciplines">
+    <span class="fa fa-minus" ng-hide="!discCtrl.getFreebieMode()"
+          ng-click="discCtrl.removeDiscipline($index)">
+    </span>
+      <select class="discSelect form-control"
+              ng-disabled="!discCtrl.getFreebieMode()" ng-model="discipline.name"
+              ng-options="discipline for discipline in discCtrl.disciplineList"
+              ng-change="discCtrl.changeDiscipline(discipline.name, $index, {{discipline}})">
+      </select>
+      <div ng-disabled="discCtrl.isGargoyle()" ng-repeat="discPt in discipline.points" style="display:inline-block;">
+        <img class="discimg" ng-src="{{discPt.img}}" ng-click="discCtrl.selectDisciplinePt(discipline, $index)" />
+      </div>
+  <span class="fa fa-plus" ng-hide="!discCtrl.getFreebieMode()"
+        ng-click="discCtrl.addDiscipline()">Add Discipline
+  </span>
+</div> -->
+<!-- <div class="numdisc">
   {{discCtrl.getDisciplinePts()}}
 </div>
 <div class="advHead">Disciplines
@@ -23,27 +70,7 @@
   <span class="fa fa-plus" ng-hide="!discCtrl.getFreebieMode()"
         ng-click="discCtrl.addDiscipline()"> Add Discipline
   </span>
-</div>
-  <!-- <table>
-    <tr>
-      <td>
-        <div ng-repeat="discipline in discCtrl.selectedClanDisciplines">
-          <span class="fa fa-minus" ng-hide="!discCtrl.getFreebieMode()"
-                 ng-click="discCtrl.removeDiscipline($index)">
-          </span>
-          <select ng-disabled="!discCtrl.getFreebieMode()" ng-model="discipline.name"
-                  ng-options="discipline for discipline in discCtrl.disciplineList" ng-change="discCtrl.changeDiscipline(discipline.name, $index, {{discipline}})">
-          </select>
-          <div ng-disabled="discCtrl.isGargoyle()" ng-repeat="discPt in discipline.points" style="display: inline-block;">
-            <img class="discimg" ng-src="{{discPt.img}}" ng-click="discCtrl.selectDisciplinePt(discipline, $index)" />
-          </div>
-        </div>
-        <span class="fa fa-plus" ng-hide="!discCtrl.getFreebieMode()"
-              ng-click="discCtrl.addDiscipline()"> Add Discipline
-        </span>
-      </td>
-    </tr>
-  </table> -->
+</div> -->
 
 <style>
 .discSelect{
@@ -54,20 +81,17 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-right: 10px;
-  max-width:150px;
   display:inline-flex;
 }
   .discimg{
     width: 15px;
     height: 15px;
-    vertical-align: top;
+    vertical-align: middle;
     margin-top: 2px;
   }
   .numdisc{
     color: #BB0000;
-    font-size: 24px;
     font-weight: bold;
-    margin-left: 35px;
   }
   .advHead{
     font-size: 18.5px;
@@ -75,6 +99,6 @@
     margin-top: 10px;
     margin-bottom: 10px;
     text-align: center;
+    display: inline;
   }
 </style>
-<!-- display: inline; -->

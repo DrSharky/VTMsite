@@ -1,47 +1,70 @@
-<div>
-  <h4 style="display: inline;">Virtues</h4>
+<div class="row">
+  <div class="col-6 text-center">
+    <h4>Virtues</h4>
+  </div>
+  <div class="col-6 text-center">
+    <h4 class="numdis">{{virtCtrl.getVirtuePts()}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <span termindex term="{{virtCtrl.virtueList['Conscience'].displayName}}">
+      {{virtCtrl.virtueList['Conscience'].displayName}}&nbsp;
+    </span>
+  </div>
+  <div class="col-6">
+    <div ng-repeat="virtPt in virtCtrl.virtueList['Conscience'].points" style="display: inline-block;">
+      <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Conscience'], $index)" />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <span termindex term="{{virtCtrl.virtueList['Self-control'].displayName}}">
+      {{virtCtrl.virtueList['Self-control'].displayName}}&nbsp;
+    </span>
+  </div>
+  <div class="col-6">
+    <div ng-repeat="virtPt in virtCtrl.virtueList['Self-control'].points" style="display: inline-block;">
+      <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Self-control'], $index)" />
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <span termindex term="{{virtCtrl.virtueList['Courage'].displayName}}">
+      {{virtCtrl.virtueList['Courage'].displayName}}&nbsp;
+    </span>
+  </div>
+  <div class="col-6">
+    <div ng-repeat="virtPt in virtCtrl.virtueList['Courage'].points" style="display: inline-block;">
+      <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Courage'], $index)" />
+    </div>
+  </div>
+</div>
+
+  <!-- <h4 style="display: inline;">Virtues</h4>
   <div class="numdis">
     {{virtCtrl.getVirtuePts()}}
   </div>
-  <table>
-      <tr>
-        <td>
-          <div termindex term="{{virtCtrl.virtueList['Conscience'].displayName}}">
-          {{virtCtrl.virtueList['Conscience'].displayName}}&nbsp;
-          </div>
-        </td>
-        <td>
-          <div ng-repeat="virtPt in virtCtrl.virtueList['Conscience'].points" style="display: inline-block;">
-            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Conscience'], $index)" />
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div termindex term="{{virtCtrl.virtueList['Self-control'].displayName}}">
-          {{virtCtrl.virtueList['Self-control'].displayName}}&nbsp;
-          </div>
-        </td>
-        <td>
-          <div ng-repeat="virtPt in virtCtrl.virtueList['Self-control'].points" style="display: inline-block;">
-            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Self-control'], $index)" />
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div termindex term="{{virtCtrl.virtueList['Courage'].displayName}}">
-          {{virtCtrl.virtueList['Courage'].displayName}}&nbsp;
-          </div>
-        </td>
-        <td>
-          <div ng-repeat="virtPt in virtCtrl.virtueList['Courage'].points" style="display: inline-block;">
-            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Courage'], $index)" />
-          </div>
-        </td>
-      </tr>
-  </table>
-</div>
+  <span termindex term="{{virtCtrl.virtueList['Conscience'].displayName}}">
+  {{virtCtrl.virtueList['Conscience'].displayName}}&nbsp;
+  </span>
+  <div ng-repeat="virtPt in virtCtrl.virtueList['Conscience'].points" style="display: inline-block;">
+    <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Conscience'], $index)" />
+  </div>
+  <span termindex term="{{virtCtrl.virtueList['Self-control'].displayName}}">
+  {{virtCtrl.virtueList['Self-control'].displayName}}&nbsp;
+  </span>
+  <div ng-repeat="virtPt in virtCtrl.virtueList['Self-control'].points" style="display: inline-block;">
+    <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Self-control'], $index)" />
+  </div>
+  <span termindex term="{{virtCtrl.virtueList['Courage'].displayName}}">
+  {{virtCtrl.virtueList['Courage'].displayName}}&nbsp;
+  </span>
+  <div ng-repeat="virtPt in virtCtrl.virtueList['Courage'].points" style="display: inline-block;">
+    <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Courage'], $index)" />
+  </div> -->
 
 <style>
   .virtimg{
@@ -55,7 +78,6 @@
     font-size: 24px;
     font-weight: bold;
     display: inline;
-    margin-left: 35px;
   }
 
   .virtLabel{
