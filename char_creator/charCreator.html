@@ -61,60 +61,43 @@
     </div>
     <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
   </div>
-
-      <div ng-controller="AttributesController as attrCtrl">
+  <div ng-controller="AttributesController as attrCtrl">
         <ng-include src="attrCtrl.attributesPage"></ng-include>
       </div>
-
-  <section class="panels row">
-    <div class="container-fluid character-sheet">
-      <div class="content-holder char-tabs">
-        <div class="panel-group">
-          <!-- <div class="panel panel-default" style="margin-top:20px;">
-            <div ng-controller="AttributesController as attrCtrl">
-                <ng-include src="attrCtrl.attributesPage"></ng-include>
-            </div>
-          </div> -->
-          <div class="panel panel-default" style="margin-top:20px;">
-            <div ng-controller="AbilitiesController as abCtrl">
-              <ng-include src="abCtrl.abilitiesPage"></ng-include>
-            </div>
-          </div>
-          <!-- !!!!!<div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
-            <ng-include src="tindexCtrl.termIndexPage"></ng-include>
-          </div> !!!!!-->
-          <!--!!!!! <div ng-controller="SaveController as saveCtrl">
-            <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
-          </div>!!!!! -->
-          <!--!!!!! <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
-            <ng-include src="loadCtrl.loadPage"></ng-include>
-          </div>!!!!! -->
-          <!--!!!!! <div ng-controller="PdfController as pdfCtrl">
-            <button ng-click="pdfCtrl.generatePDF()">Export PDF</button>
-          </div> !!!!!-->
-      <!--!!!!! <ng-include src="creatorCtrl.advantagesPage"></ng-include>!!!!! -->
-          <div clas="panel panel-default" style="margin-top:20px;">
-            <ng-include src="creatorCtrl.advantagesPage"></ng-include>
-          </div>
-            <!--!!!!! <div class="row">
-              <div class="col-md-12">
-                <p class="text-center" style="font-size: 18pt; font-weight: 500;">Advantages</p>
-              </div>
-              <div class="col-md-4 adv-select" ng-controller="DisciplinesController as discCtrl">
-                <ng-include src="discCtrl.disciplinesPage"></ng-include>
-              </div>
-              <div class="col-md-4 adv-select" ng-controller="BackgroundsController as backCtrl">
-                <ng-include src="backCtrl.backgroundsPage"></ng-include>
-              </div>
-              <div class="col-md-4 adv-select" ng-controller="VirtuesController as virtCtrl">
-                <ng-include src="virtCtrl.virtuesPage"></ng-include>
-              </div>
-            </div>!!!!! -->
-        </div>
+  <div ng-controller="AbilitiesController as abCtrl">
+    <ng-include src="abCtrl.abilitiesPage"></ng-include>
+  </div>
+      <!-- !!!!!<div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
+        <ng-include src="tindexCtrl.termIndexPage"></ng-include>
+      </div> !!!!!-->
+      <!--!!!!! <div ng-controller="SaveController as saveCtrl">
+        <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
+      </div>!!!!! -->
+      <!--!!!!! <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
+        <ng-include src="loadCtrl.loadPage"></ng-include>
+      </div>!!!!! -->
+      <!--!!!!! <div ng-controller="PdfController as pdfCtrl">
+        <button ng-click="pdfCtrl.generatePDF()">Export PDF</button>
+      </div> !!!!!-->
+  <!--!!!!! <ng-include src="creatorCtrl.advantagesPage"></ng-include>!!!!! -->
+      <div class="panel panel-default" style="margin-top:20px;">
+        <ng-include src="creatorCtrl.advantagesPage"></ng-include>
       </div>
-    </div>
-  </section>
-  <!-- !!!!!<div class="row">
+        <!--!!!!! <div class="row">
+          <div class="col-md-12">
+            <p class="text-center" style="font-size: 18pt; font-weight: 500;">Advantages</p>
+          </div>
+          <div class="col-md-4 adv-select" ng-controller="DisciplinesController as discCtrl">
+            <ng-include src="discCtrl.disciplinesPage"></ng-include>
+          </div>
+          <div class="col-md-4 adv-select" ng-controller="BackgroundsController as backCtrl">
+            <ng-include src="backCtrl.backgroundsPage"></ng-include>
+          </div>
+          <div class="col-md-4 adv-select" ng-controller="VirtuesController as virtCtrl">
+            <ng-include src="virtCtrl.virtuesPage"></ng-include>
+          </div>
+        </div>!!!!! -->
+<!-- !!!!!<div class="row">
     <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="DisciplinesController as discCtrl">
        <div class="numdis">
         {{creatorCtrl.getFreebiePts()}}

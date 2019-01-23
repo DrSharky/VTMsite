@@ -3,26 +3,113 @@
   <p class="text-center" style="font-size: 18pt; font-weight: 500;">Attributes</p>
   <hr style="width:427.5px; display:block">
   <div class="row pt-4 pb-2">
-    <div class="mx-auto col-9 col-sm-8 col-md-7 col-lg-4 col-xl-2">
-        <select class="form-control" ng-model="attrCtrl.selectedPriorities[0]" style="width:130px; display:inline;"
-                ng-options="priority for priority in attrCtrl.attributePriorities"
-                ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[0], 0, attrCtrl.attributeCategories[0].priority)">
-        </select>
-        <span class="num float-right">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[0])}}</span>
+    <div class="col-lg-2 offset-lg-1">
+      <select class="form-control" ng-model="attrCtrl.selectedPriorities[0]" style="max-width: 160px;"
+              ng-options="priority for priority in attrCtrl.attributePriorities"
+              ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[0], 0, attrCtrl.attributeCategories[0].priority)">
+      </select>
+      <div class="attrHead">
+        Physical
+      </div>
+      <div class="attr-center">
+        <div termindex term="{{attrCtrl.strength.name}}" class="attrLabel">
+          {{attrCtrl.strength.name}}
+        </div>
+        <div ng-repeat="attrPt in attrCtrl.strength.points" style="display: inline-block;">
+          <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.strength, $index, 0)"/>
+        </div>
+      </div>
+      <div class="attr-center">
+        <div termindex term="{{attrCtrl.dexterity.name}}" class="attrLabel">
+          {{attrCtrl.dexterity.name}}
+        </div>
+        <div ng-repeat="attrPt in attrCtrl.dexterity.points" style="display: inline-block;">
+          <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.dexterity, $index, 0)"/>
+        </div>
+      </div>
+      <div class="attr-center">
+        <div termindex term="{{attrCtrl.stamina.name}}" class="attrLabel">
+          {{attrCtrl.stamina.name}}
+        </div>
+        <div ng-repeat="attrPt in attrCtrl.stamina.points" style="display: inline-block;">
+          <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.stamina, $index, 0)"/>
+        </div>
+      </div>
     </div>
-    <div class="mx-auto col-9 col-sm-8 col-md-7 col-lg-4 col-xl-2">
-        <select class="form-control" ng-model="attrCtrl.selectedPriorities[1]" style="width:130px; display:inline;"
-                ng-options="priority for priority in attrCtrl.attributePriorities"
-                ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[1], 1, attrCtrl.attributeCategories[1].priority)">
-        </select>
-        <span class="num float-right">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[1])}}</span>
+    <div class="col-lg-1 text-center">
+      <span class="num">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[0])}}</span>
     </div>
-    <div class="mx-auto col-9 col-sm-8 col-md-7 col-lg-4 col-xl-2">
-        <select class="form-control" ng-model="attrCtrl.selectedPriorities[2]" style="width:130px; display:inline;"
-                ng-options="priority for priority in attrCtrl.attributePriorities"
-                ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[2], 2, attrCtrl.attributeCategories[2].priority)">
-        </select>
-        <span class="num float-right">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[2])}}</span>
+    <div class="col-lg-2 offset-lg-1 text-center">
+      <select class="form-control" ng-model="attrCtrl.selectedPriorities[1]" style="max-width: 160px;"
+              ng-options="priority for priority in attrCtrl.attributePriorities"
+              ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[1], 1, attrCtrl.attributeCategories[1].priority)">
+      </select>
+      <div class="attrHead">
+        Social
+      </div>
+      <div class="attr-center">
+        <div termindex term="{{attrCtrl.charisma.name}}" class="attrLabel">
+          {{attrCtrl.charisma.name}}
+        </div>
+        <div ng-repeat="attrPt in attrCtrl.charisma.points" style="display: inline-block;">
+          <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.charisma, $index, 0)"/>
+        </div>
+      </div>
+      <div class="attr-center">
+        <div termindex term="{{attrCtrl.manipulation.name}}" class="attrLabel">
+          {{attrCtrl.manipulation.name}}
+        </div>
+        <div ng-repeat="attrPt in attrCtrl.manipulation.points" style="display: inline-block;">
+          <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.manipulation, $index, 0)"/>
+        </div>
+      </div>
+      <div class="attr-center">
+        <div termindex term="{{attrCtrl.appearance.name}}" class="attrLabel">
+          {{attrCtrl.appearance.name}}
+        </div>
+        <div ng-repeat="attrPt in attrCtrl.appearance.points" style="display: inline-block;">
+          <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.appearance, $index, 0)"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1 text-center">
+      <span class="num">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[1])}}</span>
+    </div>
+    <div class="col-lg-2 offset-lg-1 text-center">
+      <select class="form-control" ng-model="attrCtrl.selectedPriorities[2]" style="max-width: 160px;"
+              ng-options="priority for priority in attrCtrl.attributePriorities"
+              ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[2], 2, attrCtrl.attributeCategories[2].priority)">
+      </select>
+      <div class="attrHead">
+        Mental
+      </div>
+      <div class="attr-center">
+        <div termindex term="{{attrCtrl.perception.name}}" class="attrLabel">
+          {{attrCtrl.perception.name}}
+        </div>
+        <div ng-repeat="attrPt in attrCtrl.perception.points" style="display: inline-block;">
+          <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.perception, $index, 0)"/>
+        </div>
+      </div>
+      <div class="attr-center">
+        <div termindex term="{{attrCtrl.intelligence.name}}" class="attrLabel">
+          {{attrCtrl.intelligence.name}}
+        </div>
+        <div ng-repeat="attrPt in attrCtrl.intelligence.points" style="display: inline-block;">
+          <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.intelligence, $index, 0)"/>
+        </div>
+      </div>
+      <div class="attr-center">
+        <div termindex term="{{attrCtrl.wits.name}}" class="attrLabel">
+          {{attrCtrl.wits.name}}
+        </div>
+        <div ng-repeat="attrPt in attrCtrl.wits.points" style="display: inline-block;">
+          <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.wits, $index, 0)"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-1 text-center">
+      <span class="num">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[2])}}</span>
     </div>
   </div>
 </div>
@@ -35,9 +122,37 @@
     width: 300px;
   }
 
+  .attrimg{
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+    margin-top: -3px;
+  }
+
+  .attr-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .attrLabel{
+    font-size: 16px;
+    font-weight: 500;
+    margin-right: 10px;
+    min-width: 97px;
+  }
+
   .num {
     color: #BB0000;
     font-size: 24px;
     font-weight: bold;
+  }
+  .attrHead{
+    font-size: 18.5px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
   }
 </style>
