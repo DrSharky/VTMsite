@@ -3,11 +3,14 @@
   <p class="text-center" style="font-size: 18pt; font-weight: 500;">Attributes</p>
   <hr style="width:427.5px; display:block;">
   <div class="row pt-4 pb-2">
-    <div class="col-lg-2 offset-lg-1">
-      <select class="form-control" ng-model="attrCtrl.selectedPriorities[0]" style="max-width: 160px;"
-              ng-options="priority for priority in attrCtrl.attributePriorities"
-              ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[0], 0, attrCtrl.attributeCategories[0].priority)">
-      </select>
+    <div class="d-lg-none col-4"></div>
+    <div class="col-4 col-lg-2 offset-lg-1 attr-marg">
+      <div class="d-flex align-items-center justify-content-center">
+        <select class="form-control" ng-model="attrCtrl.selectedPriorities[0]"
+                ng-options="priority for priority in attrCtrl.attributePriorities"
+                ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[0], 0, attrCtrl.attributeCategories[0].priority)">
+        </select>
+      </div>
       <div class="attrHead">
         Physical
       </div>
@@ -36,14 +39,17 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-1 text-center">
+    <div class="col-4 col-lg-1 num-col">
       <span class="num">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[0])}}</span>
     </div>
-    <div class="col-lg-2 offset-lg-1">
-      <select class="form-control" ng-model="attrCtrl.selectedPriorities[1]" style="max-width: 160px;"
-              ng-options="priority for priority in attrCtrl.attributePriorities"
-              ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[1], 1, attrCtrl.attributeCategories[1].priority)">
-      </select>
+    <div class="d-lg-none col-4"></div>
+    <div class="col-4 col-lg-2 offset-lg-1 attr-marg">
+      <div class="d-flex align-items-center justify-content-center">
+        <select class="form-control" ng-model="attrCtrl.selectedPriorities[1]"
+                ng-options="priority for priority in attrCtrl.attributePriorities"
+                ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[1], 1, attrCtrl.attributeCategories[1].priority)">
+        </select>
+      </div>
       <div class="attrHead">
         Social
       </div>
@@ -72,14 +78,17 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-1 text-center">
+    <div class="col-4 col-lg-1 num-col">
       <span class="num">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[1])}}</span>
     </div>
-    <div class="col-lg-2 offset-lg-1">
-      <select class="form-control" ng-model="attrCtrl.selectedPriorities[2]" style="max-width: 160px;"
-              ng-options="priority for priority in attrCtrl.attributePriorities"
-              ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[2], 2, attrCtrl.attributeCategories[2].priority)">
-      </select>
+    <div class="d-lg-none col-4"></div>
+      <div class="col-4 col-lg-2 offset-lg-1 attr-marg">
+        <div class="d-flex align-items-center justify-content-center">
+          <select class="form-control" ng-model="attrCtrl.selectedPriorities[2]"
+                  ng-options="priority for priority in attrCtrl.attributePriorities"
+                  ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[2], 2, attrCtrl.attributeCategories[2].priority)">
+          </select>
+      </div>
       <div class="attrHead">
         Mental
       </div>
@@ -108,19 +117,19 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-1 text-center">
+    <div class="col-4 col-lg-1 num-col">
       <span class="num">{{attrCtrl.getPriorityPts(attrCtrl.selectedPriorities[2])}}</span>
     </div>
   </div>
 </div>
 
 <style>
-  .attr-select {
+  /* .attr-select {
     display: flex;
     text-align: justify;
     text-align-last: justify;
     width: 300px;
-  }
+  } */
 
   .attrimg{
     width: 15px;
@@ -128,6 +137,18 @@
     vertical-align: middle;
     margin-top: -3px;
   }
+
+@media(min-width:992px){
+  .num-col{
+    text-align: center!important;
+  }
+}
+
+@media(max-width:991.98px){
+  .attr-marg{
+    margin-bottom: 10px;
+  }
+}
 
   .attr-center{
     display: flex;

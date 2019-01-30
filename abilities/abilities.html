@@ -3,11 +3,14 @@
   <p class="text-center" style="font-size: 18pt; font-weight: 500;">Abilities</p>
   <hr style="width:427.5px; display:block">
   <div class="row pt-4 pb-2">
-    <div class="col-lg-2 offset-lg-1">
-      <select class="form-control" ng-model="abCtrl.selectedPriorities[0]" style="max-width:160px;"
-              ng-options="priority for priority in abCtrl.abilityPriorities"
-              ng-change ="abCtrl.priorityChange(abCtrl.selectedPriorities[0], 0, abCtrl.abilityCategories[0].priority)">
-      </select>
+    <div class="d-lg-none col-4"></div>
+    <div class="col-4 col-lg-2 offset-lg-1 ab-marg">
+      <div class="d-flex align-items-center justify-content-center">
+        <select class="form-control" ng-model="abCtrl.selectedPriorities[0]"
+                ng-options="priority for priority in abCtrl.abilityPriorities"
+                ng-change ="abCtrl.priorityChange(abCtrl.selectedPriorities[0], 0, abCtrl.abilityCategories[0].priority)">
+        </select>
+      </div>
       <div class="abHead">
         Talents
       </div>
@@ -15,14 +18,17 @@
         <div ability-direct ability="{{ability}}"></div>
       </div>
     </div>
-    <div class="col-lg-1 text-center">
+    <div class="col-lg-1 num-col">
       <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[0])}}</span>
     </div>
-    <div class="col-lg-2 offset-lg-1">
-      <select class="form-control" ng-model="abCtrl.selectedPriorities[1]" style="max-width:160px;"
-              ng-options="priority for priority in abCtrl.abilityPriorities"
-              ng-change ="abCtrl.priorityChange(abCtrl.selectedPriorities[1], 1, abCtrl.abilityCategories[1].priority)">
-      </select>
+    <div class="d-lg-none col-4"></div>
+    <div class="col-4 col-lg-2 offset-lg-1 ab-marg">
+      <div class="d-flex align-items-center justify-content-center">
+        <select class="form-control" ng-model="abCtrl.selectedPriorities[1]"
+                ng-options="priority for priority in abCtrl.abilityPriorities"
+                ng-change ="abCtrl.priorityChange(abCtrl.selectedPriorities[1], 1, abCtrl.abilityCategories[1].priority)">
+        </select>
+      </div>
       <div class="abHead">
         Skills
       </div>
@@ -30,14 +36,17 @@
         <div ability-direct ability="{{ability}}"></div>
       </div>
     </div>
-    <div class="col-lg-1 text-center">
+    <div class="col-lg-1 num-col">
       <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[1])}}</span>
     </div>
-    <div class="col-lg-2 offset-lg-1">
-      <select class="form-control" ng-model="abCtrl.selectedPriorities[2]" style="max-width:160px;"
-              ng-options="priority for priority in abCtrl.abilityPriorities"
-              ng-change ="abCtrl.priorityChange(abCtrl.selectedPriorities[2], 2, abCtrl.abilityCategories[2].priority)">
-      </select>
+    <div class="d-lg-none col-4"></div>
+    <div class="col-4 col-lg-2 offset-lg-1 ab-marg">
+      <div class="d-flex align-items-center justify-content-center">
+        <select class="form-control" ng-model="abCtrl.selectedPriorities[2]"
+                ng-options="priority for priority in abCtrl.abilityPriorities"
+                ng-change ="abCtrl.priorityChange(abCtrl.selectedPriorities[2], 2, abCtrl.abilityCategories[2].priority)">
+        </select>
+      </div>
       <div class="abHead">
         Knowledges
       </div>
@@ -45,7 +54,7 @@
         <div ability-direct ability="{{ability}}"></div>
       </div>
     </div>
-    <div class="col-lg-1 text-center">
+    <div class="col-lg-1 num-col">
       <span class="num">{{abCtrl.getPriorityPts(abCtrl.selectedPriorities[2])}}</span>
     </div>
   </div>
@@ -110,11 +119,13 @@ hr {
   border-color: #000000;
   background-color: #000000;
 }
-@media (max-width:767.98px){
-  .abil-column{
-    margin-bottom:10px;
+
+@media(max-width:991.98px){
+  .ab-marg{
+    margin-bottom: 10px;
   }
 }
+
 .panel-group{
   margin-bottom: 20px;
 }
