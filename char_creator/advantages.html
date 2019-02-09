@@ -3,15 +3,20 @@
   <p class="text-center" style="font-size: 18pt; font-weight: 500;">Advantages</p>
   <hr style="width:427.5px; display:block;">
   <div class="row pt-4 pb-2">
-    <div class="mx-auto col-lg-3 text-center" ng-controller="DisciplinesController as discCtrl">
+    <div class="col-lg-1 col-3"></div>
+    <div class="mx-auto col-6 col-lg-3 text-center" ng-controller="DisciplinesController as discCtrl">
       <ng-include src="discCtrl.disciplinesPage"></ng-include>
     </div>
-    <div class="mx-auto col-lg-3 text-center" ng-controller="BackgroundsController as backCtrl">
+    <div class="d-lg-none col-3"></div>
+    <div class="d-lg-none col-3"></div>
+    <div class="mx-auto col-6 col-lg-3 text-center" ng-controller="BackgroundsController as backCtrl">
       <ng-include src="backCtrl.backgroundsPage"></ng-include>
     </div>
-    <div class="mx-auto col-lg-3 text-center" ng-controller="VirtuesController as virtCtrl">
+    <div class="d-lg-none col-3"></div>
+    <div class="mx-auto col-6 col-lg-3 text-center" ng-controller="VirtuesController as virtCtrl">
       <ng-include src="virtCtrl.virtuesPage"></ng-include>
     </div>
+    <div class="d-none d-lg-block col-lg-1"></div>
     <!-- <div class="col-md-4 adv-column" ng-controller="DisciplinesController as discCtrl">
       <ng-include src="discCtrl.disciplinesPage"></ng-include>
     </div>
