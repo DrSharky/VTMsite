@@ -134,46 +134,51 @@ app.service("ClanService", function(){
       disciplines: ["Animalism", "Obfuscate", "Potence"]
     },
     {
-      id: 23, name: "Ravnos",
+      id: 23, name: "Old Clan Tzimisce",
+      filters: ["Dark Ages, High Clans"],
+      disciplines: ["Animalism", "Auspex", "Dominate"]
+    },
+    {
+      id: 24, name: "Ravnos",
       filters: ["Thirteen", "Independent", "All Clans", "Dark Ages",
                 "Low Clans"],
       disciplines: ["Animalism", "Chimerstry", "Fortitude"]
     },
     {
-      id: 24, name: "Salubri",
+      id: 25, name: "Salubri",
       filters: ["Independent", "All Clans", "Dark Ages"],
       disciplines: ["Auspex", "Fortitude", "Obeah", "Valeren"]
     },
     {
-      id: 25, name: "Samedi",
+      id: 26, name: "Samedi",
       filters: ["All Bloodlines"],
       disciplines: ["Fortitude", "Obfuscate", "Thanatosis"]
     },
     {
-      id: 26, name: "Toreador",
+      id: 27, name: "Toreador",
       filters: ["Thirteen", "Camarilla", "All Clans",
                 "Camarilla (clans only)", "Dark Ages", "High Clans"],
       disciplines: ["Auspex", "Celerity", "Presence"]
     },
     {
-      id: 27, name: "Tremere",
+      id: 28, name: "Tremere",
       filters: ["Thirteen", "Camarilla", "All Clans",
                 "Camarilla (clans only)", "Dark Ages", "Low Clans"],
       disciplines: ["Auspex", "Dominate", "Thaumaturgy"]
     },
     {
-      id: 28, name: "True Brujah",
+      id: 29, name: "True Brujah",
       filters: ["All Bloodlines", "Independent", "Dark Ages"],
       disciplines: ["Potence", "Presence", "Temporis"]
     },
     {
-      id: 29, name: "Tzimisce",
+      id: 30, name: "Tzimisce",
       filters: ["Thirteen", "Sabbat", "All Clans", "Sabbat (clans only)",
                 "Dark Ages", "High Clans"],
       disciplines: ["Animalism", "Auspex", "Vicissitude"]
     },
     {
-      id: 30, name: "Ventrue",
+      id: 31, name: "Ventrue",
       filters: ["Thirteen", "Camarilla", "All Clans",
                 "Camarilla (clans only)", "Dark Ages", "High Clans"],
       disciplines: ["Dominate", "Fortitude", "Presence"]

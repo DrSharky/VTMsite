@@ -117,3 +117,22 @@ app.controller("AttributesController",
   })
 
 }]);
+
+
+app.config(["$translateProvider", function($translateProvider){
+  $translateProvider.translations('en', {
+    'Attributes': 'Attributes',
+    'Physical': 'Physical',
+    'Social': 'Social',
+    'Mental': 'Mental',
+    'Strength': 'Strength'
+  });
+  $translateProvider.translations('es', {
+    'Attributes': 'Atributos',
+    'Physical': 'Físicos',
+    'Social': 'Sociales',
+    'Mental': 'Mentales',
+    'Strength': 'Fuerza'
+  })
+  .preferredLanguage('es');
+}]);
