@@ -6,6 +6,12 @@ Using AngularJS to make it nice and responsive.
 Doing this as a learning experience, it won't look too nice yet.
 Check out the progress at: https://drsharky.github.io/VTMsite/#!/creator
 
+# Installation & Setup
+
+If you'd like to clone/fork/etc this project and contribute or make your own,
+feel free to do so. Use the VTMSite Setup guide provided as a PDF in the project.
+The link is here if you're interested: https://github.com/DrSharky/VTMsite/blob/master/VTMSite%20Setup.pdf
+
 
 ### Copyright Stuff
 
