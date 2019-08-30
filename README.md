@@ -8,9 +8,12 @@ Check out the progress at: https://drsharky.github.io/VTMsite/#!/creator
 
 # Installation & Setup
 
-If you'd like to clone/fork/etc this project and contribute or make your own,
-feel free to do so. Use the VTMSite Setup guide provided as a PDF in the project.
+If you'd like to create your own version of this project, feel free to do so.
+Use the VTMSite Setup guide provided as a PDF in the project.
 The link is here if you're interested: https://github.com/DrSharky/VTMsite/blob/master/VTMSite%20Setup.pdf
+This is not a guide for contributing, as it specifically gives you steps to not create a fork.
+The steps on how to copy & make your own was requested a few times, so here it is.
+I'll make a different (and probably simpler) set of guidelines for contributing soon.
 
 
 ### Copyright Stuff
