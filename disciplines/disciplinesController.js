@@ -4,6 +4,9 @@ app.controller("DisciplinesController",
  ['$scope', 'ClanService', 'DisciplineService',
  function($scope, ClanService, DisciplineService){
 
+   this.freeMode = location.hash.includes("free");
+   this.freeDisciplinePt = freeDisciplinePt;
+
    this.getFreebieMode = getFreebieMode;
    function getFreebieMode(){
      return DisciplineService.getFreebieMode();
@@ -12,11 +15,15 @@ app.controller("DisciplinesController",
   this.isGargoyle = isGargoyle;
   this.selectDisciplinePt = selectDisciplinePt;
   this.disciplinesPage = "./disciplines/disciplines.html";
-  
+
   this.disciplineList = getDisciplineList();
 
   function getDisciplineList(){
     return DisciplineService.disciplineList;
+  }
+
+  function freeDisciplinePt(discipline, index){
+    DisciplineService.freeDisciplinePt(discipline, index);
   }
 
   function selectDisciplinePt(discipline, index){

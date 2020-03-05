@@ -1,0 +1,132 @@
+<h3>Character Creator</h3>
+<div class="col-lg-9">
+  <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <label termindex term="Player" for="charPlayer" style="margin-right: 3px;">Player: </label>
+          <input id="charPlayer" ng-model="creatorCtrl.charPlayer"
+                 ng-blur="creatorCtrl.setPlayer(creatorCtrl.charPlayer)"/> <!--TODO: Remove the ng-blurs, Replace them with-->
+        </div>                                                                   <!--a function in the service when saving.-->
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <label termindex term="Chronicle" for="charChronicle" style="margin-right: 3px;">Chronicle: </label>
+          <input id="charChronicle" ng-model="creatorCtrl.charChronicle" ng-blur="creatorCtrl.setChronicle(creatorCtrl.charChronicle)"/>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <label termindex term="Name" for="charName">Name: </label>
+          <input id="charName" ng-model="creatorCtrl.charName" ng-blur="creatorCtrl.setName(creatorCtrl.charName)"/>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <label termindex term="Concept" for="charConcept">Concept: </label>
+          <input id="charConcept" ng-model="creatorCtrl.charConcept" ng-blur="creatorCtrl.setConcept(creatorCtrl.charConcept)"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <label termindex term="Nature" for="charNature">Nature: </label>
+          <input id="charNature" ng-model="creatorCtrl.charNature" ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)"/>
+          <select id="charNatSelect" ng-model="creatorCtrl.charNature" ng-options="charNat for charNat in creatorCtrl.natureDemeanorList"
+                  ng-blur="creatorCtrl.setNature(creatorCtrl.charNature)" style="width:20px; height:26px; position:absolute;"></select>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <label termindex term="Demeanor" for="charDemeanor">Demeanor: </label>
+          <input id="charDemeanor" ng-model="creatorCtrl.charDemeanor" ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)"/>
+          <select id="charDemSelect" ng-model="creatorCtrl.charDemeanor" ng-options="charDem for charDem in creatorCtrl.natureDemeanorList"
+                  ng-blur="creatorCtrl.setDemeanor(creatorCtrl.charDemeanor)" style="max-width:20px; height:26px; position: absolute;"></select>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <label termindex term="Sire" for="charSire" style="margin-right: 12px;">Sire: </label>
+          <input id="charSire" ng-model="creatorCtrl.charSire" ng-blur="creatorCtrl.setSire(creatorCtrl.charSire)"/>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <label termindex term="Generation" for="charGeneration">Generation: </label>
+          <select id="charGeneration" ng-model="creatorCtrl.charGeneration"
+                  ng-options="charGen for charGen in creatorCtrl.generations" ng-blur="creatorCtrl.setGeneration(creatorCtrl.charGeneration)">
+          </select>
+        </div>
+      </div>
+      <br />
+      <div ng-controller="ClanController as clanCtrl">
+        <div class="row">
+          <label for="clanFilter" style="margin-right: 30px;">Clan Filter: </label>
+          <select id="clanFilter" ng-model="clanCtrl.selectedClanFilter" ng-options="filter for filter in clanCtrl.clanFilters"
+                  ng-change="clanCtrl.filterClans(clanCtrl.selectedClanFilter)">
+          </select>
+        </div>
+        <div class="row">
+          <label for="clanSelect">Clan/Bloodline: </label>
+          <select id="clanSelect" ng-model="clanCtrl.selectedClan" ng-options="clan.name for clan in clanCtrl.filteredClanList"
+                  ng-change="setUClan(clanCtrl.selectedClan)" ng-blur="clanCtrl.setClan(clanCtrl.selectedClan)">
+          </select>
+        </div>
+      <ng-include ng-show="clanCtrl.selectedClan.name!='N/A' || clanCtrl.selectedBloodline!=null" src="clanCtrl.clanPage"></ng-include>
+    </div>
+    </div>
+    <div ng-controller="AttributesController as attrCtrl">
+    <ng-include src="attrCtrl.attributesPage"></ng-include>
+    </div>
+    <div ng-controller="AbilitiesController as abCtrl">
+      <ng-include src="abCtrl.abilitiesPage"></ng-include>
+    </div>
+    <div class="col-lg-3" ng-controller="TermIndexController as tindexCtrl">
+      <ng-include src="tindexCtrl.termIndexPage"></ng-include>
+    </div>
+    <div ng-controller="SaveController as saveCtrl">
+      <button ng-hide="!creatorCtrl.loggedIn" ng-click="saveCtrl.saveCharacter()">Save Character</button>
+    </div>
+    <div class="col-lg-3" ng-controller="LoadController as loadCtrl">
+      <!-- <button ng-hide="!creatorCtrl.loggedIn" ng-click="loadCtrl.loadChars()">Load Character</button> -->
+      <ng-include src="loadCtrl.loadPage"></ng-include>
+    </div>
+    <div ng-controller="PdfController as pdfCtrl">
+      <button ng-click="pdfCtrl.generatePDF()">Export PDF</button>
+      <button ng-click="pdfCtrl.generateInteractivePDF()">Export Interactive PDF</button>
+    </div>
+    <!-- <div ng-controller="UploadController as upCtrl">
+      <button ng-click="upCtrl.uploadImage()">Upload Image</button>
+      <input type="file" imageupload/>
+      <button ng-click="upCtrl.removeImage()">Remove Image</button>
+    </div>-->
+</div>
+<div class="row">
+  <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="DisciplinesController as discCtrl">
+    <div class="numdis" ng-if="!creatorCtrl.freeMode">
+      {{creatorCtrl.getFreebiePts()}}
+    </div>
+    <button ng-click="creatorCtrl.toggleFreebieMode()">Toggle Freebie Mode</button>
+    <ng-include src="discCtrl.disciplinesPage"></ng-include>
+  </div>
+  <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="BackgroundsController as backCtrl">
+    <ng-include src="backCtrl.backgroundsPage"></ng-include>
+  </div>
+  <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="VirtuesController as virtCtrl">
+    <ng-include src="virtCtrl.virtuesPage"></ng-include>
+  </div>
+  <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="PathController as pathCtrl">
+    <ng-include src="pathCtrl.pathPage"></ng-include>
+  </div>
+  <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="WillpowerController as willCtrl">
+    <ng-include src="willCtrl.willPage"></ng-include>
+  </div>
+  <div style="margin-bottom:10px;" class="col-lg-3" ng-controller="MeritFlawController as meritFlawCtrl">
+    <ng-include src="meritFlawCtrl.meritFlawPage"></ng-include>
+  </div>
+</div>
+
+
+<style>
+ .inline-headers h3, .inline-headers h4 {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+  .attr-head{
+    font-size: 24px;
+    text-align: center;
+  }
+  .numdis{
+    color: #BB0000;
+    font-size: 24px;
+    font-weight: bold;
+    display: inline;
+    margin-left: 35px;
+  }
+</style>

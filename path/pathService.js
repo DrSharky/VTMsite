@@ -15,7 +15,12 @@ app.service("PathService",
                     "Path of Redemption", "Path of Typhon", "Path of Self-Focus",
                     "Path of the Scorched Heart", "Sharia El-Sama", "Path of the Warrior"];
 
+  this.freePathPt = freePathPt;
   this.selectPathPt = selectPathPt;
+
+  function freePathPt(path, index){
+    path.select(index, "original");
+  }
 
   function selectPathPt(path, index){
 

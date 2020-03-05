@@ -11,7 +11,8 @@
     <th style="width:100px;">
       <select ng-model="abCtrl.selectedPriorities[0]"
       ng-options="priority for priority in abCtrl.abilityPriorities"
-      ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[0], 0, abCtrl.abilityCategories[0].priority)">
+      ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[0], 0, abCtrl.abilityCategories[0].priority)"
+      ng-if="!abCtrl.freeMode">
     </select>
     <div class="abHead">Talents</div>
     </th>
@@ -21,7 +22,8 @@
     <th style="padding-top:10px; padding-bottom:10px; width:100px;">
       <select ng-model="abCtrl.selectedPriorities[1]"
       ng-options="priority for priority in abCtrl.abilityPriorities"
-      ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[1], 1, abCtrl.abilityCategories[1].priority)">
+      ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[1], 1, abCtrl.abilityCategories[1].priority)"
+      ng-if="!abCtrl.freeMode">
       </select>
     <div class="abHead">Skills</div>
     </th>
@@ -31,7 +33,8 @@
     <th style="width:110px;">
       <select ng-model="abCtrl.selectedPriorities[2]"
       ng-options="priority for priority in abCtrl.abilityPriorities"
-      ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[2], 2, abCtrl.abilityCategories[2].priority)">
+      ng-change="abCtrl.priorityChange(abCtrl.selectedPriorities[2], 2, abCtrl.abilityCategories[2].priority)"
+      ng-if="!abCtrl.freeMode">
       </select>
       <div class="abHead">Knowledges</div>
     </th>
@@ -55,7 +58,8 @@
     </td>
     <td class="points-cell" style="width:245px;">
       <div ng-repeat="abPt in ability.col1.points" style="display: inline-block;">
-        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col1, $index)"/>
+        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col1, $index)" ng-if="!abCtrl.freeMode"/>
+        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.freeAbility(ability.col1, $index)" ng-if="abCtrl.freeMode"/>
       </div>
     </td>
     <td style="width:100px;">
@@ -71,7 +75,8 @@
     </td>
     <td class="points-cell" style="width:245px;">
       <div ng-repeat="abPt in ability.col2.points" style="display: inline-block;">
-        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col2, $index)"/>
+        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col2, $index)" ng-if="!abCtrl.freeMode"/>
+        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.freeAbility(ability.col2, $index)" ng-if="abCtrl.freeMode"/>
       </div>
     </td>
     <td style="width:100px;">
@@ -87,7 +92,8 @@
     </td>
     <td class="points-cell" style="width:245px;">
       <div ng-repeat="abPt in ability.col3.points" style="display: inline-block;">
-        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col3, $index)"/>
+        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.selectAbility(ability.col3, $index)" ng-if="!abCtrl.freeMode"/>
+        <img class="abimg" ng-src="{{abPt.img}}" ng-click="abCtrl.freeAbility(ability.col3, $index)" ng-if="abCtrl.freeMode"/>
       </div>
     </td>
   </tr>

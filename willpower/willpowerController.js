@@ -3,6 +3,10 @@ var app = angular.module("site");
 app.controller("WillpowerController",
  ['WillpowerService', '$scope',
   function(WillpowerService, $scope){
+
+    this.freeMode = location.hash.includes("free");
+    this.freeWillPt = freeWillPt;
+
     this.willPage = "./willpower/willpower.html";
 
     this.willpower = willpower();
@@ -16,6 +20,10 @@ app.controller("WillpowerController",
     function getFreebieMode(){
       return WillpowerService.getFreebieMode();
     };
+
+    function freeWillPt(index){
+      WillpowerService.freeWillPt(index);
+    }
 
     function selectWillPt(index){
       WillpowerService.selectWillPt(index);

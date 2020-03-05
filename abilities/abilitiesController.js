@@ -4,6 +4,9 @@ app.controller("AbilitiesController",
 ['$scope','NgTableParams','AbilitiesService',
  function($scope, NgTableParams, AbilitiesService){
 
+  this.freeMode = location.hash.includes("free");
+  this.freeAbility = freeAbility;
+
   this.priorityChange = priorityChange;
   this.selectAbility = selectAbility;
   this.getPriorityPts = getPriorityPts;
@@ -65,6 +68,10 @@ app.controller("AbilitiesController",
 
   function getPriorityPts(index){
     return AbilitiesService.getPriorityPts(index);
+  };
+
+  function freeAbility(ability, index){
+    AbilitiesService.freeAbility(ability, index);
   };
 
   function selectAbility(ability, index){

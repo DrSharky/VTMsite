@@ -4,6 +4,7 @@ app.service("AbilitiesService",
 ['CharCreatorService',
  function(CharCreatorService){
 
+   this.freeAbility = freeAbility;
    this.priorityChange = priorityChange;
    this.selectAbility = selectAbility;
    this.getPriority = getPriority;
@@ -46,7 +47,7 @@ app.service("AbilitiesService",
          this.pointCount = 0;
        };
 
-       this.select = function(index){
+       this.select = function(index, type){
          if(index == -1){
            this.reset();
            return;
@@ -70,7 +71,7 @@ app.service("AbilitiesService",
               return;
             }
             else{
-              if(CharCreatorService.freebieMode && point.img != "./full.png"){
+              if(type == "freebie" && point.img != "./full.png"){
                 point.img = "./free.png";
                 point.type = "freebie";
               }
@@ -203,6 +204,10 @@ app.service("AbilitiesService",
      }
     };
 
+    function freeAbility(ability, index, catIndex){
+      ability.select(index, "original");
+    };
+
     function selectAbility(ability, index){
 
       var priortyPts = 0;
@@ -232,7 +237,7 @@ app.service("AbilitiesService",
 
         CharCreatorService.changeFreebiePts(pointDiff);
         ability.pointCount = (index+1);
-        ability.select(index);
+        ability.select(index, "freebie");
         return;
       }
       else{
@@ -278,7 +283,7 @@ app.service("AbilitiesService",
       }
       this.abilityPtsTotal += pointDiff;
       //Fill in the dots!
-      ability.select(index);
+      ability.select(index, "original");
     };
 
     function priorityChange(changedPriority, id, prevPriority){

@@ -11,7 +11,11 @@
       <td>
         <div ng-repeat="pathPt in pathCtrl.selectedPath.points" style="display: inline-block;">
           <img class="pathimg" ng-disabled="!pathCtrl.freebieMode" ng-src="{{pathPt.img}}"
-                               ng-click="pathCtrl.selectPathPt(pathCtrl.selectedPath, $index)" />
+                               ng-click="pathCtrl.selectPathPt(pathCtrl.selectedPath, $index)"
+                               ng-if="!pathCtrl.freeMode"/>
+          <img class="pathimg" ng-src="{{pathPt.img}}"
+                               ng-click="pathCtrl.freePathPt(pathCtrl.selectedPath, $index)"
+                               ng-if="pathCtrl.freeMode"/>
         </div>
       </td>
     </tr>

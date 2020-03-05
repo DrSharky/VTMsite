@@ -5,7 +5,11 @@
       <td>
         <div ng-repeat="willPt in willCtrl.willpower.points" style="display: inline-block;">
           <img class="willimg" ng-disabled="!willCtrl.getFreebieMode()" ng-src="{{willPt.img}}"
-                               ng-click="willCtrl.selectWillPt($index)" />
+                               ng-click="willCtrl.selectWillPt($index)"
+                               ng-if="!willCtrl.freeMode"/>
+          <img class="willimg" ng-src="{{willPt.img}}"
+                               ng-click="willCtrl.freeWillPt($index)"
+                               ng-if="willCtrl.freeMode"/>
         </div>
       </td>
     </tr>

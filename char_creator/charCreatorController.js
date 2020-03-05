@@ -4,6 +4,7 @@ app.controller("CharCreatorController",
  ['CharCreatorService', 'LoginService', '$scope', 'SaveService', '$window',
  function(CharCreatorService, LoginService, $scope, SaveService, $window){
 
+   this.freeMode = location.hash.includes("free");
 
    this.setPlayer = setPlayer;
    function setPlayer(charPlayer){
@@ -47,6 +48,11 @@ app.controller("CharCreatorController",
    }
 
    this.loggedIn = LoginService.loggedIn();
+
+   // this.freeMode = getFreeMode();
+   // function getFreeMode(){
+   //   return CharCreatorService.freeMode;
+   // }
 
    this.charPlayer = getCharPlayer();
    function getCharPlayer(){
