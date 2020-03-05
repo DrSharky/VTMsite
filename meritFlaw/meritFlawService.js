@@ -3,7 +3,8 @@ var app = angular.module("site");
 app.service("MeritFlawService", ['CharCreatorService',
  function(CharCreatorService){
 
-   this.maxFlawPts = 7;
+   this.freeMode = location.hash.includes("free");
+   this.maxFlawPts = this.freeMode ? 10000 : 7;
    this.addedFlawPts = 0;
    this.meritCount = 0;
    this.flawCount = 0;

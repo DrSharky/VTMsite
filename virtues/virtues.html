@@ -1,6 +1,6 @@
 <div>
   <h4 style="display: inline;">Virtues</h4>
-  <div class="numdis">
+  <div class="numdis" ng-if="!virtCtrl.freeMode">
     {{virtCtrl.getVirtuePts()}}
   </div>
   <table>
@@ -12,7 +12,8 @@
         </td>
         <td>
           <div ng-repeat="virtPt in virtCtrl.virtueList['Conscience'].points" style="display: inline-block;">
-            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Conscience'], $index)" />
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Conscience'], $index)" ng-if="!virtCtrl.freeMode"/>
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.freeVirtuePt(virtCtrl.virtueList['Conscience'], $index)" ng-if="virtCtrl.freeMode"/>
           </div>
         </td>
       </tr>
@@ -24,7 +25,8 @@
         </td>
         <td>
           <div ng-repeat="virtPt in virtCtrl.virtueList['Self-control'].points" style="display: inline-block;">
-            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Self-control'], $index)" />
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Self-control'], $index)" ng-if="!virtCtrl.freeMode"/>
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.freeVirtuePt(virtCtrl.virtueList['Self-control'], $index)" ng-if="virtCtrl.freeMode"/>
           </div>
         </td>
       </tr>
@@ -36,7 +38,8 @@
         </td>
         <td>
           <div ng-repeat="virtPt in virtCtrl.virtueList['Courage'].points" style="display: inline-block;">
-            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Courage'], $index)" />
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.selectVirtuePt(virtCtrl.virtueList['Courage'], $index)" ng-if="!virtCtrl.freeMode"/>
+            <img class="virtimg" ng-src="{{virtPt.img}}" ng-click="virtCtrl.freeVirtuePt(virtCtrl.virtueList['Courage'], $index)" ng-if="virtCtrl.freeMode"/>
           </div>
         </td>
       </tr>

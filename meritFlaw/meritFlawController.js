@@ -4,6 +4,12 @@ app.controller("MeritFlawController",
 ['MeritFlawService', 'CharCreatorService', '$scope',
  function(MeritFlawService, CharCreatorService, $scope){
 
+   this.freeMode = getFreeMode;
+
+   function getFreeMode(){
+     return MeritFlawService.freeMode;
+   }
+
    this.chooseMeritFlaw = chooseMeritFlaw;
    this.meritFlawPage = "./meritFlaw/meritflaw.html";
 

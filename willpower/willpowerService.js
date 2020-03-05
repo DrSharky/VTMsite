@@ -3,10 +3,16 @@ var app = angular.module("site");
 app.service("WillpowerService", ['CharCreatorService',
   function(CharCreatorService){
 
+    this.freeWillPt = freeWillPt;
     this.selectWillPt = selectWillPt;
     this.getFreebieMode = getFreebieMode;
+
     function getFreebieMode(){
       return CharCreatorService.freebieMode;
+    }
+
+    function freeWillPt(index){
+      this.willpower.select(index, "original");
     }
 
     function selectWillPt(index){

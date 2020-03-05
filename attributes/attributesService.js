@@ -2,6 +2,7 @@ var app = angular.module("site");
 app.service('AttributesService', ['UglyService', 'CharCreatorService',
  function(UglyService, CharCreatorService){
 
+  this.freeAttribute = freeAttribute;
   this.priorityChange = priorityChange;
   this.selectAttribute = selectAttribute;
   this.getPriority = getPriority;
@@ -47,7 +48,7 @@ app.service('AttributesService', ['UglyService', 'CharCreatorService',
         });
       }
 
-      this.select = function(index){
+      this.select = function(index, type){
         if(this.points[index].img=="./full.png" ||
            this.points[index].img=="./free.png")
         {
@@ -68,7 +69,7 @@ app.service('AttributesService', ['UglyService', 'CharCreatorService',
               return;
             }
             else{
-              if(CharCreatorService.freebieMode && point.img != "./full.png"){
+              if(type == "freebie" && point.img != "./full.png"){
                 point.img = "./free.png";
                 point.type = "freebie";
               }
@@ -192,6 +193,10 @@ function getPriorityPts(priority){
   }
 };
 
+function freeAttribute(attribute, index, catIndex){
+  attribute.select(index, "original");
+}
+
 function selectAttribute(attribute, index, catIndex){
 
   if(attribute.name == "Appearance" && UglyService.isUgly()){
@@ -213,8 +218,6 @@ function selectAttribute(attribute, index, catIndex){
       return null;
 
     priorityPts = CharCreatorService.getFreebiePts();
-
-    if(index )
 
     if(index < attribute.pointCount - 1)
       pointDiff = (attribute.pointCount * 5) - ((index + 1) * 5);
@@ -266,6 +269,9 @@ function selectAttribute(attribute, index, catIndex){
   //Fill in the dots!
   attribute.select(index, "original");
 };
+
+
+
 
 function priorityChange(changedPriority, id, prevPriority){
   this.attributeCategories[id].priority = changedPriority;

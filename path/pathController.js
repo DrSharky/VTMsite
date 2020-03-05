@@ -3,6 +3,10 @@ var app = angular.module("site");
 app.controller("PathController",
  ['PathService', '$scope',
  function(PathService, $scope){
+
+   this.freeMode = location.hash.includes("free");
+   this.freePathPt = freePathPt;
+
    this.pathPage = "./path/path.html";
 
    this.freebieMode = freebieMode();
@@ -13,6 +17,10 @@ app.controller("PathController",
    this.pathList = pathList();
    function pathList(){
      return PathService.pathList;
+   }
+
+   function freePathPt(path, index){
+     PathService.freePathPt(path, index);
    }
 
    this.selectPathPt = selectPathPt;

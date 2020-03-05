@@ -1,23 +1,24 @@
 <div>
   <h4 style="display: inline;">Disciplines</h4>
-  <div class="numdis">
+  <div class="numdis" ng-if="!discCtrl.freeMode">
     {{discCtrl.getDisciplinePts()}}
   </div>
   <table>
     <tr>
       <td>
         <div ng-repeat="discipline in discCtrl.selectedClanDisciplines">
-          <span class="fa fa-minus" ng-hide="!discCtrl.getFreebieMode()"
+          <span class="fa fa-minus" ng-hide="!discCtrl.getFreebieMode() && !discCtrl.freeMode"
                  ng-click="discCtrl.removeDiscipline($index)">
           </span>
-          <select ng-disabled="!discCtrl.getFreebieMode()" ng-model="discipline.name"
+          <select ng-disabled="!discCtrl.getFreebieMode() && !discCtrl.freeMode" ng-model="discipline.name"
                   ng-options="discipline for discipline in discCtrl.disciplineList" ng-change="discCtrl.changeDiscipline(discipline.name, $index, {{discipline}})">
           </select>
           <div ng-disabled="discCtrl.isGargoyle()" ng-repeat="discPt in discipline.points" style="display: inline-block;">
-            <img class="discimg" ng-src="{{discPt.img}}" ng-click="discCtrl.selectDisciplinePt(discipline, $index)" />
+            <img class="discimg" ng-src="{{discPt.img}}" ng-click="discCtrl.selectDisciplinePt(discipline, $index)" ng-if="!discCtrl.freeMode"/>
+            <img class="discimg" ng-src="{{discPt.img}}" ng-click="discCtrl.freeDisciplinePt(discipline, $index)" ng-if="discCtrl.freeMode"/>
           </div>
         </div>
-        <span class="fa fa-plus" ng-hide="!discCtrl.getFreebieMode()"
+        <span class="fa fa-plus" ng-hide="!discCtrl.getFreebieMode() && !discCtrl.freeMode"
               ng-click="discCtrl.addDiscipline()"> Add Discipline
         </span>
       </td>

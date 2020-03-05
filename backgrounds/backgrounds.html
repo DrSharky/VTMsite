@@ -1,23 +1,24 @@
 <div>
   <h4 style="display: inline;">Backgrounds</h4>
-  <div class="numdis">
+  <div class="numdis" ng-if="!backCtrl.freeMode">
     {{backCtrl.getBackgroundPts()}}
   </div>
   <table>
     <tr>
       <td>
         <div ng-repeat="background in backCtrl.selectedList">
-          <span class="fa fa-minus" ng-hide="!backCtrl.getFreebieMode()"
+          <span class="fa fa-minus" ng-hide="!backCtrl.getFreebieMode() && !backCtrl.freeMode"
                  ng-click="backCtrl.removeBackground($index)">
           </span>
           <select ng-change="backCtrl.chooseBackground(background, $index)" ng-model="background.name"
                   ng-options="background for background in backCtrl.backgroundList">
           </select>
           <div ng-repeat="backPt in background.points" style="display: inline-block;">
-            <img class="backimg" ng-src="{{backPt.img}}" ng-click="backCtrl.selectBackgroundPt(background, $index)" />
+            <img class="backimg" ng-src="{{backPt.img}}" ng-click="backCtrl.selectBackgroundPt(background, $index)" ng-if="!backCtrl.freeMode" />
+            <img class="backimg" ng-src="{{backPt.img}}" ng-click="backCtrl.freeBackgroundPt(background, $index)" ng-if="backCtrl.freeMode" />
           </div>
         </div>
-        <span class="fa fa-plus" ng-hide="!backCtrl.getFreebieMode()"
+        <span class="fa fa-plus" ng-hide="!backCtrl.getFreebieMode() && !backCtrl.freeMode"
               ng-click="backCtrl.addBackground()"> Add Background
         </span>
       </td>

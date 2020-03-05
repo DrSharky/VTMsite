@@ -3,6 +3,7 @@ var app = angular.module("site");
 app.service("BackgroundsService", ['CharCreatorService',
  function(CharCreatorService){
 
+   this.freeBackgroundPt = freeBackgroundPt;
    this.backgroundPts = 5;
    this.selectBackgroundPt = selectBackgroundPt;
    this.chooseBackground = chooseBackground;
@@ -11,6 +12,10 @@ app.service("BackgroundsService", ['CharCreatorService',
                           "Contacts", "Domain", "Fame", "Generation",
                           "Herd", "Influence", "Mentor", "Resources",
                           "Retainers", "Rituals", "Status"];
+
+  function freeBackgroundPt(background, index){
+    background.select(index, "original");
+  }
 
   function selectBackgroundPt(background, index){
     if(background.name == ""){
@@ -110,7 +115,7 @@ app.service("BackgroundsService", ['CharCreatorService',
              return;
            }
            else{
-             if(CharCreatorService.freebieMode && point.img != "./full.png"){
+             if(type == "freebie" && point.img != "./full.png"){
                point.img = "./free.png";
                point.type = "freebie";
              }

@@ -4,6 +4,9 @@ app.controller("AttributesController",
  ['NgTableParams', 'UglyService', 'AttributesService', '$scope',
  function(NgTableParams, UglyService, AttributeService, $scope){
 
+  this.freeMode = location.hash.includes("free");
+  this.freeAttribute = freeAttribute;
+
   this.priorityChange = priorityChange;
   this.selectAttribute = selectAttribute;
   this.getPriorityPts = getPriorityPts;
@@ -90,6 +93,10 @@ app.controller("AttributesController",
 
   function selectAttribute(attribute, index){
     AttributeService.selectAttribute(attribute, index);
+  };
+
+  function freeAttribute(attribute, index){
+    AttributeService.freeAttribute(attribute, index);
   };
 
   function priorityChange(changedPriority, id, prevPriority){

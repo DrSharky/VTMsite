@@ -1,6 +1,6 @@
 var app = angular.module("site");
 
-app.service('CharCreatorService', [function(){
+app.service('CharCreatorService', [function(){  
 
   this.freebiePts = 15;
   this.freebieMode = false;

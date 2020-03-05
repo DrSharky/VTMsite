@@ -3,6 +3,7 @@ var app = angular.module("site");
 app.service("DisciplineService", ['ClanService', 'CharCreatorService', 'UglyService',
  function(ClanService, CharCreatorService, UglyService){
 
+  this.freeDisciplinePt = freeDisciplinePt;
   this.setClan = setClan;
   this.setClanDisciplines = setClanDisciplines;
   this.selectDisciplinePt = selectDisciplinePt;
@@ -48,6 +49,10 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService', 'UglyServ
       this.selectedClanDisciplines[0].pointCount = 1;
     }
       return false;
+  }
+
+  function freeDisciplinePt(discipline, index){
+    discipline.select(index, "original");
   }
 
   function selectDisciplinePt(discipline, index){
@@ -172,7 +177,7 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService', 'UglyServ
               return;
             }
             else{
-              if(CharCreatorService.freebieMode && point.img != "./full.png"){
+              if(type == "freebie" && point.img != "./full.png"){
                 point.img = "./free.png";
                 point.type = type;
               }

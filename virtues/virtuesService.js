@@ -4,8 +4,14 @@ app.service("VirtuesService",
  ['CharCreatorService', 'PathService', 'WillpowerService',
  function(CharCreatorService, PathService, WillpowerService){
 
+
+   this.freeVirtuePt = freeVirtuePt;
    this.virtuePts = 7;
    this.selectVirtuePt = selectVirtuePt;
+
+   function freeVirtuePt(virtue, index){
+     virtue.select(index, "original");
+   }
 
    function selectVirtuePt(virtue, index){
 
@@ -33,7 +39,7 @@ app.service("VirtuesService",
 
        CharCreatorService.changeFreebiePts(pointDiff);
        virtue.pointCount = (index+1);
-       virtue.select(index);
+       virtue.select(index, "freebie");
        return;
      }
      else{
@@ -61,13 +67,13 @@ app.service("VirtuesService",
        else{
          var willpower = WillpowerService.willpower;
          willpower.pointCount +=(-pointDiff);
-         willpower.select(willpower.pointCount-1);
+         willpower.select(willpower.pointCount-1, "original");
          willpower.pointMin = willpower.pointCount;
        }
 
        this.virtuePts += pointDiff;
        //Fill in the dots!
-       virtue.select(index);
+       virtue.select(index, "original");
      }
    };
 
@@ -124,7 +130,7 @@ app.service("VirtuesService",
               return;
             }
             else{
-              if(CharCreatorService.freebieMode && point.img != "./full.png"){
+              if(type == "freebie" && point.img != "./full.png"){
                 point.img = "./free.png";
                 point.type = type;
               }

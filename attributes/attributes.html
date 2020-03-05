@@ -11,7 +11,8 @@
     <th style="width:100px;">
       <select ng-model="attrCtrl.selectedPriorities[0]"
        ng-options="priority for priority in attrCtrl.attributePriorities"
-       ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[0], 0, attrCtrl.attributeCategories[0].priority)">
+       ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[0], 0, attrCtrl.attributeCategories[0].priority)"
+       ng-if="!attrCtrl.freeMode">
       </select>
       <div class="attrHead">Physical</div>
     </th>
@@ -21,7 +22,8 @@
     <th style="padding-top:10px; padding-bottom:10px; width:100px;">
       <select ng-model="attrCtrl.selectedPriorities[1]"
        ng-options="priority for priority in attrCtrl.attributePriorities"
-       ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[1], 1, attrCtrl.attributeCategories[1].priority)">
+       ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[1], 1, attrCtrl.attributeCategories[1].priority)"
+       ng-if="!attrCtrl.freeMode">
       </select>
       <div class="attrHead">Social</div>
     </th>
@@ -31,7 +33,8 @@
     <th style="width:100px;">
       <select ng-model="attrCtrl.selectedPriorities[2]"
        ng-options="priority for priority in attrCtrl.attributePriorities"
-       ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[2], 2, attrCtrl.attributeCategories[2].priority)">
+       ng-change="attrCtrl.priorityChange(attrCtrl.selectedPriorities[2], 2, attrCtrl.attributeCategories[2].priority)"
+       ng-if="!attrCtrl.freeMode">
       </select>
       <div class="attrHead">Mental</div>
     </th>
@@ -50,7 +53,8 @@
     </td>
     <td class="points-cell" style="width:245px;">
       <div ng-repeat="attrPt in attrCtrl.strength.points" style="display: inline-block;">
-        <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.strength, $index, 0)"/>
+        <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.strength, $index, 0)" ng-if="!attrCtrl.freeMode"/>
+        <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.freeAttribute(attrCtrl.strength, $index, 0)" ng-if="attrCtrl.freeMode"/>
       </div>
     </td>
   <td style="width:100px;">
@@ -60,7 +64,8 @@
   </td>
   <td class="points-cell" style="width:245px;">
     <div ng-repeat="attrPt in attrCtrl.charisma.points" style="display: inline-block;">
-      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.charisma, $index, 1)"/>
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.charisma, $index, 1)" ng-if="!attrCtrl.freeMode"/>
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.freeAttribute(attrCtrl.charisma, $index, 1)" ng-if="attrCtrl.freeMode"/>
     </div>
   </td>
   <td style="width:100px;">
@@ -70,7 +75,8 @@
   </td>
   <td class="points-cell" style="width:245px;">
     <div ng-repeat="attrPt in attrCtrl.perception.points" style="display: inline-block;">
-      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.perception, $index, 2)"/>
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.perception, $index, 2)" ng-if="!attrCtrl.freeMode"/>
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.freeAttribute(attrCtrl.perception, $index, 2)" ng-if="attrCtrl.freeMode"/>
     </div>
   </td>
 </tr>
@@ -82,7 +88,8 @@
   </td>
   <td class="points-cell" style="width:245px;">
     <div ng-repeat="attrPt in attrCtrl.dexterity.points" style="display: inline-block;">
-      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.dexterity, $index, 0)"/>
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.dexterity, $index, 0)" ng-if="!attrCtrl.freeMode"/>
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.freeAttribute(attrCtrl.dexterity, $index, 0)" ng-if="attrCtrl.freeMode"/>
     </div>
   </td>
 <td style="width:100px;">
@@ -92,7 +99,8 @@
 </td>
 <td class="points-cell" style="width:245px;">
   <div ng-repeat="attrPt in attrCtrl.manipulation.points" style="display: inline-block;">
-    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.manipulation, $index, 1)"/>
+    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.manipulation, $index, 1)" ng-if="!attrCtrl.freeMode"/>
+    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.freeAttribute(attrCtrl.manipulation, $index, 1)" ng-if="attrCtrl.freeMode"/>
   </div>
 </td>
 <td style="width:100px;">
@@ -102,7 +110,8 @@
 </td>
 <td class="points-cell" style="width:245px;">
   <div ng-repeat="attrPt in attrCtrl.intelligence.points" style="display: inline-block;">
-    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.intelligence, $index, 2)"/>
+    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.intelligence, $index, 2)" ng-if="!attrCtrl.freeMode"/>
+    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.freeAttribute(attrCtrl.intelligence, $index, 2)" ng-if="attrCtrl.freeMode"/>
   </div>
 </td>
 </tr>
@@ -114,7 +123,8 @@
   </td>
   <td class="points-cell" style="width:245px;">
     <div ng-repeat="attrPt in attrCtrl.stamina.points" style="display: inline-block;">
-      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.stamina, $index, 0)"/>
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.stamina, $index, 0)" ng-if="!attrCtrl.freeMode"/>
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.freeAttribute(attrCtrl.stamina, $index, 0)" ng-if="attrCtrl.freeMode"/>
     </div>
   </td>
 <td style="width:100px;">
@@ -124,7 +134,8 @@
 </td>
   <td class="points-cell" style="width:245px;">
     <div ng-disabled="attrCtrl.isUglyClan()" ng-repeat="attrPt in attrCtrl.appearance.points" style="display: inline-block;">
-      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.appearance, $index, 1)"/>
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.appearance, $index, 1)" ng-if="!attrCtrl.freeMode"/>
+      <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.freeAttribute(attrCtrl.appearance, $index, 1)" ng-if="attrCtrl.freeMode"/>
     </div>
   </td>
 <td style="width:100px;">
@@ -134,7 +145,8 @@
 </td>
 <td class="points-cell" style="width:245px;">
   <div ng-repeat="attrPt in attrCtrl.wits.points" style="display: inline-block;">
-    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.wits, $index, 2)"/>
+    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.selectAttribute(attrCtrl.wits, $index, 2)" ng-if="!attrCtrl.freeMode"/>
+    <img class="attrimg" ng-src="{{attrPt.img}}" ng-click="attrCtrl.freeAttribute(attrCtrl.wits, $index, 2)" ng-if="attrCtrl.freeMode"/>
   </div>
 </td>
 </tr>

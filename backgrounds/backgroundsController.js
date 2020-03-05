@@ -4,6 +4,9 @@ app.controller("BackgroundsController",
 ['BackgroundsService', 'CharCreatorService', '$scope',
  function(BackgroundsService, CharCreatorService, $scope){
 
+   this.freeMode = location.hash.includes("free");
+   this.freeBackgroundPt = freeBackgroundPt;
+
    this.selectBackgroundPt = selectBackgroundPt;
    this.chooseBackground = chooseBackground;
    this.backgroundsPage = "./backgrounds/backgrounds.html";
@@ -36,6 +39,10 @@ app.controller("BackgroundsController",
    this.backgroundList = backgroundList();
    function backgroundList(){
      return BackgroundsService.backgroundList;
+   }
+
+   function freeBackgroundPt(background, index){
+     BackgroundsService.freeBackgroundPt(background, index);
    }
 
    function selectBackgroundPt(background, index){

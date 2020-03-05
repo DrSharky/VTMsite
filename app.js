@@ -17,6 +17,10 @@
         templateUrl: "./char_creator/charCreator.html",
         controller: "CharCreatorController as creatorCtrl"
       })
+      .when("/freecreator",{
+        templateUrl: "./free_creator/freeCreator.html",
+        controller: "CharCreatorController as creatorCtrl"
+      })
       .when("/glossary",{
         templateUrl: "./glossary/glossary.html",
         controller: "GlossaryController as glossCtrl"
