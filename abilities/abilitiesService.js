@@ -205,7 +205,13 @@ app.service("AbilitiesService",
     };
 
     function freeAbility(ability, index, catIndex){
-      ability.select(index, "original");
+      if(index == 0 && ability.pointCount == 1){
+        ability.reset();
+      }
+      else{
+        ability.pointCount=(index+1);
+        ability.select(index, "original");
+      }
     };
 
     function selectAbility(ability, index){
