@@ -4,11 +4,11 @@ app.controller("MeritFlawController",
 ['MeritFlawService', 'CharCreatorService', '$scope',
  function(MeritFlawService, CharCreatorService, $scope){
 
-   this.freeMode = getFreeMode;
+   this.freeMode = location.hash.includes("free");
 
-   function getFreeMode(){
-     return MeritFlawService.freeMode;
-   }
+   // function getFreeMode(){
+   //   return MeritFlawService.freeMode;
+   // }
 
    this.chooseMeritFlaw = chooseMeritFlaw;
    this.meritFlawPage = "./meritFlaw/meritflaw.html";

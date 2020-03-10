@@ -194,7 +194,13 @@ function getPriorityPts(priority){
 };
 
 function freeAttribute(attribute, index, catIndex){
-  attribute.select(index, "original");
+  if(index == 0 && attribute.pointCount == 1){
+    attribute.reset();
+  }
+  else{
+    attribute.pointCount = (index+1);
+    attribute.select(index, "original");
+  }
 }
 
 function selectAttribute(attribute, index, catIndex){
