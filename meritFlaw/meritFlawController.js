@@ -5,10 +5,15 @@ app.controller("MeritFlawController",
  function(MeritFlawService, CharCreatorService, $scope){
 
    this.freeMode = location.hash.includes("free");
+   var self = this;
 
-   // function getFreeMode(){
-   //   return MeritFlawService.freeMode;
-   // }
+   $scope.$on('$routeChangeSuccess', initScope);
+
+   function initScope(){
+     if(!MeritFlawService.loadedCharacter){
+       MeritFlawService.resetMeritFlaws();
+     }
+   }
 
    this.chooseMeritFlaw = chooseMeritFlaw;
    this.meritFlawPage = "./meritFlaw/meritflaw.html";
@@ -120,8 +125,8 @@ app.controller("MeritFlawController",
      MeritFlawService.chooseMeritFlaw(prevMeritFlaw, meritFlaw, index, category);
    }
 
-   var self = this;
    $scope.$on('loadCharacter', function(){
+     MeritFlawService.loadedCharacter = true;
      self.selectedPhysicalMerits = MeritFlawService.selectedPhysicalMerits;
      self.selectedPhysicalFlaws = MeritFlawService.selectedPhysicalFlaws;
      self.selectedMentalMerits = MeritFlawService.selectedMentalMerits;
@@ -134,6 +139,7 @@ app.controller("MeritFlawController",
    });
 
    $scope.$on('resetCharacter', function(){
+     self.loadedCharacter = false;
      MeritFlawService.resetMeritFlaws();
    });
 

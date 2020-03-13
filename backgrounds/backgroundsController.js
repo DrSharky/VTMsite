@@ -4,6 +4,16 @@ app.controller("BackgroundsController",
 ['BackgroundsService', 'CharCreatorService', '$scope',
  function(BackgroundsService, CharCreatorService, $scope){
 
+   $scope.$on('$routeChangeSuccess', initScope);
+
+   var self = this;
+   function initScope(){
+     if(!BackgroundsService.loadedCharacter){
+       BackgroundsService.resetBackgrounds();
+       self.selectedList = BackgroundsService.selectedList;
+     }
+   }
+
    this.freeMode = location.hash.includes("free");
    this.freeBackgroundPt = freeBackgroundPt;
 
@@ -53,8 +63,8 @@ app.controller("BackgroundsController",
      BackgroundsService.chooseBackground(background, index);
    }
 
-   var self = this;
    $scope.$on('loadCharacter', function(){
+     BackgroundsService.loadedCharacter = true;
      self.selectedList = BackgroundsService.selectedList;
      $scope.$apply();
    })

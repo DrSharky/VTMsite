@@ -1,8 +1,17 @@
 var app = angular.module("site");
 
 app.controller("AbilitiesController",
-['$scope','NgTableParams','AbilitiesService',
- function($scope, NgTableParams, AbilitiesService){
+['$scope','NgTableParams','AbilitiesService', '$scope',
+ function($scope, NgTableParams, AbilitiesService, $scope){
+
+  $scope.$on('$routeChangeSuccess', initScope);
+
+  function initScope(){
+    if(!AbilitiesService.loadedCharacter){
+      AbilitiesService.resetAbilities();
+      AbilitiesService.resetPriorities();
+    }
+  }
 
   this.freeMode = location.hash.includes("free");
   this.freeAbility = freeAbility;
@@ -88,6 +97,7 @@ app.controller("AbilitiesController",
 
   var self = this;
   $scope.$on('loadCharacter', function(){
+    AbilitiesService.loadedCharacter = true;
     self.selectedPriorities = getSelectedPriorities();
     self.alertness =  AbilitiesService.alertness;
     self.athletics = AbilitiesService.athletics;
@@ -126,6 +136,7 @@ app.controller("AbilitiesController",
   });
 
   $scope.$on('resetCharacter', function(){
+    AbilitiesService.loadedCharacter = false;
     AbilitiesService.resetAbilities();
     AbilitiesService.resetPriorities();
   });

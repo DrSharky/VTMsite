@@ -3,6 +3,7 @@ var app = angular.module("site");
 app.service("DisciplineService", ['ClanService', 'CharCreatorService', 'UglyService',
  function(ClanService, CharCreatorService, UglyService){
 
+  this.loadedCharacter = false;
   this.freeDisciplinePt = freeDisciplinePt;
   this.setClan = setClan;
   this.setClanDisciplines = setClanDisciplines;
@@ -52,7 +53,14 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService', 'UglyServ
   }
 
   function freeDisciplinePt(discipline, index){
-    discipline.select(index, "original");
+    if(index == 0 && discipline.pointCount == 1){
+      discipline.pointCount = 0;
+      discipline.zero();
+    }
+    else{
+      discipline.pointCount = (index+1);
+      discipline.select(index, "original");
+    }
   }
 
   function selectDisciplinePt(discipline, index){
@@ -135,7 +143,12 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService', 'UglyServ
                      {id: 2, img: "./empty.png", type:""},
                      {id: 3, img: "./empty.png", type:""},
                      {id: 4, img: "./empty.png", type:""}];
-
+      this.zero = function(){
+       this.points.forEach(function(point){
+         point.img = "./empty.png";
+         point.type = "";
+       });
+      };
       this.reset = function(){
         this.points.forEach(function(disciplinePt){
           if(disciplinePt.type == "freebie"){
@@ -238,5 +251,11 @@ app.service("DisciplineService", ['ClanService', 'CharCreatorService', 'UglyServ
     this.selectedClanDisciplines[index].reset();
     delete this.selectedClanDisciplines[index];
   };
+
+  this.resetDisciplines = resetDisciplines;
+  function resetDisciplines(){
+    this.selectedClanDisciplines = this.setClanDisciplines();
+    this.disciplinePts = 3;
+  }
 
 }]);

@@ -4,6 +4,7 @@ app.service("AbilitiesService",
 ['CharCreatorService',
  function(CharCreatorService){
 
+   this.loadedCharacter = false;
    this.freeAbility = freeAbility;
    this.priorityChange = priorityChange;
    this.selectAbility = selectAbility;
@@ -20,7 +21,6 @@ app.service("AbilitiesService",
    this.tertiaryPts = 5;
    this.selectedPriorities = [null, null, null];
    this.abilitiesList = {};
-   var vm = this;
 
    class Ability {
      constructor(name, id){

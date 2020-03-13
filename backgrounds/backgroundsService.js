@@ -3,10 +3,12 @@ var app = angular.module("site");
 app.service("BackgroundsService", ['CharCreatorService',
  function(CharCreatorService){
 
+   this.loadedCharacter = false;
    this.freeBackgroundPt = freeBackgroundPt;
    this.backgroundPts = 5;
    this.selectBackgroundPt = selectBackgroundPt;
    this.chooseBackground = chooseBackground;
+   this.resetBackgrounds = resetBackgrounds;
 
    this.backgroundList = ["", "Allies", "Alternate Identity", "Black Hand Memebership",
                           "Contacts", "Domain", "Fame", "Generation",
@@ -14,7 +16,13 @@ app.service("BackgroundsService", ['CharCreatorService',
                           "Retainers", "Rituals", "Status"];
 
   function freeBackgroundPt(background, index){
-    background.select(index, "original");
+    if(index == 0 && background.pointCount == 1){
+      background.reset();
+    }
+    else{
+      background.pointCount=(index+1);
+      background.select(index, "original");
+  }
   }
 
   function selectBackgroundPt(background, index){
@@ -168,6 +176,13 @@ app.service("BackgroundsService", ['CharCreatorService',
  function removeBackground(index){
    this.selectedList[index].reset();
    delete this.selectedList[index];
+ }
+
+ function resetBackgrounds(){
+   this.backgroundPts = 5;
+   this.selectedList = {0: new Background(""), 1: new Background(""),
+                        2: new Background(""), 3: new Background(""),
+                        4: new Background(""), 5: new Background("")};
  }
 
 }]);

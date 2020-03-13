@@ -2,6 +2,8 @@ var app = angular.module("site");
 app.service('AttributesService', ['UglyService', 'CharCreatorService',
  function(UglyService, CharCreatorService){
 
+  this.loadedCharacter = false;
+  this.freeMode = location.hash.includes("free");
   this.freeAttribute = freeAttribute;
   this.priorityChange = priorityChange;
   this.selectAttribute = selectAttribute;
@@ -88,6 +90,10 @@ app.service('AttributesService', ['UglyService', 'CharCreatorService',
           point.type = "";
         });
       };
+      if(vm.freeMode){
+        this.pointCount = 0;
+        this.zero();
+      }
     };
   };
 
@@ -152,12 +158,23 @@ app.service('AttributesService', ['UglyService', 'CharCreatorService',
   };
 
   function resetAttributes(){
-    this.attributeCategories.forEach(function(attrCat){
-      attrCat.attributes.forEach(function(attr){
-        attr.reset();
-        attr.pointCount = 1;
+    this.freeMode = location.hash.includes("free");
+    if(this.freeMode){
+      this.attributeCategories.forEach(function(attrCat){
+        attrCat.attributes.forEach(function(attr){
+          attr.zero();
+          attr.pointCount = 0;
+        });
       });
-    });
+    }
+    else{
+      this.attributeCategories.forEach(function(attrCat){
+        attrCat.attributes.forEach(function(attr){
+          attr.reset();
+          attr.pointCount = 1;
+        });
+      });
+    }
   };
 
   function resetPriorities(){
@@ -195,7 +212,8 @@ function getPriorityPts(priority){
 
 function freeAttribute(attribute, index, catIndex){
   if(index == 0 && attribute.pointCount == 1){
-    attribute.reset();
+    attribute.pointCount = 0;
+    attribute.zero();
   }
   else{
     attribute.pointCount = (index+1);

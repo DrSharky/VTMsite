@@ -4,6 +4,15 @@ app.controller("AttributesController",
  ['NgTableParams', 'UglyService', 'AttributesService', '$scope',
  function(NgTableParams, UglyService, AttributeService, $scope){
 
+  $scope.$on('$routeChangeSuccess', initScope);
+
+  function initScope(){
+    if(!AttributeService.loadedCharacter){
+      AttributeService.resetAttributes();
+      AttributeService.resetPriorities();
+    }
+  }
+
   this.freeMode = location.hash.includes("free");
   this.freeAttribute = freeAttribute;
 
@@ -105,6 +114,7 @@ app.controller("AttributesController",
 
   var self = this;
   $scope.$on('loadCharacter', function(){
+    AttributeService.loadedCharacter = true;
     self.selectedPriorities = getSelectedPriorities();
     self.strength = AttributeService.strength;
     self.dexterity = AttributeService.dexterity;
@@ -119,6 +129,7 @@ app.controller("AttributesController",
   });
 
   $scope.$on('resetCharacter', function(){
+    AttributeService.loadedCharacter = false;
     AttributeService.resetAttributes();
     AttributeService.resetPriorities();
   })
