@@ -4,6 +4,7 @@ app.service("PathService",
  ['CharCreatorService',
  function(CharCreatorService){
 
+   this.loadedCharacter = false;
    this.pathList = ["Humanity", "Path of Asakku", "Path of the Beast", "Path of Blood",
                     "Path of Bones", "Path of Caine", "Path of Cathari",
                     "Path of Death and the Soul", "Path of Ecstasy", "Path of Entelechy",
@@ -17,9 +18,18 @@ app.service("PathService",
 
   this.freePathPt = freePathPt;
   this.selectPathPt = selectPathPt;
+  this.freeMode = location.hash.includes("free");
+  var vm = this;
 
   function freePathPt(path, index){
-    path.select(index, "original");
+    if(index == 0 && path.pointCount == 1){
+      path.pointCount = 0;
+      path.zero();
+    }
+    else{
+      path.pointCount = (index+1);
+      path.select(index, "original");
+    }
   }
 
   function selectPathPt(path, index){
@@ -68,7 +78,16 @@ app.service("PathService",
                      {id:7, img:"./empty.png", type: ""},
                      {id:8, img:"./empty.png", type: ""},
                      {id:9, img:"./empty.png", type: ""}];
-
+      this.zero = function(){
+       this.points.forEach(function(point){
+        point.img = "./empty.png";
+        point.type = "";
+       });
+     };
+     if(vm.freeMode){
+       this.pointCount = 0;
+       this.zero();
+     }
      this.select = function(index, type){
        if(this.points[index].img=="./full.png" ||
           this.points[index].img=="./free.png")
@@ -107,18 +126,34 @@ app.service("PathService",
 
   this.resetPath = resetPath;
   function resetPath(){
-    this.selectedPath.points = [{id:0, img:"./full.png", type: "original"},
-                                {id:1, img:"./full.png", type: "original"},
-                                {id:2, img:"./empty.png", type: ""},
-                                {id:3, img:"./empty.png", type: ""},
-                                {id:4, img:"./empty.png", type: ""},
-                                {id:5, img:"./empty.png", type: ""},
-                                {id:6, img:"./empty.png", type: ""},
-                                {id:7, img:"./empty.png", type: ""},
-                                {id:8, img:"./empty.png", type: ""},
-                                {id:9, img:"./empty.png", type: ""}];
-    this.selectedPath.name = this.pathList[0];
-    this.selectedPath.pointCount = 2;
+    if(!location.hash.includes("free")){
+      this.selectedPath.points = [{id:0, img:"./full.png", type: "original"},
+                                  {id:1, img:"./full.png", type: "original"},
+                                  {id:2, img:"./empty.png", type: ""},
+                                  {id:3, img:"./empty.png", type: ""},
+                                  {id:4, img:"./empty.png", type: ""},
+                                  {id:5, img:"./empty.png", type: ""},
+                                  {id:6, img:"./empty.png", type: ""},
+                                  {id:7, img:"./empty.png", type: ""},
+                                  {id:8, img:"./empty.png", type: ""},
+                                  {id:9, img:"./empty.png", type: ""}];
+      this.selectedPath.name = "";
+      this.selectedPath.pointCount = 2;
+    }
+    else{
+      this.selectedPath.points = [{id:0, img:"./empty.png", type: ""},
+                                  {id:1, img:"./empty.png", type: ""},
+                                  {id:2, img:"./empty.png", type: ""},
+                                  {id:3, img:"./empty.png", type: ""},
+                                  {id:4, img:"./empty.png", type: ""},
+                                  {id:5, img:"./empty.png", type: ""},
+                                  {id:6, img:"./empty.png", type: ""},
+                                  {id:7, img:"./empty.png", type: ""},
+                                  {id:8, img:"./empty.png", type: ""},
+                                  {id:9, img:"./empty.png", type: ""}];
+       this.selectedPath.name = "";
+       this.selectedPath.pointCount = 0;
+    }
   };
 
   this.selectedPath = new Path("");

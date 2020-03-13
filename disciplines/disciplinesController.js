@@ -4,6 +4,16 @@ app.controller("DisciplinesController",
  ['$scope', 'ClanService', 'DisciplineService',
  function($scope, ClanService, DisciplineService){
 
+   $scope.$on('$routeChangeSuccess', initScope);
+
+   var self = this;
+   function initScope(){
+     if(!DisciplineService.loadedCharacter){
+       DisciplineService.resetDisciplines();
+       self.selectedClanDisciplines = self.getDisciplines();
+     }
+   }
+
    this.freeMode = location.hash.includes("free");
    this.freeDisciplinePt = freeDisciplinePt;
 
@@ -13,6 +23,7 @@ app.controller("DisciplinesController",
    };
 
   this.isGargoyle = isGargoyle;
+  this.getDisciplines = getDisciplines;
   this.selectDisciplinePt = selectDisciplinePt;
   this.disciplinesPage = "./disciplines/disciplines.html";
 
@@ -58,5 +69,11 @@ app.controller("DisciplinesController",
   function removeDiscipline(index){
     DisciplineService.removeDiscipline(index);
   };
+
+  $scope.$on('loadCharacter', function(){
+    DisciplineService.loadedCharacter = true;
+    self.selectedClanDisciplines = self.getDisciplines();
+    $scope.$apply();
+  })
 
 }]);

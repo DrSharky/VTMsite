@@ -4,13 +4,22 @@ app.service("VirtuesService",
  ['CharCreatorService', 'PathService', 'WillpowerService',
  function(CharCreatorService, PathService, WillpowerService){
 
-
+   this.loadedCharacter = false;
+   this.freeMode = location.hash.includes("free");
    this.freeVirtuePt = freeVirtuePt;
    this.virtuePts = 7;
    this.selectVirtuePt = selectVirtuePt;
+   var vm = this;
 
    function freeVirtuePt(virtue, index){
-     virtue.select(index, "original");
+     if(index == 0 && virtue.pointCount == 1){
+       virtue.pointCount = 0;
+       virtue.zero();
+     }
+     else{
+       virtue.pointCount = (index+1);
+       virtue.select(index, "original");
+     }
    }
 
    function selectVirtuePt(virtue, index){
@@ -109,6 +118,18 @@ app.service("VirtuesService",
         });
       }
 
+      this.zero = function(){
+        this.points.forEach(function(point){
+          point.img = "./empty.png";
+          point.type = "";
+        });
+      };
+
+      if(vm.freeMode){
+        this.pointCount = 0;
+        this.zero();
+      }
+
       this.select = function(index, type){
         if(this.points[index].img=="./full.png" ||
            this.points[index].img=="./free.png")
@@ -148,7 +169,13 @@ app.service("VirtuesService",
   this.resetVirtues = resetVirtues;
   function resetVirtues(){
     for(var virtue in this.virtueList){
-      this.virtueList[virtue].reset();
+      if(!location.hash.includes("free")){
+        this.virtueList[virtue].reset();
+        this.virtuePts = 7;
+      }
+      else{
+        this.virtueList[virtue].zero();
+      }
     }
   }
 

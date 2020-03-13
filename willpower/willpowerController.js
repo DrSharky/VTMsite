@@ -30,12 +30,22 @@ app.controller("WillpowerController",
     }
 
     var self = this;
+    $scope.$on('$routeChangeSuccess', initScope);
+
+    function initScope(){
+      if(!WillpowerService.loadedCharacter){
+        WillpowerService.resetWillpower();
+      }
+    }
+
     $scope.$on('loadCharacter', function(){
+      WillpowerService.loadedCharacter = true;
       self.willpower = WillpowerService.willpower;
       $scope.$apply();
     });
 
     $scope.$on('resetCharacter', function(){
+      WillpowerService.loadedCharacter = false;
       WillpowerService.resetWillpower();
     });
 

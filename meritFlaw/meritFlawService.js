@@ -3,6 +3,7 @@ var app = angular.module("site");
 app.service("MeritFlawService", ['CharCreatorService',
  function(CharCreatorService){
 
+   this.loadedCharacter = false;
    this.freeMode = location.hash.includes("free");
    this.maxFlawPts = this.freeMode ? 10000 : 7;
    this.addedFlawPts = 0;

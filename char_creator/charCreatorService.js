@@ -1,6 +1,6 @@
 var app = angular.module("site");
 
-app.service('CharCreatorService', [function(){  
+app.service('CharCreatorService', [function(){
 
   this.freebiePts = 15;
   this.freebieMode = false;
@@ -14,6 +14,7 @@ app.service('CharCreatorService', [function(){
   this.charDemeanor = null;
   this.charGeneration = "13th";
   this.charSire = null;
+  this.loadedCharacter = false;
 
   this.getPlayer = function(){
     return this.charPlayer;

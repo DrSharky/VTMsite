@@ -4,6 +4,16 @@ app.controller("VirtuesController",
  ['VirtuesService', '$scope', function(VirtuesService, $scope){
 
    this.freeMode = location.hash.includes("free");
+
+   var self = this;
+   $scope.$on('$routeChangeSuccess', initScope);
+
+   function initScope(){
+     if(!VirtuesService.loadedCharacter){
+       VirtuesService.resetVirtues();
+     }
+   }
+
    this.freeVirtuePt = freeVirtuePt;
 
    this.selectVirtuePt = selectVirtuePt;
@@ -29,11 +39,13 @@ app.controller("VirtuesController",
 
    var self = this;
    $scope.$on('loadCharacter', function(){
+     VirtuesService.loadedCharacter = true;
      self.virtueList = VirtuesService.virtueList;
      $scope.$apply();
    });
 
    $scope.$on('resetCharacter', function(){
+     VirtuesService.loadedCharacter = false;
      VirtuesService.resetVirtues();
    });
 
